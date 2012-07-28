@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E1E2B68B-33DE-4159-A97F-701399F4D92B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Jacobsoft.Amd</RootNamespace>
+    <AssemblyName>Jacobsoft.Amd</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.Unofficial.3.4.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime.Debug">
+      <HintPath>..\packages\Antlr.Unofficial.3.4.1.0\lib\Antlr3.Runtime.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime.JavaExtensions">
+      <HintPath>..\packages\Antlr.Unofficial.3.4.1.0\lib\Antlr3.Runtime.JavaExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr4.StringTemplate">
+      <HintPath>..\packages\Antlr.Unofficial.3.4.1.0\lib\Antlr4.StringTemplate.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr4.StringTemplate.Visualizer">
+      <HintPath>..\packages\Antlr.Unofficial.3.4.1.0\lib\Antlr4.StringTemplate.Visualizer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AmdConfiguration.cs" />
+    <Compile Include="AmdController.cs" />
+    <Compile Include="AmdSystem.cs" />
+    <Compile Include="Exceptions\InvalidNamedModuleException.cs" />
+    <Compile Include="Exceptions\InvalidPathException.cs" />
+    <Compile Include="Exceptions\ModuleResolutionException.cs" />
+    <Compile Include="Internals\Antlr\JavaScriptLexer.cs" />
+    <Compile Include="Internals\Antlr\JavaScriptParser.cs" />
+    <Compile Include="Exceptions\AmdException.cs" />
+    <Compile Include="Internals\Antlr\TreeNodes.cs" />
+    <Compile Include="Internals\AutoCastingList.cs" />
+    <Compile Include="Internals\ObjectFactory.cs" />
+    <Compile Include="Internals\FileSystem.cs" />
+    <Compile Include="IAmdConfiguration.cs" />
+    <Compile Include="Internals\IFileSystem.cs" />
+    <Compile Include="Internals\IModule.cs" />
+    <Compile Include="Internals\IModuleResolver.cs" />
+    <Compile Include="Internals\Module.cs" />
+    <Compile Include="Internals\ModuleResolver.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Internals\Antlr\JavaScript.g" />
+    <None Include="Internals\Antlr\JavaScript.g.orig" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
