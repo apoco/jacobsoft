@@ -68,7 +68,7 @@ formalParameterList
 	;
 
 functionBody
-	: '{' LT* sourceElements LT* '}' -> ^('{'<node=FunctionBody> sourceElements)
+	: '{' LT* sourceElements? LT* '}' -> ^('{'<node=StatementBlock> sourceElements?)
 	;
 
 // statements

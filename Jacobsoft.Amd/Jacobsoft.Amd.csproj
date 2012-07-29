@@ -61,15 +61,18 @@
   <ItemGroup>
     <Compile Include="AmdConfiguration.cs" />
     <Compile Include="AmdController.cs" />
-    <Compile Include="AmdSystem.cs" />
-    <Compile Include="Exceptions\InvalidNamedModuleException.cs" />
+    <Compile Include="Exceptions\InvalidModuleException.cs" />
     <Compile Include="Exceptions\InvalidPathException.cs" />
     <Compile Include="Exceptions\ModuleResolutionException.cs" />
     <Compile Include="Internals\Antlr\JavaScriptLexer.cs" />
+    <Compile Include="Internals\Antlr\JavaScriptLexer.Extensions.cs" />
     <Compile Include="Internals\Antlr\JavaScriptParser.cs" />
     <Compile Include="Exceptions\AmdException.cs" />
+    <Compile Include="Internals\Antlr\JavaScriptParser.Extensions.cs" />
     <Compile Include="Internals\Antlr\TreeNodes.cs" />
     <Compile Include="Internals\AutoCastingList.cs" />
+    <Compile Include="Internals\IModuleRepository.cs" />
+    <Compile Include="Internals\ModuleRepository.cs" />
     <Compile Include="Internals\ObjectFactory.cs" />
     <Compile Include="Internals\FileSystem.cs" />
     <Compile Include="IAmdConfiguration.cs" />
@@ -82,7 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Internals\Antlr\JavaScript.g" />
-    <None Include="Internals\Antlr\JavaScript.g.orig" />
+    <None Include="Internals\Antlr\JavaScript.tokens" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

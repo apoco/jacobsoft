@@ -90,6 +90,7 @@
     <Compile Include="Internals\ModuleResolverTests.cs" />
     <Compile Include="Internals\AutoCastingListTests.cs" />
     <Compile Include="Internals\ObjectFactoryTests.cs" />
+    <Compile Include="Internals\ModuleRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -53,6 +53,15 @@ namespace Jacobsoft.Amd.Test.Internals
         }
 
         [TestMethod]
+        public void ParseStringLiteral_WithUnicodeCharacters()
+        {
+            var program = this.ParseProgram(@"foo = '\u0052';");
+            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
+            this.AssertNode<Identifier>("foo", assignment.Target);
+            this.AssertNode<StringLiteral>(@"'\u0052'", assignment.Value);
+        }
+
+        [TestMethod]
         public void ParseEmptyObjectLiteral()
         {
             var program = this.ParseProgram("foo = {};");
@@ -893,10 +902,37 @@ namespace Jacobsoft.Amd.Test.Internals
         }
 
         [TestMethod]
+        public void ParseFunctionExpression()
+        {
+            var program = this.ParseProgram("foo = function (bar, baz) { bar = baz; };");
+            
+            var assign = this.AssertNode<AssignExpression>(program.Children[0]);
+            this.AssertNode<Identifier>("foo", assign.Target);
+
+            var funcExpr = this.AssertNode<FunctionExpression>(assign.Value);
+            this.AssertNode<Identifier>("bar", funcExpr.Parameters[0]);
+            this.AssertNode<Identifier>("baz", funcExpr.Parameters[1]);
+
+            assign = this.AssertNode<AssignExpression>(funcExpr.Statements[0]);
+            this.AssertNode<Identifier>("bar", assign.Target);
+            this.AssertNode<Identifier>("baz", assign.Value);
+        }
+
+        [TestMethod]
+        public void ParseEmptyFunctionExpression()
+        {
+            var program = this.ParseProgram("foo = function () { };");
+
+            var assign = this.AssertNode<AssignExpression>(program.Children[0]);
+            this.AssertNode<Identifier>("foo", assign.Target);
+            this.AssertNode<FunctionExpression>(assign.Value);
+        }
+
+        [TestMethod]
         public void ParseFunctionDeclaration()
         {
             var program = this.ParseProgram("function foo(bar, baz) { bar = baz; }");
-            var decl = this.AssertNode<FunctionDeclaration>(program.Children[0]);
+            var decl = this.AssertNode<FunctionDeclaration>(program.Statements[0]);
 
             this.AssertNode<Identifier>("foo", decl.Children[0]);
 
@@ -904,8 +940,7 @@ namespace Jacobsoft.Amd.Test.Internals
             this.AssertNode<Identifier>("bar", paramList.Children[0]);
             this.AssertNode<Identifier>("baz", paramList.Children[1]);
 
-            var body = this.AssertNode<FunctionBody>(decl.Children[2]);
-            var assignment = this.AssertNode<AssignExpression>(body.Children[0]);
+            var assignment = this.AssertNode<AssignExpression>(decl.Statements[0]);
             this.AssertNode<Identifier>("bar", assignment.Children[0]);
             this.AssertNode<Identifier>("baz", assignment.Children[1]);
         }

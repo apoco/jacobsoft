@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4.1.9004 JavaScript.g 2012-07-28 13:15:28
+// $ANTLR 3.4.1.9004 JavaScript.g 2012-07-29 08:47:28
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -158,7 +158,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 	public JavaScriptParser(ITokenStream input, RecognizerSharedState state)
 		: base(input, state)
 	{
-		this.state.ruleMemo = new System.Collections.Generic.Dictionary<int, int>[381+1];
+		this.state.ruleMemo = new System.Collections.Generic.Dictionary<int, int>[382+1];
 
 
 		ITreeAdaptor treeAdaptor = default(ITreeAdaptor);
@@ -1622,7 +1622,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 	partial void EnterRule_functionBody();
 	partial void LeaveRule_functionBody();
 	// $ANTLR start "functionBody"
-	// JavaScript.g:70:1: functionBody : '{' ( LT )* sourceElements ( LT )* '}' -> ^( '{' sourceElements ) ;
+	// JavaScript.g:70:1: functionBody : '{' ( LT )* ( sourceElements )? ( LT )* '}' -> ^( '{' ( sourceElements )? ) ;
 	[GrammarRule("functionBody")]
 	private AstParserRuleReturnScope<CommonTree, IToken> functionBody()
 	{
@@ -1655,9 +1655,9 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		{
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 7)) { return retval; }
 
-			// JavaScript.g:71:2: ( '{' ( LT )* sourceElements ( LT )* '}' -> ^( '{' sourceElements ) )
+			// JavaScript.g:71:2: ( '{' ( LT )* ( sourceElements )? ( LT )* '}' -> ^( '{' ( sourceElements )? ) )
 			DebugEnterAlt(1);
-			// JavaScript.g:71:4: '{' ( LT )* sourceElements ( LT )* '}'
+			// JavaScript.g:71:4: '{' ( LT )* ( sourceElements )? ( LT )* '}'
 			{
 			DebugLocation(71, 4);
 			char_literal33=(IToken)Match(input,110,Follow._110_in_functionBody395); if (state.failed) return retval; 
@@ -1674,7 +1674,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				if ((LA19_1==LT))
 				{
-					alt19 = 1;
+					int LA19_2 = input.LA(2);
+
+					if ((EvaluatePredicate(synpred19_JavaScript_fragment)))
+					{
+						alt19 = 1;
+					}
+
+
 				}
 
 
@@ -1704,35 +1711,60 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			} finally { DebugExitSubRule(19); }
 
 			DebugLocation(71, 12);
-			PushFollow(Follow._sourceElements_in_functionBody400);
-			sourceElements35=sourceElements();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) stream_sourceElements.Add(sourceElements35.Tree);
-			DebugLocation(71, 27);
-			// JavaScript.g:71:27: ( LT )*
+			// JavaScript.g:71:12: ( sourceElements )?
+			int alt20=2;
 			try { DebugEnterSubRule(20);
+			try { DebugEnterDecision(20, false);
+			int LA20_1 = input.LA(1);
+
+			if ((LA20_1==Identifier||LA20_1==NumericLiteral||LA20_1==StringLiteral||LA20_1==40||LA20_1==48||(LA20_1>=52 && LA20_1<=53)||(LA20_1>=56 && LA20_1<=57)||LA20_1==63||LA20_1==78||LA20_1==82||LA20_1==85||(LA20_1>=87 && LA20_1<=88)||LA20_1==90||(LA20_1>=92 && LA20_1<=94)||(LA20_1>=97 && LA20_1<=110)||LA20_1==115))
+			{
+				alt20 = 1;
+			}
+			} finally { DebugExitDecision(20); }
+			switch (alt20)
+			{
+			case 1:
+				DebugEnterAlt(1);
+				// JavaScript.g:71:12: sourceElements
+				{
+				DebugLocation(71, 12);
+				PushFollow(Follow._sourceElements_in_functionBody400);
+				sourceElements35=sourceElements();
+				PopFollow();
+				if (state.failed) return retval;
+				if (state.backtracking == 0) stream_sourceElements.Add(sourceElements35.Tree);
+
+				}
+				break;
+
+			}
+			} finally { DebugExitSubRule(20); }
+
+			DebugLocation(71, 28);
+			// JavaScript.g:71:28: ( LT )*
+			try { DebugEnterSubRule(21);
 			while (true)
 			{
-				int alt20=2;
-				try { DebugEnterDecision(20, false);
-				int LA20_1 = input.LA(1);
+				int alt21=2;
+				try { DebugEnterDecision(21, false);
+				int LA21_1 = input.LA(1);
 
-				if ((LA20_1==LT))
+				if ((LA21_1==LT))
 				{
-					alt20 = 1;
+					alt21 = 1;
 				}
 
 
-				} finally { DebugExitDecision(20); }
-				switch ( alt20 )
+				} finally { DebugExitDecision(21); }
+				switch ( alt21 )
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:71:27: LT
+					// JavaScript.g:71:28: LT
 					{
-					DebugLocation(71, 27);
-					LT36=(IToken)Match(input,LT,Follow._LT_in_functionBody402); if (state.failed) return retval; 
+					DebugLocation(71, 28);
+					LT36=(IToken)Match(input,LT,Follow._LT_in_functionBody403); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT36);
 
 
@@ -1740,17 +1772,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop20;
+					goto loop21;
 				}
 			}
 
-			loop20:
+			loop21:
 				;
 
-			} finally { DebugExitSubRule(20); }
+			} finally { DebugExitSubRule(21); }
 
-			DebugLocation(71, 31);
-			char_literal37=(IToken)Match(input,114,Follow._114_in_functionBody405); if (state.failed) return retval; 
+			DebugLocation(71, 32);
+			char_literal37=(IToken)Match(input,114,Follow._114_in_functionBody406); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_114.Add(char_literal37);
 
 
@@ -1768,17 +1800,24 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			RewriteRuleSubtreeStream stream_retval=new RewriteRuleSubtreeStream(adaptor,"rule retval",retval!=null?retval.Tree:null);
 
 			root_0 = (CommonTree)adaptor.Nil();
-			// 71:35: -> ^( '{' sourceElements )
+			// 71:36: -> ^( '{' ( sourceElements )? )
 			{
-				DebugLocation(71, 38);
-				// JavaScript.g:71:38: ^( '{' sourceElements )
+				DebugLocation(71, 39);
+				// JavaScript.g:71:39: ^( '{' ( sourceElements )? )
 				{
 				CommonTree root_1 = (CommonTree)adaptor.Nil();
-				DebugLocation(71, 40);
-				root_1 = (CommonTree)adaptor.BecomeRoot(new FunctionBody(stream_110.NextToken()), root_1);
+				DebugLocation(71, 41);
+				root_1 = (CommonTree)adaptor.BecomeRoot(new StatementBlock(stream_110.NextToken()), root_1);
 
-				DebugLocation(71, 63);
-				adaptor.AddChild(root_1, stream_sourceElements.NextTree());
+				DebugLocation(71, 66);
+				// JavaScript.g:71:66: ( sourceElements )?
+				if (stream_sourceElements.HasNext)
+				{
+					DebugLocation(71, 66);
+					adaptor.AddChild(root_1, stream_sourceElements.NextTree());
+
+				}
+				stream_sourceElements.Reset();
 
 				adaptor.AddChild(root_0, root_1);
 				}
@@ -1858,26 +1897,26 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 8)) { return retval; }
 
 			// JavaScript.g:76:2: ( statementBlock | variableStatement | emptyStatement | expressionStatement | ifStatement | iterationStatement | continueStatement | breakStatement | returnStatement | withStatement | labelledStatement | switchStatement | throwStatement | tryStatement )
-			int alt21=14;
-			try { DebugEnterDecision(21, false);
+			int alt22=14;
+			try { DebugEnterDecision(22, false);
 			switch (input.LA(1))
 			{
 			case 110:
 				{
-				int LA21_2 = input.LA(2);
+				int LA22_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred21_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred22_JavaScript_fragment)))
 				{
-					alt21 = 1;
+					alt22 = 1;
 				}
-				else if ((EvaluatePredicate(synpred24_JavaScript_fragment)))
+				else if ((EvaluatePredicate(synpred25_JavaScript_fragment)))
 				{
-					alt21 = 4;
+					alt22 = 4;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 21, 1, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 22, 1, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -1885,12 +1924,12 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 106:
 				{
-				alt21 = 2;
+				alt22 = 2;
 				}
 				break;
 			case 63:
 				{
-				alt21 = 3;
+				alt22 = 3;
 				}
 				break;
 			case NumericLiteral:
@@ -1913,25 +1952,25 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			case 107:
 			case 115:
 				{
-				alt21 = 4;
+				alt22 = 4;
 				}
 				break;
 			case Identifier:
 				{
-				int LA21_2 = input.LA(2);
+				int LA22_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred24_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred25_JavaScript_fragment)))
 				{
-					alt21 = 4;
+					alt22 = 4;
 				}
-				else if ((EvaluatePredicate(synpred31_JavaScript_fragment)))
+				else if ((EvaluatePredicate(synpred32_JavaScript_fragment)))
 				{
-					alt21 = 11;
+					alt22 = 11;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 21, 5, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 22, 5, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -1939,62 +1978,62 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 94:
 				{
-				alt21 = 5;
+				alt22 = 5;
 				}
 				break;
 			case 88:
 			case 92:
 			case 108:
 				{
-				alt21 = 6;
+				alt22 = 6;
 				}
 				break;
 			case 85:
 				{
-				alt21 = 7;
+				alt22 = 7;
 				}
 				break;
 			case 82:
 				{
-				alt21 = 8;
+				alt22 = 8;
 				}
 				break;
 			case 99:
 				{
-				alt21 = 9;
+				alt22 = 9;
 				}
 				break;
 			case 109:
 				{
-				alt21 = 10;
+				alt22 = 10;
 				}
 				break;
 			case 100:
 				{
-				alt21 = 12;
+				alt22 = 12;
 				}
 				break;
 			case 102:
 				{
-				alt21 = 13;
+				alt22 = 13;
 				}
 				break;
 			case 104:
 				{
-				alt21 = 14;
+				alt22 = 14;
 				}
 				break;
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 21, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 22, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(21); }
-			switch (alt21)
+			} finally { DebugExitDecision(22); }
+			switch (alt22)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -2003,7 +2042,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(76, 4);
-				PushFollow(Follow._statementBlock_in_statement430);
+				PushFollow(Follow._statementBlock_in_statement432);
 				statementBlock38=statementBlock();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2018,7 +2057,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(77, 4);
-				PushFollow(Follow._variableStatement_in_statement435);
+				PushFollow(Follow._variableStatement_in_statement437);
 				variableStatement39=variableStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2033,7 +2072,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(78, 4);
-				PushFollow(Follow._emptyStatement_in_statement440);
+				PushFollow(Follow._emptyStatement_in_statement442);
 				emptyStatement40=emptyStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2048,7 +2087,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(79, 4);
-				PushFollow(Follow._expressionStatement_in_statement445);
+				PushFollow(Follow._expressionStatement_in_statement447);
 				expressionStatement41=expressionStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2063,7 +2102,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(80, 4);
-				PushFollow(Follow._ifStatement_in_statement450);
+				PushFollow(Follow._ifStatement_in_statement452);
 				ifStatement42=ifStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2078,7 +2117,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(81, 4);
-				PushFollow(Follow._iterationStatement_in_statement455);
+				PushFollow(Follow._iterationStatement_in_statement457);
 				iterationStatement43=iterationStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2093,7 +2132,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(82, 4);
-				PushFollow(Follow._continueStatement_in_statement460);
+				PushFollow(Follow._continueStatement_in_statement462);
 				continueStatement44=continueStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2108,7 +2147,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(83, 4);
-				PushFollow(Follow._breakStatement_in_statement465);
+				PushFollow(Follow._breakStatement_in_statement467);
 				breakStatement45=breakStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2123,7 +2162,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(84, 4);
-				PushFollow(Follow._returnStatement_in_statement470);
+				PushFollow(Follow._returnStatement_in_statement472);
 				returnStatement46=returnStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2138,7 +2177,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(85, 4);
-				PushFollow(Follow._withStatement_in_statement475);
+				PushFollow(Follow._withStatement_in_statement477);
 				withStatement47=withStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2153,7 +2192,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(86, 4);
-				PushFollow(Follow._labelledStatement_in_statement480);
+				PushFollow(Follow._labelledStatement_in_statement482);
 				labelledStatement48=labelledStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2168,7 +2207,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(87, 4);
-				PushFollow(Follow._switchStatement_in_statement485);
+				PushFollow(Follow._switchStatement_in_statement487);
 				switchStatement49=switchStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2183,7 +2222,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(88, 4);
-				PushFollow(Follow._throwStatement_in_statement490);
+				PushFollow(Follow._throwStatement_in_statement492);
 				throwStatement50=throwStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2198,7 +2237,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(89, 4);
-				PushFollow(Follow._tryStatement_in_statement495);
+				PushFollow(Follow._tryStatement_in_statement497);
 				tryStatement51=tryStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2278,40 +2317,40 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:93:4: '{' ( LT )* ( statementList )? ( LT )* '}'
 			{
 			DebugLocation(93, 4);
-			char_literal52=(IToken)Match(input,110,Follow._110_in_statementBlock507); if (state.failed) return retval; 
+			char_literal52=(IToken)Match(input,110,Follow._110_in_statementBlock509); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_110.Add(char_literal52);
 
 			DebugLocation(93, 8);
 			// JavaScript.g:93:8: ( LT )*
-			try { DebugEnterSubRule(22);
+			try { DebugEnterSubRule(23);
 			while (true)
 			{
-				int alt22=2;
-				try { DebugEnterDecision(22, false);
-				int LA22_1 = input.LA(1);
+				int alt23=2;
+				try { DebugEnterDecision(23, false);
+				int LA23_1 = input.LA(1);
 
-				if ((LA22_1==LT))
+				if ((LA23_1==LT))
 				{
-					int LA22_2 = input.LA(2);
+					int LA23_2 = input.LA(2);
 
-					if ((EvaluatePredicate(synpred34_JavaScript_fragment)))
+					if ((EvaluatePredicate(synpred35_JavaScript_fragment)))
 					{
-						alt22 = 1;
+						alt23 = 1;
 					}
 
 
 				}
 
 
-				} finally { DebugExitDecision(22); }
-				switch ( alt22 )
+				} finally { DebugExitDecision(23); }
+				switch ( alt23 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:93:8: LT
 					{
 					DebugLocation(93, 8);
-					LT53=(IToken)Match(input,LT,Follow._LT_in_statementBlock509); if (state.failed) return retval; 
+					LT53=(IToken)Match(input,LT,Follow._LT_in_statementBlock511); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT53);
 
 
@@ -2319,35 +2358,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop22;
+					goto loop23;
 				}
 			}
 
-			loop22:
+			loop23:
 				;
 
-			} finally { DebugExitSubRule(22); }
+			} finally { DebugExitSubRule(23); }
 
 			DebugLocation(93, 12);
 			// JavaScript.g:93:12: ( statementList )?
-			int alt23=2;
-			try { DebugEnterSubRule(23);
-			try { DebugEnterDecision(23, false);
-			int LA23_1 = input.LA(1);
+			int alt24=2;
+			try { DebugEnterSubRule(24);
+			try { DebugEnterDecision(24, false);
+			int LA24_1 = input.LA(1);
 
-			if ((LA23_1==Identifier||LA23_1==NumericLiteral||LA23_1==StringLiteral||LA23_1==40||LA23_1==48||(LA23_1>=52 && LA23_1<=53)||(LA23_1>=56 && LA23_1<=57)||LA23_1==63||LA23_1==78||LA23_1==82||LA23_1==85||(LA23_1>=87 && LA23_1<=88)||LA23_1==90||(LA23_1>=92 && LA23_1<=94)||(LA23_1>=97 && LA23_1<=110)||LA23_1==115))
+			if ((LA24_1==Identifier||LA24_1==NumericLiteral||LA24_1==StringLiteral||LA24_1==40||LA24_1==48||(LA24_1>=52 && LA24_1<=53)||(LA24_1>=56 && LA24_1<=57)||LA24_1==63||LA24_1==78||LA24_1==82||LA24_1==85||(LA24_1>=87 && LA24_1<=88)||LA24_1==90||(LA24_1>=92 && LA24_1<=94)||(LA24_1>=97 && LA24_1<=110)||LA24_1==115))
 			{
-				alt23 = 1;
+				alt24 = 1;
 			}
-			} finally { DebugExitDecision(23); }
-			switch (alt23)
+			} finally { DebugExitDecision(24); }
+			switch (alt24)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:93:12: statementList
 				{
 				DebugLocation(93, 12);
-				PushFollow(Follow._statementList_in_statementBlock512);
+				PushFollow(Follow._statementList_in_statementBlock514);
 				statementList54=statementList();
 				PopFollow();
 				if (state.failed) return retval;
@@ -2357,32 +2396,32 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(23); }
+			} finally { DebugExitSubRule(24); }
 
 			DebugLocation(93, 27);
 			// JavaScript.g:93:27: ( LT )*
-			try { DebugEnterSubRule(24);
+			try { DebugEnterSubRule(25);
 			while (true)
 			{
-				int alt24=2;
-				try { DebugEnterDecision(24, false);
-				int LA24_1 = input.LA(1);
+				int alt25=2;
+				try { DebugEnterDecision(25, false);
+				int LA25_1 = input.LA(1);
 
-				if ((LA24_1==LT))
+				if ((LA25_1==LT))
 				{
-					alt24 = 1;
+					alt25 = 1;
 				}
 
 
-				} finally { DebugExitDecision(24); }
-				switch ( alt24 )
+				} finally { DebugExitDecision(25); }
+				switch ( alt25 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:93:27: LT
 					{
 					DebugLocation(93, 27);
-					LT55=(IToken)Match(input,LT,Follow._LT_in_statementBlock515); if (state.failed) return retval; 
+					LT55=(IToken)Match(input,LT,Follow._LT_in_statementBlock517); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT55);
 
 
@@ -2390,17 +2429,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop24;
+					goto loop25;
 				}
 			}
 
-			loop24:
+			loop25:
 				;
 
-			} finally { DebugExitSubRule(24); }
+			} finally { DebugExitSubRule(25); }
 
 			DebugLocation(93, 31);
-			char_literal56=(IToken)Match(input,114,Follow._114_in_statementBlock518); if (state.failed) return retval; 
+			char_literal56=(IToken)Match(input,114,Follow._114_in_statementBlock520); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_114.Add(char_literal56);
 
 
@@ -2511,29 +2550,29 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			root_0 = (CommonTree)adaptor.Nil();
 
 			DebugLocation(97, 4);
-			PushFollow(Follow._statement_in_statementList544);
+			PushFollow(Follow._statement_in_statementList546);
 			statement57=statement();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) adaptor.AddChild(root_0, statement57.Tree);
 			DebugLocation(97, 14);
 			// JavaScript.g:97:14: ( ( LT !)* statement )*
-			try { DebugEnterSubRule(26);
+			try { DebugEnterSubRule(27);
 			while (true)
 			{
-				int alt26=2;
-				try { DebugEnterDecision(26, false);
+				int alt27=2;
+				try { DebugEnterDecision(27, false);
 				try
 				{
-					alt26 = dfa26.Predict(input);
+					alt27 = dfa27.Predict(input);
 				}
 				catch (NoViableAltException nvae)
 				{
 					DebugRecognitionException(nvae);
 					throw;
 				}
-				} finally { DebugExitDecision(26); }
-				switch ( alt26 )
+				} finally { DebugExitDecision(27); }
+				switch ( alt27 )
 				{
 				case 1:
 					DebugEnterAlt(1);
@@ -2541,44 +2580,44 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					DebugLocation(97, 17);
 					// JavaScript.g:97:17: ( LT !)*
-					try { DebugEnterSubRule(25);
+					try { DebugEnterSubRule(26);
 					while (true)
 					{
-						int alt25=2;
-						try { DebugEnterDecision(25, false);
-						int LA25_1 = input.LA(1);
+						int alt26=2;
+						try { DebugEnterDecision(26, false);
+						int LA26_1 = input.LA(1);
 
-						if ((LA25_1==LT))
+						if ((LA26_1==LT))
 						{
-							alt25 = 1;
+							alt26 = 1;
 						}
 
 
-						} finally { DebugExitDecision(25); }
-						switch ( alt25 )
+						} finally { DebugExitDecision(26); }
+						switch ( alt26 )
 						{
 						case 1:
 							DebugEnterAlt(1);
 							// JavaScript.g:97:17: LT !
 							{
 							DebugLocation(97, 17);
-							LT58=(IToken)Match(input,LT,Follow._LT_in_statementList547); if (state.failed) return retval;
+							LT58=(IToken)Match(input,LT,Follow._LT_in_statementList549); if (state.failed) return retval;
 
 							}
 							break;
 
 						default:
-							goto loop25;
+							goto loop26;
 						}
 					}
 
-					loop25:
+					loop26:
 						;
 
-					} finally { DebugExitSubRule(25); }
+					} finally { DebugExitSubRule(26); }
 
 					DebugLocation(97, 20);
-					PushFollow(Follow._statement_in_statementList551);
+					PushFollow(Follow._statement_in_statementList553);
 					statement59=statement();
 					PopFollow();
 					if (state.failed) return retval;
@@ -2588,14 +2627,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop26;
+					goto loop27;
 				}
 			}
 
-			loop26:
+			loop27:
 				;
 
-			} finally { DebugExitSubRule(26); }
+			} finally { DebugExitSubRule(27); }
 
 
 			}
@@ -2670,33 +2709,33 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:101:4: 'var' ( LT )* variableDeclarationList ( LT | ';' )
 			{
 			DebugLocation(101, 4);
-			string_literal60=(IToken)Match(input,106,Follow._106_in_variableStatement565); if (state.failed) return retval; 
+			string_literal60=(IToken)Match(input,106,Follow._106_in_variableStatement567); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_106.Add(string_literal60);
 
 			DebugLocation(101, 10);
 			// JavaScript.g:101:10: ( LT )*
-			try { DebugEnterSubRule(27);
+			try { DebugEnterSubRule(28);
 			while (true)
 			{
-				int alt27=2;
-				try { DebugEnterDecision(27, false);
-				int LA27_1 = input.LA(1);
+				int alt28=2;
+				try { DebugEnterDecision(28, false);
+				int LA28_1 = input.LA(1);
 
-				if ((LA27_1==LT))
+				if ((LA28_1==LT))
 				{
-					alt27 = 1;
+					alt28 = 1;
 				}
 
 
-				} finally { DebugExitDecision(27); }
-				switch ( alt27 )
+				} finally { DebugExitDecision(28); }
+				switch ( alt28 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:101:10: LT
 					{
 					DebugLocation(101, 10);
-					LT61=(IToken)Match(input,LT,Follow._LT_in_variableStatement567); if (state.failed) return retval; 
+					LT61=(IToken)Match(input,LT,Follow._LT_in_variableStatement569); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT61);
 
 
@@ -2704,52 +2743,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop27;
+					goto loop28;
 				}
 			}
 
-			loop27:
+			loop28:
 				;
 
-			} finally { DebugExitSubRule(27); }
+			} finally { DebugExitSubRule(28); }
 
 			DebugLocation(101, 14);
-			PushFollow(Follow._variableDeclarationList_in_variableStatement570);
+			PushFollow(Follow._variableDeclarationList_in_variableStatement572);
 			variableDeclarationList62=variableDeclarationList();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_variableDeclarationList.Add(variableDeclarationList62.Tree);
 			DebugLocation(101, 38);
 			// JavaScript.g:101:38: ( LT | ';' )
-			int alt28=2;
-			try { DebugEnterSubRule(28);
-			try { DebugEnterDecision(28, false);
-			int LA28_1 = input.LA(1);
+			int alt29=2;
+			try { DebugEnterSubRule(29);
+			try { DebugEnterDecision(29, false);
+			int LA29_1 = input.LA(1);
 
-			if ((LA28_1==LT))
+			if ((LA29_1==LT))
 			{
-				alt28 = 1;
+				alt29 = 1;
 			}
-			else if ((LA28_1==63))
+			else if ((LA29_1==63))
 			{
-				alt28 = 2;
+				alt29 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 28, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 29, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(28); }
-			switch (alt28)
+			} finally { DebugExitDecision(29); }
+			switch (alt29)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:101:39: LT
 				{
 				DebugLocation(101, 39);
-				LT63=(IToken)Match(input,LT,Follow._LT_in_variableStatement573); if (state.failed) return retval; 
+				LT63=(IToken)Match(input,LT,Follow._LT_in_variableStatement575); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_LT.Add(LT63);
 
 
@@ -2760,7 +2799,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:101:44: ';'
 				{
 				DebugLocation(101, 44);
-				char_literal64=(IToken)Match(input,63,Follow._63_in_variableStatement577); if (state.failed) return retval; 
+				char_literal64=(IToken)Match(input,63,Follow._63_in_variableStatement579); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_63.Add(char_literal64);
 
 
@@ -2768,7 +2807,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(28); }
+			} finally { DebugExitSubRule(29); }
 
 
 
@@ -2876,29 +2915,29 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:106:4: variableDeclaration ( ( LT )* ',' ( LT )* variableDeclaration )*
 			{
 			DebugLocation(106, 4);
-			PushFollow(Follow._variableDeclaration_in_variableDeclarationList606);
+			PushFollow(Follow._variableDeclaration_in_variableDeclarationList608);
 			variableDeclaration65=variableDeclaration();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_variableDeclaration.Add(variableDeclaration65.Tree);
 			DebugLocation(106, 24);
 			// JavaScript.g:106:24: ( ( LT )* ',' ( LT )* variableDeclaration )*
-			try { DebugEnterSubRule(31);
+			try { DebugEnterSubRule(32);
 			while (true)
 			{
-				int alt31=2;
-				try { DebugEnterDecision(31, false);
+				int alt32=2;
+				try { DebugEnterDecision(32, false);
 				try
 				{
-					alt31 = dfa31.Predict(input);
+					alt32 = dfa32.Predict(input);
 				}
 				catch (NoViableAltException nvae)
 				{
 					DebugRecognitionException(nvae);
 					throw;
 				}
-				} finally { DebugExitDecision(31); }
-				switch ( alt31 )
+				} finally { DebugExitDecision(32); }
+				switch ( alt32 )
 				{
 				case 1:
 					DebugEnterAlt(1);
@@ -2906,50 +2945,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					DebugLocation(106, 25);
 					// JavaScript.g:106:25: ( LT )*
-					try { DebugEnterSubRule(29);
-					while (true)
-					{
-						int alt29=2;
-						try { DebugEnterDecision(29, false);
-						int LA29_1 = input.LA(1);
-
-						if ((LA29_1==LT))
-						{
-							alt29 = 1;
-						}
-
-
-						} finally { DebugExitDecision(29); }
-						switch ( alt29 )
-						{
-						case 1:
-							DebugEnterAlt(1);
-							// JavaScript.g:106:25: LT
-							{
-							DebugLocation(106, 25);
-							LT66=(IToken)Match(input,LT,Follow._LT_in_variableDeclarationList609); if (state.failed) return retval; 
-							if (state.backtracking == 0) stream_LT.Add(LT66);
-
-
-							}
-							break;
-
-						default:
-							goto loop29;
-						}
-					}
-
-					loop29:
-						;
-
-					} finally { DebugExitSubRule(29); }
-
-					DebugLocation(106, 29);
-					char_literal67=(IToken)Match(input,55,Follow._55_in_variableDeclarationList612); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_55.Add(char_literal67);
-
-					DebugLocation(106, 33);
-					// JavaScript.g:106:33: ( LT )*
 					try { DebugEnterSubRule(30);
 					while (true)
 					{
@@ -2968,11 +2963,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						{
 						case 1:
 							DebugEnterAlt(1);
-							// JavaScript.g:106:33: LT
+							// JavaScript.g:106:25: LT
 							{
-							DebugLocation(106, 33);
-							LT68=(IToken)Match(input,LT,Follow._LT_in_variableDeclarationList614); if (state.failed) return retval; 
-							if (state.backtracking == 0) stream_LT.Add(LT68);
+							DebugLocation(106, 25);
+							LT66=(IToken)Match(input,LT,Follow._LT_in_variableDeclarationList611); if (state.failed) return retval; 
+							if (state.backtracking == 0) stream_LT.Add(LT66);
 
 
 							}
@@ -2988,8 +2983,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 					} finally { DebugExitSubRule(30); }
 
+					DebugLocation(106, 29);
+					char_literal67=(IToken)Match(input,55,Follow._55_in_variableDeclarationList614); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_55.Add(char_literal67);
+
+					DebugLocation(106, 33);
+					// JavaScript.g:106:33: ( LT )*
+					try { DebugEnterSubRule(31);
+					while (true)
+					{
+						int alt31=2;
+						try { DebugEnterDecision(31, false);
+						int LA31_1 = input.LA(1);
+
+						if ((LA31_1==LT))
+						{
+							alt31 = 1;
+						}
+
+
+						} finally { DebugExitDecision(31); }
+						switch ( alt31 )
+						{
+						case 1:
+							DebugEnterAlt(1);
+							// JavaScript.g:106:33: LT
+							{
+							DebugLocation(106, 33);
+							LT68=(IToken)Match(input,LT,Follow._LT_in_variableDeclarationList616); if (state.failed) return retval; 
+							if (state.backtracking == 0) stream_LT.Add(LT68);
+
+
+							}
+							break;
+
+						default:
+							goto loop31;
+						}
+					}
+
+					loop31:
+						;
+
+					} finally { DebugExitSubRule(31); }
+
 					DebugLocation(106, 37);
-					PushFollow(Follow._variableDeclaration_in_variableDeclarationList617);
+					PushFollow(Follow._variableDeclaration_in_variableDeclarationList619);
 					variableDeclaration69=variableDeclaration();
 					PopFollow();
 					if (state.failed) return retval;
@@ -2999,14 +3038,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop31;
+					goto loop32;
 				}
 			}
 
-			loop31:
+			loop32:
 				;
 
-			} finally { DebugExitSubRule(31); }
+			} finally { DebugExitSubRule(32); }
 
 
 
@@ -3114,29 +3153,29 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:110:4: variableDeclarationNoIn ( ( LT )* ',' ( LT )* variableDeclarationNoIn )*
 			{
 			DebugLocation(110, 4);
-			PushFollow(Follow._variableDeclarationNoIn_in_variableDeclarationListNoIn636);
+			PushFollow(Follow._variableDeclarationNoIn_in_variableDeclarationListNoIn638);
 			variableDeclarationNoIn70=variableDeclarationNoIn();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_variableDeclarationNoIn.Add(variableDeclarationNoIn70.Tree);
 			DebugLocation(110, 28);
 			// JavaScript.g:110:28: ( ( LT )* ',' ( LT )* variableDeclarationNoIn )*
-			try { DebugEnterSubRule(34);
+			try { DebugEnterSubRule(35);
 			while (true)
 			{
-				int alt34=2;
-				try { DebugEnterDecision(34, false);
+				int alt35=2;
+				try { DebugEnterDecision(35, false);
 				try
 				{
-					alt34 = dfa34.Predict(input);
+					alt35 = dfa35.Predict(input);
 				}
 				catch (NoViableAltException nvae)
 				{
 					DebugRecognitionException(nvae);
 					throw;
 				}
-				} finally { DebugExitDecision(34); }
-				switch ( alt34 )
+				} finally { DebugExitDecision(35); }
+				switch ( alt35 )
 				{
 				case 1:
 					DebugEnterAlt(1);
@@ -3144,50 +3183,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					DebugLocation(110, 29);
 					// JavaScript.g:110:29: ( LT )*
-					try { DebugEnterSubRule(32);
-					while (true)
-					{
-						int alt32=2;
-						try { DebugEnterDecision(32, false);
-						int LA32_1 = input.LA(1);
-
-						if ((LA32_1==LT))
-						{
-							alt32 = 1;
-						}
-
-
-						} finally { DebugExitDecision(32); }
-						switch ( alt32 )
-						{
-						case 1:
-							DebugEnterAlt(1);
-							// JavaScript.g:110:29: LT
-							{
-							DebugLocation(110, 29);
-							LT71=(IToken)Match(input,LT,Follow._LT_in_variableDeclarationListNoIn639); if (state.failed) return retval; 
-							if (state.backtracking == 0) stream_LT.Add(LT71);
-
-
-							}
-							break;
-
-						default:
-							goto loop32;
-						}
-					}
-
-					loop32:
-						;
-
-					} finally { DebugExitSubRule(32); }
-
-					DebugLocation(110, 33);
-					char_literal72=(IToken)Match(input,55,Follow._55_in_variableDeclarationListNoIn642); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_55.Add(char_literal72);
-
-					DebugLocation(110, 37);
-					// JavaScript.g:110:37: ( LT )*
 					try { DebugEnterSubRule(33);
 					while (true)
 					{
@@ -3206,11 +3201,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						{
 						case 1:
 							DebugEnterAlt(1);
-							// JavaScript.g:110:37: LT
+							// JavaScript.g:110:29: LT
 							{
-							DebugLocation(110, 37);
-							LT73=(IToken)Match(input,LT,Follow._LT_in_variableDeclarationListNoIn644); if (state.failed) return retval; 
-							if (state.backtracking == 0) stream_LT.Add(LT73);
+							DebugLocation(110, 29);
+							LT71=(IToken)Match(input,LT,Follow._LT_in_variableDeclarationListNoIn641); if (state.failed) return retval; 
+							if (state.backtracking == 0) stream_LT.Add(LT71);
 
 
 							}
@@ -3226,8 +3221,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 					} finally { DebugExitSubRule(33); }
 
+					DebugLocation(110, 33);
+					char_literal72=(IToken)Match(input,55,Follow._55_in_variableDeclarationListNoIn644); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_55.Add(char_literal72);
+
+					DebugLocation(110, 37);
+					// JavaScript.g:110:37: ( LT )*
+					try { DebugEnterSubRule(34);
+					while (true)
+					{
+						int alt34=2;
+						try { DebugEnterDecision(34, false);
+						int LA34_1 = input.LA(1);
+
+						if ((LA34_1==LT))
+						{
+							alt34 = 1;
+						}
+
+
+						} finally { DebugExitDecision(34); }
+						switch ( alt34 )
+						{
+						case 1:
+							DebugEnterAlt(1);
+							// JavaScript.g:110:37: LT
+							{
+							DebugLocation(110, 37);
+							LT73=(IToken)Match(input,LT,Follow._LT_in_variableDeclarationListNoIn646); if (state.failed) return retval; 
+							if (state.backtracking == 0) stream_LT.Add(LT73);
+
+
+							}
+							break;
+
+						default:
+							goto loop34;
+						}
+					}
+
+					loop34:
+						;
+
+					} finally { DebugExitSubRule(34); }
+
 					DebugLocation(110, 41);
-					PushFollow(Follow._variableDeclarationNoIn_in_variableDeclarationListNoIn647);
+					PushFollow(Follow._variableDeclarationNoIn_in_variableDeclarationListNoIn649);
 					variableDeclarationNoIn74=variableDeclarationNoIn();
 					PopFollow();
 					if (state.failed) return retval;
@@ -3237,14 +3276,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop34;
+					goto loop35;
 				}
 			}
 
-			loop34:
+			loop35:
 				;
 
-			} finally { DebugExitSubRule(34); }
+			} finally { DebugExitSubRule(35); }
 
 
 
@@ -3349,40 +3388,40 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:114:4: Identifier ( LT )* ( initialiser )?
 			{
 			DebugLocation(114, 4);
-			Identifier75=(IToken)Match(input,Identifier,Follow._Identifier_in_variableDeclaration666); if (state.failed) return retval; 
+			Identifier75=(IToken)Match(input,Identifier,Follow._Identifier_in_variableDeclaration668); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_Identifier.Add(Identifier75);
 
 			DebugLocation(114, 15);
 			// JavaScript.g:114:15: ( LT )*
-			try { DebugEnterSubRule(35);
+			try { DebugEnterSubRule(36);
 			while (true)
 			{
-				int alt35=2;
-				try { DebugEnterDecision(35, false);
-				int LA35_1 = input.LA(1);
+				int alt36=2;
+				try { DebugEnterDecision(36, false);
+				int LA36_1 = input.LA(1);
 
-				if ((LA35_1==LT))
+				if ((LA36_1==LT))
 				{
-					int LA35_2 = input.LA(2);
+					int LA36_2 = input.LA(2);
 
-					if ((EvaluatePredicate(synpred47_JavaScript_fragment)))
+					if ((EvaluatePredicate(synpred48_JavaScript_fragment)))
 					{
-						alt35 = 1;
+						alt36 = 1;
 					}
 
 
 				}
 
 
-				} finally { DebugExitDecision(35); }
-				switch ( alt35 )
+				} finally { DebugExitDecision(36); }
+				switch ( alt36 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:114:15: LT
 					{
 					DebugLocation(114, 15);
-					LT76=(IToken)Match(input,LT,Follow._LT_in_variableDeclaration668); if (state.failed) return retval; 
+					LT76=(IToken)Match(input,LT,Follow._LT_in_variableDeclaration670); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT76);
 
 
@@ -3390,35 +3429,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop35;
+					goto loop36;
 				}
 			}
 
-			loop35:
+			loop36:
 				;
 
-			} finally { DebugExitSubRule(35); }
+			} finally { DebugExitSubRule(36); }
 
 			DebugLocation(114, 19);
 			// JavaScript.g:114:19: ( initialiser )?
-			int alt36=2;
-			try { DebugEnterSubRule(36);
-			try { DebugEnterDecision(36, false);
-			int LA36_1 = input.LA(1);
+			int alt37=2;
+			try { DebugEnterSubRule(37);
+			try { DebugEnterDecision(37, false);
+			int LA37_1 = input.LA(1);
 
-			if ((LA36_1==68))
+			if ((LA37_1==68))
 			{
-				alt36 = 1;
+				alt37 = 1;
 			}
-			} finally { DebugExitDecision(36); }
-			switch (alt36)
+			} finally { DebugExitDecision(37); }
+			switch (alt37)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:114:19: initialiser
 				{
 				DebugLocation(114, 19);
-				PushFollow(Follow._initialiser_in_variableDeclaration671);
+				PushFollow(Follow._initialiser_in_variableDeclaration673);
 				initialiser77=initialiser();
 				PopFollow();
 				if (state.failed) return retval;
@@ -3428,7 +3467,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(36); }
+			} finally { DebugExitSubRule(37); }
 
 
 
@@ -3542,40 +3581,40 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:121:4: Identifier ( LT )* ( initialiserNoIn )?
 			{
 			DebugLocation(121, 4);
-			Identifier78=(IToken)Match(input,Identifier,Follow._Identifier_in_variableDeclarationNoIn718); if (state.failed) return retval; 
+			Identifier78=(IToken)Match(input,Identifier,Follow._Identifier_in_variableDeclarationNoIn720); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_Identifier.Add(Identifier78);
 
 			DebugLocation(121, 15);
 			// JavaScript.g:121:15: ( LT )*
-			try { DebugEnterSubRule(37);
+			try { DebugEnterSubRule(38);
 			while (true)
 			{
-				int alt37=2;
-				try { DebugEnterDecision(37, false);
-				int LA37_1 = input.LA(1);
+				int alt38=2;
+				try { DebugEnterDecision(38, false);
+				int LA38_1 = input.LA(1);
 
-				if ((LA37_1==LT))
+				if ((LA38_1==LT))
 				{
-					int LA37_2 = input.LA(2);
+					int LA38_2 = input.LA(2);
 
-					if ((EvaluatePredicate(synpred49_JavaScript_fragment)))
+					if ((EvaluatePredicate(synpred50_JavaScript_fragment)))
 					{
-						alt37 = 1;
+						alt38 = 1;
 					}
 
 
 				}
 
 
-				} finally { DebugExitDecision(37); }
-				switch ( alt37 )
+				} finally { DebugExitDecision(38); }
+				switch ( alt38 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:121:15: LT
 					{
 					DebugLocation(121, 15);
-					LT79=(IToken)Match(input,LT,Follow._LT_in_variableDeclarationNoIn720); if (state.failed) return retval; 
+					LT79=(IToken)Match(input,LT,Follow._LT_in_variableDeclarationNoIn722); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT79);
 
 
@@ -3583,35 +3622,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop37;
+					goto loop38;
 				}
 			}
 
-			loop37:
+			loop38:
 				;
 
-			} finally { DebugExitSubRule(37); }
+			} finally { DebugExitSubRule(38); }
 
 			DebugLocation(121, 19);
 			// JavaScript.g:121:19: ( initialiserNoIn )?
-			int alt38=2;
-			try { DebugEnterSubRule(38);
-			try { DebugEnterDecision(38, false);
-			int LA38_1 = input.LA(1);
+			int alt39=2;
+			try { DebugEnterSubRule(39);
+			try { DebugEnterDecision(39, false);
+			int LA39_1 = input.LA(1);
 
-			if ((LA38_1==68))
+			if ((LA39_1==68))
 			{
-				alt38 = 1;
+				alt39 = 1;
 			}
-			} finally { DebugExitDecision(38); }
-			switch (alt38)
+			} finally { DebugExitDecision(39); }
+			switch (alt39)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:121:19: initialiserNoIn
 				{
 				DebugLocation(121, 19);
-				PushFollow(Follow._initialiserNoIn_in_variableDeclarationNoIn723);
+				PushFollow(Follow._initialiserNoIn_in_variableDeclarationNoIn725);
 				initialiserNoIn80=initialiserNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -3621,7 +3660,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(38); }
+			} finally { DebugExitSubRule(39); }
 
 
 
@@ -3735,33 +3774,33 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:128:4: '=' ( LT )* assignmentExpression
 			{
 			DebugLocation(128, 4);
-			char_literal81=(IToken)Match(input,68,Follow._68_in_initialiser768); if (state.failed) return retval; 
+			char_literal81=(IToken)Match(input,68,Follow._68_in_initialiser770); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_68.Add(char_literal81);
 
 			DebugLocation(128, 8);
 			// JavaScript.g:128:8: ( LT )*
-			try { DebugEnterSubRule(39);
+			try { DebugEnterSubRule(40);
 			while (true)
 			{
-				int alt39=2;
-				try { DebugEnterDecision(39, false);
-				int LA39_1 = input.LA(1);
+				int alt40=2;
+				try { DebugEnterDecision(40, false);
+				int LA40_1 = input.LA(1);
 
-				if ((LA39_1==LT))
+				if ((LA40_1==LT))
 				{
-					alt39 = 1;
+					alt40 = 1;
 				}
 
 
-				} finally { DebugExitDecision(39); }
-				switch ( alt39 )
+				} finally { DebugExitDecision(40); }
+				switch ( alt40 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:128:8: LT
 					{
 					DebugLocation(128, 8);
-					LT82=(IToken)Match(input,LT,Follow._LT_in_initialiser770); if (state.failed) return retval; 
+					LT82=(IToken)Match(input,LT,Follow._LT_in_initialiser772); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT82);
 
 
@@ -3769,17 +3808,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop39;
+					goto loop40;
 				}
 			}
 
-			loop39:
+			loop40:
 				;
 
-			} finally { DebugExitSubRule(39); }
+			} finally { DebugExitSubRule(40); }
 
 			DebugLocation(128, 12);
-			PushFollow(Follow._assignmentExpression_in_initialiser773);
+			PushFollow(Follow._assignmentExpression_in_initialiser775);
 			assignmentExpression83=assignmentExpression();
 			PopFollow();
 			if (state.failed) return retval;
@@ -3877,33 +3916,33 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:132:4: '=' ( LT )* assignmentExpressionNoIn
 			{
 			DebugLocation(132, 4);
-			char_literal84=(IToken)Match(input,68,Follow._68_in_initialiserNoIn792); if (state.failed) return retval; 
+			char_literal84=(IToken)Match(input,68,Follow._68_in_initialiserNoIn794); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_68.Add(char_literal84);
 
 			DebugLocation(132, 8);
 			// JavaScript.g:132:8: ( LT )*
-			try { DebugEnterSubRule(40);
+			try { DebugEnterSubRule(41);
 			while (true)
 			{
-				int alt40=2;
-				try { DebugEnterDecision(40, false);
-				int LA40_1 = input.LA(1);
+				int alt41=2;
+				try { DebugEnterDecision(41, false);
+				int LA41_1 = input.LA(1);
 
-				if ((LA40_1==LT))
+				if ((LA41_1==LT))
 				{
-					alt40 = 1;
+					alt41 = 1;
 				}
 
 
-				} finally { DebugExitDecision(40); }
-				switch ( alt40 )
+				} finally { DebugExitDecision(41); }
+				switch ( alt41 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:132:8: LT
 					{
 					DebugLocation(132, 8);
-					LT85=(IToken)Match(input,LT,Follow._LT_in_initialiserNoIn794); if (state.failed) return retval; 
+					LT85=(IToken)Match(input,LT,Follow._LT_in_initialiserNoIn796); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT85);
 
 
@@ -3911,17 +3950,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop40;
+					goto loop41;
 				}
 			}
 
-			loop40:
+			loop41:
 				;
 
-			} finally { DebugExitSubRule(40); }
+			} finally { DebugExitSubRule(41); }
 
 			DebugLocation(132, 12);
-			PushFollow(Follow._assignmentExpressionNoIn_in_initialiserNoIn797);
+			PushFollow(Follow._assignmentExpressionNoIn_in_initialiserNoIn799);
 			assignmentExpressionNoIn86=assignmentExpressionNoIn();
 			PopFollow();
 			if (state.failed) return retval;
@@ -4014,7 +4053,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:136:4: ';'
 			{
 			DebugLocation(136, 4);
-			char_literal87=(IToken)Match(input,63,Follow._63_in_emptyStatement813); if (state.failed) return retval; 
+			char_literal87=(IToken)Match(input,63,Follow._63_in_emptyStatement815); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_63.Add(char_literal87);
 
 
@@ -4110,42 +4149,42 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:140:4: expression ( LT | ';' )
 			{
 			DebugLocation(140, 4);
-			PushFollow(Follow._expression_in_expressionStatement834);
+			PushFollow(Follow._expression_in_expressionStatement836);
 			expression88=expression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_expression.Add(expression88.Tree);
 			DebugLocation(140, 15);
 			// JavaScript.g:140:15: ( LT | ';' )
-			int alt41=2;
-			try { DebugEnterSubRule(41);
-			try { DebugEnterDecision(41, false);
-			int LA41_1 = input.LA(1);
+			int alt42=2;
+			try { DebugEnterSubRule(42);
+			try { DebugEnterDecision(42, false);
+			int LA42_1 = input.LA(1);
 
-			if ((LA41_1==LT))
+			if ((LA42_1==LT))
 			{
-				alt41 = 1;
+				alt42 = 1;
 			}
-			else if ((LA41_1==63))
+			else if ((LA42_1==63))
 			{
-				alt41 = 2;
+				alt42 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 41, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 42, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(41); }
-			switch (alt41)
+			} finally { DebugExitDecision(42); }
+			switch (alt42)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:140:16: LT
 				{
 				DebugLocation(140, 16);
-				LT89=(IToken)Match(input,LT,Follow._LT_in_expressionStatement837); if (state.failed) return retval; 
+				LT89=(IToken)Match(input,LT,Follow._LT_in_expressionStatement839); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_LT.Add(LT89);
 
 
@@ -4156,7 +4195,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:140:21: ';'
 				{
 				DebugLocation(140, 21);
-				char_literal90=(IToken)Match(input,63,Follow._63_in_expressionStatement841); if (state.failed) return retval; 
+				char_literal90=(IToken)Match(input,63,Follow._63_in_expressionStatement843); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_63.Add(char_literal90);
 
 
@@ -4164,7 +4203,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(41); }
+			} finally { DebugExitSubRule(42); }
 
 
 
@@ -4281,55 +4320,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:144:4: 'if' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* ifstmt= statement ( ( LT )* 'else' ( LT )* elsestmt= statement )?
 			{
 			DebugLocation(144, 4);
-			string_literal91=(IToken)Match(input,94,Follow._94_in_ifStatement858); if (state.failed) return retval; 
+			string_literal91=(IToken)Match(input,94,Follow._94_in_ifStatement860); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_94.Add(string_literal91);
 
 			DebugLocation(144, 9);
 			// JavaScript.g:144:9: ( LT )*
-			try { DebugEnterSubRule(42);
-			while (true)
-			{
-				int alt42=2;
-				try { DebugEnterDecision(42, false);
-				int LA42_1 = input.LA(1);
-
-				if ((LA42_1==LT))
-				{
-					alt42 = 1;
-				}
-
-
-				} finally { DebugExitDecision(42); }
-				switch ( alt42 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:144:9: LT
-					{
-					DebugLocation(144, 9);
-					LT92=(IToken)Match(input,LT,Follow._LT_in_ifStatement860); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT92);
-
-
-					}
-					break;
-
-				default:
-					goto loop42;
-				}
-			}
-
-			loop42:
-				;
-
-			} finally { DebugExitSubRule(42); }
-
-			DebugLocation(144, 13);
-			char_literal93=(IToken)Match(input,48,Follow._48_in_ifStatement863); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_48.Add(char_literal93);
-
-			DebugLocation(144, 17);
-			// JavaScript.g:144:17: ( LT )*
 			try { DebugEnterSubRule(43);
 			while (true)
 			{
@@ -4348,11 +4343,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:144:17: LT
+					// JavaScript.g:144:9: LT
 					{
-					DebugLocation(144, 17);
-					LT94=(IToken)Match(input,LT,Follow._LT_in_ifStatement865); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT94);
+					DebugLocation(144, 9);
+					LT92=(IToken)Match(input,LT,Follow._LT_in_ifStatement862); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT92);
 
 
 					}
@@ -4368,14 +4363,12 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(43); }
 
-			DebugLocation(144, 21);
-			PushFollow(Follow._expression_in_ifStatement868);
-			expression95=expression();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) stream_expression.Add(expression95.Tree);
-			DebugLocation(144, 32);
-			// JavaScript.g:144:32: ( LT )*
+			DebugLocation(144, 13);
+			char_literal93=(IToken)Match(input,48,Follow._48_in_ifStatement865); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_48.Add(char_literal93);
+
+			DebugLocation(144, 17);
+			// JavaScript.g:144:17: ( LT )*
 			try { DebugEnterSubRule(44);
 			while (true)
 			{
@@ -4394,11 +4387,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:144:32: LT
+					// JavaScript.g:144:17: LT
 					{
-					DebugLocation(144, 32);
-					LT96=(IToken)Match(input,LT,Follow._LT_in_ifStatement870); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT96);
+					DebugLocation(144, 17);
+					LT94=(IToken)Match(input,LT,Follow._LT_in_ifStatement867); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT94);
 
 
 					}
@@ -4414,12 +4407,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(44); }
 
-			DebugLocation(144, 36);
-			char_literal97=(IToken)Match(input,49,Follow._49_in_ifStatement873); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_49.Add(char_literal97);
-
-			DebugLocation(144, 40);
-			// JavaScript.g:144:40: ( LT )*
+			DebugLocation(144, 21);
+			PushFollow(Follow._expression_in_ifStatement870);
+			expression95=expression();
+			PopFollow();
+			if (state.failed) return retval;
+			if (state.backtracking == 0) stream_expression.Add(expression95.Tree);
+			DebugLocation(144, 32);
+			// JavaScript.g:144:32: ( LT )*
 			try { DebugEnterSubRule(45);
 			while (true)
 			{
@@ -4438,11 +4433,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:144:40: LT
+					// JavaScript.g:144:32: LT
 					{
-					DebugLocation(144, 40);
-					LT98=(IToken)Match(input,LT,Follow._LT_in_ifStatement875); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT98);
+					DebugLocation(144, 32);
+					LT96=(IToken)Match(input,LT,Follow._LT_in_ifStatement872); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT96);
 
 
 					}
@@ -4458,39 +4453,83 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(45); }
 
+			DebugLocation(144, 36);
+			char_literal97=(IToken)Match(input,49,Follow._49_in_ifStatement875); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_49.Add(char_literal97);
+
+			DebugLocation(144, 40);
+			// JavaScript.g:144:40: ( LT )*
+			try { DebugEnterSubRule(46);
+			while (true)
+			{
+				int alt46=2;
+				try { DebugEnterDecision(46, false);
+				int LA46_1 = input.LA(1);
+
+				if ((LA46_1==LT))
+				{
+					alt46 = 1;
+				}
+
+
+				} finally { DebugExitDecision(46); }
+				switch ( alt46 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:144:40: LT
+					{
+					DebugLocation(144, 40);
+					LT98=(IToken)Match(input,LT,Follow._LT_in_ifStatement877); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT98);
+
+
+					}
+					break;
+
+				default:
+					goto loop46;
+				}
+			}
+
+			loop46:
+				;
+
+			} finally { DebugExitSubRule(46); }
+
 			DebugLocation(144, 50);
-			PushFollow(Follow._statement_in_ifStatement880);
+			PushFollow(Follow._statement_in_ifStatement882);
 			ifstmt=statement();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_statement.Add(ifstmt.Tree);
 			DebugLocation(144, 61);
 			// JavaScript.g:144:61: ( ( LT )* 'else' ( LT )* elsestmt= statement )?
-			int alt48=2;
-			try { DebugEnterSubRule(48);
-			try { DebugEnterDecision(48, false);
-			int LA48_1 = input.LA(1);
+			int alt49=2;
+			try { DebugEnterSubRule(49);
+			try { DebugEnterDecision(49, false);
+			int LA49_1 = input.LA(1);
 
-			if ((LA48_1==LT))
+			if ((LA49_1==LT))
 			{
-				int LA48_2 = input.LA(2);
+				int LA49_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred60_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred61_JavaScript_fragment)))
 				{
-					alt48 = 1;
+					alt49 = 1;
 				}
 			}
-			else if ((LA48_1==89))
+			else if ((LA49_1==89))
 			{
-				int LA48_2 = input.LA(2);
+				int LA49_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred60_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred61_JavaScript_fragment)))
 				{
-					alt48 = 1;
+					alt49 = 1;
 				}
 			}
-			} finally { DebugExitDecision(48); }
-			switch (alt48)
+			} finally { DebugExitDecision(49); }
+			switch (alt49)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -4498,50 +4537,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(144, 62);
 				// JavaScript.g:144:62: ( LT )*
-				try { DebugEnterSubRule(46);
-				while (true)
-				{
-					int alt46=2;
-					try { DebugEnterDecision(46, false);
-					int LA46_1 = input.LA(1);
-
-					if ((LA46_1==LT))
-					{
-						alt46 = 1;
-					}
-
-
-					} finally { DebugExitDecision(46); }
-					switch ( alt46 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:144:62: LT
-						{
-						DebugLocation(144, 62);
-						LT99=(IToken)Match(input,LT,Follow._LT_in_ifStatement883); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT99);
-
-
-						}
-						break;
-
-					default:
-						goto loop46;
-					}
-				}
-
-				loop46:
-					;
-
-				} finally { DebugExitSubRule(46); }
-
-				DebugLocation(144, 66);
-				string_literal100=(IToken)Match(input,89,Follow._89_in_ifStatement886); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_89.Add(string_literal100);
-
-				DebugLocation(144, 73);
-				// JavaScript.g:144:73: ( LT )*
 				try { DebugEnterSubRule(47);
 				while (true)
 				{
@@ -4560,11 +4555,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:144:73: LT
+						// JavaScript.g:144:62: LT
 						{
-						DebugLocation(144, 73);
-						LT101=(IToken)Match(input,LT,Follow._LT_in_ifStatement888); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT101);
+						DebugLocation(144, 62);
+						LT99=(IToken)Match(input,LT,Follow._LT_in_ifStatement885); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT99);
 
 
 						}
@@ -4580,8 +4575,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(47); }
 
+				DebugLocation(144, 66);
+				string_literal100=(IToken)Match(input,89,Follow._89_in_ifStatement888); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_89.Add(string_literal100);
+
+				DebugLocation(144, 73);
+				// JavaScript.g:144:73: ( LT )*
+				try { DebugEnterSubRule(48);
+				while (true)
+				{
+					int alt48=2;
+					try { DebugEnterDecision(48, false);
+					int LA48_1 = input.LA(1);
+
+					if ((LA48_1==LT))
+					{
+						alt48 = 1;
+					}
+
+
+					} finally { DebugExitDecision(48); }
+					switch ( alt48 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:144:73: LT
+						{
+						DebugLocation(144, 73);
+						LT101=(IToken)Match(input,LT,Follow._LT_in_ifStatement890); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT101);
+
+
+						}
+						break;
+
+					default:
+						goto loop48;
+					}
+				}
+
+				loop48:
+					;
+
+				} finally { DebugExitSubRule(48); }
+
 				DebugLocation(144, 85);
-				PushFollow(Follow._statement_in_ifStatement893);
+				PushFollow(Follow._statement_in_ifStatement895);
 				elsestmt=statement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -4591,7 +4630,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(48); }
+			} finally { DebugExitSubRule(49); }
 
 
 
@@ -4701,36 +4740,36 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 21)) { return retval; }
 
 			// JavaScript.g:149:2: ( doWhileStatement | whileStatement | forStatement | forInStatement )
-			int alt49=4;
-			try { DebugEnterDecision(49, false);
+			int alt50=4;
+			try { DebugEnterDecision(50, false);
 			switch (input.LA(1))
 			{
 			case 88:
 				{
-				alt49 = 1;
+				alt50 = 1;
 				}
 				break;
 			case 108:
 				{
-				alt49 = 2;
+				alt50 = 2;
 				}
 				break;
 			case 92:
 				{
-				int LA49_2 = input.LA(2);
+				int LA50_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred63_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred64_JavaScript_fragment)))
 				{
-					alt49 = 3;
+					alt50 = 3;
 				}
 				else if ((true))
 				{
-					alt49 = 4;
+					alt50 = 4;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 49, 3, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 50, 3, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -4739,14 +4778,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 49, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 50, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(49); }
-			switch (alt49)
+			} finally { DebugExitDecision(50); }
+			switch (alt50)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -4755,7 +4794,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(149, 4);
-				PushFollow(Follow._doWhileStatement_in_iterationStatement929);
+				PushFollow(Follow._doWhileStatement_in_iterationStatement931);
 				doWhileStatement102=doWhileStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -4770,7 +4809,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(150, 4);
-				PushFollow(Follow._whileStatement_in_iterationStatement934);
+				PushFollow(Follow._whileStatement_in_iterationStatement936);
 				whileStatement103=whileStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -4785,7 +4824,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(151, 4);
-				PushFollow(Follow._forStatement_in_iterationStatement939);
+				PushFollow(Follow._forStatement_in_iterationStatement941);
 				forStatement104=forStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -4800,7 +4839,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(152, 4);
-				PushFollow(Follow._forInStatement_in_iterationStatement944);
+				PushFollow(Follow._forInStatement_in_iterationStatement946);
 				forInStatement105=forInStatement();
 				PopFollow();
 				if (state.failed) return retval;
@@ -4895,57 +4934,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:156:4: 'do' ( LT )* statement ( LT )* 'while' ( LT )* '(' expression ')' ( LT | ';' )
 			{
 			DebugLocation(156, 4);
-			string_literal106=(IToken)Match(input,88,Follow._88_in_doWhileStatement956); if (state.failed) return retval; 
+			string_literal106=(IToken)Match(input,88,Follow._88_in_doWhileStatement958); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_88.Add(string_literal106);
 
 			DebugLocation(156, 9);
 			// JavaScript.g:156:9: ( LT )*
-			try { DebugEnterSubRule(50);
-			while (true)
-			{
-				int alt50=2;
-				try { DebugEnterDecision(50, false);
-				int LA50_1 = input.LA(1);
-
-				if ((LA50_1==LT))
-				{
-					alt50 = 1;
-				}
-
-
-				} finally { DebugExitDecision(50); }
-				switch ( alt50 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:156:9: LT
-					{
-					DebugLocation(156, 9);
-					LT107=(IToken)Match(input,LT,Follow._LT_in_doWhileStatement958); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT107);
-
-
-					}
-					break;
-
-				default:
-					goto loop50;
-				}
-			}
-
-			loop50:
-				;
-
-			} finally { DebugExitSubRule(50); }
-
-			DebugLocation(156, 13);
-			PushFollow(Follow._statement_in_doWhileStatement961);
-			statement108=statement();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) stream_statement.Add(statement108.Tree);
-			DebugLocation(156, 23);
-			// JavaScript.g:156:23: ( LT )*
 			try { DebugEnterSubRule(51);
 			while (true)
 			{
@@ -4964,11 +4957,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:156:23: LT
+					// JavaScript.g:156:9: LT
 					{
-					DebugLocation(156, 23);
-					LT109=(IToken)Match(input,LT,Follow._LT_in_doWhileStatement963); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT109);
+					DebugLocation(156, 9);
+					LT107=(IToken)Match(input,LT,Follow._LT_in_doWhileStatement960); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT107);
 
 
 					}
@@ -4984,12 +4977,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(51); }
 
-			DebugLocation(156, 27);
-			string_literal110=(IToken)Match(input,108,Follow._108_in_doWhileStatement966); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_108.Add(string_literal110);
-
-			DebugLocation(156, 35);
-			// JavaScript.g:156:35: ( LT )*
+			DebugLocation(156, 13);
+			PushFollow(Follow._statement_in_doWhileStatement963);
+			statement108=statement();
+			PopFollow();
+			if (state.failed) return retval;
+			if (state.backtracking == 0) stream_statement.Add(statement108.Tree);
+			DebugLocation(156, 23);
+			// JavaScript.g:156:23: ( LT )*
 			try { DebugEnterSubRule(52);
 			while (true)
 			{
@@ -5008,11 +5003,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:156:35: LT
+					// JavaScript.g:156:23: LT
 					{
-					DebugLocation(156, 35);
-					LT111=(IToken)Match(input,LT,Follow._LT_in_doWhileStatement968); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT111);
+					DebugLocation(156, 23);
+					LT109=(IToken)Match(input,LT,Follow._LT_in_doWhileStatement965); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT109);
 
 
 					}
@@ -5028,51 +5023,95 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(52); }
 
+			DebugLocation(156, 27);
+			string_literal110=(IToken)Match(input,108,Follow._108_in_doWhileStatement968); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_108.Add(string_literal110);
+
+			DebugLocation(156, 35);
+			// JavaScript.g:156:35: ( LT )*
+			try { DebugEnterSubRule(53);
+			while (true)
+			{
+				int alt53=2;
+				try { DebugEnterDecision(53, false);
+				int LA53_1 = input.LA(1);
+
+				if ((LA53_1==LT))
+				{
+					alt53 = 1;
+				}
+
+
+				} finally { DebugExitDecision(53); }
+				switch ( alt53 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:156:35: LT
+					{
+					DebugLocation(156, 35);
+					LT111=(IToken)Match(input,LT,Follow._LT_in_doWhileStatement970); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT111);
+
+
+					}
+					break;
+
+				default:
+					goto loop53;
+				}
+			}
+
+			loop53:
+				;
+
+			} finally { DebugExitSubRule(53); }
+
 			DebugLocation(156, 39);
-			char_literal112=(IToken)Match(input,48,Follow._48_in_doWhileStatement971); if (state.failed) return retval; 
+			char_literal112=(IToken)Match(input,48,Follow._48_in_doWhileStatement973); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_48.Add(char_literal112);
 
 			DebugLocation(156, 43);
-			PushFollow(Follow._expression_in_doWhileStatement973);
+			PushFollow(Follow._expression_in_doWhileStatement975);
 			expression113=expression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_expression.Add(expression113.Tree);
 			DebugLocation(156, 54);
-			char_literal114=(IToken)Match(input,49,Follow._49_in_doWhileStatement975); if (state.failed) return retval; 
+			char_literal114=(IToken)Match(input,49,Follow._49_in_doWhileStatement977); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_49.Add(char_literal114);
 
 			DebugLocation(156, 58);
 			// JavaScript.g:156:58: ( LT | ';' )
-			int alt53=2;
-			try { DebugEnterSubRule(53);
-			try { DebugEnterDecision(53, false);
-			int LA53_1 = input.LA(1);
+			int alt54=2;
+			try { DebugEnterSubRule(54);
+			try { DebugEnterDecision(54, false);
+			int LA54_1 = input.LA(1);
 
-			if ((LA53_1==LT))
+			if ((LA54_1==LT))
 			{
-				alt53 = 1;
+				alt54 = 1;
 			}
-			else if ((LA53_1==63))
+			else if ((LA54_1==63))
 			{
-				alt53 = 2;
+				alt54 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 53, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 54, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(53); }
-			switch (alt53)
+			} finally { DebugExitDecision(54); }
+			switch (alt54)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:156:59: LT
 				{
 				DebugLocation(156, 59);
-				LT115=(IToken)Match(input,LT,Follow._LT_in_doWhileStatement978); if (state.failed) return retval; 
+				LT115=(IToken)Match(input,LT,Follow._LT_in_doWhileStatement980); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_LT.Add(LT115);
 
 
@@ -5083,7 +5122,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:156:64: ';'
 				{
 				DebugLocation(156, 64);
-				char_literal116=(IToken)Match(input,63,Follow._63_in_doWhileStatement982); if (state.failed) return retval; 
+				char_literal116=(IToken)Match(input,63,Follow._63_in_doWhileStatement984); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_63.Add(char_literal116);
 
 
@@ -5091,7 +5130,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(53); }
+			} finally { DebugExitSubRule(54); }
 
 
 
@@ -5212,55 +5251,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:161:4: 'while' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement
 			{
 			DebugLocation(161, 4);
-			string_literal117=(IToken)Match(input,108,Follow._108_in_whileStatement1012); if (state.failed) return retval; 
+			string_literal117=(IToken)Match(input,108,Follow._108_in_whileStatement1014); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_108.Add(string_literal117);
 
 			DebugLocation(161, 12);
 			// JavaScript.g:161:12: ( LT )*
-			try { DebugEnterSubRule(54);
-			while (true)
-			{
-				int alt54=2;
-				try { DebugEnterDecision(54, false);
-				int LA54_1 = input.LA(1);
-
-				if ((LA54_1==LT))
-				{
-					alt54 = 1;
-				}
-
-
-				} finally { DebugExitDecision(54); }
-				switch ( alt54 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:161:12: LT
-					{
-					DebugLocation(161, 12);
-					LT118=(IToken)Match(input,LT,Follow._LT_in_whileStatement1014); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT118);
-
-
-					}
-					break;
-
-				default:
-					goto loop54;
-				}
-			}
-
-			loop54:
-				;
-
-			} finally { DebugExitSubRule(54); }
-
-			DebugLocation(161, 16);
-			char_literal119=(IToken)Match(input,48,Follow._48_in_whileStatement1017); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_48.Add(char_literal119);
-
-			DebugLocation(161, 20);
-			// JavaScript.g:161:20: ( LT )*
 			try { DebugEnterSubRule(55);
 			while (true)
 			{
@@ -5279,11 +5274,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:161:20: LT
+					// JavaScript.g:161:12: LT
 					{
-					DebugLocation(161, 20);
-					LT120=(IToken)Match(input,LT,Follow._LT_in_whileStatement1019); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT120);
+					DebugLocation(161, 12);
+					LT118=(IToken)Match(input,LT,Follow._LT_in_whileStatement1016); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT118);
 
 
 					}
@@ -5299,14 +5294,12 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(55); }
 
-			DebugLocation(161, 24);
-			PushFollow(Follow._expression_in_whileStatement1022);
-			expression121=expression();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) stream_expression.Add(expression121.Tree);
-			DebugLocation(161, 35);
-			// JavaScript.g:161:35: ( LT )*
+			DebugLocation(161, 16);
+			char_literal119=(IToken)Match(input,48,Follow._48_in_whileStatement1019); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_48.Add(char_literal119);
+
+			DebugLocation(161, 20);
+			// JavaScript.g:161:20: ( LT )*
 			try { DebugEnterSubRule(56);
 			while (true)
 			{
@@ -5325,11 +5318,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:161:35: LT
+					// JavaScript.g:161:20: LT
 					{
-					DebugLocation(161, 35);
-					LT122=(IToken)Match(input,LT,Follow._LT_in_whileStatement1024); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT122);
+					DebugLocation(161, 20);
+					LT120=(IToken)Match(input,LT,Follow._LT_in_whileStatement1021); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT120);
 
 
 					}
@@ -5345,12 +5338,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(56); }
 
-			DebugLocation(161, 39);
-			char_literal123=(IToken)Match(input,49,Follow._49_in_whileStatement1027); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_49.Add(char_literal123);
-
-			DebugLocation(161, 43);
-			// JavaScript.g:161:43: ( LT )*
+			DebugLocation(161, 24);
+			PushFollow(Follow._expression_in_whileStatement1024);
+			expression121=expression();
+			PopFollow();
+			if (state.failed) return retval;
+			if (state.backtracking == 0) stream_expression.Add(expression121.Tree);
+			DebugLocation(161, 35);
+			// JavaScript.g:161:35: ( LT )*
 			try { DebugEnterSubRule(57);
 			while (true)
 			{
@@ -5369,11 +5364,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:161:43: LT
+					// JavaScript.g:161:35: LT
 					{
-					DebugLocation(161, 43);
-					LT124=(IToken)Match(input,LT,Follow._LT_in_whileStatement1029); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT124);
+					DebugLocation(161, 35);
+					LT122=(IToken)Match(input,LT,Follow._LT_in_whileStatement1026); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT122);
 
 
 					}
@@ -5389,8 +5384,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(57); }
 
+			DebugLocation(161, 39);
+			char_literal123=(IToken)Match(input,49,Follow._49_in_whileStatement1029); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_49.Add(char_literal123);
+
+			DebugLocation(161, 43);
+			// JavaScript.g:161:43: ( LT )*
+			try { DebugEnterSubRule(58);
+			while (true)
+			{
+				int alt58=2;
+				try { DebugEnterDecision(58, false);
+				int LA58_1 = input.LA(1);
+
+				if ((LA58_1==LT))
+				{
+					alt58 = 1;
+				}
+
+
+				} finally { DebugExitDecision(58); }
+				switch ( alt58 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:161:43: LT
+					{
+					DebugLocation(161, 43);
+					LT124=(IToken)Match(input,LT,Follow._LT_in_whileStatement1031); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT124);
+
+
+					}
+					break;
+
+				default:
+					goto loop58;
+				}
+			}
+
+			loop58:
+				;
+
+			} finally { DebugExitSubRule(58); }
+
 			DebugLocation(161, 47);
-			PushFollow(Follow._statement_in_whileStatement1032);
+			PushFollow(Follow._statement_in_whileStatement1034);
 			statement125=statement();
 			PopFollow();
 			if (state.failed) return retval;
@@ -5530,33 +5569,33 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:166:4: 'for' ( LT )* '(' ( ( LT )* forStatementInitialiserPart )? ( LT )* ';' ( ( LT )* condition= expression )? ( LT )* ';' ( ( LT )* incr= expression )? ( LT )* ')' ( LT )* statement
 			{
 			DebugLocation(166, 4);
-			string_literal126=(IToken)Match(input,92,Follow._92_in_forStatement1062); if (state.failed) return retval; 
+			string_literal126=(IToken)Match(input,92,Follow._92_in_forStatement1064); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_92.Add(string_literal126);
 
 			DebugLocation(166, 10);
 			// JavaScript.g:166:10: ( LT )*
-			try { DebugEnterSubRule(58);
+			try { DebugEnterSubRule(59);
 			while (true)
 			{
-				int alt58=2;
-				try { DebugEnterDecision(58, false);
-				int LA58_1 = input.LA(1);
+				int alt59=2;
+				try { DebugEnterDecision(59, false);
+				int LA59_1 = input.LA(1);
 
-				if ((LA58_1==LT))
+				if ((LA59_1==LT))
 				{
-					alt58 = 1;
+					alt59 = 1;
 				}
 
 
-				} finally { DebugExitDecision(58); }
-				switch ( alt58 )
+				} finally { DebugExitDecision(59); }
+				switch ( alt59 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:166:10: LT
 					{
 					DebugLocation(166, 10);
-					LT127=(IToken)Match(input,LT,Follow._LT_in_forStatement1064); if (state.failed) return retval; 
+					LT127=(IToken)Match(input,LT,Follow._LT_in_forStatement1066); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT127);
 
 
@@ -5564,35 +5603,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop58;
+					goto loop59;
 				}
 			}
 
-			loop58:
+			loop59:
 				;
 
-			} finally { DebugExitSubRule(58); }
+			} finally { DebugExitSubRule(59); }
 
 			DebugLocation(166, 14);
-			char_literal128=(IToken)Match(input,48,Follow._48_in_forStatement1067); if (state.failed) return retval; 
+			char_literal128=(IToken)Match(input,48,Follow._48_in_forStatement1069); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_48.Add(char_literal128);
 
 			DebugLocation(166, 18);
 			// JavaScript.g:166:18: ( ( LT )* forStatementInitialiserPart )?
-			int alt60=2;
-			try { DebugEnterSubRule(60);
-			try { DebugEnterDecision(60, false);
+			int alt61=2;
+			try { DebugEnterSubRule(61);
+			try { DebugEnterDecision(61, false);
 			try
 			{
-				alt60 = dfa60.Predict(input);
+				alt61 = dfa61.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(60); }
-			switch (alt60)
+			} finally { DebugExitDecision(61); }
+			switch (alt61)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -5600,28 +5639,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(166, 19);
 				// JavaScript.g:166:19: ( LT )*
-				try { DebugEnterSubRule(59);
+				try { DebugEnterSubRule(60);
 				while (true)
 				{
-					int alt59=2;
-					try { DebugEnterDecision(59, false);
-					int LA59_1 = input.LA(1);
+					int alt60=2;
+					try { DebugEnterDecision(60, false);
+					int LA60_1 = input.LA(1);
 
-					if ((LA59_1==LT))
+					if ((LA60_1==LT))
 					{
-						alt59 = 1;
+						alt60 = 1;
 					}
 
 
-					} finally { DebugExitDecision(59); }
-					switch ( alt59 )
+					} finally { DebugExitDecision(60); }
+					switch ( alt60 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:166:19: LT
 						{
 						DebugLocation(166, 19);
-						LT129=(IToken)Match(input,LT,Follow._LT_in_forStatement1070); if (state.failed) return retval; 
+						LT129=(IToken)Match(input,LT,Follow._LT_in_forStatement1072); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT129);
 
 
@@ -5629,17 +5668,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop59;
+						goto loop60;
 					}
 				}
 
-				loop59:
+				loop60:
 					;
 
-				} finally { DebugExitSubRule(59); }
+				} finally { DebugExitSubRule(60); }
 
 				DebugLocation(166, 23);
-				PushFollow(Follow._forStatementInitialiserPart_in_forStatement1073);
+				PushFollow(Follow._forStatementInitialiserPart_in_forStatement1075);
 				forStatementInitialiserPart130=forStatementInitialiserPart();
 				PopFollow();
 				if (state.failed) return retval;
@@ -5649,32 +5688,32 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(60); }
+			} finally { DebugExitSubRule(61); }
 
 			DebugLocation(166, 53);
 			// JavaScript.g:166:53: ( LT )*
-			try { DebugEnterSubRule(61);
+			try { DebugEnterSubRule(62);
 			while (true)
 			{
-				int alt61=2;
-				try { DebugEnterDecision(61, false);
-				int LA61_1 = input.LA(1);
+				int alt62=2;
+				try { DebugEnterDecision(62, false);
+				int LA62_1 = input.LA(1);
 
-				if ((LA61_1==LT))
+				if ((LA62_1==LT))
 				{
-					alt61 = 1;
+					alt62 = 1;
 				}
 
 
-				} finally { DebugExitDecision(61); }
-				switch ( alt61 )
+				} finally { DebugExitDecision(62); }
+				switch ( alt62 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:166:53: LT
 					{
 					DebugLocation(166, 53);
-					LT131=(IToken)Match(input,LT,Follow._LT_in_forStatement1077); if (state.failed) return retval; 
+					LT131=(IToken)Match(input,LT,Follow._LT_in_forStatement1079); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT131);
 
 
@@ -5682,35 +5721,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop61;
+					goto loop62;
 				}
 			}
 
-			loop61:
+			loop62:
 				;
 
-			} finally { DebugExitSubRule(61); }
+			} finally { DebugExitSubRule(62); }
 
 			DebugLocation(166, 57);
-			char_literal132=(IToken)Match(input,63,Follow._63_in_forStatement1080); if (state.failed) return retval; 
+			char_literal132=(IToken)Match(input,63,Follow._63_in_forStatement1082); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_63.Add(char_literal132);
 
 			DebugLocation(166, 61);
 			// JavaScript.g:166:61: ( ( LT )* condition= expression )?
-			int alt63=2;
-			try { DebugEnterSubRule(63);
-			try { DebugEnterDecision(63, false);
+			int alt64=2;
+			try { DebugEnterSubRule(64);
+			try { DebugEnterDecision(64, false);
 			try
 			{
-				alt63 = dfa63.Predict(input);
+				alt64 = dfa64.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(63); }
-			switch (alt63)
+			} finally { DebugExitDecision(64); }
+			switch (alt64)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -5718,28 +5757,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(166, 62);
 				// JavaScript.g:166:62: ( LT )*
-				try { DebugEnterSubRule(62);
+				try { DebugEnterSubRule(63);
 				while (true)
 				{
-					int alt62=2;
-					try { DebugEnterDecision(62, false);
-					int LA62_1 = input.LA(1);
+					int alt63=2;
+					try { DebugEnterDecision(63, false);
+					int LA63_1 = input.LA(1);
 
-					if ((LA62_1==LT))
+					if ((LA63_1==LT))
 					{
-						alt62 = 1;
+						alt63 = 1;
 					}
 
 
-					} finally { DebugExitDecision(62); }
-					switch ( alt62 )
+					} finally { DebugExitDecision(63); }
+					switch ( alt63 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:166:62: LT
 						{
 						DebugLocation(166, 62);
-						LT133=(IToken)Match(input,LT,Follow._LT_in_forStatement1083); if (state.failed) return retval; 
+						LT133=(IToken)Match(input,LT,Follow._LT_in_forStatement1085); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT133);
 
 
@@ -5747,17 +5786,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop62;
+						goto loop63;
 					}
 				}
 
-				loop62:
+				loop63:
 					;
 
-				} finally { DebugExitSubRule(62); }
+				} finally { DebugExitSubRule(63); }
 
 				DebugLocation(166, 75);
-				PushFollow(Follow._expression_in_forStatement1088);
+				PushFollow(Follow._expression_in_forStatement1090);
 				condition=expression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -5767,32 +5806,32 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(63); }
+			} finally { DebugExitSubRule(64); }
 
 			DebugLocation(166, 89);
 			// JavaScript.g:166:89: ( LT )*
-			try { DebugEnterSubRule(64);
+			try { DebugEnterSubRule(65);
 			while (true)
 			{
-				int alt64=2;
-				try { DebugEnterDecision(64, false);
-				int LA64_1 = input.LA(1);
+				int alt65=2;
+				try { DebugEnterDecision(65, false);
+				int LA65_1 = input.LA(1);
 
-				if ((LA64_1==LT))
+				if ((LA65_1==LT))
 				{
-					alt64 = 1;
+					alt65 = 1;
 				}
 
 
-				} finally { DebugExitDecision(64); }
-				switch ( alt64 )
+				} finally { DebugExitDecision(65); }
+				switch ( alt65 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:166:89: LT
 					{
 					DebugLocation(166, 89);
-					LT134=(IToken)Match(input,LT,Follow._LT_in_forStatement1092); if (state.failed) return retval; 
+					LT134=(IToken)Match(input,LT,Follow._LT_in_forStatement1094); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT134);
 
 
@@ -5800,35 +5839,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop64;
+					goto loop65;
 				}
 			}
 
-			loop64:
+			loop65:
 				;
 
-			} finally { DebugExitSubRule(64); }
+			} finally { DebugExitSubRule(65); }
 
 			DebugLocation(166, 93);
-			char_literal135=(IToken)Match(input,63,Follow._63_in_forStatement1095); if (state.failed) return retval; 
+			char_literal135=(IToken)Match(input,63,Follow._63_in_forStatement1097); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_63.Add(char_literal135);
 
 			DebugLocation(166, 97);
 			// JavaScript.g:166:97: ( ( LT )* incr= expression )?
-			int alt66=2;
-			try { DebugEnterSubRule(66);
-			try { DebugEnterDecision(66, false);
+			int alt67=2;
+			try { DebugEnterSubRule(67);
+			try { DebugEnterDecision(67, false);
 			try
 			{
-				alt66 = dfa66.Predict(input);
+				alt67 = dfa67.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(66); }
-			switch (alt66)
+			} finally { DebugExitDecision(67); }
+			switch (alt67)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -5836,28 +5875,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(166, 98);
 				// JavaScript.g:166:98: ( LT )*
-				try { DebugEnterSubRule(65);
+				try { DebugEnterSubRule(66);
 				while (true)
 				{
-					int alt65=2;
-					try { DebugEnterDecision(65, false);
-					int LA65_1 = input.LA(1);
+					int alt66=2;
+					try { DebugEnterDecision(66, false);
+					int LA66_1 = input.LA(1);
 
-					if ((LA65_1==LT))
+					if ((LA66_1==LT))
 					{
-						alt65 = 1;
+						alt66 = 1;
 					}
 
 
-					} finally { DebugExitDecision(65); }
-					switch ( alt65 )
+					} finally { DebugExitDecision(66); }
+					switch ( alt66 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:166:98: LT
 						{
 						DebugLocation(166, 98);
-						LT136=(IToken)Match(input,LT,Follow._LT_in_forStatement1098); if (state.failed) return retval; 
+						LT136=(IToken)Match(input,LT,Follow._LT_in_forStatement1100); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT136);
 
 
@@ -5865,17 +5904,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop65;
+						goto loop66;
 					}
 				}
 
-				loop65:
+				loop66:
 					;
 
-				} finally { DebugExitSubRule(65); }
+				} finally { DebugExitSubRule(66); }
 
 				DebugLocation(166, 106);
-				PushFollow(Follow._expression_in_forStatement1103);
+				PushFollow(Follow._expression_in_forStatement1105);
 				incr=expression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -5885,54 +5924,10 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(66); }
+			} finally { DebugExitSubRule(67); }
 
 			DebugLocation(166, 120);
 			// JavaScript.g:166:120: ( LT )*
-			try { DebugEnterSubRule(67);
-			while (true)
-			{
-				int alt67=2;
-				try { DebugEnterDecision(67, false);
-				int LA67_1 = input.LA(1);
-
-				if ((LA67_1==LT))
-				{
-					alt67 = 1;
-				}
-
-
-				} finally { DebugExitDecision(67); }
-				switch ( alt67 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:166:120: LT
-					{
-					DebugLocation(166, 120);
-					LT137=(IToken)Match(input,LT,Follow._LT_in_forStatement1107); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT137);
-
-
-					}
-					break;
-
-				default:
-					goto loop67;
-				}
-			}
-
-			loop67:
-				;
-
-			} finally { DebugExitSubRule(67); }
-
-			DebugLocation(166, 124);
-			char_literal138=(IToken)Match(input,49,Follow._49_in_forStatement1110); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_49.Add(char_literal138);
-
-			DebugLocation(166, 128);
-			// JavaScript.g:166:128: ( LT )*
 			try { DebugEnterSubRule(68);
 			while (true)
 			{
@@ -5951,11 +5946,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:166:128: LT
+					// JavaScript.g:166:120: LT
 					{
-					DebugLocation(166, 128);
-					LT139=(IToken)Match(input,LT,Follow._LT_in_forStatement1112); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT139);
+					DebugLocation(166, 120);
+					LT137=(IToken)Match(input,LT,Follow._LT_in_forStatement1109); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT137);
 
 
 					}
@@ -5971,8 +5966,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(68); }
 
+			DebugLocation(166, 124);
+			char_literal138=(IToken)Match(input,49,Follow._49_in_forStatement1112); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_49.Add(char_literal138);
+
+			DebugLocation(166, 128);
+			// JavaScript.g:166:128: ( LT )*
+			try { DebugEnterSubRule(69);
+			while (true)
+			{
+				int alt69=2;
+				try { DebugEnterDecision(69, false);
+				int LA69_1 = input.LA(1);
+
+				if ((LA69_1==LT))
+				{
+					alt69 = 1;
+				}
+
+
+				} finally { DebugExitDecision(69); }
+				switch ( alt69 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:166:128: LT
+					{
+					DebugLocation(166, 128);
+					LT139=(IToken)Match(input,LT,Follow._LT_in_forStatement1114); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT139);
+
+
+					}
+					break;
+
+				default:
+					goto loop69;
+				}
+			}
+
+			loop69:
+				;
+
+			} finally { DebugExitSubRule(69); }
+
 			DebugLocation(166, 132);
-			PushFollow(Follow._statement_in_forStatement1115);
+			PushFollow(Follow._statement_in_forStatement1117);
 			statement140=statement();
 			PopFollow();
 			if (state.failed) return retval;
@@ -6136,27 +6175,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 25)) { return retval; }
 
 			// JavaScript.g:175:2: ( expressionNoIn | 'var' ( LT )* variableDeclarationListNoIn -> ^( 'var' variableDeclarationListNoIn ) )
-			int alt70=2;
-			try { DebugEnterDecision(70, false);
-			int LA70_1 = input.LA(1);
+			int alt71=2;
+			try { DebugEnterDecision(71, false);
+			int LA71_1 = input.LA(1);
 
-			if ((LA70_1==Identifier||LA70_1==NumericLiteral||LA70_1==StringLiteral||LA70_1==40||LA70_1==48||(LA70_1>=52 && LA70_1<=53)||(LA70_1>=56 && LA70_1<=57)||LA70_1==78||LA70_1==87||LA70_1==90||LA70_1==93||(LA70_1>=97 && LA70_1<=98)||LA70_1==101||LA70_1==103||LA70_1==105||LA70_1==107||LA70_1==110||LA70_1==115))
+			if ((LA71_1==Identifier||LA71_1==NumericLiteral||LA71_1==StringLiteral||LA71_1==40||LA71_1==48||(LA71_1>=52 && LA71_1<=53)||(LA71_1>=56 && LA71_1<=57)||LA71_1==78||LA71_1==87||LA71_1==90||LA71_1==93||(LA71_1>=97 && LA71_1<=98)||LA71_1==101||LA71_1==103||LA71_1==105||LA71_1==107||LA71_1==110||LA71_1==115))
 			{
-				alt70 = 1;
+				alt71 = 1;
 			}
-			else if ((LA70_1==106))
+			else if ((LA71_1==106))
 			{
-				alt70 = 2;
+				alt71 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 70, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 71, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(70); }
-			switch (alt70)
+			} finally { DebugExitDecision(71); }
+			switch (alt71)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -6165,7 +6204,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(175, 4);
-				PushFollow(Follow._expressionNoIn_in_forStatementInitialiserPart1211);
+				PushFollow(Follow._expressionNoIn_in_forStatementInitialiserPart1213);
 				expressionNoIn141=expressionNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -6178,33 +6217,33 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:176:4: 'var' ( LT )* variableDeclarationListNoIn
 				{
 				DebugLocation(176, 4);
-				string_literal142=(IToken)Match(input,106,Follow._106_in_forStatementInitialiserPart1216); if (state.failed) return retval; 
+				string_literal142=(IToken)Match(input,106,Follow._106_in_forStatementInitialiserPart1218); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_106.Add(string_literal142);
 
 				DebugLocation(176, 10);
 				// JavaScript.g:176:10: ( LT )*
-				try { DebugEnterSubRule(69);
+				try { DebugEnterSubRule(70);
 				while (true)
 				{
-					int alt69=2;
-					try { DebugEnterDecision(69, false);
-					int LA69_1 = input.LA(1);
+					int alt70=2;
+					try { DebugEnterDecision(70, false);
+					int LA70_1 = input.LA(1);
 
-					if ((LA69_1==LT))
+					if ((LA70_1==LT))
 					{
-						alt69 = 1;
+						alt70 = 1;
 					}
 
 
-					} finally { DebugExitDecision(69); }
-					switch ( alt69 )
+					} finally { DebugExitDecision(70); }
+					switch ( alt70 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:176:10: LT
 						{
 						DebugLocation(176, 10);
-						LT143=(IToken)Match(input,LT,Follow._LT_in_forStatementInitialiserPart1218); if (state.failed) return retval; 
+						LT143=(IToken)Match(input,LT,Follow._LT_in_forStatementInitialiserPart1220); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT143);
 
 
@@ -6212,17 +6251,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop69;
+						goto loop70;
 					}
 				}
 
-				loop69:
+				loop70:
 					;
 
-				} finally { DebugExitSubRule(69); }
+				} finally { DebugExitSubRule(70); }
 
 				DebugLocation(176, 14);
-				PushFollow(Follow._variableDeclarationListNoIn_in_forStatementInitialiserPart1221);
+				PushFollow(Follow._variableDeclarationListNoIn_in_forStatementInitialiserPart1223);
 				variableDeclarationListNoIn144=variableDeclarationListNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -6355,55 +6394,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:181:4: 'for' ( LT )* '(' ( LT )* forInStatementInitialiserPart ( LT )* 'in' ( LT )* expression ( LT )* ')' ( LT )* statement
 			{
 			DebugLocation(181, 4);
-			string_literal145=(IToken)Match(input,92,Follow._92_in_forInStatement1249); if (state.failed) return retval; 
+			string_literal145=(IToken)Match(input,92,Follow._92_in_forInStatement1251); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_92.Add(string_literal145);
 
 			DebugLocation(181, 10);
 			// JavaScript.g:181:10: ( LT )*
-			try { DebugEnterSubRule(71);
-			while (true)
-			{
-				int alt71=2;
-				try { DebugEnterDecision(71, false);
-				int LA71_1 = input.LA(1);
-
-				if ((LA71_1==LT))
-				{
-					alt71 = 1;
-				}
-
-
-				} finally { DebugExitDecision(71); }
-				switch ( alt71 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:181:10: LT
-					{
-					DebugLocation(181, 10);
-					LT146=(IToken)Match(input,LT,Follow._LT_in_forInStatement1251); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT146);
-
-
-					}
-					break;
-
-				default:
-					goto loop71;
-				}
-			}
-
-			loop71:
-				;
-
-			} finally { DebugExitSubRule(71); }
-
-			DebugLocation(181, 14);
-			char_literal147=(IToken)Match(input,48,Follow._48_in_forInStatement1254); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_48.Add(char_literal147);
-
-			DebugLocation(181, 18);
-			// JavaScript.g:181:18: ( LT )*
 			try { DebugEnterSubRule(72);
 			while (true)
 			{
@@ -6422,11 +6417,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:181:18: LT
+					// JavaScript.g:181:10: LT
 					{
-					DebugLocation(181, 18);
-					LT148=(IToken)Match(input,LT,Follow._LT_in_forInStatement1256); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT148);
+					DebugLocation(181, 10);
+					LT146=(IToken)Match(input,LT,Follow._LT_in_forInStatement1253); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT146);
 
 
 					}
@@ -6442,14 +6437,12 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(72); }
 
-			DebugLocation(181, 22);
-			PushFollow(Follow._forInStatementInitialiserPart_in_forInStatement1259);
-			forInStatementInitialiserPart149=forInStatementInitialiserPart();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) stream_forInStatementInitialiserPart.Add(forInStatementInitialiserPart149.Tree);
-			DebugLocation(181, 52);
-			// JavaScript.g:181:52: ( LT )*
+			DebugLocation(181, 14);
+			char_literal147=(IToken)Match(input,48,Follow._48_in_forInStatement1256); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_48.Add(char_literal147);
+
+			DebugLocation(181, 18);
+			// JavaScript.g:181:18: ( LT )*
 			try { DebugEnterSubRule(73);
 			while (true)
 			{
@@ -6468,11 +6461,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:181:52: LT
+					// JavaScript.g:181:18: LT
 					{
-					DebugLocation(181, 52);
-					LT150=(IToken)Match(input,LT,Follow._LT_in_forInStatement1261); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT150);
+					DebugLocation(181, 18);
+					LT148=(IToken)Match(input,LT,Follow._LT_in_forInStatement1258); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT148);
 
 
 					}
@@ -6488,12 +6481,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(73); }
 
-			DebugLocation(181, 56);
-			string_literal151=(IToken)Match(input,95,Follow._95_in_forInStatement1264); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_95.Add(string_literal151);
-
-			DebugLocation(181, 61);
-			// JavaScript.g:181:61: ( LT )*
+			DebugLocation(181, 22);
+			PushFollow(Follow._forInStatementInitialiserPart_in_forInStatement1261);
+			forInStatementInitialiserPart149=forInStatementInitialiserPart();
+			PopFollow();
+			if (state.failed) return retval;
+			if (state.backtracking == 0) stream_forInStatementInitialiserPart.Add(forInStatementInitialiserPart149.Tree);
+			DebugLocation(181, 52);
+			// JavaScript.g:181:52: ( LT )*
 			try { DebugEnterSubRule(74);
 			while (true)
 			{
@@ -6512,11 +6507,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:181:61: LT
+					// JavaScript.g:181:52: LT
 					{
-					DebugLocation(181, 61);
-					LT152=(IToken)Match(input,LT,Follow._LT_in_forInStatement1266); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT152);
+					DebugLocation(181, 52);
+					LT150=(IToken)Match(input,LT,Follow._LT_in_forInStatement1263); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT150);
 
 
 					}
@@ -6532,14 +6527,12 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(74); }
 
-			DebugLocation(181, 65);
-			PushFollow(Follow._expression_in_forInStatement1269);
-			expression153=expression();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) stream_expression.Add(expression153.Tree);
-			DebugLocation(181, 76);
-			// JavaScript.g:181:76: ( LT )*
+			DebugLocation(181, 56);
+			string_literal151=(IToken)Match(input,95,Follow._95_in_forInStatement1266); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_95.Add(string_literal151);
+
+			DebugLocation(181, 61);
+			// JavaScript.g:181:61: ( LT )*
 			try { DebugEnterSubRule(75);
 			while (true)
 			{
@@ -6558,11 +6551,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:181:76: LT
+					// JavaScript.g:181:61: LT
 					{
-					DebugLocation(181, 76);
-					LT154=(IToken)Match(input,LT,Follow._LT_in_forInStatement1271); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT154);
+					DebugLocation(181, 61);
+					LT152=(IToken)Match(input,LT,Follow._LT_in_forInStatement1268); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT152);
 
 
 					}
@@ -6578,12 +6571,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(75); }
 
-			DebugLocation(181, 80);
-			char_literal155=(IToken)Match(input,49,Follow._49_in_forInStatement1274); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_49.Add(char_literal155);
-
-			DebugLocation(181, 84);
-			// JavaScript.g:181:84: ( LT )*
+			DebugLocation(181, 65);
+			PushFollow(Follow._expression_in_forInStatement1271);
+			expression153=expression();
+			PopFollow();
+			if (state.failed) return retval;
+			if (state.backtracking == 0) stream_expression.Add(expression153.Tree);
+			DebugLocation(181, 76);
+			// JavaScript.g:181:76: ( LT )*
 			try { DebugEnterSubRule(76);
 			while (true)
 			{
@@ -6602,11 +6597,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:181:84: LT
+					// JavaScript.g:181:76: LT
 					{
-					DebugLocation(181, 84);
-					LT156=(IToken)Match(input,LT,Follow._LT_in_forInStatement1276); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT156);
+					DebugLocation(181, 76);
+					LT154=(IToken)Match(input,LT,Follow._LT_in_forInStatement1273); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT154);
 
 
 					}
@@ -6622,8 +6617,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(76); }
 
+			DebugLocation(181, 80);
+			char_literal155=(IToken)Match(input,49,Follow._49_in_forInStatement1276); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_49.Add(char_literal155);
+
+			DebugLocation(181, 84);
+			// JavaScript.g:181:84: ( LT )*
+			try { DebugEnterSubRule(77);
+			while (true)
+			{
+				int alt77=2;
+				try { DebugEnterDecision(77, false);
+				int LA77_1 = input.LA(1);
+
+				if ((LA77_1==LT))
+				{
+					alt77 = 1;
+				}
+
+
+				} finally { DebugExitDecision(77); }
+				switch ( alt77 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:181:84: LT
+					{
+					DebugLocation(181, 84);
+					LT156=(IToken)Match(input,LT,Follow._LT_in_forInStatement1278); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT156);
+
+
+					}
+					break;
+
+				default:
+					goto loop77;
+				}
+			}
+
+			loop77:
+				;
+
+			} finally { DebugExitSubRule(77); }
+
 			DebugLocation(181, 88);
-			PushFollow(Follow._statement_in_forInStatement1279);
+			PushFollow(Follow._statement_in_forInStatement1281);
 			statement157=statement();
 			PopFollow();
 			if (state.failed) return retval;
@@ -6732,27 +6771,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 27)) { return retval; }
 
 			// JavaScript.g:189:2: ( leftHandSideExpression | 'var' ( LT )* variableDeclarationNoIn -> variableDeclarationNoIn )
-			int alt78=2;
-			try { DebugEnterDecision(78, false);
-			int LA78_1 = input.LA(1);
+			int alt79=2;
+			try { DebugEnterDecision(79, false);
+			int LA79_1 = input.LA(1);
 
-			if ((LA78_1==Identifier||LA78_1==NumericLiteral||LA78_1==StringLiteral||LA78_1==48||LA78_1==78||LA78_1==90||LA78_1==93||(LA78_1>=97 && LA78_1<=98)||LA78_1==101||LA78_1==103||LA78_1==110))
+			if ((LA79_1==Identifier||LA79_1==NumericLiteral||LA79_1==StringLiteral||LA79_1==48||LA79_1==78||LA79_1==90||LA79_1==93||(LA79_1>=97 && LA79_1<=98)||LA79_1==101||LA79_1==103||LA79_1==110))
 			{
-				alt78 = 1;
+				alt79 = 1;
 			}
-			else if ((LA78_1==106))
+			else if ((LA79_1==106))
 			{
-				alt78 = 2;
+				alt79 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 78, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 79, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(78); }
-			switch (alt78)
+			} finally { DebugExitDecision(79); }
+			switch (alt79)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -6761,7 +6800,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(189, 4);
-				PushFollow(Follow._leftHandSideExpression_in_forInStatementInitialiserPart1321);
+				PushFollow(Follow._leftHandSideExpression_in_forInStatementInitialiserPart1323);
 				leftHandSideExpression158=leftHandSideExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -6774,33 +6813,33 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:190:4: 'var' ( LT )* variableDeclarationNoIn
 				{
 				DebugLocation(190, 4);
-				string_literal159=(IToken)Match(input,106,Follow._106_in_forInStatementInitialiserPart1326); if (state.failed) return retval; 
+				string_literal159=(IToken)Match(input,106,Follow._106_in_forInStatementInitialiserPart1328); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_106.Add(string_literal159);
 
 				DebugLocation(190, 10);
 				// JavaScript.g:190:10: ( LT )*
-				try { DebugEnterSubRule(77);
+				try { DebugEnterSubRule(78);
 				while (true)
 				{
-					int alt77=2;
-					try { DebugEnterDecision(77, false);
-					int LA77_1 = input.LA(1);
+					int alt78=2;
+					try { DebugEnterDecision(78, false);
+					int LA78_1 = input.LA(1);
 
-					if ((LA77_1==LT))
+					if ((LA78_1==LT))
 					{
-						alt77 = 1;
+						alt78 = 1;
 					}
 
 
-					} finally { DebugExitDecision(77); }
-					switch ( alt77 )
+					} finally { DebugExitDecision(78); }
+					switch ( alt78 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:190:10: LT
 						{
 						DebugLocation(190, 10);
-						LT160=(IToken)Match(input,LT,Follow._LT_in_forInStatementInitialiserPart1328); if (state.failed) return retval; 
+						LT160=(IToken)Match(input,LT,Follow._LT_in_forInStatementInitialiserPart1330); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT160);
 
 
@@ -6808,17 +6847,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop77;
+						goto loop78;
 					}
 				}
 
-				loop77:
+				loop78:
 					;
 
-				} finally { DebugExitSubRule(77); }
+				} finally { DebugExitSubRule(78); }
 
 				DebugLocation(190, 14);
-				PushFollow(Follow._variableDeclarationNoIn_in_forInStatementInitialiserPart1331);
+				PushFollow(Follow._variableDeclarationNoIn_in_forInStatementInitialiserPart1333);
 				variableDeclarationNoIn161=variableDeclarationNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -6922,29 +6961,29 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:194:4: 'continue' ( Identifier )? ( LT | ';' )
 			{
 			DebugLocation(194, 4);
-			string_literal162=(IToken)Match(input,85,Follow._85_in_continueStatement1346); if (state.failed) return retval; 
+			string_literal162=(IToken)Match(input,85,Follow._85_in_continueStatement1348); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_85.Add(string_literal162);
 
 			DebugLocation(194, 15);
 			// JavaScript.g:194:15: ( Identifier )?
-			int alt79=2;
-			try { DebugEnterSubRule(79);
-			try { DebugEnterDecision(79, false);
-			int LA79_1 = input.LA(1);
+			int alt80=2;
+			try { DebugEnterSubRule(80);
+			try { DebugEnterDecision(80, false);
+			int LA80_1 = input.LA(1);
 
-			if ((LA79_1==Identifier))
+			if ((LA80_1==Identifier))
 			{
-				alt79 = 1;
+				alt80 = 1;
 			}
-			} finally { DebugExitDecision(79); }
-			switch (alt79)
+			} finally { DebugExitDecision(80); }
+			switch (alt80)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:194:15: Identifier
 				{
 				DebugLocation(194, 15);
-				Identifier163=(IToken)Match(input,Identifier,Follow._Identifier_in_continueStatement1348); if (state.failed) return retval; 
+				Identifier163=(IToken)Match(input,Identifier,Follow._Identifier_in_continueStatement1350); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_Identifier.Add(Identifier163);
 
 
@@ -6952,39 +6991,39 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(79); }
+			} finally { DebugExitSubRule(80); }
 
 			DebugLocation(194, 27);
 			// JavaScript.g:194:27: ( LT | ';' )
-			int alt80=2;
-			try { DebugEnterSubRule(80);
-			try { DebugEnterDecision(80, false);
-			int LA80_1 = input.LA(1);
+			int alt81=2;
+			try { DebugEnterSubRule(81);
+			try { DebugEnterDecision(81, false);
+			int LA81_1 = input.LA(1);
 
-			if ((LA80_1==LT))
+			if ((LA81_1==LT))
 			{
-				alt80 = 1;
+				alt81 = 1;
 			}
-			else if ((LA80_1==63))
+			else if ((LA81_1==63))
 			{
-				alt80 = 2;
+				alt81 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 80, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 81, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(80); }
-			switch (alt80)
+			} finally { DebugExitDecision(81); }
+			switch (alt81)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:194:28: LT
 				{
 				DebugLocation(194, 28);
-				LT164=(IToken)Match(input,LT,Follow._LT_in_continueStatement1352); if (state.failed) return retval; 
+				LT164=(IToken)Match(input,LT,Follow._LT_in_continueStatement1354); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_LT.Add(LT164);
 
 
@@ -6995,7 +7034,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:194:33: ';'
 				{
 				DebugLocation(194, 33);
-				char_literal165=(IToken)Match(input,63,Follow._63_in_continueStatement1356); if (state.failed) return retval; 
+				char_literal165=(IToken)Match(input,63,Follow._63_in_continueStatement1358); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_63.Add(char_literal165);
 
 
@@ -7003,7 +7042,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(80); }
+			} finally { DebugExitSubRule(81); }
 
 
 
@@ -7119,29 +7158,29 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:199:4: 'break' ( Identifier )? ( LT | ';' )
 			{
 			DebugLocation(199, 4);
-			string_literal166=(IToken)Match(input,82,Follow._82_in_breakStatement1390); if (state.failed) return retval; 
+			string_literal166=(IToken)Match(input,82,Follow._82_in_breakStatement1392); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_82.Add(string_literal166);
 
 			DebugLocation(199, 12);
 			// JavaScript.g:199:12: ( Identifier )?
-			int alt81=2;
-			try { DebugEnterSubRule(81);
-			try { DebugEnterDecision(81, false);
-			int LA81_1 = input.LA(1);
+			int alt82=2;
+			try { DebugEnterSubRule(82);
+			try { DebugEnterDecision(82, false);
+			int LA82_1 = input.LA(1);
 
-			if ((LA81_1==Identifier))
+			if ((LA82_1==Identifier))
 			{
-				alt81 = 1;
+				alt82 = 1;
 			}
-			} finally { DebugExitDecision(81); }
-			switch (alt81)
+			} finally { DebugExitDecision(82); }
+			switch (alt82)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:199:12: Identifier
 				{
 				DebugLocation(199, 12);
-				Identifier167=(IToken)Match(input,Identifier,Follow._Identifier_in_breakStatement1392); if (state.failed) return retval; 
+				Identifier167=(IToken)Match(input,Identifier,Follow._Identifier_in_breakStatement1394); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_Identifier.Add(Identifier167);
 
 
@@ -7149,39 +7188,39 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(81); }
+			} finally { DebugExitSubRule(82); }
 
 			DebugLocation(199, 24);
 			// JavaScript.g:199:24: ( LT | ';' )
-			int alt82=2;
-			try { DebugEnterSubRule(82);
-			try { DebugEnterDecision(82, false);
-			int LA82_1 = input.LA(1);
+			int alt83=2;
+			try { DebugEnterSubRule(83);
+			try { DebugEnterDecision(83, false);
+			int LA83_1 = input.LA(1);
 
-			if ((LA82_1==LT))
+			if ((LA83_1==LT))
 			{
-				alt82 = 1;
+				alt83 = 1;
 			}
-			else if ((LA82_1==63))
+			else if ((LA83_1==63))
 			{
-				alt82 = 2;
+				alt83 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 82, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 83, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(82); }
-			switch (alt82)
+			} finally { DebugExitDecision(83); }
+			switch (alt83)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:199:25: LT
 				{
 				DebugLocation(199, 25);
-				LT168=(IToken)Match(input,LT,Follow._LT_in_breakStatement1396); if (state.failed) return retval; 
+				LT168=(IToken)Match(input,LT,Follow._LT_in_breakStatement1398); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_LT.Add(LT168);
 
 
@@ -7192,7 +7231,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:199:30: ';'
 				{
 				DebugLocation(199, 30);
-				char_literal169=(IToken)Match(input,63,Follow._63_in_breakStatement1400); if (state.failed) return retval; 
+				char_literal169=(IToken)Match(input,63,Follow._63_in_breakStatement1402); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_63.Add(char_literal169);
 
 
@@ -7200,7 +7239,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(82); }
+			} finally { DebugExitSubRule(83); }
 
 
 
@@ -7315,29 +7354,29 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:203:4: 'return' ( expression )? ( LT | ';' )
 			{
 			DebugLocation(203, 4);
-			string_literal170=(IToken)Match(input,99,Follow._99_in_returnStatement1431); if (state.failed) return retval; 
+			string_literal170=(IToken)Match(input,99,Follow._99_in_returnStatement1433); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_99.Add(string_literal170);
 
 			DebugLocation(203, 13);
 			// JavaScript.g:203:13: ( expression )?
-			int alt83=2;
-			try { DebugEnterSubRule(83);
-			try { DebugEnterDecision(83, false);
-			int LA83_1 = input.LA(1);
+			int alt84=2;
+			try { DebugEnterSubRule(84);
+			try { DebugEnterDecision(84, false);
+			int LA84_1 = input.LA(1);
 
-			if ((LA83_1==Identifier||LA83_1==NumericLiteral||LA83_1==StringLiteral||LA83_1==40||LA83_1==48||(LA83_1>=52 && LA83_1<=53)||(LA83_1>=56 && LA83_1<=57)||LA83_1==78||LA83_1==87||LA83_1==90||LA83_1==93||(LA83_1>=97 && LA83_1<=98)||LA83_1==101||LA83_1==103||LA83_1==105||LA83_1==107||LA83_1==110||LA83_1==115))
+			if ((LA84_1==Identifier||LA84_1==NumericLiteral||LA84_1==StringLiteral||LA84_1==40||LA84_1==48||(LA84_1>=52 && LA84_1<=53)||(LA84_1>=56 && LA84_1<=57)||LA84_1==78||LA84_1==87||LA84_1==90||LA84_1==93||(LA84_1>=97 && LA84_1<=98)||LA84_1==101||LA84_1==103||LA84_1==105||LA84_1==107||LA84_1==110||LA84_1==115))
 			{
-				alt83 = 1;
+				alt84 = 1;
 			}
-			} finally { DebugExitDecision(83); }
-			switch (alt83)
+			} finally { DebugExitDecision(84); }
+			switch (alt84)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:203:13: expression
 				{
 				DebugLocation(203, 13);
-				PushFollow(Follow._expression_in_returnStatement1433);
+				PushFollow(Follow._expression_in_returnStatement1435);
 				expression171=expression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -7347,39 +7386,39 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(83); }
+			} finally { DebugExitSubRule(84); }
 
 			DebugLocation(203, 25);
 			// JavaScript.g:203:25: ( LT | ';' )
-			int alt84=2;
-			try { DebugEnterSubRule(84);
-			try { DebugEnterDecision(84, false);
-			int LA84_1 = input.LA(1);
+			int alt85=2;
+			try { DebugEnterSubRule(85);
+			try { DebugEnterDecision(85, false);
+			int LA85_1 = input.LA(1);
 
-			if ((LA84_1==LT))
+			if ((LA85_1==LT))
 			{
-				alt84 = 1;
+				alt85 = 1;
 			}
-			else if ((LA84_1==63))
+			else if ((LA85_1==63))
 			{
-				alt84 = 2;
+				alt85 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 84, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 85, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(84); }
-			switch (alt84)
+			} finally { DebugExitDecision(85); }
+			switch (alt85)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:203:26: LT
 				{
 				DebugLocation(203, 26);
-				LT172=(IToken)Match(input,LT,Follow._LT_in_returnStatement1437); if (state.failed) return retval; 
+				LT172=(IToken)Match(input,LT,Follow._LT_in_returnStatement1439); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_LT.Add(LT172);
 
 
@@ -7390,7 +7429,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:203:31: ';'
 				{
 				DebugLocation(203, 31);
-				char_literal173=(IToken)Match(input,63,Follow._63_in_returnStatement1441); if (state.failed) return retval; 
+				char_literal173=(IToken)Match(input,63,Follow._63_in_returnStatement1443); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_63.Add(char_literal173);
 
 
@@ -7398,7 +7437,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(84); }
+			} finally { DebugExitSubRule(85); }
 
 
 
@@ -7524,55 +7563,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:207:4: 'with' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* statement
 			{
 			DebugLocation(207, 4);
-			string_literal174=(IToken)Match(input,109,Follow._109_in_withStatement1468); if (state.failed) return retval; 
+			string_literal174=(IToken)Match(input,109,Follow._109_in_withStatement1470); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_109.Add(string_literal174);
 
 			DebugLocation(207, 11);
 			// JavaScript.g:207:11: ( LT )*
-			try { DebugEnterSubRule(85);
-			while (true)
-			{
-				int alt85=2;
-				try { DebugEnterDecision(85, false);
-				int LA85_1 = input.LA(1);
-
-				if ((LA85_1==LT))
-				{
-					alt85 = 1;
-				}
-
-
-				} finally { DebugExitDecision(85); }
-				switch ( alt85 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:207:11: LT
-					{
-					DebugLocation(207, 11);
-					LT175=(IToken)Match(input,LT,Follow._LT_in_withStatement1470); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT175);
-
-
-					}
-					break;
-
-				default:
-					goto loop85;
-				}
-			}
-
-			loop85:
-				;
-
-			} finally { DebugExitSubRule(85); }
-
-			DebugLocation(207, 15);
-			char_literal176=(IToken)Match(input,48,Follow._48_in_withStatement1473); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_48.Add(char_literal176);
-
-			DebugLocation(207, 19);
-			// JavaScript.g:207:19: ( LT )*
 			try { DebugEnterSubRule(86);
 			while (true)
 			{
@@ -7591,11 +7586,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:207:19: LT
+					// JavaScript.g:207:11: LT
 					{
-					DebugLocation(207, 19);
-					LT177=(IToken)Match(input,LT,Follow._LT_in_withStatement1475); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT177);
+					DebugLocation(207, 11);
+					LT175=(IToken)Match(input,LT,Follow._LT_in_withStatement1472); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT175);
 
 
 					}
@@ -7611,14 +7606,12 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(86); }
 
-			DebugLocation(207, 23);
-			PushFollow(Follow._expression_in_withStatement1478);
-			expression178=expression();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) stream_expression.Add(expression178.Tree);
-			DebugLocation(207, 34);
-			// JavaScript.g:207:34: ( LT )*
+			DebugLocation(207, 15);
+			char_literal176=(IToken)Match(input,48,Follow._48_in_withStatement1475); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_48.Add(char_literal176);
+
+			DebugLocation(207, 19);
+			// JavaScript.g:207:19: ( LT )*
 			try { DebugEnterSubRule(87);
 			while (true)
 			{
@@ -7637,11 +7630,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:207:34: LT
+					// JavaScript.g:207:19: LT
 					{
-					DebugLocation(207, 34);
-					LT179=(IToken)Match(input,LT,Follow._LT_in_withStatement1480); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT179);
+					DebugLocation(207, 19);
+					LT177=(IToken)Match(input,LT,Follow._LT_in_withStatement1477); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT177);
 
 
 					}
@@ -7657,12 +7650,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(87); }
 
-			DebugLocation(207, 38);
-			char_literal180=(IToken)Match(input,49,Follow._49_in_withStatement1483); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_49.Add(char_literal180);
-
-			DebugLocation(207, 42);
-			// JavaScript.g:207:42: ( LT )*
+			DebugLocation(207, 23);
+			PushFollow(Follow._expression_in_withStatement1480);
+			expression178=expression();
+			PopFollow();
+			if (state.failed) return retval;
+			if (state.backtracking == 0) stream_expression.Add(expression178.Tree);
+			DebugLocation(207, 34);
+			// JavaScript.g:207:34: ( LT )*
 			try { DebugEnterSubRule(88);
 			while (true)
 			{
@@ -7681,11 +7676,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:207:42: LT
+					// JavaScript.g:207:34: LT
 					{
-					DebugLocation(207, 42);
-					LT181=(IToken)Match(input,LT,Follow._LT_in_withStatement1485); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT181);
+					DebugLocation(207, 34);
+					LT179=(IToken)Match(input,LT,Follow._LT_in_withStatement1482); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT179);
 
 
 					}
@@ -7701,8 +7696,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(88); }
 
+			DebugLocation(207, 38);
+			char_literal180=(IToken)Match(input,49,Follow._49_in_withStatement1485); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_49.Add(char_literal180);
+
+			DebugLocation(207, 42);
+			// JavaScript.g:207:42: ( LT )*
+			try { DebugEnterSubRule(89);
+			while (true)
+			{
+				int alt89=2;
+				try { DebugEnterDecision(89, false);
+				int LA89_1 = input.LA(1);
+
+				if ((LA89_1==LT))
+				{
+					alt89 = 1;
+				}
+
+
+				} finally { DebugExitDecision(89); }
+				switch ( alt89 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:207:42: LT
+					{
+					DebugLocation(207, 42);
+					LT181=(IToken)Match(input,LT,Follow._LT_in_withStatement1487); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT181);
+
+
+					}
+					break;
+
+				default:
+					goto loop89;
+				}
+			}
+
+			loop89:
+				;
+
+			} finally { DebugExitSubRule(89); }
+
 			DebugLocation(207, 46);
-			PushFollow(Follow._statement_in_withStatement1488);
+			PushFollow(Follow._statement_in_withStatement1490);
 			statement182=statement();
 			PopFollow();
 			if (state.failed) return retval;
@@ -7817,55 +7856,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:212:4: Identifier ( LT )* ':' ( LT )* statement
 			{
 			DebugLocation(212, 4);
-			Identifier183=(IToken)Match(input,Identifier,Follow._Identifier_in_labelledStatement1517); if (state.failed) return retval; 
+			Identifier183=(IToken)Match(input,Identifier,Follow._Identifier_in_labelledStatement1519); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_Identifier.Add(Identifier183);
 
 			DebugLocation(212, 15);
 			// JavaScript.g:212:15: ( LT )*
-			try { DebugEnterSubRule(89);
-			while (true)
-			{
-				int alt89=2;
-				try { DebugEnterDecision(89, false);
-				int LA89_1 = input.LA(1);
-
-				if ((LA89_1==LT))
-				{
-					alt89 = 1;
-				}
-
-
-				} finally { DebugExitDecision(89); }
-				switch ( alt89 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:212:15: LT
-					{
-					DebugLocation(212, 15);
-					LT184=(IToken)Match(input,LT,Follow._LT_in_labelledStatement1519); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT184);
-
-
-					}
-					break;
-
-				default:
-					goto loop89;
-				}
-			}
-
-			loop89:
-				;
-
-			} finally { DebugExitSubRule(89); }
-
-			DebugLocation(212, 19);
-			char_literal185=(IToken)Match(input,62,Follow._62_in_labelledStatement1522); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_62.Add(char_literal185);
-
-			DebugLocation(212, 23);
-			// JavaScript.g:212:23: ( LT )*
 			try { DebugEnterSubRule(90);
 			while (true)
 			{
@@ -7884,11 +7879,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:212:23: LT
+					// JavaScript.g:212:15: LT
 					{
-					DebugLocation(212, 23);
-					LT186=(IToken)Match(input,LT,Follow._LT_in_labelledStatement1524); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT186);
+					DebugLocation(212, 15);
+					LT184=(IToken)Match(input,LT,Follow._LT_in_labelledStatement1521); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT184);
 
 
 					}
@@ -7904,8 +7899,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(90); }
 
+			DebugLocation(212, 19);
+			char_literal185=(IToken)Match(input,62,Follow._62_in_labelledStatement1524); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_62.Add(char_literal185);
+
+			DebugLocation(212, 23);
+			// JavaScript.g:212:23: ( LT )*
+			try { DebugEnterSubRule(91);
+			while (true)
+			{
+				int alt91=2;
+				try { DebugEnterDecision(91, false);
+				int LA91_1 = input.LA(1);
+
+				if ((LA91_1==LT))
+				{
+					alt91 = 1;
+				}
+
+
+				} finally { DebugExitDecision(91); }
+				switch ( alt91 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:212:23: LT
+					{
+					DebugLocation(212, 23);
+					LT186=(IToken)Match(input,LT,Follow._LT_in_labelledStatement1526); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT186);
+
+
+					}
+					break;
+
+				default:
+					goto loop91;
+				}
+			}
+
+			loop91:
+				;
+
+			} finally { DebugExitSubRule(91); }
+
 			DebugLocation(212, 27);
-			PushFollow(Follow._statement_in_labelledStatement1527);
+			PushFollow(Follow._statement_in_labelledStatement1529);
 			statement187=statement();
 			PopFollow();
 			if (state.failed) return retval;
@@ -8029,55 +8068,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:217:4: 'switch' ( LT )* '(' ( LT )* expression ( LT )* ')' ( LT )* caseBlock
 			{
 			DebugLocation(217, 4);
-			string_literal188=(IToken)Match(input,100,Follow._100_in_switchStatement1568); if (state.failed) return retval; 
+			string_literal188=(IToken)Match(input,100,Follow._100_in_switchStatement1570); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_100.Add(string_literal188);
 
 			DebugLocation(217, 13);
 			// JavaScript.g:217:13: ( LT )*
-			try { DebugEnterSubRule(91);
-			while (true)
-			{
-				int alt91=2;
-				try { DebugEnterDecision(91, false);
-				int LA91_1 = input.LA(1);
-
-				if ((LA91_1==LT))
-				{
-					alt91 = 1;
-				}
-
-
-				} finally { DebugExitDecision(91); }
-				switch ( alt91 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:217:13: LT
-					{
-					DebugLocation(217, 13);
-					LT189=(IToken)Match(input,LT,Follow._LT_in_switchStatement1570); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT189);
-
-
-					}
-					break;
-
-				default:
-					goto loop91;
-				}
-			}
-
-			loop91:
-				;
-
-			} finally { DebugExitSubRule(91); }
-
-			DebugLocation(217, 17);
-			char_literal190=(IToken)Match(input,48,Follow._48_in_switchStatement1573); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_48.Add(char_literal190);
-
-			DebugLocation(217, 21);
-			// JavaScript.g:217:21: ( LT )*
 			try { DebugEnterSubRule(92);
 			while (true)
 			{
@@ -8096,11 +8091,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:217:21: LT
+					// JavaScript.g:217:13: LT
 					{
-					DebugLocation(217, 21);
-					LT191=(IToken)Match(input,LT,Follow._LT_in_switchStatement1575); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT191);
+					DebugLocation(217, 13);
+					LT189=(IToken)Match(input,LT,Follow._LT_in_switchStatement1572); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT189);
 
 
 					}
@@ -8116,14 +8111,12 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(92); }
 
-			DebugLocation(217, 25);
-			PushFollow(Follow._expression_in_switchStatement1578);
-			expression192=expression();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) stream_expression.Add(expression192.Tree);
-			DebugLocation(217, 36);
-			// JavaScript.g:217:36: ( LT )*
+			DebugLocation(217, 17);
+			char_literal190=(IToken)Match(input,48,Follow._48_in_switchStatement1575); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_48.Add(char_literal190);
+
+			DebugLocation(217, 21);
+			// JavaScript.g:217:21: ( LT )*
 			try { DebugEnterSubRule(93);
 			while (true)
 			{
@@ -8142,11 +8135,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:217:36: LT
+					// JavaScript.g:217:21: LT
 					{
-					DebugLocation(217, 36);
-					LT193=(IToken)Match(input,LT,Follow._LT_in_switchStatement1580); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT193);
+					DebugLocation(217, 21);
+					LT191=(IToken)Match(input,LT,Follow._LT_in_switchStatement1577); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT191);
 
 
 					}
@@ -8162,12 +8155,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(93); }
 
-			DebugLocation(217, 40);
-			char_literal194=(IToken)Match(input,49,Follow._49_in_switchStatement1583); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_49.Add(char_literal194);
-
-			DebugLocation(217, 44);
-			// JavaScript.g:217:44: ( LT )*
+			DebugLocation(217, 25);
+			PushFollow(Follow._expression_in_switchStatement1580);
+			expression192=expression();
+			PopFollow();
+			if (state.failed) return retval;
+			if (state.backtracking == 0) stream_expression.Add(expression192.Tree);
+			DebugLocation(217, 36);
+			// JavaScript.g:217:36: ( LT )*
 			try { DebugEnterSubRule(94);
 			while (true)
 			{
@@ -8186,11 +8181,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:217:44: LT
+					// JavaScript.g:217:36: LT
 					{
-					DebugLocation(217, 44);
-					LT195=(IToken)Match(input,LT,Follow._LT_in_switchStatement1585); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT195);
+					DebugLocation(217, 36);
+					LT193=(IToken)Match(input,LT,Follow._LT_in_switchStatement1582); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT193);
 
 
 					}
@@ -8206,8 +8201,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(94); }
 
+			DebugLocation(217, 40);
+			char_literal194=(IToken)Match(input,49,Follow._49_in_switchStatement1585); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_49.Add(char_literal194);
+
+			DebugLocation(217, 44);
+			// JavaScript.g:217:44: ( LT )*
+			try { DebugEnterSubRule(95);
+			while (true)
+			{
+				int alt95=2;
+				try { DebugEnterDecision(95, false);
+				int LA95_1 = input.LA(1);
+
+				if ((LA95_1==LT))
+				{
+					alt95 = 1;
+				}
+
+
+				} finally { DebugExitDecision(95); }
+				switch ( alt95 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:217:44: LT
+					{
+					DebugLocation(217, 44);
+					LT195=(IToken)Match(input,LT,Follow._LT_in_switchStatement1587); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT195);
+
+
+					}
+					break;
+
+				default:
+					goto loop95;
+				}
+			}
+
+			loop95:
+				;
+
+			} finally { DebugExitSubRule(95); }
+
 			DebugLocation(217, 48);
-			PushFollow(Follow._caseBlock_in_switchStatement1588);
+			PushFollow(Follow._caseBlock_in_switchStatement1590);
 			caseBlock196=caseBlock();
 			PopFollow();
 			if (state.failed) return retval;
@@ -8326,25 +8365,25 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			root_0 = (CommonTree)adaptor.Nil();
 
 			DebugLocation(222, 7);
-			char_literal197=(IToken)Match(input,110,Follow._110_in_caseBlock1617); if (state.failed) return retval;
+			char_literal197=(IToken)Match(input,110,Follow._110_in_caseBlock1619); if (state.failed) return retval;
 			DebugLocation(222, 9);
 			// JavaScript.g:222:9: ( ( LT !)* caseClause )*
-			try { DebugEnterSubRule(96);
+			try { DebugEnterSubRule(97);
 			while (true)
 			{
-				int alt96=2;
-				try { DebugEnterDecision(96, false);
+				int alt97=2;
+				try { DebugEnterDecision(97, false);
 				try
 				{
-					alt96 = dfa96.Predict(input);
+					alt97 = dfa97.Predict(input);
 				}
 				catch (NoViableAltException nvae)
 				{
 					DebugRecognitionException(nvae);
 					throw;
 				}
-				} finally { DebugExitDecision(96); }
-				switch ( alt96 )
+				} finally { DebugExitDecision(97); }
+				switch ( alt97 )
 				{
 				case 1:
 					DebugEnterAlt(1);
@@ -8352,44 +8391,44 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					DebugLocation(222, 12);
 					// JavaScript.g:222:12: ( LT !)*
-					try { DebugEnterSubRule(95);
+					try { DebugEnterSubRule(96);
 					while (true)
 					{
-						int alt95=2;
-						try { DebugEnterDecision(95, false);
-						int LA95_1 = input.LA(1);
+						int alt96=2;
+						try { DebugEnterDecision(96, false);
+						int LA96_1 = input.LA(1);
 
-						if ((LA95_1==LT))
+						if ((LA96_1==LT))
 						{
-							alt95 = 1;
+							alt96 = 1;
 						}
 
 
-						} finally { DebugExitDecision(95); }
-						switch ( alt95 )
+						} finally { DebugExitDecision(96); }
+						switch ( alt96 )
 						{
 						case 1:
 							DebugEnterAlt(1);
 							// JavaScript.g:222:12: LT !
 							{
 							DebugLocation(222, 12);
-							LT198=(IToken)Match(input,LT,Follow._LT_in_caseBlock1621); if (state.failed) return retval;
+							LT198=(IToken)Match(input,LT,Follow._LT_in_caseBlock1623); if (state.failed) return retval;
 
 							}
 							break;
 
 						default:
-							goto loop95;
+							goto loop96;
 						}
 					}
 
-					loop95:
+					loop96:
 						;
 
-					} finally { DebugExitSubRule(95); }
+					} finally { DebugExitSubRule(96); }
 
 					DebugLocation(222, 15);
-					PushFollow(Follow._caseClause_in_caseBlock1625);
+					PushFollow(Follow._caseClause_in_caseBlock1627);
 					caseClause199=caseClause();
 					PopFollow();
 					if (state.failed) return retval;
@@ -8399,31 +8438,31 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop96;
+					goto loop97;
 				}
 			}
 
-			loop96:
+			loop97:
 				;
 
-			} finally { DebugExitSubRule(96); }
+			} finally { DebugExitSubRule(97); }
 
 			DebugLocation(222, 28);
 			// JavaScript.g:222:28: ( ( LT !)* defaultClause ( ( LT !)* caseClause )* )?
-			int alt100=2;
-			try { DebugEnterSubRule(100);
-			try { DebugEnterDecision(100, false);
+			int alt101=2;
+			try { DebugEnterSubRule(101);
+			try { DebugEnterDecision(101, false);
 			try
 			{
-				alt100 = dfa100.Predict(input);
+				alt101 = dfa101.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(100); }
-			switch (alt100)
+			} finally { DebugExitDecision(101); }
+			switch (alt101)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -8431,66 +8470,66 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(222, 31);
 				// JavaScript.g:222:31: ( LT !)*
-				try { DebugEnterSubRule(97);
+				try { DebugEnterSubRule(98);
 				while (true)
 				{
-					int alt97=2;
-					try { DebugEnterDecision(97, false);
-					int LA97_1 = input.LA(1);
+					int alt98=2;
+					try { DebugEnterDecision(98, false);
+					int LA98_1 = input.LA(1);
 
-					if ((LA97_1==LT))
+					if ((LA98_1==LT))
 					{
-						alt97 = 1;
+						alt98 = 1;
 					}
 
 
-					} finally { DebugExitDecision(97); }
-					switch ( alt97 )
+					} finally { DebugExitDecision(98); }
+					switch ( alt98 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:222:31: LT !
 						{
 						DebugLocation(222, 31);
-						LT200=(IToken)Match(input,LT,Follow._LT_in_caseBlock1630); if (state.failed) return retval;
+						LT200=(IToken)Match(input,LT,Follow._LT_in_caseBlock1632); if (state.failed) return retval;
 
 						}
 						break;
 
 					default:
-						goto loop97;
+						goto loop98;
 					}
 				}
 
-				loop97:
+				loop98:
 					;
 
-				} finally { DebugExitSubRule(97); }
+				} finally { DebugExitSubRule(98); }
 
 				DebugLocation(222, 34);
-				PushFollow(Follow._defaultClause_in_caseBlock1634);
+				PushFollow(Follow._defaultClause_in_caseBlock1636);
 				defaultClause201=defaultClause();
 				PopFollow();
 				if (state.failed) return retval;
 				if (state.backtracking == 0) adaptor.AddChild(root_0, defaultClause201.Tree);
 				DebugLocation(222, 48);
 				// JavaScript.g:222:48: ( ( LT !)* caseClause )*
-				try { DebugEnterSubRule(99);
+				try { DebugEnterSubRule(100);
 				while (true)
 				{
-					int alt99=2;
-					try { DebugEnterDecision(99, false);
+					int alt100=2;
+					try { DebugEnterDecision(100, false);
 					try
 					{
-						alt99 = dfa99.Predict(input);
+						alt100 = dfa100.Predict(input);
 					}
 					catch (NoViableAltException nvae)
 					{
 						DebugRecognitionException(nvae);
 						throw;
 					}
-					} finally { DebugExitDecision(99); }
-					switch ( alt99 )
+					} finally { DebugExitDecision(100); }
+					switch ( alt100 )
 					{
 					case 1:
 						DebugEnterAlt(1);
@@ -8498,44 +8537,44 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						{
 						DebugLocation(222, 51);
 						// JavaScript.g:222:51: ( LT !)*
-						try { DebugEnterSubRule(98);
+						try { DebugEnterSubRule(99);
 						while (true)
 						{
-							int alt98=2;
-							try { DebugEnterDecision(98, false);
-							int LA98_1 = input.LA(1);
+							int alt99=2;
+							try { DebugEnterDecision(99, false);
+							int LA99_1 = input.LA(1);
 
-							if ((LA98_1==LT))
+							if ((LA99_1==LT))
 							{
-								alt98 = 1;
+								alt99 = 1;
 							}
 
 
-							} finally { DebugExitDecision(98); }
-							switch ( alt98 )
+							} finally { DebugExitDecision(99); }
+							switch ( alt99 )
 							{
 							case 1:
 								DebugEnterAlt(1);
 								// JavaScript.g:222:51: LT !
 								{
 								DebugLocation(222, 51);
-								LT202=(IToken)Match(input,LT,Follow._LT_in_caseBlock1637); if (state.failed) return retval;
+								LT202=(IToken)Match(input,LT,Follow._LT_in_caseBlock1639); if (state.failed) return retval;
 
 								}
 								break;
 
 							default:
-								goto loop98;
+								goto loop99;
 							}
 						}
 
-						loop98:
+						loop99:
 							;
 
-						} finally { DebugExitSubRule(98); }
+						} finally { DebugExitSubRule(99); }
 
 						DebugLocation(222, 54);
-						PushFollow(Follow._caseClause_in_caseBlock1641);
+						PushFollow(Follow._caseClause_in_caseBlock1643);
 						caseClause203=caseClause();
 						PopFollow();
 						if (state.failed) return retval;
@@ -8545,62 +8584,62 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop99;
+						goto loop100;
 					}
 				}
 
-				loop99:
+				loop100:
 					;
 
-				} finally { DebugExitSubRule(99); }
+				} finally { DebugExitSubRule(100); }
 
 
 				}
 				break;
 
 			}
-			} finally { DebugExitSubRule(100); }
+			} finally { DebugExitSubRule(101); }
 
 			DebugLocation(222, 71);
 			// JavaScript.g:222:71: ( LT !)*
-			try { DebugEnterSubRule(101);
+			try { DebugEnterSubRule(102);
 			while (true)
 			{
-				int alt101=2;
-				try { DebugEnterDecision(101, false);
-				int LA101_1 = input.LA(1);
+				int alt102=2;
+				try { DebugEnterDecision(102, false);
+				int LA102_1 = input.LA(1);
 
-				if ((LA101_1==LT))
+				if ((LA102_1==LT))
 				{
-					alt101 = 1;
+					alt102 = 1;
 				}
 
 
-				} finally { DebugExitDecision(101); }
-				switch ( alt101 )
+				} finally { DebugExitDecision(102); }
+				switch ( alt102 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:222:71: LT !
 					{
 					DebugLocation(222, 71);
-					LT204=(IToken)Match(input,LT,Follow._LT_in_caseBlock1647); if (state.failed) return retval;
+					LT204=(IToken)Match(input,LT,Follow._LT_in_caseBlock1649); if (state.failed) return retval;
 
 					}
 					break;
 
 				default:
-					goto loop101;
+					goto loop102;
 				}
 			}
 
-			loop101:
+			loop102:
 				;
 
-			} finally { DebugExitSubRule(101); }
+			} finally { DebugExitSubRule(102); }
 
 			DebugLocation(222, 77);
-			char_literal205=(IToken)Match(input,114,Follow._114_in_caseBlock1651); if (state.failed) return retval;
+			char_literal205=(IToken)Match(input,114,Follow._114_in_caseBlock1653); if (state.failed) return retval;
 
 			}
 
@@ -8678,57 +8717,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:226:4: 'case' ( LT )* expression ( LT )* ':' ( LT )* ( statementList )?
 			{
 			DebugLocation(226, 4);
-			string_literal206=(IToken)Match(input,83,Follow._83_in_caseClause1663); if (state.failed) return retval; 
+			string_literal206=(IToken)Match(input,83,Follow._83_in_caseClause1665); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_83.Add(string_literal206);
 
 			DebugLocation(226, 11);
 			// JavaScript.g:226:11: ( LT )*
-			try { DebugEnterSubRule(102);
-			while (true)
-			{
-				int alt102=2;
-				try { DebugEnterDecision(102, false);
-				int LA102_1 = input.LA(1);
-
-				if ((LA102_1==LT))
-				{
-					alt102 = 1;
-				}
-
-
-				} finally { DebugExitDecision(102); }
-				switch ( alt102 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:226:11: LT
-					{
-					DebugLocation(226, 11);
-					LT207=(IToken)Match(input,LT,Follow._LT_in_caseClause1665); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT207);
-
-
-					}
-					break;
-
-				default:
-					goto loop102;
-				}
-			}
-
-			loop102:
-				;
-
-			} finally { DebugExitSubRule(102); }
-
-			DebugLocation(226, 15);
-			PushFollow(Follow._expression_in_caseClause1668);
-			expression208=expression();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) stream_expression.Add(expression208.Tree);
-			DebugLocation(226, 26);
-			// JavaScript.g:226:26: ( LT )*
 			try { DebugEnterSubRule(103);
 			while (true)
 			{
@@ -8747,11 +8740,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:226:26: LT
+					// JavaScript.g:226:11: LT
 					{
-					DebugLocation(226, 26);
-					LT209=(IToken)Match(input,LT,Follow._LT_in_caseClause1670); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT209);
+					DebugLocation(226, 11);
+					LT207=(IToken)Match(input,LT,Follow._LT_in_caseClause1667); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT207);
 
 
 					}
@@ -8767,12 +8760,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(103); }
 
-			DebugLocation(226, 30);
-			char_literal210=(IToken)Match(input,62,Follow._62_in_caseClause1673); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_62.Add(char_literal210);
-
-			DebugLocation(226, 34);
-			// JavaScript.g:226:34: ( LT )*
+			DebugLocation(226, 15);
+			PushFollow(Follow._expression_in_caseClause1670);
+			expression208=expression();
+			PopFollow();
+			if (state.failed) return retval;
+			if (state.backtracking == 0) stream_expression.Add(expression208.Tree);
+			DebugLocation(226, 26);
+			// JavaScript.g:226:26: ( LT )*
 			try { DebugEnterSubRule(104);
 			while (true)
 			{
@@ -8782,14 +8777,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				if ((LA104_1==LT))
 				{
-					int LA104_2 = input.LA(2);
-
-					if ((EvaluatePredicate(synpred118_JavaScript_fragment)))
-					{
-						alt104 = 1;
-					}
-
-
+					alt104 = 1;
 				}
 
 
@@ -8798,11 +8786,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:226:34: LT
+					// JavaScript.g:226:26: LT
 					{
-					DebugLocation(226, 34);
-					LT211=(IToken)Match(input,LT,Follow._LT_in_caseClause1675); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT211);
+					DebugLocation(226, 26);
+					LT209=(IToken)Match(input,LT,Follow._LT_in_caseClause1672); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT209);
 
 
 					}
@@ -8818,26 +8806,77 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(104); }
 
+			DebugLocation(226, 30);
+			char_literal210=(IToken)Match(input,62,Follow._62_in_caseClause1675); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_62.Add(char_literal210);
+
+			DebugLocation(226, 34);
+			// JavaScript.g:226:34: ( LT )*
+			try { DebugEnterSubRule(105);
+			while (true)
+			{
+				int alt105=2;
+				try { DebugEnterDecision(105, false);
+				int LA105_1 = input.LA(1);
+
+				if ((LA105_1==LT))
+				{
+					int LA105_2 = input.LA(2);
+
+					if ((EvaluatePredicate(synpred119_JavaScript_fragment)))
+					{
+						alt105 = 1;
+					}
+
+
+				}
+
+
+				} finally { DebugExitDecision(105); }
+				switch ( alt105 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:226:34: LT
+					{
+					DebugLocation(226, 34);
+					LT211=(IToken)Match(input,LT,Follow._LT_in_caseClause1677); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT211);
+
+
+					}
+					break;
+
+				default:
+					goto loop105;
+				}
+			}
+
+			loop105:
+				;
+
+			} finally { DebugExitSubRule(105); }
+
 			DebugLocation(226, 38);
 			// JavaScript.g:226:38: ( statementList )?
-			int alt105=2;
-			try { DebugEnterSubRule(105);
-			try { DebugEnterDecision(105, false);
-			int LA105_1 = input.LA(1);
+			int alt106=2;
+			try { DebugEnterSubRule(106);
+			try { DebugEnterDecision(106, false);
+			int LA106_1 = input.LA(1);
 
-			if ((LA105_1==Identifier||LA105_1==NumericLiteral||LA105_1==StringLiteral||LA105_1==40||LA105_1==48||(LA105_1>=52 && LA105_1<=53)||(LA105_1>=56 && LA105_1<=57)||LA105_1==63||LA105_1==78||LA105_1==82||LA105_1==85||(LA105_1>=87 && LA105_1<=88)||LA105_1==90||(LA105_1>=92 && LA105_1<=94)||(LA105_1>=97 && LA105_1<=110)||LA105_1==115))
+			if ((LA106_1==Identifier||LA106_1==NumericLiteral||LA106_1==StringLiteral||LA106_1==40||LA106_1==48||(LA106_1>=52 && LA106_1<=53)||(LA106_1>=56 && LA106_1<=57)||LA106_1==63||LA106_1==78||LA106_1==82||LA106_1==85||(LA106_1>=87 && LA106_1<=88)||LA106_1==90||(LA106_1>=92 && LA106_1<=94)||(LA106_1>=97 && LA106_1<=110)||LA106_1==115))
 			{
-				alt105 = 1;
+				alt106 = 1;
 			}
-			} finally { DebugExitDecision(105); }
-			switch (alt105)
+			} finally { DebugExitDecision(106); }
+			switch (alt106)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:226:38: statementList
 				{
 				DebugLocation(226, 38);
-				PushFollow(Follow._statementList_in_caseClause1678);
+				PushFollow(Follow._statementList_in_caseClause1680);
 				statementList212=statementList();
 				PopFollow();
 				if (state.failed) return retval;
@@ -8847,7 +8886,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(105); }
+			} finally { DebugExitSubRule(106); }
 
 
 
@@ -8966,55 +9005,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:230:4: 'default' ( LT )* ':' ( LT )* ( statementList )?
 			{
 			DebugLocation(230, 4);
-			string_literal213=(IToken)Match(input,86,Follow._86_in_defaultClause1707); if (state.failed) return retval; 
+			string_literal213=(IToken)Match(input,86,Follow._86_in_defaultClause1709); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_86.Add(string_literal213);
 
 			DebugLocation(230, 14);
 			// JavaScript.g:230:14: ( LT )*
-			try { DebugEnterSubRule(106);
-			while (true)
-			{
-				int alt106=2;
-				try { DebugEnterDecision(106, false);
-				int LA106_1 = input.LA(1);
-
-				if ((LA106_1==LT))
-				{
-					alt106 = 1;
-				}
-
-
-				} finally { DebugExitDecision(106); }
-				switch ( alt106 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:230:14: LT
-					{
-					DebugLocation(230, 14);
-					LT214=(IToken)Match(input,LT,Follow._LT_in_defaultClause1709); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT214);
-
-
-					}
-					break;
-
-				default:
-					goto loop106;
-				}
-			}
-
-			loop106:
-				;
-
-			} finally { DebugExitSubRule(106); }
-
-			DebugLocation(230, 18);
-			char_literal215=(IToken)Match(input,62,Follow._62_in_defaultClause1712); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_62.Add(char_literal215);
-
-			DebugLocation(230, 22);
-			// JavaScript.g:230:22: ( LT )*
 			try { DebugEnterSubRule(107);
 			while (true)
 			{
@@ -9024,14 +9019,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				if ((LA107_1==LT))
 				{
-					int LA107_2 = input.LA(2);
-
-					if ((EvaluatePredicate(synpred121_JavaScript_fragment)))
-					{
-						alt107 = 1;
-					}
-
-
+					alt107 = 1;
 				}
 
 
@@ -9040,11 +9028,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:230:22: LT
+					// JavaScript.g:230:14: LT
 					{
-					DebugLocation(230, 22);
-					LT216=(IToken)Match(input,LT,Follow._LT_in_defaultClause1714); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT216);
+					DebugLocation(230, 14);
+					LT214=(IToken)Match(input,LT,Follow._LT_in_defaultClause1711); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT214);
 
 
 					}
@@ -9060,26 +9048,77 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(107); }
 
+			DebugLocation(230, 18);
+			char_literal215=(IToken)Match(input,62,Follow._62_in_defaultClause1714); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_62.Add(char_literal215);
+
+			DebugLocation(230, 22);
+			// JavaScript.g:230:22: ( LT )*
+			try { DebugEnterSubRule(108);
+			while (true)
+			{
+				int alt108=2;
+				try { DebugEnterDecision(108, false);
+				int LA108_1 = input.LA(1);
+
+				if ((LA108_1==LT))
+				{
+					int LA108_2 = input.LA(2);
+
+					if ((EvaluatePredicate(synpred122_JavaScript_fragment)))
+					{
+						alt108 = 1;
+					}
+
+
+				}
+
+
+				} finally { DebugExitDecision(108); }
+				switch ( alt108 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:230:22: LT
+					{
+					DebugLocation(230, 22);
+					LT216=(IToken)Match(input,LT,Follow._LT_in_defaultClause1716); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT216);
+
+
+					}
+					break;
+
+				default:
+					goto loop108;
+				}
+			}
+
+			loop108:
+				;
+
+			} finally { DebugExitSubRule(108); }
+
 			DebugLocation(230, 26);
 			// JavaScript.g:230:26: ( statementList )?
-			int alt108=2;
-			try { DebugEnterSubRule(108);
-			try { DebugEnterDecision(108, false);
-			int LA108_1 = input.LA(1);
+			int alt109=2;
+			try { DebugEnterSubRule(109);
+			try { DebugEnterDecision(109, false);
+			int LA109_1 = input.LA(1);
 
-			if ((LA108_1==Identifier||LA108_1==NumericLiteral||LA108_1==StringLiteral||LA108_1==40||LA108_1==48||(LA108_1>=52 && LA108_1<=53)||(LA108_1>=56 && LA108_1<=57)||LA108_1==63||LA108_1==78||LA108_1==82||LA108_1==85||(LA108_1>=87 && LA108_1<=88)||LA108_1==90||(LA108_1>=92 && LA108_1<=94)||(LA108_1>=97 && LA108_1<=110)||LA108_1==115))
+			if ((LA109_1==Identifier||LA109_1==NumericLiteral||LA109_1==StringLiteral||LA109_1==40||LA109_1==48||(LA109_1>=52 && LA109_1<=53)||(LA109_1>=56 && LA109_1<=57)||LA109_1==63||LA109_1==78||LA109_1==82||LA109_1==85||(LA109_1>=87 && LA109_1<=88)||LA109_1==90||(LA109_1>=92 && LA109_1<=94)||(LA109_1>=97 && LA109_1<=110)||LA109_1==115))
 			{
-				alt108 = 1;
+				alt109 = 1;
 			}
-			} finally { DebugExitDecision(108); }
-			switch (alt108)
+			} finally { DebugExitDecision(109); }
+			switch (alt109)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:230:26: statementList
 				{
 				DebugLocation(230, 26);
-				PushFollow(Follow._statementList_in_defaultClause1717);
+				PushFollow(Follow._statementList_in_defaultClause1719);
 				statementList217=statementList();
 				PopFollow();
 				if (state.failed) return retval;
@@ -9089,7 +9128,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(108); }
+			} finally { DebugExitSubRule(109); }
 
 
 
@@ -9204,46 +9243,46 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:234:4: 'throw' expression ( LT | ';' )
 			{
 			DebugLocation(234, 4);
-			string_literal218=(IToken)Match(input,102,Follow._102_in_throwStatement1744); if (state.failed) return retval; 
+			string_literal218=(IToken)Match(input,102,Follow._102_in_throwStatement1746); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_102.Add(string_literal218);
 
 			DebugLocation(234, 12);
-			PushFollow(Follow._expression_in_throwStatement1746);
+			PushFollow(Follow._expression_in_throwStatement1748);
 			expression219=expression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_expression.Add(expression219.Tree);
 			DebugLocation(234, 23);
 			// JavaScript.g:234:23: ( LT | ';' )
-			int alt109=2;
-			try { DebugEnterSubRule(109);
-			try { DebugEnterDecision(109, false);
-			int LA109_1 = input.LA(1);
+			int alt110=2;
+			try { DebugEnterSubRule(110);
+			try { DebugEnterDecision(110, false);
+			int LA110_1 = input.LA(1);
 
-			if ((LA109_1==LT))
+			if ((LA110_1==LT))
 			{
-				alt109 = 1;
+				alt110 = 1;
 			}
-			else if ((LA109_1==63))
+			else if ((LA110_1==63))
 			{
-				alt109 = 2;
+				alt110 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 109, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 110, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(109); }
-			switch (alt109)
+			} finally { DebugExitDecision(110); }
+			switch (alt110)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:234:24: LT
 				{
 				DebugLocation(234, 24);
-				LT220=(IToken)Match(input,LT,Follow._LT_in_throwStatement1749); if (state.failed) return retval; 
+				LT220=(IToken)Match(input,LT,Follow._LT_in_throwStatement1751); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_LT.Add(LT220);
 
 
@@ -9254,7 +9293,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:234:29: ';'
 				{
 				DebugLocation(234, 29);
-				char_literal221=(IToken)Match(input,63,Follow._63_in_throwStatement1753); if (state.failed) return retval; 
+				char_literal221=(IToken)Match(input,63,Follow._63_in_throwStatement1755); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_63.Add(char_literal221);
 
 
@@ -9262,7 +9301,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(109); }
+			} finally { DebugExitSubRule(110); }
 
 
 
@@ -9376,57 +9415,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:238:4: 'try' ( LT )* statementBlock ( LT )* ( finallyClause | catchClause ( ( LT )* finallyClause )? )
 			{
 			DebugLocation(238, 4);
-			string_literal222=(IToken)Match(input,104,Follow._104_in_tryStatement1778); if (state.failed) return retval; 
+			string_literal222=(IToken)Match(input,104,Follow._104_in_tryStatement1780); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_104.Add(string_literal222);
 
 			DebugLocation(238, 10);
 			// JavaScript.g:238:10: ( LT )*
-			try { DebugEnterSubRule(110);
-			while (true)
-			{
-				int alt110=2;
-				try { DebugEnterDecision(110, false);
-				int LA110_1 = input.LA(1);
-
-				if ((LA110_1==LT))
-				{
-					alt110 = 1;
-				}
-
-
-				} finally { DebugExitDecision(110); }
-				switch ( alt110 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:238:10: LT
-					{
-					DebugLocation(238, 10);
-					LT223=(IToken)Match(input,LT,Follow._LT_in_tryStatement1780); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT223);
-
-
-					}
-					break;
-
-				default:
-					goto loop110;
-				}
-			}
-
-			loop110:
-				;
-
-			} finally { DebugExitSubRule(110); }
-
-			DebugLocation(238, 14);
-			PushFollow(Follow._statementBlock_in_tryStatement1783);
-			statementBlock224=statementBlock();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) stream_statementBlock.Add(statementBlock224.Tree);
-			DebugLocation(238, 29);
-			// JavaScript.g:238:29: ( LT )*
 			try { DebugEnterSubRule(111);
 			while (true)
 			{
@@ -9445,11 +9438,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:238:29: LT
+					// JavaScript.g:238:10: LT
 					{
-					DebugLocation(238, 29);
-					LT225=(IToken)Match(input,LT,Follow._LT_in_tryStatement1785); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT225);
+					DebugLocation(238, 10);
+					LT223=(IToken)Match(input,LT,Follow._LT_in_tryStatement1782); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT223);
 
 
 					}
@@ -9465,37 +9458,83 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(111); }
 
+			DebugLocation(238, 14);
+			PushFollow(Follow._statementBlock_in_tryStatement1785);
+			statementBlock224=statementBlock();
+			PopFollow();
+			if (state.failed) return retval;
+			if (state.backtracking == 0) stream_statementBlock.Add(statementBlock224.Tree);
+			DebugLocation(238, 29);
+			// JavaScript.g:238:29: ( LT )*
+			try { DebugEnterSubRule(112);
+			while (true)
+			{
+				int alt112=2;
+				try { DebugEnterDecision(112, false);
+				int LA112_1 = input.LA(1);
+
+				if ((LA112_1==LT))
+				{
+					alt112 = 1;
+				}
+
+
+				} finally { DebugExitDecision(112); }
+				switch ( alt112 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:238:29: LT
+					{
+					DebugLocation(238, 29);
+					LT225=(IToken)Match(input,LT,Follow._LT_in_tryStatement1787); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT225);
+
+
+					}
+					break;
+
+				default:
+					goto loop112;
+				}
+			}
+
+			loop112:
+				;
+
+			} finally { DebugExitSubRule(112); }
+
 			DebugLocation(238, 33);
 			// JavaScript.g:238:33: ( finallyClause | catchClause ( ( LT )* finallyClause )? )
-			int alt114=2;
-			try { DebugEnterSubRule(114);
-			try { DebugEnterDecision(114, false);
-			int LA114_1 = input.LA(1);
+			int alt115=2;
+			try { DebugEnterSubRule(115);
+			try { DebugEnterDecision(115, false);
+			int LA115_1 = input.LA(1);
 
-			if ((LA114_1==91))
+			if ((LA115_1==91))
 			{
-				alt114 = 1;
+				alt115 = 1;
 			}
-			else if ((LA114_1==84))
+			else if ((LA115_1==84))
 			{
-				alt114 = 2;
+				alt115 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 114, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 115, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(114); }
-			switch (alt114)
+			} finally { DebugExitDecision(115); }
+			switch (alt115)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:238:34: finallyClause
 				{
 				DebugLocation(238, 34);
-				PushFollow(Follow._finallyClause_in_tryStatement1789);
+				PushFollow(Follow._finallyClause_in_tryStatement1791);
 				finallyClause226=finallyClause();
 				PopFollow();
 				if (state.failed) return retval;
@@ -9508,27 +9547,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:238:50: catchClause ( ( LT )* finallyClause )?
 				{
 				DebugLocation(238, 50);
-				PushFollow(Follow._catchClause_in_tryStatement1793);
+				PushFollow(Follow._catchClause_in_tryStatement1795);
 				catchClause227=catchClause();
 				PopFollow();
 				if (state.failed) return retval;
 				if (state.backtracking == 0) stream_catchClause.Add(catchClause227.Tree);
 				DebugLocation(238, 62);
 				// JavaScript.g:238:62: ( ( LT )* finallyClause )?
-				int alt113=2;
-				try { DebugEnterSubRule(113);
-				try { DebugEnterDecision(113, false);
+				int alt114=2;
+				try { DebugEnterSubRule(114);
+				try { DebugEnterDecision(114, false);
 				try
 				{
-					alt113 = dfa113.Predict(input);
+					alt114 = dfa114.Predict(input);
 				}
 				catch (NoViableAltException nvae)
 				{
 					DebugRecognitionException(nvae);
 					throw;
 				}
-				} finally { DebugExitDecision(113); }
-				switch (alt113)
+				} finally { DebugExitDecision(114); }
+				switch (alt114)
 				{
 				case 1:
 					DebugEnterAlt(1);
@@ -9536,28 +9575,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					DebugLocation(238, 63);
 					// JavaScript.g:238:63: ( LT )*
-					try { DebugEnterSubRule(112);
+					try { DebugEnterSubRule(113);
 					while (true)
 					{
-						int alt112=2;
-						try { DebugEnterDecision(112, false);
-						int LA112_1 = input.LA(1);
+						int alt113=2;
+						try { DebugEnterDecision(113, false);
+						int LA113_1 = input.LA(1);
 
-						if ((LA112_1==LT))
+						if ((LA113_1==LT))
 						{
-							alt112 = 1;
+							alt113 = 1;
 						}
 
 
-						} finally { DebugExitDecision(112); }
-						switch ( alt112 )
+						} finally { DebugExitDecision(113); }
+						switch ( alt113 )
 						{
 						case 1:
 							DebugEnterAlt(1);
 							// JavaScript.g:238:63: LT
 							{
 							DebugLocation(238, 63);
-							LT228=(IToken)Match(input,LT,Follow._LT_in_tryStatement1796); if (state.failed) return retval; 
+							LT228=(IToken)Match(input,LT,Follow._LT_in_tryStatement1798); if (state.failed) return retval; 
 							if (state.backtracking == 0) stream_LT.Add(LT228);
 
 
@@ -9565,17 +9604,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 							break;
 
 						default:
-							goto loop112;
+							goto loop113;
 						}
 					}
 
-					loop112:
+					loop113:
 						;
 
-					} finally { DebugExitSubRule(112); }
+					} finally { DebugExitSubRule(113); }
 
 					DebugLocation(238, 67);
-					PushFollow(Follow._finallyClause_in_tryStatement1799);
+					PushFollow(Follow._finallyClause_in_tryStatement1801);
 					finallyClause229=finallyClause();
 					PopFollow();
 					if (state.failed) return retval;
@@ -9585,14 +9624,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				}
-				} finally { DebugExitSubRule(113); }
+				} finally { DebugExitSubRule(114); }
 
 
 				}
 				break;
 
 			}
-			} finally { DebugExitSubRule(114); }
+			} finally { DebugExitSubRule(115); }
 
 
 
@@ -9730,55 +9769,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:243:4: 'catch' ( LT )* '(' ( LT )* Identifier ( LT )* ')' ( LT )* statementBlock
 			{
 			DebugLocation(243, 4);
-			string_literal230=(IToken)Match(input,84,Follow._84_in_catchClause1841); if (state.failed) return retval; 
+			string_literal230=(IToken)Match(input,84,Follow._84_in_catchClause1843); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_84.Add(string_literal230);
 
 			DebugLocation(243, 12);
 			// JavaScript.g:243:12: ( LT )*
-			try { DebugEnterSubRule(115);
-			while (true)
-			{
-				int alt115=2;
-				try { DebugEnterDecision(115, false);
-				int LA115_1 = input.LA(1);
-
-				if ((LA115_1==LT))
-				{
-					alt115 = 1;
-				}
-
-
-				} finally { DebugExitDecision(115); }
-				switch ( alt115 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:243:12: LT
-					{
-					DebugLocation(243, 12);
-					LT231=(IToken)Match(input,LT,Follow._LT_in_catchClause1843); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT231);
-
-
-					}
-					break;
-
-				default:
-					goto loop115;
-				}
-			}
-
-			loop115:
-				;
-
-			} finally { DebugExitSubRule(115); }
-
-			DebugLocation(243, 16);
-			char_literal232=(IToken)Match(input,48,Follow._48_in_catchClause1846); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_48.Add(char_literal232);
-
-			DebugLocation(243, 20);
-			// JavaScript.g:243:20: ( LT )*
 			try { DebugEnterSubRule(116);
 			while (true)
 			{
@@ -9797,11 +9792,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:243:20: LT
+					// JavaScript.g:243:12: LT
 					{
-					DebugLocation(243, 20);
-					LT233=(IToken)Match(input,LT,Follow._LT_in_catchClause1848); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT233);
+					DebugLocation(243, 12);
+					LT231=(IToken)Match(input,LT,Follow._LT_in_catchClause1845); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT231);
 
 
 					}
@@ -9817,12 +9812,12 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(116); }
 
-			DebugLocation(243, 24);
-			Identifier234=(IToken)Match(input,Identifier,Follow._Identifier_in_catchClause1851); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_Identifier.Add(Identifier234);
+			DebugLocation(243, 16);
+			char_literal232=(IToken)Match(input,48,Follow._48_in_catchClause1848); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_48.Add(char_literal232);
 
-			DebugLocation(243, 35);
-			// JavaScript.g:243:35: ( LT )*
+			DebugLocation(243, 20);
+			// JavaScript.g:243:20: ( LT )*
 			try { DebugEnterSubRule(117);
 			while (true)
 			{
@@ -9841,11 +9836,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:243:35: LT
+					// JavaScript.g:243:20: LT
 					{
-					DebugLocation(243, 35);
-					LT235=(IToken)Match(input,LT,Follow._LT_in_catchClause1853); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT235);
+					DebugLocation(243, 20);
+					LT233=(IToken)Match(input,LT,Follow._LT_in_catchClause1850); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT233);
 
 
 					}
@@ -9861,12 +9856,12 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(117); }
 
-			DebugLocation(243, 39);
-			char_literal236=(IToken)Match(input,49,Follow._49_in_catchClause1856); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_49.Add(char_literal236);
+			DebugLocation(243, 24);
+			Identifier234=(IToken)Match(input,Identifier,Follow._Identifier_in_catchClause1853); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_Identifier.Add(Identifier234);
 
-			DebugLocation(243, 43);
-			// JavaScript.g:243:43: ( LT )*
+			DebugLocation(243, 35);
+			// JavaScript.g:243:35: ( LT )*
 			try { DebugEnterSubRule(118);
 			while (true)
 			{
@@ -9885,11 +9880,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:243:43: LT
+					// JavaScript.g:243:35: LT
 					{
-					DebugLocation(243, 43);
-					LT237=(IToken)Match(input,LT,Follow._LT_in_catchClause1858); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT237);
+					DebugLocation(243, 35);
+					LT235=(IToken)Match(input,LT,Follow._LT_in_catchClause1855); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT235);
 
 
 					}
@@ -9905,8 +9900,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(118); }
 
+			DebugLocation(243, 39);
+			char_literal236=(IToken)Match(input,49,Follow._49_in_catchClause1858); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_49.Add(char_literal236);
+
+			DebugLocation(243, 43);
+			// JavaScript.g:243:43: ( LT )*
+			try { DebugEnterSubRule(119);
+			while (true)
+			{
+				int alt119=2;
+				try { DebugEnterDecision(119, false);
+				int LA119_1 = input.LA(1);
+
+				if ((LA119_1==LT))
+				{
+					alt119 = 1;
+				}
+
+
+				} finally { DebugExitDecision(119); }
+				switch ( alt119 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:243:43: LT
+					{
+					DebugLocation(243, 43);
+					LT237=(IToken)Match(input,LT,Follow._LT_in_catchClause1860); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT237);
+
+
+					}
+					break;
+
+				default:
+					goto loop119;
+				}
+			}
+
+			loop119:
+				;
+
+			} finally { DebugExitSubRule(119); }
+
 			DebugLocation(243, 47);
-			PushFollow(Follow._statementBlock_in_catchClause1861);
+			PushFollow(Follow._statementBlock_in_catchClause1863);
 			statementBlock238=statementBlock();
 			PopFollow();
 			if (state.failed) return retval;
@@ -10016,33 +10055,33 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:248:4: 'finally' ( LT )* statementBlock
 			{
 			DebugLocation(248, 4);
-			string_literal239=(IToken)Match(input,91,Follow._91_in_finallyClause1895); if (state.failed) return retval; 
+			string_literal239=(IToken)Match(input,91,Follow._91_in_finallyClause1897); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_91.Add(string_literal239);
 
 			DebugLocation(248, 14);
 			// JavaScript.g:248:14: ( LT )*
-			try { DebugEnterSubRule(119);
+			try { DebugEnterSubRule(120);
 			while (true)
 			{
-				int alt119=2;
-				try { DebugEnterDecision(119, false);
-				int LA119_1 = input.LA(1);
+				int alt120=2;
+				try { DebugEnterDecision(120, false);
+				int LA120_1 = input.LA(1);
 
-				if ((LA119_1==LT))
+				if ((LA120_1==LT))
 				{
-					alt119 = 1;
+					alt120 = 1;
 				}
 
 
-				} finally { DebugExitDecision(119); }
-				switch ( alt119 )
+				} finally { DebugExitDecision(120); }
+				switch ( alt120 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:248:14: LT
 					{
 					DebugLocation(248, 14);
-					LT240=(IToken)Match(input,LT,Follow._LT_in_finallyClause1897); if (state.failed) return retval; 
+					LT240=(IToken)Match(input,LT,Follow._LT_in_finallyClause1899); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT240);
 
 
@@ -10050,17 +10089,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop119;
+					goto loop120;
 				}
 			}
 
-			loop119:
+			loop120:
 				;
 
-			} finally { DebugExitSubRule(119); }
+			} finally { DebugExitSubRule(120); }
 
 			DebugLocation(248, 18);
-			PushFollow(Follow._statementBlock_in_finallyClause1900);
+			PushFollow(Follow._statementBlock_in_finallyClause1902);
 			statementBlock241=statementBlock();
 			PopFollow();
 			if (state.failed) return retval;
@@ -10171,29 +10210,29 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:253:4: assignmentExpression ( ( LT )* ',' ( LT )* assignmentExpression )*
 			{
 			DebugLocation(253, 4);
-			PushFollow(Follow._assignmentExpression_in_expression1925);
+			PushFollow(Follow._assignmentExpression_in_expression1927);
 			assignmentExpression242=assignmentExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_assignmentExpression.Add(assignmentExpression242.Tree);
 			DebugLocation(253, 25);
 			// JavaScript.g:253:25: ( ( LT )* ',' ( LT )* assignmentExpression )*
-			try { DebugEnterSubRule(122);
+			try { DebugEnterSubRule(123);
 			while (true)
 			{
-				int alt122=2;
-				try { DebugEnterDecision(122, false);
+				int alt123=2;
+				try { DebugEnterDecision(123, false);
 				try
 				{
-					alt122 = dfa122.Predict(input);
+					alt123 = dfa123.Predict(input);
 				}
 				catch (NoViableAltException nvae)
 				{
 					DebugRecognitionException(nvae);
 					throw;
 				}
-				} finally { DebugExitDecision(122); }
-				switch ( alt122 )
+				} finally { DebugExitDecision(123); }
+				switch ( alt123 )
 				{
 				case 1:
 					DebugEnterAlt(1);
@@ -10201,50 +10240,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					DebugLocation(253, 26);
 					// JavaScript.g:253:26: ( LT )*
-					try { DebugEnterSubRule(120);
-					while (true)
-					{
-						int alt120=2;
-						try { DebugEnterDecision(120, false);
-						int LA120_1 = input.LA(1);
-
-						if ((LA120_1==LT))
-						{
-							alt120 = 1;
-						}
-
-
-						} finally { DebugExitDecision(120); }
-						switch ( alt120 )
-						{
-						case 1:
-							DebugEnterAlt(1);
-							// JavaScript.g:253:26: LT
-							{
-							DebugLocation(253, 26);
-							LT243=(IToken)Match(input,LT,Follow._LT_in_expression1928); if (state.failed) return retval; 
-							if (state.backtracking == 0) stream_LT.Add(LT243);
-
-
-							}
-							break;
-
-						default:
-							goto loop120;
-						}
-					}
-
-					loop120:
-						;
-
-					} finally { DebugExitSubRule(120); }
-
-					DebugLocation(253, 30);
-					char_literal244=(IToken)Match(input,55,Follow._55_in_expression1931); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_55.Add(char_literal244);
-
-					DebugLocation(253, 34);
-					// JavaScript.g:253:34: ( LT )*
 					try { DebugEnterSubRule(121);
 					while (true)
 					{
@@ -10263,11 +10258,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						{
 						case 1:
 							DebugEnterAlt(1);
-							// JavaScript.g:253:34: LT
+							// JavaScript.g:253:26: LT
 							{
-							DebugLocation(253, 34);
-							LT245=(IToken)Match(input,LT,Follow._LT_in_expression1933); if (state.failed) return retval; 
-							if (state.backtracking == 0) stream_LT.Add(LT245);
+							DebugLocation(253, 26);
+							LT243=(IToken)Match(input,LT,Follow._LT_in_expression1930); if (state.failed) return retval; 
+							if (state.backtracking == 0) stream_LT.Add(LT243);
 
 
 							}
@@ -10283,8 +10278,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 					} finally { DebugExitSubRule(121); }
 
+					DebugLocation(253, 30);
+					char_literal244=(IToken)Match(input,55,Follow._55_in_expression1933); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_55.Add(char_literal244);
+
+					DebugLocation(253, 34);
+					// JavaScript.g:253:34: ( LT )*
+					try { DebugEnterSubRule(122);
+					while (true)
+					{
+						int alt122=2;
+						try { DebugEnterDecision(122, false);
+						int LA122_1 = input.LA(1);
+
+						if ((LA122_1==LT))
+						{
+							alt122 = 1;
+						}
+
+
+						} finally { DebugExitDecision(122); }
+						switch ( alt122 )
+						{
+						case 1:
+							DebugEnterAlt(1);
+							// JavaScript.g:253:34: LT
+							{
+							DebugLocation(253, 34);
+							LT245=(IToken)Match(input,LT,Follow._LT_in_expression1935); if (state.failed) return retval; 
+							if (state.backtracking == 0) stream_LT.Add(LT245);
+
+
+							}
+							break;
+
+						default:
+							goto loop122;
+						}
+					}
+
+					loop122:
+						;
+
+					} finally { DebugExitSubRule(122); }
+
 					DebugLocation(253, 38);
-					PushFollow(Follow._assignmentExpression_in_expression1936);
+					PushFollow(Follow._assignmentExpression_in_expression1938);
 					assignmentExpression246=assignmentExpression();
 					PopFollow();
 					if (state.failed) return retval;
@@ -10294,14 +10333,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop122;
+					goto loop123;
 				}
 			}
 
-			loop122:
+			loop123:
 				;
 
-			} finally { DebugExitSubRule(122); }
+			} finally { DebugExitSubRule(123); }
 
 
 
@@ -10406,29 +10445,29 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:257:4: assignmentExpressionNoIn ( ( LT )* ',' ( LT )* assignmentExpressionNoIn )*
 			{
 			DebugLocation(257, 4);
-			PushFollow(Follow._assignmentExpressionNoIn_in_expressionNoIn1955);
+			PushFollow(Follow._assignmentExpressionNoIn_in_expressionNoIn1957);
 			assignmentExpressionNoIn247=assignmentExpressionNoIn();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_assignmentExpressionNoIn.Add(assignmentExpressionNoIn247.Tree);
 			DebugLocation(257, 29);
 			// JavaScript.g:257:29: ( ( LT )* ',' ( LT )* assignmentExpressionNoIn )*
-			try { DebugEnterSubRule(125);
+			try { DebugEnterSubRule(126);
 			while (true)
 			{
-				int alt125=2;
-				try { DebugEnterDecision(125, false);
+				int alt126=2;
+				try { DebugEnterDecision(126, false);
 				try
 				{
-					alt125 = dfa125.Predict(input);
+					alt126 = dfa126.Predict(input);
 				}
 				catch (NoViableAltException nvae)
 				{
 					DebugRecognitionException(nvae);
 					throw;
 				}
-				} finally { DebugExitDecision(125); }
-				switch ( alt125 )
+				} finally { DebugExitDecision(126); }
+				switch ( alt126 )
 				{
 				case 1:
 					DebugEnterAlt(1);
@@ -10436,50 +10475,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					DebugLocation(257, 30);
 					// JavaScript.g:257:30: ( LT )*
-					try { DebugEnterSubRule(123);
-					while (true)
-					{
-						int alt123=2;
-						try { DebugEnterDecision(123, false);
-						int LA123_1 = input.LA(1);
-
-						if ((LA123_1==LT))
-						{
-							alt123 = 1;
-						}
-
-
-						} finally { DebugExitDecision(123); }
-						switch ( alt123 )
-						{
-						case 1:
-							DebugEnterAlt(1);
-							// JavaScript.g:257:30: LT
-							{
-							DebugLocation(257, 30);
-							LT248=(IToken)Match(input,LT,Follow._LT_in_expressionNoIn1958); if (state.failed) return retval; 
-							if (state.backtracking == 0) stream_LT.Add(LT248);
-
-
-							}
-							break;
-
-						default:
-							goto loop123;
-						}
-					}
-
-					loop123:
-						;
-
-					} finally { DebugExitSubRule(123); }
-
-					DebugLocation(257, 34);
-					char_literal249=(IToken)Match(input,55,Follow._55_in_expressionNoIn1961); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_55.Add(char_literal249);
-
-					DebugLocation(257, 38);
-					// JavaScript.g:257:38: ( LT )*
 					try { DebugEnterSubRule(124);
 					while (true)
 					{
@@ -10498,11 +10493,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						{
 						case 1:
 							DebugEnterAlt(1);
-							// JavaScript.g:257:38: LT
+							// JavaScript.g:257:30: LT
 							{
-							DebugLocation(257, 38);
-							LT250=(IToken)Match(input,LT,Follow._LT_in_expressionNoIn1963); if (state.failed) return retval; 
-							if (state.backtracking == 0) stream_LT.Add(LT250);
+							DebugLocation(257, 30);
+							LT248=(IToken)Match(input,LT,Follow._LT_in_expressionNoIn1960); if (state.failed) return retval; 
+							if (state.backtracking == 0) stream_LT.Add(LT248);
 
 
 							}
@@ -10518,8 +10513,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 					} finally { DebugExitSubRule(124); }
 
+					DebugLocation(257, 34);
+					char_literal249=(IToken)Match(input,55,Follow._55_in_expressionNoIn1963); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_55.Add(char_literal249);
+
+					DebugLocation(257, 38);
+					// JavaScript.g:257:38: ( LT )*
+					try { DebugEnterSubRule(125);
+					while (true)
+					{
+						int alt125=2;
+						try { DebugEnterDecision(125, false);
+						int LA125_1 = input.LA(1);
+
+						if ((LA125_1==LT))
+						{
+							alt125 = 1;
+						}
+
+
+						} finally { DebugExitDecision(125); }
+						switch ( alt125 )
+						{
+						case 1:
+							DebugEnterAlt(1);
+							// JavaScript.g:257:38: LT
+							{
+							DebugLocation(257, 38);
+							LT250=(IToken)Match(input,LT,Follow._LT_in_expressionNoIn1965); if (state.failed) return retval; 
+							if (state.backtracking == 0) stream_LT.Add(LT250);
+
+
+							}
+							break;
+
+						default:
+							goto loop125;
+						}
+					}
+
+					loop125:
+						;
+
+					} finally { DebugExitSubRule(125); }
+
 					DebugLocation(257, 42);
-					PushFollow(Follow._assignmentExpressionNoIn_in_expressionNoIn1966);
+					PushFollow(Follow._assignmentExpressionNoIn_in_expressionNoIn1968);
 					assignmentExpressionNoIn251=assignmentExpressionNoIn();
 					PopFollow();
 					if (state.failed) return retval;
@@ -10529,14 +10568,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop125;
+					goto loop126;
 				}
 			}
 
-			loop125:
+			loop126:
 				;
 
-			} finally { DebugExitSubRule(125); }
+			} finally { DebugExitSubRule(126); }
 
 
 
@@ -10639,26 +10678,26 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 43)) { return retval; }
 
 			// JavaScript.g:261:2: ( conditionalExpression -> conditionalExpression |lh= leftHandSideExpression ( LT )* op= assignmentOperator ( LT )* rh= assignmentExpression -> {op.Tree.Text == \"=\" }? ^( '=' $lh $rh) -> {op.Tree.Text == \"*=\" }? ^( '*=' $lh $rh) -> {op.Tree.Text == \"/=\" }? ^( '/=' $lh $rh) -> {op.Tree.Text == \"\\%=\" }? ^( '%=' $lh $rh) -> {op.Tree.Text == \"+=\" }? ^( '+=' $lh $rh) -> {op.Tree.Text == \"-=\" }? ^( '-=' $lh $rh) -> {op.Tree.Text == \"<<=\" }? ^( '<<=' $lh $rh) -> {op.Tree.Text == \">>=\" }? ^( '>>=' $lh $rh) -> {op.Tree.Text == \">>>=\" }? ^( '>>>=' $lh $rh) -> {op.Tree.Text == \"&=\" }? ^( '&=' $lh $rh) -> {op.Tree.Text == \"^=\" }? ^( '^=' $lh $rh) -> {op.Tree.Text == \"|=\" }? ^( '|=' $lh $rh) ->)
-			int alt128=2;
-			try { DebugEnterDecision(128, false);
+			int alt129=2;
+			try { DebugEnterDecision(129, false);
 			switch (input.LA(1))
 			{
 			case 101:
 				{
-				int LA128_2 = input.LA(2);
+				int LA129_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred140_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred141_JavaScript_fragment)))
 				{
-					alt128 = 1;
+					alt129 = 1;
 				}
 				else if ((true))
 				{
-					alt128 = 2;
+					alt129 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 128, 1, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 129, 1, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -10666,20 +10705,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case Identifier:
 				{
-				int LA128_2 = input.LA(2);
+				int LA129_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred140_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred141_JavaScript_fragment)))
 				{
-					alt128 = 1;
+					alt129 = 1;
 				}
 				else if ((true))
 				{
-					alt128 = 2;
+					alt129 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 128, 2, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 129, 2, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -10687,20 +10726,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 98:
 				{
-				int LA128_2 = input.LA(2);
+				int LA129_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred140_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred141_JavaScript_fragment)))
 				{
-					alt128 = 1;
+					alt129 = 1;
 				}
 				else if ((true))
 				{
-					alt128 = 2;
+					alt129 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 128, 3, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 129, 3, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -10708,20 +10747,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 103:
 				{
-				int LA128_2 = input.LA(2);
+				int LA129_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred140_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred141_JavaScript_fragment)))
 				{
-					alt128 = 1;
+					alt129 = 1;
 				}
 				else if ((true))
 				{
-					alt128 = 2;
+					alt129 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 128, 4, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 129, 4, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -10729,20 +10768,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 90:
 				{
-				int LA128_2 = input.LA(2);
+				int LA129_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred140_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred141_JavaScript_fragment)))
 				{
-					alt128 = 1;
+					alt129 = 1;
 				}
 				else if ((true))
 				{
-					alt128 = 2;
+					alt129 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 128, 5, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 129, 5, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -10750,20 +10789,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case StringLiteral:
 				{
-				int LA128_2 = input.LA(2);
+				int LA129_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred140_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred141_JavaScript_fragment)))
 				{
-					alt128 = 1;
+					alt129 = 1;
 				}
 				else if ((true))
 				{
-					alt128 = 2;
+					alt129 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 128, 6, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 129, 6, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -10771,20 +10810,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case NumericLiteral:
 				{
-				int LA128_2 = input.LA(2);
+				int LA129_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred140_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred141_JavaScript_fragment)))
 				{
-					alt128 = 1;
+					alt129 = 1;
 				}
 				else if ((true))
 				{
-					alt128 = 2;
+					alt129 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 128, 7, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 129, 7, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -10792,20 +10831,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 78:
 				{
-				int LA128_2 = input.LA(2);
+				int LA129_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred140_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred141_JavaScript_fragment)))
 				{
-					alt128 = 1;
+					alt129 = 1;
 				}
 				else if ((true))
 				{
-					alt128 = 2;
+					alt129 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 128, 8, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 129, 8, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -10813,20 +10852,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 110:
 				{
-				int LA128_2 = input.LA(2);
+				int LA129_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred140_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred141_JavaScript_fragment)))
 				{
-					alt128 = 1;
+					alt129 = 1;
 				}
 				else if ((true))
 				{
-					alt128 = 2;
+					alt129 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 128, 9, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 129, 9, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -10834,20 +10873,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 48:
 				{
-				int LA128_2 = input.LA(2);
+				int LA129_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred140_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred141_JavaScript_fragment)))
 				{
-					alt128 = 1;
+					alt129 = 1;
 				}
 				else if ((true))
 				{
-					alt128 = 2;
+					alt129 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 128, 10, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 129, 10, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -10855,20 +10894,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 93:
 				{
-				int LA128_2 = input.LA(2);
+				int LA129_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred140_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred141_JavaScript_fragment)))
 				{
-					alt128 = 1;
+					alt129 = 1;
 				}
 				else if ((true))
 				{
-					alt128 = 2;
+					alt129 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 128, 11, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 129, 11, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -10876,20 +10915,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 97:
 				{
-				int LA128_2 = input.LA(2);
+				int LA129_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred140_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred141_JavaScript_fragment)))
 				{
-					alt128 = 1;
+					alt129 = 1;
 				}
 				else if ((true))
 				{
-					alt128 = 2;
+					alt129 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 128, 12, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 129, 12, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -10905,27 +10944,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			case 107:
 			case 115:
 				{
-				alt128 = 1;
+				alt129 = 1;
 				}
 				break;
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 128, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 129, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(128); }
-			switch (alt128)
+			} finally { DebugExitDecision(129); }
+			switch (alt129)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:261:4: conditionalExpression
 				{
 				DebugLocation(261, 4);
-				PushFollow(Follow._conditionalExpression_in_assignmentExpression1985);
+				PushFollow(Follow._conditionalExpression_in_assignmentExpression1987);
 				conditionalExpression252=conditionalExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -10963,59 +11002,13 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:262:4: lh= leftHandSideExpression ( LT )* op= assignmentOperator ( LT )* rh= assignmentExpression
 				{
 				DebugLocation(262, 6);
-				PushFollow(Follow._leftHandSideExpression_in_assignmentExpression1996);
+				PushFollow(Follow._leftHandSideExpression_in_assignmentExpression1998);
 				lh=leftHandSideExpression();
 				PopFollow();
 				if (state.failed) return retval;
 				if (state.backtracking == 0) stream_leftHandSideExpression.Add(lh.Tree);
 				DebugLocation(262, 30);
 				// JavaScript.g:262:30: ( LT )*
-				try { DebugEnterSubRule(126);
-				while (true)
-				{
-					int alt126=2;
-					try { DebugEnterDecision(126, false);
-					int LA126_1 = input.LA(1);
-
-					if ((LA126_1==LT))
-					{
-						alt126 = 1;
-					}
-
-
-					} finally { DebugExitDecision(126); }
-					switch ( alt126 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:262:30: LT
-						{
-						DebugLocation(262, 30);
-						LT253=(IToken)Match(input,LT,Follow._LT_in_assignmentExpression1998); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT253);
-
-
-						}
-						break;
-
-					default:
-						goto loop126;
-					}
-				}
-
-				loop126:
-					;
-
-				} finally { DebugExitSubRule(126); }
-
-				DebugLocation(262, 36);
-				PushFollow(Follow._assignmentOperator_in_assignmentExpression2003);
-				op=assignmentOperator();
-				PopFollow();
-				if (state.failed) return retval;
-				if (state.backtracking == 0) stream_assignmentOperator.Add(op.Tree);
-				DebugLocation(262, 56);
-				// JavaScript.g:262:56: ( LT )*
 				try { DebugEnterSubRule(127);
 				while (true)
 				{
@@ -11034,11 +11027,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:262:56: LT
+						// JavaScript.g:262:30: LT
 						{
-						DebugLocation(262, 56);
-						LT254=(IToken)Match(input,LT,Follow._LT_in_assignmentExpression2005); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT254);
+						DebugLocation(262, 30);
+						LT253=(IToken)Match(input,LT,Follow._LT_in_assignmentExpression2000); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT253);
 
 
 						}
@@ -11054,8 +11047,54 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(127); }
 
+				DebugLocation(262, 36);
+				PushFollow(Follow._assignmentOperator_in_assignmentExpression2005);
+				op=assignmentOperator();
+				PopFollow();
+				if (state.failed) return retval;
+				if (state.backtracking == 0) stream_assignmentOperator.Add(op.Tree);
+				DebugLocation(262, 56);
+				// JavaScript.g:262:56: ( LT )*
+				try { DebugEnterSubRule(128);
+				while (true)
+				{
+					int alt128=2;
+					try { DebugEnterDecision(128, false);
+					int LA128_1 = input.LA(1);
+
+					if ((LA128_1==LT))
+					{
+						alt128 = 1;
+					}
+
+
+					} finally { DebugExitDecision(128); }
+					switch ( alt128 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:262:56: LT
+						{
+						DebugLocation(262, 56);
+						LT254=(IToken)Match(input,LT,Follow._LT_in_assignmentExpression2007); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT254);
+
+
+						}
+						break;
+
+					default:
+						goto loop128;
+					}
+				}
+
+				loop128:
+					;
+
+				} finally { DebugExitSubRule(128); }
+
 				DebugLocation(262, 62);
-				PushFollow(Follow._assignmentExpression_in_assignmentExpression2010);
+				PushFollow(Follow._assignmentExpression_in_assignmentExpression2012);
 				rh=assignmentExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -11385,26 +11424,26 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 44)) { return retval; }
 
 			// JavaScript.g:279:2: ( conditionalExpressionNoIn -> conditionalExpressionNoIn |lh= leftHandSideExpression ( LT )* op= assignmentOperator ( LT )* rh= assignmentExpressionNoIn -> {op.Tree.Text == \"=\" }? ^( '=' $lh $rh) -> {op.Tree.Text == \"*=\" }? ^( '*=' $lh $rh) -> {op.Tree.Text == \"/=\" }? ^( '/=' $lh $rh) -> {op.Tree.Text == \"\\%=\" }? ^( '%=' $lh $rh) -> {op.Tree.Text == \"+=\" }? ^( '+=' $lh $rh) -> {op.Tree.Text == \"-=\" }? ^( '-=' $lh $rh) -> {op.Tree.Text == \"<<=\" }? ^( '<<=' $lh $rh) -> {op.Tree.Text == \">>=\" }? ^( '>>=' $lh $rh) -> {op.Tree.Text == \">>>=\" }? ^( '>>>=' $lh $rh) -> {op.Tree.Text == \"&=\" }? ^( '&=' $lh $rh) -> {op.Tree.Text == \"^=\" }? ^( '^=' $lh $rh) -> {op.Tree.Text == \"|=\" }? ^( '|=' $lh $rh) ->)
-			int alt131=2;
-			try { DebugEnterDecision(131, false);
+			int alt132=2;
+			try { DebugEnterDecision(132, false);
 			switch (input.LA(1))
 			{
 			case 101:
 				{
-				int LA131_2 = input.LA(2);
+				int LA132_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred143_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred144_JavaScript_fragment)))
 				{
-					alt131 = 1;
+					alt132 = 1;
 				}
 				else if ((true))
 				{
-					alt131 = 2;
+					alt132 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 131, 1, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 132, 1, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -11412,20 +11451,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case Identifier:
 				{
-				int LA131_2 = input.LA(2);
+				int LA132_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred143_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred144_JavaScript_fragment)))
 				{
-					alt131 = 1;
+					alt132 = 1;
 				}
 				else if ((true))
 				{
-					alt131 = 2;
+					alt132 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 131, 2, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 132, 2, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -11433,20 +11472,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 98:
 				{
-				int LA131_2 = input.LA(2);
+				int LA132_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred143_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred144_JavaScript_fragment)))
 				{
-					alt131 = 1;
+					alt132 = 1;
 				}
 				else if ((true))
 				{
-					alt131 = 2;
+					alt132 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 131, 3, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 132, 3, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -11454,20 +11493,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 103:
 				{
-				int LA131_2 = input.LA(2);
+				int LA132_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred143_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred144_JavaScript_fragment)))
 				{
-					alt131 = 1;
+					alt132 = 1;
 				}
 				else if ((true))
 				{
-					alt131 = 2;
+					alt132 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 131, 4, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 132, 4, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -11475,20 +11514,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 90:
 				{
-				int LA131_2 = input.LA(2);
+				int LA132_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred143_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred144_JavaScript_fragment)))
 				{
-					alt131 = 1;
+					alt132 = 1;
 				}
 				else if ((true))
 				{
-					alt131 = 2;
+					alt132 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 131, 5, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 132, 5, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -11496,20 +11535,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case StringLiteral:
 				{
-				int LA131_2 = input.LA(2);
+				int LA132_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred143_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred144_JavaScript_fragment)))
 				{
-					alt131 = 1;
+					alt132 = 1;
 				}
 				else if ((true))
 				{
-					alt131 = 2;
+					alt132 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 131, 6, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 132, 6, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -11517,20 +11556,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case NumericLiteral:
 				{
-				int LA131_2 = input.LA(2);
+				int LA132_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred143_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred144_JavaScript_fragment)))
 				{
-					alt131 = 1;
+					alt132 = 1;
 				}
 				else if ((true))
 				{
-					alt131 = 2;
+					alt132 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 131, 7, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 132, 7, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -11538,20 +11577,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 78:
 				{
-				int LA131_2 = input.LA(2);
+				int LA132_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred143_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred144_JavaScript_fragment)))
 				{
-					alt131 = 1;
+					alt132 = 1;
 				}
 				else if ((true))
 				{
-					alt131 = 2;
+					alt132 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 131, 8, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 132, 8, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -11559,20 +11598,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 110:
 				{
-				int LA131_2 = input.LA(2);
+				int LA132_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred143_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred144_JavaScript_fragment)))
 				{
-					alt131 = 1;
+					alt132 = 1;
 				}
 				else if ((true))
 				{
-					alt131 = 2;
+					alt132 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 131, 9, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 132, 9, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -11580,20 +11619,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 48:
 				{
-				int LA131_2 = input.LA(2);
+				int LA132_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred143_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred144_JavaScript_fragment)))
 				{
-					alt131 = 1;
+					alt132 = 1;
 				}
 				else if ((true))
 				{
-					alt131 = 2;
+					alt132 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 131, 10, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 132, 10, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -11601,20 +11640,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 93:
 				{
-				int LA131_2 = input.LA(2);
+				int LA132_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred143_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred144_JavaScript_fragment)))
 				{
-					alt131 = 1;
+					alt132 = 1;
 				}
 				else if ((true))
 				{
-					alt131 = 2;
+					alt132 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 131, 11, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 132, 11, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -11622,20 +11661,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 97:
 				{
-				int LA131_2 = input.LA(2);
+				int LA132_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred143_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred144_JavaScript_fragment)))
 				{
-					alt131 = 1;
+					alt132 = 1;
 				}
 				else if ((true))
 				{
-					alt131 = 2;
+					alt132 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 131, 12, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 132, 12, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -11651,27 +11690,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			case 107:
 			case 115:
 				{
-				alt131 = 1;
+				alt132 = 1;
 				}
 				break;
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 131, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 132, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(131); }
-			switch (alt131)
+			} finally { DebugExitDecision(132); }
+			switch (alt132)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:279:4: conditionalExpressionNoIn
 				{
 				DebugLocation(279, 4);
-				PushFollow(Follow._conditionalExpressionNoIn_in_assignmentExpressionNoIn2297);
+				PushFollow(Follow._conditionalExpressionNoIn_in_assignmentExpressionNoIn2299);
 				conditionalExpressionNoIn255=conditionalExpressionNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -11709,59 +11748,13 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:280:4: lh= leftHandSideExpression ( LT )* op= assignmentOperator ( LT )* rh= assignmentExpressionNoIn
 				{
 				DebugLocation(280, 6);
-				PushFollow(Follow._leftHandSideExpression_in_assignmentExpressionNoIn2308);
+				PushFollow(Follow._leftHandSideExpression_in_assignmentExpressionNoIn2310);
 				lh=leftHandSideExpression();
 				PopFollow();
 				if (state.failed) return retval;
 				if (state.backtracking == 0) stream_leftHandSideExpression.Add(lh.Tree);
 				DebugLocation(280, 30);
 				// JavaScript.g:280:30: ( LT )*
-				try { DebugEnterSubRule(129);
-				while (true)
-				{
-					int alt129=2;
-					try { DebugEnterDecision(129, false);
-					int LA129_1 = input.LA(1);
-
-					if ((LA129_1==LT))
-					{
-						alt129 = 1;
-					}
-
-
-					} finally { DebugExitDecision(129); }
-					switch ( alt129 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:280:30: LT
-						{
-						DebugLocation(280, 30);
-						LT256=(IToken)Match(input,LT,Follow._LT_in_assignmentExpressionNoIn2310); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT256);
-
-
-						}
-						break;
-
-					default:
-						goto loop129;
-					}
-				}
-
-				loop129:
-					;
-
-				} finally { DebugExitSubRule(129); }
-
-				DebugLocation(280, 36);
-				PushFollow(Follow._assignmentOperator_in_assignmentExpressionNoIn2315);
-				op=assignmentOperator();
-				PopFollow();
-				if (state.failed) return retval;
-				if (state.backtracking == 0) stream_assignmentOperator.Add(op.Tree);
-				DebugLocation(280, 56);
-				// JavaScript.g:280:56: ( LT )*
 				try { DebugEnterSubRule(130);
 				while (true)
 				{
@@ -11780,11 +11773,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:280:56: LT
+						// JavaScript.g:280:30: LT
 						{
-						DebugLocation(280, 56);
-						LT257=(IToken)Match(input,LT,Follow._LT_in_assignmentExpressionNoIn2317); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT257);
+						DebugLocation(280, 30);
+						LT256=(IToken)Match(input,LT,Follow._LT_in_assignmentExpressionNoIn2312); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT256);
 
 
 						}
@@ -11800,8 +11793,54 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(130); }
 
+				DebugLocation(280, 36);
+				PushFollow(Follow._assignmentOperator_in_assignmentExpressionNoIn2317);
+				op=assignmentOperator();
+				PopFollow();
+				if (state.failed) return retval;
+				if (state.backtracking == 0) stream_assignmentOperator.Add(op.Tree);
+				DebugLocation(280, 56);
+				// JavaScript.g:280:56: ( LT )*
+				try { DebugEnterSubRule(131);
+				while (true)
+				{
+					int alt131=2;
+					try { DebugEnterDecision(131, false);
+					int LA131_1 = input.LA(1);
+
+					if ((LA131_1==LT))
+					{
+						alt131 = 1;
+					}
+
+
+					} finally { DebugExitDecision(131); }
+					switch ( alt131 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:280:56: LT
+						{
+						DebugLocation(280, 56);
+						LT257=(IToken)Match(input,LT,Follow._LT_in_assignmentExpressionNoIn2319); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT257);
+
+
+						}
+						break;
+
+					default:
+						goto loop131;
+					}
+				}
+
+				loop131:
+					;
+
+				} finally { DebugExitSubRule(131); }
+
 				DebugLocation(280, 62);
-				PushFollow(Follow._assignmentExpressionNoIn_in_assignmentExpressionNoIn2322);
+				PushFollow(Follow._assignmentExpressionNoIn_in_assignmentExpressionNoIn2324);
 				rh=assignmentExpressionNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -12200,26 +12239,26 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 46)) { return retval; }
 
 			// JavaScript.g:301:2: ( callExpression | newExpression )
-			int alt132=2;
-			try { DebugEnterDecision(132, false);
+			int alt133=2;
+			try { DebugEnterDecision(133, false);
 			switch (input.LA(1))
 			{
 			case 101:
 				{
-				int LA132_2 = input.LA(2);
+				int LA133_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred157_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred158_JavaScript_fragment)))
 				{
-					alt132 = 1;
+					alt133 = 1;
 				}
 				else if ((true))
 				{
-					alt132 = 2;
+					alt133 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 132, 1, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 133, 1, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -12227,20 +12266,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case Identifier:
 				{
-				int LA132_2 = input.LA(2);
+				int LA133_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred157_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred158_JavaScript_fragment)))
 				{
-					alt132 = 1;
+					alt133 = 1;
 				}
 				else if ((true))
 				{
-					alt132 = 2;
+					alt133 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 132, 2, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 133, 2, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -12248,20 +12287,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 98:
 				{
-				int LA132_2 = input.LA(2);
+				int LA133_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred157_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred158_JavaScript_fragment)))
 				{
-					alt132 = 1;
+					alt133 = 1;
 				}
 				else if ((true))
 				{
-					alt132 = 2;
+					alt133 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 132, 3, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 133, 3, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -12269,20 +12308,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 103:
 				{
-				int LA132_2 = input.LA(2);
+				int LA133_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred157_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred158_JavaScript_fragment)))
 				{
-					alt132 = 1;
+					alt133 = 1;
 				}
 				else if ((true))
 				{
-					alt132 = 2;
+					alt133 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 132, 4, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 133, 4, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -12290,20 +12329,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 90:
 				{
-				int LA132_2 = input.LA(2);
+				int LA133_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred157_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred158_JavaScript_fragment)))
 				{
-					alt132 = 1;
+					alt133 = 1;
 				}
 				else if ((true))
 				{
-					alt132 = 2;
+					alt133 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 132, 5, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 133, 5, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -12311,20 +12350,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case StringLiteral:
 				{
-				int LA132_2 = input.LA(2);
+				int LA133_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred157_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred158_JavaScript_fragment)))
 				{
-					alt132 = 1;
+					alt133 = 1;
 				}
 				else if ((true))
 				{
-					alt132 = 2;
+					alt133 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 132, 6, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 133, 6, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -12332,20 +12371,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case NumericLiteral:
 				{
-				int LA132_2 = input.LA(2);
+				int LA133_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred157_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred158_JavaScript_fragment)))
 				{
-					alt132 = 1;
+					alt133 = 1;
 				}
 				else if ((true))
 				{
-					alt132 = 2;
+					alt133 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 132, 7, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 133, 7, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -12353,20 +12392,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 78:
 				{
-				int LA132_2 = input.LA(2);
+				int LA133_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred157_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred158_JavaScript_fragment)))
 				{
-					alt132 = 1;
+					alt133 = 1;
 				}
 				else if ((true))
 				{
-					alt132 = 2;
+					alt133 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 132, 8, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 133, 8, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -12374,20 +12413,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 110:
 				{
-				int LA132_2 = input.LA(2);
+				int LA133_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred157_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred158_JavaScript_fragment)))
 				{
-					alt132 = 1;
+					alt133 = 1;
 				}
 				else if ((true))
 				{
-					alt132 = 2;
+					alt133 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 132, 9, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 133, 9, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -12395,20 +12434,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 48:
 				{
-				int LA132_2 = input.LA(2);
+				int LA133_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred157_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred158_JavaScript_fragment)))
 				{
-					alt132 = 1;
+					alt133 = 1;
 				}
 				else if ((true))
 				{
-					alt132 = 2;
+					alt133 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 132, 10, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 133, 10, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -12416,20 +12455,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 93:
 				{
-				int LA132_2 = input.LA(2);
+				int LA133_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred157_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred158_JavaScript_fragment)))
 				{
-					alt132 = 1;
+					alt133 = 1;
 				}
 				else if ((true))
 				{
-					alt132 = 2;
+					alt133 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 132, 11, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 133, 11, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -12437,20 +12476,20 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 			case 97:
 				{
-				int LA132_2 = input.LA(2);
+				int LA133_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred157_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred158_JavaScript_fragment)))
 				{
-					alt132 = 1;
+					alt133 = 1;
 				}
 				else if ((true))
 				{
-					alt132 = 2;
+					alt133 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 132, 12, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 133, 12, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -12459,14 +12498,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 132, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 133, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(132); }
-			switch (alt132)
+			} finally { DebugExitDecision(133); }
+			switch (alt133)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -12475,7 +12514,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(301, 4);
-				PushFollow(Follow._callExpression_in_leftHandSideExpression2663);
+				PushFollow(Follow._callExpression_in_leftHandSideExpression2665);
 				callExpression259=callExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -12490,7 +12529,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(302, 4);
-				PushFollow(Follow._newExpression_in_leftHandSideExpression2668);
+				PushFollow(Follow._newExpression_in_leftHandSideExpression2670);
 				newExpression260=newExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -12562,30 +12601,30 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 47)) { return retval; }
 
 			// JavaScript.g:306:2: ( memberExpression | 'new' ( LT )* newExpression -> ^( 'new' newExpression ) )
-			int alt134=2;
-			try { DebugEnterDecision(134, false);
-			int LA134_1 = input.LA(1);
+			int alt135=2;
+			try { DebugEnterDecision(135, false);
+			int LA135_1 = input.LA(1);
 
-			if ((LA134_1==Identifier||LA134_1==NumericLiteral||LA134_1==StringLiteral||LA134_1==48||LA134_1==78||LA134_1==90||LA134_1==93||LA134_1==98||LA134_1==101||LA134_1==103||LA134_1==110))
+			if ((LA135_1==Identifier||LA135_1==NumericLiteral||LA135_1==StringLiteral||LA135_1==48||LA135_1==78||LA135_1==90||LA135_1==93||LA135_1==98||LA135_1==101||LA135_1==103||LA135_1==110))
 			{
-				alt134 = 1;
+				alt135 = 1;
 			}
-			else if ((LA134_1==97))
+			else if ((LA135_1==97))
 			{
-				int LA134_2 = input.LA(2);
+				int LA135_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred158_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred159_JavaScript_fragment)))
 				{
-					alt134 = 1;
+					alt135 = 1;
 				}
 				else if ((true))
 				{
-					alt134 = 2;
+					alt135 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 134, 12, input, 2);
+					NoViableAltException nvae = new NoViableAltException("", 135, 12, input, 2);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -12593,12 +12632,12 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 134, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 135, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(134); }
-			switch (alt134)
+			} finally { DebugExitDecision(135); }
+			switch (alt135)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -12607,7 +12646,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				root_0 = (CommonTree)adaptor.Nil();
 
 				DebugLocation(306, 4);
-				PushFollow(Follow._memberExpression_in_newExpression2680);
+				PushFollow(Follow._memberExpression_in_newExpression2682);
 				memberExpression261=memberExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -12620,33 +12659,33 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:307:4: 'new' ( LT )* newExpression
 				{
 				DebugLocation(307, 4);
-				string_literal262=(IToken)Match(input,97,Follow._97_in_newExpression2685); if (state.failed) return retval; 
+				string_literal262=(IToken)Match(input,97,Follow._97_in_newExpression2687); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_97.Add(string_literal262);
 
 				DebugLocation(307, 10);
 				// JavaScript.g:307:10: ( LT )*
-				try { DebugEnterSubRule(133);
+				try { DebugEnterSubRule(134);
 				while (true)
 				{
-					int alt133=2;
-					try { DebugEnterDecision(133, false);
-					int LA133_1 = input.LA(1);
+					int alt134=2;
+					try { DebugEnterDecision(134, false);
+					int LA134_1 = input.LA(1);
 
-					if ((LA133_1==LT))
+					if ((LA134_1==LT))
 					{
-						alt133 = 1;
+						alt134 = 1;
 					}
 
 
-					} finally { DebugExitDecision(133); }
-					switch ( alt133 )
+					} finally { DebugExitDecision(134); }
+					switch ( alt134 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:307:10: LT
 						{
 						DebugLocation(307, 10);
-						LT263=(IToken)Match(input,LT,Follow._LT_in_newExpression2687); if (state.failed) return retval; 
+						LT263=(IToken)Match(input,LT,Follow._LT_in_newExpression2689); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT263);
 
 
@@ -12654,17 +12693,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop133;
+						goto loop134;
 					}
 				}
 
-				loop133:
+				loop134:
 					;
 
-				} finally { DebugExitSubRule(133); }
+				} finally { DebugExitSubRule(134); }
 
 				DebugLocation(307, 14);
-				PushFollow(Follow._newExpression_in_newExpression2690);
+				PushFollow(Follow._newExpression_in_newExpression2692);
 				newExpression264=newExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -12780,7 +12819,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:312:10: nonMemberExpression
 			{
 			DebugLocation(312, 10);
-			PushFollow(Follow._nonMemberExpression_in_memberExpression2727);
+			PushFollow(Follow._nonMemberExpression_in_memberExpression2729);
 			nonMemberExpression265=nonMemberExpression();
 			PopFollow();
 			if (state.failed) return retval;
@@ -12815,32 +12854,32 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			DebugLocation(313, 9);
 			// JavaScript.g:313:9: ( ( LT )* ( indexSuffix -> ^( INDEXEXPR $memberExpression indexSuffix ) | propertyReferenceSuffix -> ^( PROPEXPR $memberExpression propertyReferenceSuffix ) ) )*
-			try { DebugEnterSubRule(137);
+			try { DebugEnterSubRule(138);
 			while (true)
 			{
-				int alt137=2;
-				try { DebugEnterDecision(137, false);
-				int LA137_1 = input.LA(1);
+				int alt138=2;
+				try { DebugEnterDecision(138, false);
+				int LA138_1 = input.LA(1);
 
-				if ((LA137_1==LT))
+				if ((LA138_1==LT))
 				{
-					int LA137_2 = input.LA(2);
+					int LA138_2 = input.LA(2);
 
-					if ((EvaluatePredicate(synpred162_JavaScript_fragment)))
+					if ((EvaluatePredicate(synpred163_JavaScript_fragment)))
 					{
-						alt137 = 1;
+						alt138 = 1;
 					}
 
 
 				}
-				else if ((LA137_1==59||LA137_1==78))
+				else if ((LA138_1==59||LA138_1==78))
 				{
-					alt137 = 1;
+					alt138 = 1;
 				}
 
 
-				} finally { DebugExitDecision(137); }
-				switch ( alt137 )
+				} finally { DebugExitDecision(138); }
+				switch ( alt138 )
 				{
 				case 1:
 					DebugEnterAlt(1);
@@ -12848,28 +12887,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					DebugLocation(314, 13);
 					// JavaScript.g:314:13: ( LT )*
-					try { DebugEnterSubRule(135);
+					try { DebugEnterSubRule(136);
 					while (true)
 					{
-						int alt135=2;
-						try { DebugEnterDecision(135, false);
-						int LA135_1 = input.LA(1);
+						int alt136=2;
+						try { DebugEnterDecision(136, false);
+						int LA136_1 = input.LA(1);
 
-						if ((LA135_1==LT))
+						if ((LA136_1==LT))
 						{
-							alt135 = 1;
+							alt136 = 1;
 						}
 
 
-						} finally { DebugExitDecision(135); }
-						switch ( alt135 )
+						} finally { DebugExitDecision(136); }
+						switch ( alt136 )
 						{
 						case 1:
 							DebugEnterAlt(1);
 							// JavaScript.g:314:13: LT
 							{
 							DebugLocation(314, 13);
-							LT266=(IToken)Match(input,LT,Follow._LT_in_memberExpression2756); if (state.failed) return retval; 
+							LT266=(IToken)Match(input,LT,Follow._LT_in_memberExpression2758); if (state.failed) return retval; 
 							if (state.backtracking == 0) stream_LT.Add(LT266);
 
 
@@ -12877,46 +12916,46 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 							break;
 
 						default:
-							goto loop135;
+							goto loop136;
 						}
 					}
 
-					loop135:
+					loop136:
 						;
 
-					} finally { DebugExitSubRule(135); }
+					} finally { DebugExitSubRule(136); }
 
 					DebugLocation(315, 13);
 					// JavaScript.g:315:13: ( indexSuffix -> ^( INDEXEXPR $memberExpression indexSuffix ) | propertyReferenceSuffix -> ^( PROPEXPR $memberExpression propertyReferenceSuffix ) )
-					int alt136=2;
-					try { DebugEnterSubRule(136);
-					try { DebugEnterDecision(136, false);
-					int LA136_1 = input.LA(1);
+					int alt137=2;
+					try { DebugEnterSubRule(137);
+					try { DebugEnterDecision(137, false);
+					int LA137_1 = input.LA(1);
 
-					if ((LA136_1==78))
+					if ((LA137_1==78))
 					{
-						alt136 = 1;
+						alt137 = 1;
 					}
-					else if ((LA136_1==59))
+					else if ((LA137_1==59))
 					{
-						alt136 = 2;
+						alt137 = 2;
 					}
 					else
 					{
 						if (state.backtracking>0) {state.failed=true; return retval;}
-						NoViableAltException nvae = new NoViableAltException("", 136, 0, input, 1);
+						NoViableAltException nvae = new NoViableAltException("", 137, 0, input, 1);
 						DebugRecognitionException(nvae);
 						throw nvae;
 					}
-					} finally { DebugExitDecision(136); }
-					switch (alt136)
+					} finally { DebugExitDecision(137); }
+					switch (alt137)
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:316:17: indexSuffix
 						{
 						DebugLocation(316, 17);
-						PushFollow(Follow._indexSuffix_in_memberExpression2790);
+						PushFollow(Follow._indexSuffix_in_memberExpression2792);
 						indexSuffix267=indexSuffix();
 						PopFollow();
 						if (state.failed) return retval;
@@ -12966,7 +13005,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						// JavaScript.g:317:19: propertyReferenceSuffix
 						{
 						DebugLocation(317, 19);
-						PushFollow(Follow._propertyReferenceSuffix_in_memberExpression2854);
+						PushFollow(Follow._propertyReferenceSuffix_in_memberExpression2856);
 						propertyReferenceSuffix268=propertyReferenceSuffix();
 						PopFollow();
 						if (state.failed) return retval;
@@ -13013,21 +13052,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					}
-					} finally { DebugExitSubRule(136); }
+					} finally { DebugExitSubRule(137); }
 
 
 					}
 					break;
 
 				default:
-					goto loop137;
+					goto loop138;
 				}
 			}
 
-			loop137:
+			loop138:
 				;
 
-			} finally { DebugExitSubRule(137); }
+			} finally { DebugExitSubRule(138); }
 
 
 			}
@@ -13101,8 +13140,8 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 49)) { return retval; }
 
 			// JavaScript.g:323:5: ( primaryExpression -> primaryExpression | functionExpression -> functionExpression | 'new' ( LT )* memberExpression ( LT )* arguments -> ^( 'new' memberExpression arguments ) )
-			int alt140=3;
-			try { DebugEnterDecision(140, false);
+			int alt141=3;
+			try { DebugEnterDecision(141, false);
 			switch (input.LA(1))
 			{
 			case Identifier:
@@ -13116,37 +13155,37 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			case 103:
 			case 110:
 				{
-				alt140 = 1;
+				alt141 = 1;
 				}
 				break;
 			case 93:
 				{
-				alt140 = 2;
+				alt141 = 2;
 				}
 				break;
 			case 97:
 				{
-				alt140 = 3;
+				alt141 = 3;
 				}
 				break;
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 140, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 141, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(140); }
-			switch (alt140)
+			} finally { DebugExitDecision(141); }
+			switch (alt141)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:323:7: primaryExpression
 				{
 				DebugLocation(323, 7);
-				PushFollow(Follow._primaryExpression_in_nonMemberExpression2926);
+				PushFollow(Follow._primaryExpression_in_nonMemberExpression2928);
 				primaryExpression269=primaryExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -13184,7 +13223,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:324:4: functionExpression
 				{
 				DebugLocation(324, 4);
-				PushFollow(Follow._functionExpression_in_nonMemberExpression2959);
+				PushFollow(Follow._functionExpression_in_nonMemberExpression2961);
 				functionExpression270=functionExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -13222,57 +13261,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:325:4: 'new' ( LT )* memberExpression ( LT )* arguments
 				{
 				DebugLocation(325, 4);
-				string_literal271=(IToken)Match(input,97,Follow._97_in_nonMemberExpression2991); if (state.failed) return retval; 
+				string_literal271=(IToken)Match(input,97,Follow._97_in_nonMemberExpression2993); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_97.Add(string_literal271);
 
 				DebugLocation(325, 10);
 				// JavaScript.g:325:10: ( LT )*
-				try { DebugEnterSubRule(138);
-				while (true)
-				{
-					int alt138=2;
-					try { DebugEnterDecision(138, false);
-					int LA138_1 = input.LA(1);
-
-					if ((LA138_1==LT))
-					{
-						alt138 = 1;
-					}
-
-
-					} finally { DebugExitDecision(138); }
-					switch ( alt138 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:325:10: LT
-						{
-						DebugLocation(325, 10);
-						LT272=(IToken)Match(input,LT,Follow._LT_in_nonMemberExpression2993); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT272);
-
-
-						}
-						break;
-
-					default:
-						goto loop138;
-					}
-				}
-
-				loop138:
-					;
-
-				} finally { DebugExitSubRule(138); }
-
-				DebugLocation(325, 14);
-				PushFollow(Follow._memberExpression_in_nonMemberExpression2996);
-				memberExpression273=memberExpression();
-				PopFollow();
-				if (state.failed) return retval;
-				if (state.backtracking == 0) stream_memberExpression.Add(memberExpression273.Tree);
-				DebugLocation(325, 32);
-				// JavaScript.g:325:32: ( LT )*
 				try { DebugEnterSubRule(139);
 				while (true)
 				{
@@ -13291,11 +13284,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:325:32: LT
+						// JavaScript.g:325:10: LT
 						{
-						DebugLocation(325, 32);
-						LT274=(IToken)Match(input,LT,Follow._LT_in_nonMemberExpression2999); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT274);
+						DebugLocation(325, 10);
+						LT272=(IToken)Match(input,LT,Follow._LT_in_nonMemberExpression2995); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT272);
 
 
 						}
@@ -13311,8 +13304,54 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(139); }
 
+				DebugLocation(325, 14);
+				PushFollow(Follow._memberExpression_in_nonMemberExpression2998);
+				memberExpression273=memberExpression();
+				PopFollow();
+				if (state.failed) return retval;
+				if (state.backtracking == 0) stream_memberExpression.Add(memberExpression273.Tree);
+				DebugLocation(325, 32);
+				// JavaScript.g:325:32: ( LT )*
+				try { DebugEnterSubRule(140);
+				while (true)
+				{
+					int alt140=2;
+					try { DebugEnterDecision(140, false);
+					int LA140_1 = input.LA(1);
+
+					if ((LA140_1==LT))
+					{
+						alt140 = 1;
+					}
+
+
+					} finally { DebugExitDecision(140); }
+					switch ( alt140 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:325:32: LT
+						{
+						DebugLocation(325, 32);
+						LT274=(IToken)Match(input,LT,Follow._LT_in_nonMemberExpression3001); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT274);
+
+
+						}
+						break;
+
+					default:
+						goto loop140;
+					}
+				}
+
+				loop140:
+					;
+
+				} finally { DebugExitSubRule(140); }
+
 				DebugLocation(325, 36);
-				PushFollow(Follow._arguments_in_nonMemberExpression3002);
+				PushFollow(Follow._arguments_in_nonMemberExpression3004);
 				arguments275=arguments();
 				PopFollow();
 				if (state.failed) return retval;
@@ -13432,7 +13471,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:330:10: pce= primaryCallExpression
 			{
 			DebugLocation(330, 13);
-			PushFollow(Follow._primaryCallExpression_in_callExpression3043);
+			PushFollow(Follow._primaryCallExpression_in_callExpression3045);
 			pce=primaryCallExpression();
 			PopFollow();
 			if (state.failed) return retval;
@@ -13468,32 +13507,32 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			DebugLocation(331, 9);
 			// JavaScript.g:331:9: ( ( LT )* (args= arguments -> ^( CALLEXPR $callExpression $args) |idx= indexSuffix -> ^( INDEXEXPR $callExpression $idx) |prop= propertyReferenceSuffix -> ^( PROPEXPR $callExpression $prop) ) )*
-			try { DebugEnterSubRule(143);
+			try { DebugEnterSubRule(144);
 			while (true)
 			{
-				int alt143=2;
-				try { DebugEnterDecision(143, false);
-				int LA143_1 = input.LA(1);
+				int alt144=2;
+				try { DebugEnterDecision(144, false);
+				int LA144_1 = input.LA(1);
 
-				if ((LA143_1==LT))
+				if ((LA144_1==LT))
 				{
-					int LA143_2 = input.LA(2);
+					int LA144_2 = input.LA(2);
 
-					if ((EvaluatePredicate(synpred170_JavaScript_fragment)))
+					if ((EvaluatePredicate(synpred171_JavaScript_fragment)))
 					{
-						alt143 = 1;
+						alt144 = 1;
 					}
 
 
 				}
-				else if ((LA143_1==48||LA143_1==59||LA143_1==78))
+				else if ((LA144_1==48||LA144_1==59||LA144_1==78))
 				{
-					alt143 = 1;
+					alt144 = 1;
 				}
 
 
-				} finally { DebugExitDecision(143); }
-				switch ( alt143 )
+				} finally { DebugExitDecision(144); }
+				switch ( alt144 )
 				{
 				case 1:
 					DebugEnterAlt(1);
@@ -13501,28 +13540,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					DebugLocation(332, 13);
 					// JavaScript.g:332:13: ( LT )*
-					try { DebugEnterSubRule(141);
+					try { DebugEnterSubRule(142);
 					while (true)
 					{
-						int alt141=2;
-						try { DebugEnterDecision(141, false);
-						int LA141_1 = input.LA(1);
+						int alt142=2;
+						try { DebugEnterDecision(142, false);
+						int LA142_1 = input.LA(1);
 
-						if ((LA141_1==LT))
+						if ((LA142_1==LT))
 						{
-							alt141 = 1;
+							alt142 = 1;
 						}
 
 
-						} finally { DebugExitDecision(141); }
-						switch ( alt141 )
+						} finally { DebugExitDecision(142); }
+						switch ( alt142 )
 						{
 						case 1:
 							DebugEnterAlt(1);
 							// JavaScript.g:332:13: LT
 							{
 							DebugLocation(332, 13);
-							LT276=(IToken)Match(input,LT,Follow._LT_in_callExpression3073); if (state.failed) return retval; 
+							LT276=(IToken)Match(input,LT,Follow._LT_in_callExpression3075); if (state.failed) return retval; 
 							if (state.backtracking == 0) stream_LT.Add(LT276);
 
 
@@ -13530,55 +13569,55 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 							break;
 
 						default:
-							goto loop141;
+							goto loop142;
 						}
 					}
 
-					loop141:
+					loop142:
 						;
 
-					} finally { DebugExitSubRule(141); }
+					} finally { DebugExitSubRule(142); }
 
 					DebugLocation(333, 13);
 					// JavaScript.g:333:13: (args= arguments -> ^( CALLEXPR $callExpression $args) |idx= indexSuffix -> ^( INDEXEXPR $callExpression $idx) |prop= propertyReferenceSuffix -> ^( PROPEXPR $callExpression $prop) )
-					int alt142=3;
-					try { DebugEnterSubRule(142);
-					try { DebugEnterDecision(142, false);
+					int alt143=3;
+					try { DebugEnterSubRule(143);
+					try { DebugEnterDecision(143, false);
 					switch (input.LA(1))
 					{
 					case 48:
 						{
-						alt142 = 1;
+						alt143 = 1;
 						}
 						break;
 					case 78:
 						{
-						alt142 = 2;
+						alt143 = 2;
 						}
 						break;
 					case 59:
 						{
-						alt142 = 3;
+						alt143 = 3;
 						}
 						break;
 					default:
 						{
 							if (state.backtracking>0) {state.failed=true; return retval;}
-							NoViableAltException nvae = new NoViableAltException("", 142, 0, input, 1);
+							NoViableAltException nvae = new NoViableAltException("", 143, 0, input, 1);
 							DebugRecognitionException(nvae);
 							throw nvae;
 						}
 					}
 
-					} finally { DebugExitDecision(142); }
-					switch (alt142)
+					} finally { DebugExitDecision(143); }
+					switch (alt143)
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:334:17: args= arguments
 						{
 						DebugLocation(334, 21);
-						PushFollow(Follow._arguments_in_callExpression3109);
+						PushFollow(Follow._arguments_in_callExpression3111);
 						args=arguments();
 						PopFollow();
 						if (state.failed) return retval;
@@ -13629,7 +13668,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						// JavaScript.g:335:16: idx= indexSuffix
 						{
 						DebugLocation(335, 19);
-						PushFollow(Follow._indexSuffix_in_callExpression3162);
+						PushFollow(Follow._indexSuffix_in_callExpression3164);
 						idx=indexSuffix();
 						PopFollow();
 						if (state.failed) return retval;
@@ -13680,7 +13719,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						// JavaScript.g:336:16: prop= propertyReferenceSuffix
 						{
 						DebugLocation(336, 20);
-						PushFollow(Follow._propertyReferenceSuffix_in_callExpression3212);
+						PushFollow(Follow._propertyReferenceSuffix_in_callExpression3214);
 						prop=propertyReferenceSuffix();
 						PopFollow();
 						if (state.failed) return retval;
@@ -13728,21 +13767,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					}
-					} finally { DebugExitSubRule(142); }
+					} finally { DebugExitSubRule(143); }
 
 
 					}
 					break;
 
 				default:
-					goto loop143;
+					goto loop144;
 				}
 			}
 
-			loop143:
+			loop144:
 				;
 
-			} finally { DebugExitSubRule(143); }
+			} finally { DebugExitSubRule(144); }
 
 
 			}
@@ -13811,35 +13850,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:342:7: me= memberExpression ( LT )* a= arguments
 			{
 			DebugLocation(342, 9);
-			PushFollow(Follow._memberExpression_in_primaryCallExpression3274);
+			PushFollow(Follow._memberExpression_in_primaryCallExpression3276);
 			me=memberExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_memberExpression.Add(me.Tree);
 			DebugLocation(342, 27);
 			// JavaScript.g:342:27: ( LT )*
-			try { DebugEnterSubRule(144);
+			try { DebugEnterSubRule(145);
 			while (true)
 			{
-				int alt144=2;
-				try { DebugEnterDecision(144, false);
-				int LA144_1 = input.LA(1);
+				int alt145=2;
+				try { DebugEnterDecision(145, false);
+				int LA145_1 = input.LA(1);
 
-				if ((LA144_1==LT))
+				if ((LA145_1==LT))
 				{
-					alt144 = 1;
+					alt145 = 1;
 				}
 
 
-				} finally { DebugExitDecision(144); }
-				switch ( alt144 )
+				} finally { DebugExitDecision(145); }
+				switch ( alt145 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:342:27: LT
 					{
 					DebugLocation(342, 27);
-					LT277=(IToken)Match(input,LT,Follow._LT_in_primaryCallExpression3276); if (state.failed) return retval; 
+					LT277=(IToken)Match(input,LT,Follow._LT_in_primaryCallExpression3278); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT277);
 
 
@@ -13847,17 +13886,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop144;
+					goto loop145;
 				}
 			}
 
-			loop144:
+			loop145:
 				;
 
-			} finally { DebugExitSubRule(144); }
+			} finally { DebugExitSubRule(145); }
 
 			DebugLocation(342, 32);
-			PushFollow(Follow._arguments_in_primaryCallExpression3281);
+			PushFollow(Follow._arguments_in_primaryCallExpression3283);
 			a=arguments();
 			PopFollow();
 			if (state.failed) return retval;
@@ -13982,25 +14021,25 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:346:4: '(' ( ( LT )* assignmentExpression ( ( LT )* ',' ( LT )* assignmentExpression )* )? ( LT )* ')'
 			{
 			DebugLocation(346, 4);
-			char_literal278=(IToken)Match(input,48,Follow._48_in_arguments3313); if (state.failed) return retval; 
+			char_literal278=(IToken)Match(input,48,Follow._48_in_arguments3315); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_48.Add(char_literal278);
 
 			DebugLocation(346, 8);
 			// JavaScript.g:346:8: ( ( LT )* assignmentExpression ( ( LT )* ',' ( LT )* assignmentExpression )* )?
-			int alt149=2;
-			try { DebugEnterSubRule(149);
-			try { DebugEnterDecision(149, false);
+			int alt150=2;
+			try { DebugEnterSubRule(150);
+			try { DebugEnterDecision(150, false);
 			try
 			{
-				alt149 = dfa149.Predict(input);
+				alt150 = dfa150.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(149); }
-			switch (alt149)
+			} finally { DebugExitDecision(150); }
+			switch (alt150)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -14008,28 +14047,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(346, 9);
 				// JavaScript.g:346:9: ( LT )*
-				try { DebugEnterSubRule(145);
+				try { DebugEnterSubRule(146);
 				while (true)
 				{
-					int alt145=2;
-					try { DebugEnterDecision(145, false);
-					int LA145_1 = input.LA(1);
+					int alt146=2;
+					try { DebugEnterDecision(146, false);
+					int LA146_1 = input.LA(1);
 
-					if ((LA145_1==LT))
+					if ((LA146_1==LT))
 					{
-						alt145 = 1;
+						alt146 = 1;
 					}
 
 
-					} finally { DebugExitDecision(145); }
-					switch ( alt145 )
+					} finally { DebugExitDecision(146); }
+					switch ( alt146 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:346:9: LT
 						{
 						DebugLocation(346, 9);
-						LT279=(IToken)Match(input,LT,Follow._LT_in_arguments3316); if (state.failed) return retval; 
+						LT279=(IToken)Match(input,LT,Follow._LT_in_arguments3318); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT279);
 
 
@@ -14037,39 +14076,39 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop145;
+						goto loop146;
 					}
 				}
 
-				loop145:
+				loop146:
 					;
 
-				} finally { DebugExitSubRule(145); }
+				} finally { DebugExitSubRule(146); }
 
 				DebugLocation(346, 13);
-				PushFollow(Follow._assignmentExpression_in_arguments3319);
+				PushFollow(Follow._assignmentExpression_in_arguments3321);
 				assignmentExpression280=assignmentExpression();
 				PopFollow();
 				if (state.failed) return retval;
 				if (state.backtracking == 0) stream_assignmentExpression.Add(assignmentExpression280.Tree);
 				DebugLocation(346, 34);
 				// JavaScript.g:346:34: ( ( LT )* ',' ( LT )* assignmentExpression )*
-				try { DebugEnterSubRule(148);
+				try { DebugEnterSubRule(149);
 				while (true)
 				{
-					int alt148=2;
-					try { DebugEnterDecision(148, false);
+					int alt149=2;
+					try { DebugEnterDecision(149, false);
 					try
 					{
-						alt148 = dfa148.Predict(input);
+						alt149 = dfa149.Predict(input);
 					}
 					catch (NoViableAltException nvae)
 					{
 						DebugRecognitionException(nvae);
 						throw;
 					}
-					} finally { DebugExitDecision(148); }
-					switch ( alt148 )
+					} finally { DebugExitDecision(149); }
+					switch ( alt149 )
 					{
 					case 1:
 						DebugEnterAlt(1);
@@ -14077,50 +14116,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						{
 						DebugLocation(346, 35);
 						// JavaScript.g:346:35: ( LT )*
-						try { DebugEnterSubRule(146);
-						while (true)
-						{
-							int alt146=2;
-							try { DebugEnterDecision(146, false);
-							int LA146_1 = input.LA(1);
-
-							if ((LA146_1==LT))
-							{
-								alt146 = 1;
-							}
-
-
-							} finally { DebugExitDecision(146); }
-							switch ( alt146 )
-							{
-							case 1:
-								DebugEnterAlt(1);
-								// JavaScript.g:346:35: LT
-								{
-								DebugLocation(346, 35);
-								LT281=(IToken)Match(input,LT,Follow._LT_in_arguments3322); if (state.failed) return retval; 
-								if (state.backtracking == 0) stream_LT.Add(LT281);
-
-
-								}
-								break;
-
-							default:
-								goto loop146;
-							}
-						}
-
-						loop146:
-							;
-
-						} finally { DebugExitSubRule(146); }
-
-						DebugLocation(346, 39);
-						char_literal282=(IToken)Match(input,55,Follow._55_in_arguments3325); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_55.Add(char_literal282);
-
-						DebugLocation(346, 43);
-						// JavaScript.g:346:43: ( LT )*
 						try { DebugEnterSubRule(147);
 						while (true)
 						{
@@ -14139,11 +14134,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 							{
 							case 1:
 								DebugEnterAlt(1);
-								// JavaScript.g:346:43: LT
+								// JavaScript.g:346:35: LT
 								{
-								DebugLocation(346, 43);
-								LT283=(IToken)Match(input,LT,Follow._LT_in_arguments3327); if (state.failed) return retval; 
-								if (state.backtracking == 0) stream_LT.Add(LT283);
+								DebugLocation(346, 35);
+								LT281=(IToken)Match(input,LT,Follow._LT_in_arguments3324); if (state.failed) return retval; 
+								if (state.backtracking == 0) stream_LT.Add(LT281);
 
 
 								}
@@ -14159,8 +14154,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 						} finally { DebugExitSubRule(147); }
 
+						DebugLocation(346, 39);
+						char_literal282=(IToken)Match(input,55,Follow._55_in_arguments3327); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_55.Add(char_literal282);
+
+						DebugLocation(346, 43);
+						// JavaScript.g:346:43: ( LT )*
+						try { DebugEnterSubRule(148);
+						while (true)
+						{
+							int alt148=2;
+							try { DebugEnterDecision(148, false);
+							int LA148_1 = input.LA(1);
+
+							if ((LA148_1==LT))
+							{
+								alt148 = 1;
+							}
+
+
+							} finally { DebugExitDecision(148); }
+							switch ( alt148 )
+							{
+							case 1:
+								DebugEnterAlt(1);
+								// JavaScript.g:346:43: LT
+								{
+								DebugLocation(346, 43);
+								LT283=(IToken)Match(input,LT,Follow._LT_in_arguments3329); if (state.failed) return retval; 
+								if (state.backtracking == 0) stream_LT.Add(LT283);
+
+
+								}
+								break;
+
+							default:
+								goto loop148;
+							}
+						}
+
+						loop148:
+							;
+
+						} finally { DebugExitSubRule(148); }
+
 						DebugLocation(346, 47);
-						PushFollow(Follow._assignmentExpression_in_arguments3330);
+						PushFollow(Follow._assignmentExpression_in_arguments3332);
 						assignmentExpression284=assignmentExpression();
 						PopFollow();
 						if (state.failed) return retval;
@@ -14170,46 +14209,46 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop148;
+						goto loop149;
 					}
 				}
 
-				loop148:
+				loop149:
 					;
 
-				} finally { DebugExitSubRule(148); }
+				} finally { DebugExitSubRule(149); }
 
 
 				}
 				break;
 
 			}
-			} finally { DebugExitSubRule(149); }
+			} finally { DebugExitSubRule(150); }
 
 			DebugLocation(346, 72);
 			// JavaScript.g:346:72: ( LT )*
-			try { DebugEnterSubRule(150);
+			try { DebugEnterSubRule(151);
 			while (true)
 			{
-				int alt150=2;
-				try { DebugEnterDecision(150, false);
-				int LA150_1 = input.LA(1);
+				int alt151=2;
+				try { DebugEnterDecision(151, false);
+				int LA151_1 = input.LA(1);
 
-				if ((LA150_1==LT))
+				if ((LA151_1==LT))
 				{
-					alt150 = 1;
+					alt151 = 1;
 				}
 
 
-				} finally { DebugExitDecision(150); }
-				switch ( alt150 )
+				} finally { DebugExitDecision(151); }
+				switch ( alt151 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:346:72: LT
 					{
 					DebugLocation(346, 72);
-					LT285=(IToken)Match(input,LT,Follow._LT_in_arguments3336); if (state.failed) return retval; 
+					LT285=(IToken)Match(input,LT,Follow._LT_in_arguments3338); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT285);
 
 
@@ -14217,17 +14256,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop150;
+					goto loop151;
 				}
 			}
 
-			loop150:
+			loop151:
 				;
 
-			} finally { DebugExitSubRule(150); }
+			} finally { DebugExitSubRule(151); }
 
 			DebugLocation(346, 76);
-			char_literal286=(IToken)Match(input,49,Follow._49_in_arguments3339); if (state.failed) return retval; 
+			char_literal286=(IToken)Match(input,49,Follow._49_in_arguments3341); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_49.Add(char_literal286);
 
 
@@ -14345,57 +14384,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:351:4: '[' ( LT )* expression ( LT )* ']'
 			{
 			DebugLocation(351, 4);
-			char_literal287=(IToken)Match(input,78,Follow._78_in_indexSuffix3367); if (state.failed) return retval; 
+			char_literal287=(IToken)Match(input,78,Follow._78_in_indexSuffix3369); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_78.Add(char_literal287);
 
 			DebugLocation(351, 8);
 			// JavaScript.g:351:8: ( LT )*
-			try { DebugEnterSubRule(151);
-			while (true)
-			{
-				int alt151=2;
-				try { DebugEnterDecision(151, false);
-				int LA151_1 = input.LA(1);
-
-				if ((LA151_1==LT))
-				{
-					alt151 = 1;
-				}
-
-
-				} finally { DebugExitDecision(151); }
-				switch ( alt151 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:351:8: LT
-					{
-					DebugLocation(351, 8);
-					LT288=(IToken)Match(input,LT,Follow._LT_in_indexSuffix3369); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT288);
-
-
-					}
-					break;
-
-				default:
-					goto loop151;
-				}
-			}
-
-			loop151:
-				;
-
-			} finally { DebugExitSubRule(151); }
-
-			DebugLocation(351, 12);
-			PushFollow(Follow._expression_in_indexSuffix3372);
-			expression289=expression();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) stream_expression.Add(expression289.Tree);
-			DebugLocation(351, 23);
-			// JavaScript.g:351:23: ( LT )*
 			try { DebugEnterSubRule(152);
 			while (true)
 			{
@@ -14414,11 +14407,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:351:23: LT
+					// JavaScript.g:351:8: LT
 					{
-					DebugLocation(351, 23);
-					LT290=(IToken)Match(input,LT,Follow._LT_in_indexSuffix3374); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT290);
+					DebugLocation(351, 8);
+					LT288=(IToken)Match(input,LT,Follow._LT_in_indexSuffix3371); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT288);
 
 
 					}
@@ -14434,8 +14427,54 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(152); }
 
+			DebugLocation(351, 12);
+			PushFollow(Follow._expression_in_indexSuffix3374);
+			expression289=expression();
+			PopFollow();
+			if (state.failed) return retval;
+			if (state.backtracking == 0) stream_expression.Add(expression289.Tree);
+			DebugLocation(351, 23);
+			// JavaScript.g:351:23: ( LT )*
+			try { DebugEnterSubRule(153);
+			while (true)
+			{
+				int alt153=2;
+				try { DebugEnterDecision(153, false);
+				int LA153_1 = input.LA(1);
+
+				if ((LA153_1==LT))
+				{
+					alt153 = 1;
+				}
+
+
+				} finally { DebugExitDecision(153); }
+				switch ( alt153 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:351:23: LT
+					{
+					DebugLocation(351, 23);
+					LT290=(IToken)Match(input,LT,Follow._LT_in_indexSuffix3376); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT290);
+
+
+					}
+					break;
+
+				default:
+					goto loop153;
+				}
+			}
+
+			loop153:
+				;
+
+			} finally { DebugExitSubRule(153); }
+
 			DebugLocation(351, 27);
-			char_literal291=(IToken)Match(input,79,Follow._79_in_indexSuffix3377); if (state.failed) return retval; 
+			char_literal291=(IToken)Match(input,79,Follow._79_in_indexSuffix3379); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_79.Add(char_literal291);
 
 
@@ -14532,33 +14571,33 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:355:4: '.' ( LT )* Identifier
 			{
 			DebugLocation(355, 4);
-			char_literal292=(IToken)Match(input,59,Follow._59_in_propertyReferenceSuffix3394); if (state.failed) return retval; 
+			char_literal292=(IToken)Match(input,59,Follow._59_in_propertyReferenceSuffix3396); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_59.Add(char_literal292);
 
 			DebugLocation(355, 8);
 			// JavaScript.g:355:8: ( LT )*
-			try { DebugEnterSubRule(153);
+			try { DebugEnterSubRule(154);
 			while (true)
 			{
-				int alt153=2;
-				try { DebugEnterDecision(153, false);
-				int LA153_1 = input.LA(1);
+				int alt154=2;
+				try { DebugEnterDecision(154, false);
+				int LA154_1 = input.LA(1);
 
-				if ((LA153_1==LT))
+				if ((LA154_1==LT))
 				{
-					alt153 = 1;
+					alt154 = 1;
 				}
 
 
-				} finally { DebugExitDecision(153); }
-				switch ( alt153 )
+				} finally { DebugExitDecision(154); }
+				switch ( alt154 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:355:8: LT
 					{
 					DebugLocation(355, 8);
-					LT293=(IToken)Match(input,LT,Follow._LT_in_propertyReferenceSuffix3396); if (state.failed) return retval; 
+					LT293=(IToken)Match(input,LT,Follow._LT_in_propertyReferenceSuffix3398); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT293);
 
 
@@ -14566,17 +14605,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop153;
+					goto loop154;
 				}
 			}
 
-			loop153:
+			loop154:
 				;
 
-			} finally { DebugExitSubRule(153); }
+			} finally { DebugExitSubRule(154); }
 
 			DebugLocation(355, 12);
-			Identifier294=(IToken)Match(input,Identifier,Follow._Identifier_in_propertyReferenceSuffix3399); if (state.failed) return retval; 
+			Identifier294=(IToken)Match(input,Identifier,Follow._Identifier_in_propertyReferenceSuffix3401); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_Identifier.Add(Identifier294);
 
 
@@ -14684,27 +14723,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:360:3: logicalORExpression ( ( LT )* '?' ( LT )* iftrue= assignmentExpression ( LT )* ':' ( LT )* iffalse= assignmentExpression -> ^( '?' logicalORExpression $iftrue $iffalse) | -> logicalORExpression )
 			{
 			DebugLocation(360, 3);
-			PushFollow(Follow._logicalORExpression_in_conditionalExpression3421);
+			PushFollow(Follow._logicalORExpression_in_conditionalExpression3423);
 			logicalORExpression295=logicalORExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_logicalORExpression.Add(logicalORExpression295.Tree);
 			DebugLocation(361, 3);
 			// JavaScript.g:361:3: ( ( LT )* '?' ( LT )* iftrue= assignmentExpression ( LT )* ':' ( LT )* iffalse= assignmentExpression -> ^( '?' logicalORExpression $iftrue $iffalse) | -> logicalORExpression )
-			int alt158=2;
-			try { DebugEnterSubRule(158);
-			try { DebugEnterDecision(158, false);
+			int alt159=2;
+			try { DebugEnterSubRule(159);
+			try { DebugEnterDecision(159, false);
 			try
 			{
-				alt158 = dfa158.Predict(input);
+				alt159 = dfa159.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(158); }
-			switch (alt158)
+			} finally { DebugExitDecision(159); }
+			switch (alt159)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -14712,50 +14751,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(362, 4);
 				// JavaScript.g:362:4: ( LT )*
-				try { DebugEnterSubRule(154);
-				while (true)
-				{
-					int alt154=2;
-					try { DebugEnterDecision(154, false);
-					int LA154_1 = input.LA(1);
-
-					if ((LA154_1==LT))
-					{
-						alt154 = 1;
-					}
-
-
-					} finally { DebugExitDecision(154); }
-					switch ( alt154 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:362:4: LT
-						{
-						DebugLocation(362, 4);
-						LT296=(IToken)Match(input,LT,Follow._LT_in_conditionalExpression3431); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT296);
-
-
-						}
-						break;
-
-					default:
-						goto loop154;
-					}
-				}
-
-				loop154:
-					;
-
-				} finally { DebugExitSubRule(154); }
-
-				DebugLocation(362, 8);
-				char_literal297=(IToken)Match(input,77,Follow._77_in_conditionalExpression3434); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_77.Add(char_literal297);
-
-				DebugLocation(362, 12);
-				// JavaScript.g:362:12: ( LT )*
 				try { DebugEnterSubRule(155);
 				while (true)
 				{
@@ -14774,11 +14769,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:362:12: LT
+						// JavaScript.g:362:4: LT
 						{
-						DebugLocation(362, 12);
-						LT298=(IToken)Match(input,LT,Follow._LT_in_conditionalExpression3436); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT298);
+						DebugLocation(362, 4);
+						LT296=(IToken)Match(input,LT,Follow._LT_in_conditionalExpression3433); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT296);
 
 
 						}
@@ -14794,14 +14789,12 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(155); }
 
-				DebugLocation(362, 22);
-				PushFollow(Follow._assignmentExpression_in_conditionalExpression3441);
-				iftrue=assignmentExpression();
-				PopFollow();
-				if (state.failed) return retval;
-				if (state.backtracking == 0) stream_assignmentExpression.Add(iftrue.Tree);
-				DebugLocation(362, 44);
-				// JavaScript.g:362:44: ( LT )*
+				DebugLocation(362, 8);
+				char_literal297=(IToken)Match(input,77,Follow._77_in_conditionalExpression3436); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_77.Add(char_literal297);
+
+				DebugLocation(362, 12);
+				// JavaScript.g:362:12: ( LT )*
 				try { DebugEnterSubRule(156);
 				while (true)
 				{
@@ -14820,11 +14813,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:362:44: LT
+						// JavaScript.g:362:12: LT
 						{
-						DebugLocation(362, 44);
-						LT299=(IToken)Match(input,LT,Follow._LT_in_conditionalExpression3443); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT299);
+						DebugLocation(362, 12);
+						LT298=(IToken)Match(input,LT,Follow._LT_in_conditionalExpression3438); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT298);
 
 
 						}
@@ -14840,12 +14833,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(156); }
 
-				DebugLocation(362, 48);
-				char_literal300=(IToken)Match(input,62,Follow._62_in_conditionalExpression3446); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_62.Add(char_literal300);
-
-				DebugLocation(362, 52);
-				// JavaScript.g:362:52: ( LT )*
+				DebugLocation(362, 22);
+				PushFollow(Follow._assignmentExpression_in_conditionalExpression3443);
+				iftrue=assignmentExpression();
+				PopFollow();
+				if (state.failed) return retval;
+				if (state.backtracking == 0) stream_assignmentExpression.Add(iftrue.Tree);
+				DebugLocation(362, 44);
+				// JavaScript.g:362:44: ( LT )*
 				try { DebugEnterSubRule(157);
 				while (true)
 				{
@@ -14864,11 +14859,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:362:52: LT
+						// JavaScript.g:362:44: LT
 						{
-						DebugLocation(362, 52);
-						LT301=(IToken)Match(input,LT,Follow._LT_in_conditionalExpression3448); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT301);
+						DebugLocation(362, 44);
+						LT299=(IToken)Match(input,LT,Follow._LT_in_conditionalExpression3445); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT299);
 
 
 						}
@@ -14884,8 +14879,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(157); }
 
+				DebugLocation(362, 48);
+				char_literal300=(IToken)Match(input,62,Follow._62_in_conditionalExpression3448); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_62.Add(char_literal300);
+
+				DebugLocation(362, 52);
+				// JavaScript.g:362:52: ( LT )*
+				try { DebugEnterSubRule(158);
+				while (true)
+				{
+					int alt158=2;
+					try { DebugEnterDecision(158, false);
+					int LA158_1 = input.LA(1);
+
+					if ((LA158_1==LT))
+					{
+						alt158 = 1;
+					}
+
+
+					} finally { DebugExitDecision(158); }
+					switch ( alt158 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:362:52: LT
+						{
+						DebugLocation(362, 52);
+						LT301=(IToken)Match(input,LT,Follow._LT_in_conditionalExpression3450); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT301);
+
+
+						}
+						break;
+
+					default:
+						goto loop158;
+					}
+				}
+
+				loop158:
+					;
+
+				} finally { DebugExitSubRule(158); }
+
 				DebugLocation(362, 63);
-				PushFollow(Follow._assignmentExpression_in_conditionalExpression3453);
+				PushFollow(Follow._assignmentExpression_in_conditionalExpression3455);
 				iffalse=assignmentExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -14967,7 +15006,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(158); }
+			} finally { DebugExitSubRule(159); }
 
 
 			}
@@ -15049,27 +15088,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:370:3: logicalORExpressionNoIn ( ( LT )* '?' ( LT )* iftrue= assignmentExpressionNoIn ( LT )* ':' ( LT )* iffalse= assignmentExpressionNoIn -> ^( '?' logicalORExpressionNoIn $iftrue $iffalse) | -> logicalORExpressionNoIn )
 			{
 			DebugLocation(370, 3);
-			PushFollow(Follow._logicalORExpressionNoIn_in_conditionalExpressionNoIn3503);
+			PushFollow(Follow._logicalORExpressionNoIn_in_conditionalExpressionNoIn3505);
 			logicalORExpressionNoIn302=logicalORExpressionNoIn();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_logicalORExpressionNoIn.Add(logicalORExpressionNoIn302.Tree);
 			DebugLocation(371, 3);
 			// JavaScript.g:371:3: ( ( LT )* '?' ( LT )* iftrue= assignmentExpressionNoIn ( LT )* ':' ( LT )* iffalse= assignmentExpressionNoIn -> ^( '?' logicalORExpressionNoIn $iftrue $iffalse) | -> logicalORExpressionNoIn )
-			int alt163=2;
-			try { DebugEnterSubRule(163);
-			try { DebugEnterDecision(163, false);
+			int alt164=2;
+			try { DebugEnterSubRule(164);
+			try { DebugEnterDecision(164, false);
 			try
 			{
-				alt163 = dfa163.Predict(input);
+				alt164 = dfa164.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(163); }
-			switch (alt163)
+			} finally { DebugExitDecision(164); }
+			switch (alt164)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -15077,50 +15116,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(372, 4);
 				// JavaScript.g:372:4: ( LT )*
-				try { DebugEnterSubRule(159);
-				while (true)
-				{
-					int alt159=2;
-					try { DebugEnterDecision(159, false);
-					int LA159_1 = input.LA(1);
-
-					if ((LA159_1==LT))
-					{
-						alt159 = 1;
-					}
-
-
-					} finally { DebugExitDecision(159); }
-					switch ( alt159 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:372:4: LT
-						{
-						DebugLocation(372, 4);
-						LT303=(IToken)Match(input,LT,Follow._LT_in_conditionalExpressionNoIn3513); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT303);
-
-
-						}
-						break;
-
-					default:
-						goto loop159;
-					}
-				}
-
-				loop159:
-					;
-
-				} finally { DebugExitSubRule(159); }
-
-				DebugLocation(372, 8);
-				char_literal304=(IToken)Match(input,77,Follow._77_in_conditionalExpressionNoIn3516); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_77.Add(char_literal304);
-
-				DebugLocation(372, 12);
-				// JavaScript.g:372:12: ( LT )*
 				try { DebugEnterSubRule(160);
 				while (true)
 				{
@@ -15139,11 +15134,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:372:12: LT
+						// JavaScript.g:372:4: LT
 						{
-						DebugLocation(372, 12);
-						LT305=(IToken)Match(input,LT,Follow._LT_in_conditionalExpressionNoIn3518); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT305);
+						DebugLocation(372, 4);
+						LT303=(IToken)Match(input,LT,Follow._LT_in_conditionalExpressionNoIn3515); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT303);
 
 
 						}
@@ -15159,14 +15154,12 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(160); }
 
-				DebugLocation(372, 22);
-				PushFollow(Follow._assignmentExpressionNoIn_in_conditionalExpressionNoIn3523);
-				iftrue=assignmentExpressionNoIn();
-				PopFollow();
-				if (state.failed) return retval;
-				if (state.backtracking == 0) stream_assignmentExpressionNoIn.Add(iftrue.Tree);
-				DebugLocation(372, 48);
-				// JavaScript.g:372:48: ( LT )*
+				DebugLocation(372, 8);
+				char_literal304=(IToken)Match(input,77,Follow._77_in_conditionalExpressionNoIn3518); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_77.Add(char_literal304);
+
+				DebugLocation(372, 12);
+				// JavaScript.g:372:12: ( LT )*
 				try { DebugEnterSubRule(161);
 				while (true)
 				{
@@ -15185,11 +15178,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:372:48: LT
+						// JavaScript.g:372:12: LT
 						{
-						DebugLocation(372, 48);
-						LT306=(IToken)Match(input,LT,Follow._LT_in_conditionalExpressionNoIn3525); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT306);
+						DebugLocation(372, 12);
+						LT305=(IToken)Match(input,LT,Follow._LT_in_conditionalExpressionNoIn3520); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT305);
 
 
 						}
@@ -15205,12 +15198,14 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(161); }
 
-				DebugLocation(372, 52);
-				char_literal307=(IToken)Match(input,62,Follow._62_in_conditionalExpressionNoIn3528); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_62.Add(char_literal307);
-
-				DebugLocation(372, 56);
-				// JavaScript.g:372:56: ( LT )*
+				DebugLocation(372, 22);
+				PushFollow(Follow._assignmentExpressionNoIn_in_conditionalExpressionNoIn3525);
+				iftrue=assignmentExpressionNoIn();
+				PopFollow();
+				if (state.failed) return retval;
+				if (state.backtracking == 0) stream_assignmentExpressionNoIn.Add(iftrue.Tree);
+				DebugLocation(372, 48);
+				// JavaScript.g:372:48: ( LT )*
 				try { DebugEnterSubRule(162);
 				while (true)
 				{
@@ -15229,11 +15224,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:372:56: LT
+						// JavaScript.g:372:48: LT
 						{
-						DebugLocation(372, 56);
-						LT308=(IToken)Match(input,LT,Follow._LT_in_conditionalExpressionNoIn3530); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT308);
+						DebugLocation(372, 48);
+						LT306=(IToken)Match(input,LT,Follow._LT_in_conditionalExpressionNoIn3527); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT306);
 
 
 						}
@@ -15249,8 +15244,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(162); }
 
+				DebugLocation(372, 52);
+				char_literal307=(IToken)Match(input,62,Follow._62_in_conditionalExpressionNoIn3530); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_62.Add(char_literal307);
+
+				DebugLocation(372, 56);
+				// JavaScript.g:372:56: ( LT )*
+				try { DebugEnterSubRule(163);
+				while (true)
+				{
+					int alt163=2;
+					try { DebugEnterDecision(163, false);
+					int LA163_1 = input.LA(1);
+
+					if ((LA163_1==LT))
+					{
+						alt163 = 1;
+					}
+
+
+					} finally { DebugExitDecision(163); }
+					switch ( alt163 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:372:56: LT
+						{
+						DebugLocation(372, 56);
+						LT308=(IToken)Match(input,LT,Follow._LT_in_conditionalExpressionNoIn3532); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT308);
+
+
+						}
+						break;
+
+					default:
+						goto loop163;
+					}
+				}
+
+				loop163:
+					;
+
+				} finally { DebugExitSubRule(163); }
+
 				DebugLocation(372, 67);
-				PushFollow(Follow._assignmentExpressionNoIn_in_conditionalExpressionNoIn3535);
+				PushFollow(Follow._assignmentExpressionNoIn_in_conditionalExpressionNoIn3537);
 				iffalse=assignmentExpressionNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -15332,7 +15371,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(163); }
+			} finally { DebugExitSubRule(164); }
 
 
 			}
@@ -15406,27 +15445,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:380:3: logicalANDExpression ( ( ( LT )* '||' ( LT )* logicalORExpression ) -> ^( '||' logicalANDExpression logicalORExpression ) | -> logicalANDExpression )
 			{
 			DebugLocation(380, 3);
-			PushFollow(Follow._logicalANDExpression_in_logicalORExpression3586);
+			PushFollow(Follow._logicalANDExpression_in_logicalORExpression3588);
 			logicalANDExpression309=logicalANDExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_logicalANDExpression.Add(logicalANDExpression309.Tree);
 			DebugLocation(381, 3);
 			// JavaScript.g:381:3: ( ( ( LT )* '||' ( LT )* logicalORExpression ) -> ^( '||' logicalANDExpression logicalORExpression ) | -> logicalANDExpression )
-			int alt166=2;
-			try { DebugEnterSubRule(166);
-			try { DebugEnterDecision(166, false);
+			int alt167=2;
+			try { DebugEnterSubRule(167);
+			try { DebugEnterDecision(167, false);
 			try
 			{
-				alt166 = dfa166.Predict(input);
+				alt167 = dfa167.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(166); }
-			switch (alt166)
+			} finally { DebugExitDecision(167); }
+			switch (alt167)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -15439,50 +15478,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(382, 5);
 				// JavaScript.g:382:5: ( LT )*
-				try { DebugEnterSubRule(164);
-				while (true)
-				{
-					int alt164=2;
-					try { DebugEnterDecision(164, false);
-					int LA164_1 = input.LA(1);
-
-					if ((LA164_1==LT))
-					{
-						alt164 = 1;
-					}
-
-
-					} finally { DebugExitDecision(164); }
-					switch ( alt164 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:382:5: LT
-						{
-						DebugLocation(382, 5);
-						LT310=(IToken)Match(input,LT,Follow._LT_in_logicalORExpression3597); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT310);
-
-
-						}
-						break;
-
-					default:
-						goto loop164;
-					}
-				}
-
-				loop164:
-					;
-
-				} finally { DebugExitSubRule(164); }
-
-				DebugLocation(382, 9);
-				string_literal311=(IToken)Match(input,113,Follow._113_in_logicalORExpression3600); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_113.Add(string_literal311);
-
-				DebugLocation(382, 14);
-				// JavaScript.g:382:14: ( LT )*
 				try { DebugEnterSubRule(165);
 				while (true)
 				{
@@ -15501,11 +15496,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:382:14: LT
+						// JavaScript.g:382:5: LT
 						{
-						DebugLocation(382, 14);
-						LT312=(IToken)Match(input,LT,Follow._LT_in_logicalORExpression3602); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT312);
+						DebugLocation(382, 5);
+						LT310=(IToken)Match(input,LT,Follow._LT_in_logicalORExpression3599); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT310);
 
 
 						}
@@ -15521,8 +15516,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(165); }
 
+				DebugLocation(382, 9);
+				string_literal311=(IToken)Match(input,113,Follow._113_in_logicalORExpression3602); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_113.Add(string_literal311);
+
+				DebugLocation(382, 14);
+				// JavaScript.g:382:14: ( LT )*
+				try { DebugEnterSubRule(166);
+				while (true)
+				{
+					int alt166=2;
+					try { DebugEnterDecision(166, false);
+					int LA166_1 = input.LA(1);
+
+					if ((LA166_1==LT))
+					{
+						alt166 = 1;
+					}
+
+
+					} finally { DebugExitDecision(166); }
+					switch ( alt166 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:382:14: LT
+						{
+						DebugLocation(382, 14);
+						LT312=(IToken)Match(input,LT,Follow._LT_in_logicalORExpression3604); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT312);
+
+
+						}
+						break;
+
+					default:
+						goto loop166;
+					}
+				}
+
+				loop166:
+					;
+
+				} finally { DebugExitSubRule(166); }
+
 				DebugLocation(382, 18);
-				PushFollow(Follow._logicalORExpression_in_logicalORExpression3605);
+				PushFollow(Follow._logicalORExpression_in_logicalORExpression3607);
 				logicalORExpression313=logicalORExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -15603,7 +15642,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(166); }
+			} finally { DebugExitSubRule(167); }
 
 
 			}
@@ -15677,27 +15716,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:390:3: logicalANDExpressionNoIn ( ( ( LT )* '||' ( LT )* logicalORExpressionNoIn ) -> ^( '||' logicalANDExpressionNoIn logicalORExpressionNoIn ) | -> logicalANDExpressionNoIn )
 			{
 			DebugLocation(390, 3);
-			PushFollow(Follow._logicalANDExpressionNoIn_in_logicalORExpressionNoIn3653);
+			PushFollow(Follow._logicalANDExpressionNoIn_in_logicalORExpressionNoIn3655);
 			logicalANDExpressionNoIn314=logicalANDExpressionNoIn();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_logicalANDExpressionNoIn.Add(logicalANDExpressionNoIn314.Tree);
 			DebugLocation(391, 3);
 			// JavaScript.g:391:3: ( ( ( LT )* '||' ( LT )* logicalORExpressionNoIn ) -> ^( '||' logicalANDExpressionNoIn logicalORExpressionNoIn ) | -> logicalANDExpressionNoIn )
-			int alt169=2;
-			try { DebugEnterSubRule(169);
-			try { DebugEnterDecision(169, false);
+			int alt170=2;
+			try { DebugEnterSubRule(170);
+			try { DebugEnterDecision(170, false);
 			try
 			{
-				alt169 = dfa169.Predict(input);
+				alt170 = dfa170.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(169); }
-			switch (alt169)
+			} finally { DebugExitDecision(170); }
+			switch (alt170)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -15710,50 +15749,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(392, 5);
 				// JavaScript.g:392:5: ( LT )*
-				try { DebugEnterSubRule(167);
-				while (true)
-				{
-					int alt167=2;
-					try { DebugEnterDecision(167, false);
-					int LA167_1 = input.LA(1);
-
-					if ((LA167_1==LT))
-					{
-						alt167 = 1;
-					}
-
-
-					} finally { DebugExitDecision(167); }
-					switch ( alt167 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:392:5: LT
-						{
-						DebugLocation(392, 5);
-						LT315=(IToken)Match(input,LT,Follow._LT_in_logicalORExpressionNoIn3663); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT315);
-
-
-						}
-						break;
-
-					default:
-						goto loop167;
-					}
-				}
-
-				loop167:
-					;
-
-				} finally { DebugExitSubRule(167); }
-
-				DebugLocation(392, 9);
-				string_literal316=(IToken)Match(input,113,Follow._113_in_logicalORExpressionNoIn3666); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_113.Add(string_literal316);
-
-				DebugLocation(392, 14);
-				// JavaScript.g:392:14: ( LT )*
 				try { DebugEnterSubRule(168);
 				while (true)
 				{
@@ -15772,11 +15767,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:392:14: LT
+						// JavaScript.g:392:5: LT
 						{
-						DebugLocation(392, 14);
-						LT317=(IToken)Match(input,LT,Follow._LT_in_logicalORExpressionNoIn3668); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT317);
+						DebugLocation(392, 5);
+						LT315=(IToken)Match(input,LT,Follow._LT_in_logicalORExpressionNoIn3665); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT315);
 
 
 						}
@@ -15792,8 +15787,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(168); }
 
+				DebugLocation(392, 9);
+				string_literal316=(IToken)Match(input,113,Follow._113_in_logicalORExpressionNoIn3668); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_113.Add(string_literal316);
+
+				DebugLocation(392, 14);
+				// JavaScript.g:392:14: ( LT )*
+				try { DebugEnterSubRule(169);
+				while (true)
+				{
+					int alt169=2;
+					try { DebugEnterDecision(169, false);
+					int LA169_1 = input.LA(1);
+
+					if ((LA169_1==LT))
+					{
+						alt169 = 1;
+					}
+
+
+					} finally { DebugExitDecision(169); }
+					switch ( alt169 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:392:14: LT
+						{
+						DebugLocation(392, 14);
+						LT317=(IToken)Match(input,LT,Follow._LT_in_logicalORExpressionNoIn3670); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT317);
+
+
+						}
+						break;
+
+					default:
+						goto loop169;
+					}
+				}
+
+				loop169:
+					;
+
+				} finally { DebugExitSubRule(169); }
+
 				DebugLocation(392, 18);
-				PushFollow(Follow._logicalORExpressionNoIn_in_logicalORExpressionNoIn3671);
+				PushFollow(Follow._logicalORExpressionNoIn_in_logicalORExpressionNoIn3673);
 				logicalORExpressionNoIn318=logicalORExpressionNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -15874,7 +15913,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(169); }
+			} finally { DebugExitSubRule(170); }
 
 
 			}
@@ -15948,27 +15987,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:400:3: bitwiseORExpression ( ( ( LT )* '&&' ( LT )* logicalANDExpression ) -> ^( '&&' bitwiseORExpression logicalANDExpression ) | -> bitwiseORExpression )
 			{
 			DebugLocation(400, 3);
-			PushFollow(Follow._bitwiseORExpression_in_logicalANDExpression3719);
+			PushFollow(Follow._bitwiseORExpression_in_logicalANDExpression3721);
 			bitwiseORExpression319=bitwiseORExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_bitwiseORExpression.Add(bitwiseORExpression319.Tree);
 			DebugLocation(401, 3);
 			// JavaScript.g:401:3: ( ( ( LT )* '&&' ( LT )* logicalANDExpression ) -> ^( '&&' bitwiseORExpression logicalANDExpression ) | -> bitwiseORExpression )
-			int alt172=2;
-			try { DebugEnterSubRule(172);
-			try { DebugEnterDecision(172, false);
+			int alt173=2;
+			try { DebugEnterSubRule(173);
+			try { DebugEnterDecision(173, false);
 			try
 			{
-				alt172 = dfa172.Predict(input);
+				alt173 = dfa173.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(172); }
-			switch (alt172)
+			} finally { DebugExitDecision(173); }
+			switch (alt173)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -15981,50 +16020,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(402, 5);
 				// JavaScript.g:402:5: ( LT )*
-				try { DebugEnterSubRule(170);
-				while (true)
-				{
-					int alt170=2;
-					try { DebugEnterDecision(170, false);
-					int LA170_1 = input.LA(1);
-
-					if ((LA170_1==LT))
-					{
-						alt170 = 1;
-					}
-
-
-					} finally { DebugExitDecision(170); }
-					switch ( alt170 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:402:5: LT
-						{
-						DebugLocation(402, 5);
-						LT320=(IToken)Match(input,LT,Follow._LT_in_logicalANDExpression3730); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT320);
-
-
-						}
-						break;
-
-					default:
-						goto loop170;
-					}
-				}
-
-				loop170:
-					;
-
-				} finally { DebugExitSubRule(170); }
-
-				DebugLocation(402, 9);
-				string_literal321=(IToken)Match(input,45,Follow._45_in_logicalANDExpression3733); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_45.Add(string_literal321);
-
-				DebugLocation(402, 14);
-				// JavaScript.g:402:14: ( LT )*
 				try { DebugEnterSubRule(171);
 				while (true)
 				{
@@ -16043,11 +16038,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:402:14: LT
+						// JavaScript.g:402:5: LT
 						{
-						DebugLocation(402, 14);
-						LT322=(IToken)Match(input,LT,Follow._LT_in_logicalANDExpression3735); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT322);
+						DebugLocation(402, 5);
+						LT320=(IToken)Match(input,LT,Follow._LT_in_logicalANDExpression3732); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT320);
 
 
 						}
@@ -16063,8 +16058,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(171); }
 
+				DebugLocation(402, 9);
+				string_literal321=(IToken)Match(input,45,Follow._45_in_logicalANDExpression3735); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_45.Add(string_literal321);
+
+				DebugLocation(402, 14);
+				// JavaScript.g:402:14: ( LT )*
+				try { DebugEnterSubRule(172);
+				while (true)
+				{
+					int alt172=2;
+					try { DebugEnterDecision(172, false);
+					int LA172_1 = input.LA(1);
+
+					if ((LA172_1==LT))
+					{
+						alt172 = 1;
+					}
+
+
+					} finally { DebugExitDecision(172); }
+					switch ( alt172 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:402:14: LT
+						{
+						DebugLocation(402, 14);
+						LT322=(IToken)Match(input,LT,Follow._LT_in_logicalANDExpression3737); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT322);
+
+
+						}
+						break;
+
+					default:
+						goto loop172;
+					}
+				}
+
+				loop172:
+					;
+
+				} finally { DebugExitSubRule(172); }
+
 				DebugLocation(402, 18);
-				PushFollow(Follow._logicalANDExpression_in_logicalANDExpression3738);
+				PushFollow(Follow._logicalANDExpression_in_logicalANDExpression3740);
 				logicalANDExpression323=logicalANDExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -16145,7 +16184,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(172); }
+			} finally { DebugExitSubRule(173); }
 
 
 			}
@@ -16219,27 +16258,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:410:3: bitwiseORExpressionNoIn ( ( ( LT )* '&&' ( LT )* logicalANDExpressionNoIn ) -> ^( '&&' bitwiseORExpressionNoIn logicalANDExpressionNoIn ) | -> bitwiseORExpressionNoIn )
 			{
 			DebugLocation(410, 3);
-			PushFollow(Follow._bitwiseORExpressionNoIn_in_logicalANDExpressionNoIn3786);
+			PushFollow(Follow._bitwiseORExpressionNoIn_in_logicalANDExpressionNoIn3788);
 			bitwiseORExpressionNoIn324=bitwiseORExpressionNoIn();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_bitwiseORExpressionNoIn.Add(bitwiseORExpressionNoIn324.Tree);
 			DebugLocation(411, 3);
 			// JavaScript.g:411:3: ( ( ( LT )* '&&' ( LT )* logicalANDExpressionNoIn ) -> ^( '&&' bitwiseORExpressionNoIn logicalANDExpressionNoIn ) | -> bitwiseORExpressionNoIn )
-			int alt175=2;
-			try { DebugEnterSubRule(175);
-			try { DebugEnterDecision(175, false);
+			int alt176=2;
+			try { DebugEnterSubRule(176);
+			try { DebugEnterDecision(176, false);
 			try
 			{
-				alt175 = dfa175.Predict(input);
+				alt176 = dfa176.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(175); }
-			switch (alt175)
+			} finally { DebugExitDecision(176); }
+			switch (alt176)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -16252,50 +16291,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(412, 5);
 				// JavaScript.g:412:5: ( LT )*
-				try { DebugEnterSubRule(173);
-				while (true)
-				{
-					int alt173=2;
-					try { DebugEnterDecision(173, false);
-					int LA173_1 = input.LA(1);
-
-					if ((LA173_1==LT))
-					{
-						alt173 = 1;
-					}
-
-
-					} finally { DebugExitDecision(173); }
-					switch ( alt173 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:412:5: LT
-						{
-						DebugLocation(412, 5);
-						LT325=(IToken)Match(input,LT,Follow._LT_in_logicalANDExpressionNoIn3796); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT325);
-
-
-						}
-						break;
-
-					default:
-						goto loop173;
-					}
-				}
-
-				loop173:
-					;
-
-				} finally { DebugExitSubRule(173); }
-
-				DebugLocation(412, 9);
-				string_literal326=(IToken)Match(input,45,Follow._45_in_logicalANDExpressionNoIn3799); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_45.Add(string_literal326);
-
-				DebugLocation(412, 14);
-				// JavaScript.g:412:14: ( LT )*
 				try { DebugEnterSubRule(174);
 				while (true)
 				{
@@ -16314,11 +16309,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:412:14: LT
+						// JavaScript.g:412:5: LT
 						{
-						DebugLocation(412, 14);
-						LT327=(IToken)Match(input,LT,Follow._LT_in_logicalANDExpressionNoIn3801); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT327);
+						DebugLocation(412, 5);
+						LT325=(IToken)Match(input,LT,Follow._LT_in_logicalANDExpressionNoIn3798); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT325);
 
 
 						}
@@ -16334,8 +16329,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(174); }
 
+				DebugLocation(412, 9);
+				string_literal326=(IToken)Match(input,45,Follow._45_in_logicalANDExpressionNoIn3801); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_45.Add(string_literal326);
+
+				DebugLocation(412, 14);
+				// JavaScript.g:412:14: ( LT )*
+				try { DebugEnterSubRule(175);
+				while (true)
+				{
+					int alt175=2;
+					try { DebugEnterDecision(175, false);
+					int LA175_1 = input.LA(1);
+
+					if ((LA175_1==LT))
+					{
+						alt175 = 1;
+					}
+
+
+					} finally { DebugExitDecision(175); }
+					switch ( alt175 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:412:14: LT
+						{
+						DebugLocation(412, 14);
+						LT327=(IToken)Match(input,LT,Follow._LT_in_logicalANDExpressionNoIn3803); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT327);
+
+
+						}
+						break;
+
+					default:
+						goto loop175;
+					}
+				}
+
+				loop175:
+					;
+
+				} finally { DebugExitSubRule(175); }
+
 				DebugLocation(412, 18);
-				PushFollow(Follow._logicalANDExpressionNoIn_in_logicalANDExpressionNoIn3804);
+				PushFollow(Follow._logicalANDExpressionNoIn_in_logicalANDExpressionNoIn3806);
 				logicalANDExpressionNoIn328=logicalANDExpressionNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -16416,7 +16455,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(175); }
+			} finally { DebugExitSubRule(176); }
 
 
 			}
@@ -16490,27 +16529,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:420:3: bitwiseXORExpression ( ( ( LT )* '|' ( LT )* bitwiseORExpression ) -> ^( '|' bitwiseXORExpression bitwiseORExpression ) | -> bitwiseXORExpression )
 			{
 			DebugLocation(420, 3);
-			PushFollow(Follow._bitwiseXORExpression_in_bitwiseORExpression3852);
+			PushFollow(Follow._bitwiseXORExpression_in_bitwiseORExpression3854);
 			bitwiseXORExpression329=bitwiseXORExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_bitwiseXORExpression.Add(bitwiseXORExpression329.Tree);
 			DebugLocation(421, 3);
 			// JavaScript.g:421:3: ( ( ( LT )* '|' ( LT )* bitwiseORExpression ) -> ^( '|' bitwiseXORExpression bitwiseORExpression ) | -> bitwiseXORExpression )
-			int alt178=2;
-			try { DebugEnterSubRule(178);
-			try { DebugEnterDecision(178, false);
+			int alt179=2;
+			try { DebugEnterSubRule(179);
+			try { DebugEnterDecision(179, false);
 			try
 			{
-				alt178 = dfa178.Predict(input);
+				alt179 = dfa179.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(178); }
-			switch (alt178)
+			} finally { DebugExitDecision(179); }
+			switch (alt179)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -16523,50 +16562,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(422, 5);
 				// JavaScript.g:422:5: ( LT )*
-				try { DebugEnterSubRule(176);
-				while (true)
-				{
-					int alt176=2;
-					try { DebugEnterDecision(176, false);
-					int LA176_1 = input.LA(1);
-
-					if ((LA176_1==LT))
-					{
-						alt176 = 1;
-					}
-
-
-					} finally { DebugExitDecision(176); }
-					switch ( alt176 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:422:5: LT
-						{
-						DebugLocation(422, 5);
-						LT330=(IToken)Match(input,LT,Follow._LT_in_bitwiseORExpression3862); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT330);
-
-
-						}
-						break;
-
-					default:
-						goto loop176;
-					}
-				}
-
-				loop176:
-					;
-
-				} finally { DebugExitSubRule(176); }
-
-				DebugLocation(422, 9);
-				char_literal331=(IToken)Match(input,111,Follow._111_in_bitwiseORExpression3865); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_111.Add(char_literal331);
-
-				DebugLocation(422, 13);
-				// JavaScript.g:422:13: ( LT )*
 				try { DebugEnterSubRule(177);
 				while (true)
 				{
@@ -16585,11 +16580,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:422:13: LT
+						// JavaScript.g:422:5: LT
 						{
-						DebugLocation(422, 13);
-						LT332=(IToken)Match(input,LT,Follow._LT_in_bitwiseORExpression3867); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT332);
+						DebugLocation(422, 5);
+						LT330=(IToken)Match(input,LT,Follow._LT_in_bitwiseORExpression3864); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT330);
 
 
 						}
@@ -16605,8 +16600,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(177); }
 
+				DebugLocation(422, 9);
+				char_literal331=(IToken)Match(input,111,Follow._111_in_bitwiseORExpression3867); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_111.Add(char_literal331);
+
+				DebugLocation(422, 13);
+				// JavaScript.g:422:13: ( LT )*
+				try { DebugEnterSubRule(178);
+				while (true)
+				{
+					int alt178=2;
+					try { DebugEnterDecision(178, false);
+					int LA178_1 = input.LA(1);
+
+					if ((LA178_1==LT))
+					{
+						alt178 = 1;
+					}
+
+
+					} finally { DebugExitDecision(178); }
+					switch ( alt178 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:422:13: LT
+						{
+						DebugLocation(422, 13);
+						LT332=(IToken)Match(input,LT,Follow._LT_in_bitwiseORExpression3869); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT332);
+
+
+						}
+						break;
+
+					default:
+						goto loop178;
+					}
+				}
+
+				loop178:
+					;
+
+				} finally { DebugExitSubRule(178); }
+
 				DebugLocation(422, 17);
-				PushFollow(Follow._bitwiseORExpression_in_bitwiseORExpression3870);
+				PushFollow(Follow._bitwiseORExpression_in_bitwiseORExpression3872);
 				bitwiseORExpression333=bitwiseORExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -16687,7 +16726,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(178); }
+			} finally { DebugExitSubRule(179); }
 
 
 			}
@@ -16761,27 +16800,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:430:3: bitwiseXORExpressionNoIn ( ( ( LT )* '|' ( LT )* bitwiseORExpressionNoIn ) -> ^( '|' bitwiseXORExpressionNoIn bitwiseORExpressionNoIn ) | -> bitwiseXORExpressionNoIn )
 			{
 			DebugLocation(430, 3);
-			PushFollow(Follow._bitwiseXORExpressionNoIn_in_bitwiseORExpressionNoIn3918);
+			PushFollow(Follow._bitwiseXORExpressionNoIn_in_bitwiseORExpressionNoIn3920);
 			bitwiseXORExpressionNoIn334=bitwiseXORExpressionNoIn();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_bitwiseXORExpressionNoIn.Add(bitwiseXORExpressionNoIn334.Tree);
 			DebugLocation(431, 3);
 			// JavaScript.g:431:3: ( ( ( LT )* '|' ( LT )* bitwiseORExpressionNoIn ) -> ^( '|' bitwiseXORExpressionNoIn bitwiseORExpressionNoIn ) | -> bitwiseXORExpressionNoIn )
-			int alt181=2;
-			try { DebugEnterSubRule(181);
-			try { DebugEnterDecision(181, false);
+			int alt182=2;
+			try { DebugEnterSubRule(182);
+			try { DebugEnterDecision(182, false);
 			try
 			{
-				alt181 = dfa181.Predict(input);
+				alt182 = dfa182.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(181); }
-			switch (alt181)
+			} finally { DebugExitDecision(182); }
+			switch (alt182)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -16794,50 +16833,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(432, 5);
 				// JavaScript.g:432:5: ( LT )*
-				try { DebugEnterSubRule(179);
-				while (true)
-				{
-					int alt179=2;
-					try { DebugEnterDecision(179, false);
-					int LA179_1 = input.LA(1);
-
-					if ((LA179_1==LT))
-					{
-						alt179 = 1;
-					}
-
-
-					} finally { DebugExitDecision(179); }
-					switch ( alt179 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:432:5: LT
-						{
-						DebugLocation(432, 5);
-						LT335=(IToken)Match(input,LT,Follow._LT_in_bitwiseORExpressionNoIn3928); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT335);
-
-
-						}
-						break;
-
-					default:
-						goto loop179;
-					}
-				}
-
-				loop179:
-					;
-
-				} finally { DebugExitSubRule(179); }
-
-				DebugLocation(432, 9);
-				char_literal336=(IToken)Match(input,111,Follow._111_in_bitwiseORExpressionNoIn3931); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_111.Add(char_literal336);
-
-				DebugLocation(432, 13);
-				// JavaScript.g:432:13: ( LT )*
 				try { DebugEnterSubRule(180);
 				while (true)
 				{
@@ -16856,11 +16851,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:432:13: LT
+						// JavaScript.g:432:5: LT
 						{
-						DebugLocation(432, 13);
-						LT337=(IToken)Match(input,LT,Follow._LT_in_bitwiseORExpressionNoIn3933); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT337);
+						DebugLocation(432, 5);
+						LT335=(IToken)Match(input,LT,Follow._LT_in_bitwiseORExpressionNoIn3930); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT335);
 
 
 						}
@@ -16876,8 +16871,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(180); }
 
+				DebugLocation(432, 9);
+				char_literal336=(IToken)Match(input,111,Follow._111_in_bitwiseORExpressionNoIn3933); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_111.Add(char_literal336);
+
+				DebugLocation(432, 13);
+				// JavaScript.g:432:13: ( LT )*
+				try { DebugEnterSubRule(181);
+				while (true)
+				{
+					int alt181=2;
+					try { DebugEnterDecision(181, false);
+					int LA181_1 = input.LA(1);
+
+					if ((LA181_1==LT))
+					{
+						alt181 = 1;
+					}
+
+
+					} finally { DebugExitDecision(181); }
+					switch ( alt181 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:432:13: LT
+						{
+						DebugLocation(432, 13);
+						LT337=(IToken)Match(input,LT,Follow._LT_in_bitwiseORExpressionNoIn3935); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT337);
+
+
+						}
+						break;
+
+					default:
+						goto loop181;
+					}
+				}
+
+				loop181:
+					;
+
+				} finally { DebugExitSubRule(181); }
+
 				DebugLocation(432, 17);
-				PushFollow(Follow._bitwiseORExpressionNoIn_in_bitwiseORExpressionNoIn3936);
+				PushFollow(Follow._bitwiseORExpressionNoIn_in_bitwiseORExpressionNoIn3938);
 				bitwiseORExpressionNoIn338=bitwiseORExpressionNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -16958,7 +16997,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(181); }
+			} finally { DebugExitSubRule(182); }
 
 
 			}
@@ -17032,27 +17071,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:440:3: bitwiseANDExpression ( ( ( LT )* '^' ( LT )* bitwiseXORExpression ) -> ^( '^' bitwiseANDExpression bitwiseXORExpression ) | -> bitwiseANDExpression )
 			{
 			DebugLocation(440, 3);
-			PushFollow(Follow._bitwiseANDExpression_in_bitwiseXORExpression3984);
+			PushFollow(Follow._bitwiseANDExpression_in_bitwiseXORExpression3986);
 			bitwiseANDExpression339=bitwiseANDExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_bitwiseANDExpression.Add(bitwiseANDExpression339.Tree);
 			DebugLocation(441, 3);
 			// JavaScript.g:441:3: ( ( ( LT )* '^' ( LT )* bitwiseXORExpression ) -> ^( '^' bitwiseANDExpression bitwiseXORExpression ) | -> bitwiseANDExpression )
-			int alt184=2;
-			try { DebugEnterSubRule(184);
-			try { DebugEnterDecision(184, false);
+			int alt185=2;
+			try { DebugEnterSubRule(185);
+			try { DebugEnterDecision(185, false);
 			try
 			{
-				alt184 = dfa184.Predict(input);
+				alt185 = dfa185.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(184); }
-			switch (alt184)
+			} finally { DebugExitDecision(185); }
+			switch (alt185)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -17065,50 +17104,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(442, 5);
 				// JavaScript.g:442:5: ( LT )*
-				try { DebugEnterSubRule(182);
-				while (true)
-				{
-					int alt182=2;
-					try { DebugEnterDecision(182, false);
-					int LA182_1 = input.LA(1);
-
-					if ((LA182_1==LT))
-					{
-						alt182 = 1;
-					}
-
-
-					} finally { DebugExitDecision(182); }
-					switch ( alt182 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:442:5: LT
-						{
-						DebugLocation(442, 5);
-						LT340=(IToken)Match(input,LT,Follow._LT_in_bitwiseXORExpression3995); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT340);
-
-
-						}
-						break;
-
-					default:
-						goto loop182;
-					}
-				}
-
-				loop182:
-					;
-
-				} finally { DebugExitSubRule(182); }
-
-				DebugLocation(442, 9);
-				char_literal341=(IToken)Match(input,80,Follow._80_in_bitwiseXORExpression3998); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_80.Add(char_literal341);
-
-				DebugLocation(442, 13);
-				// JavaScript.g:442:13: ( LT )*
 				try { DebugEnterSubRule(183);
 				while (true)
 				{
@@ -17127,11 +17122,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:442:13: LT
+						// JavaScript.g:442:5: LT
 						{
-						DebugLocation(442, 13);
-						LT342=(IToken)Match(input,LT,Follow._LT_in_bitwiseXORExpression4000); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT342);
+						DebugLocation(442, 5);
+						LT340=(IToken)Match(input,LT,Follow._LT_in_bitwiseXORExpression3997); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT340);
 
 
 						}
@@ -17147,8 +17142,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(183); }
 
+				DebugLocation(442, 9);
+				char_literal341=(IToken)Match(input,80,Follow._80_in_bitwiseXORExpression4000); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_80.Add(char_literal341);
+
+				DebugLocation(442, 13);
+				// JavaScript.g:442:13: ( LT )*
+				try { DebugEnterSubRule(184);
+				while (true)
+				{
+					int alt184=2;
+					try { DebugEnterDecision(184, false);
+					int LA184_1 = input.LA(1);
+
+					if ((LA184_1==LT))
+					{
+						alt184 = 1;
+					}
+
+
+					} finally { DebugExitDecision(184); }
+					switch ( alt184 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:442:13: LT
+						{
+						DebugLocation(442, 13);
+						LT342=(IToken)Match(input,LT,Follow._LT_in_bitwiseXORExpression4002); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT342);
+
+
+						}
+						break;
+
+					default:
+						goto loop184;
+					}
+				}
+
+				loop184:
+					;
+
+				} finally { DebugExitSubRule(184); }
+
 				DebugLocation(442, 17);
-				PushFollow(Follow._bitwiseXORExpression_in_bitwiseXORExpression4003);
+				PushFollow(Follow._bitwiseXORExpression_in_bitwiseXORExpression4005);
 				bitwiseXORExpression343=bitwiseXORExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -17229,7 +17268,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(184); }
+			} finally { DebugExitSubRule(185); }
 
 
 			}
@@ -17303,27 +17342,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:450:3: bitwiseANDExpressionNoIn ( ( ( LT )* '^' ( LT )* bitwiseXORExpressionNoIn ) -> ^( '^' bitwiseANDExpressionNoIn bitwiseXORExpressionNoIn ) | -> bitwiseANDExpressionNoIn )
 			{
 			DebugLocation(450, 3);
-			PushFollow(Follow._bitwiseANDExpressionNoIn_in_bitwiseXORExpressionNoIn4051);
+			PushFollow(Follow._bitwiseANDExpressionNoIn_in_bitwiseXORExpressionNoIn4053);
 			bitwiseANDExpressionNoIn344=bitwiseANDExpressionNoIn();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_bitwiseANDExpressionNoIn.Add(bitwiseANDExpressionNoIn344.Tree);
 			DebugLocation(451, 3);
 			// JavaScript.g:451:3: ( ( ( LT )* '^' ( LT )* bitwiseXORExpressionNoIn ) -> ^( '^' bitwiseANDExpressionNoIn bitwiseXORExpressionNoIn ) | -> bitwiseANDExpressionNoIn )
-			int alt187=2;
-			try { DebugEnterSubRule(187);
-			try { DebugEnterDecision(187, false);
+			int alt188=2;
+			try { DebugEnterSubRule(188);
+			try { DebugEnterDecision(188, false);
 			try
 			{
-				alt187 = dfa187.Predict(input);
+				alt188 = dfa188.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(187); }
-			switch (alt187)
+			} finally { DebugExitDecision(188); }
+			switch (alt188)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -17336,50 +17375,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(452, 5);
 				// JavaScript.g:452:5: ( LT )*
-				try { DebugEnterSubRule(185);
-				while (true)
-				{
-					int alt185=2;
-					try { DebugEnterDecision(185, false);
-					int LA185_1 = input.LA(1);
-
-					if ((LA185_1==LT))
-					{
-						alt185 = 1;
-					}
-
-
-					} finally { DebugExitDecision(185); }
-					switch ( alt185 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:452:5: LT
-						{
-						DebugLocation(452, 5);
-						LT345=(IToken)Match(input,LT,Follow._LT_in_bitwiseXORExpressionNoIn4061); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT345);
-
-
-						}
-						break;
-
-					default:
-						goto loop185;
-					}
-				}
-
-				loop185:
-					;
-
-				} finally { DebugExitSubRule(185); }
-
-				DebugLocation(452, 9);
-				char_literal346=(IToken)Match(input,80,Follow._80_in_bitwiseXORExpressionNoIn4064); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_80.Add(char_literal346);
-
-				DebugLocation(452, 13);
-				// JavaScript.g:452:13: ( LT )*
 				try { DebugEnterSubRule(186);
 				while (true)
 				{
@@ -17398,11 +17393,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:452:13: LT
+						// JavaScript.g:452:5: LT
 						{
-						DebugLocation(452, 13);
-						LT347=(IToken)Match(input,LT,Follow._LT_in_bitwiseXORExpressionNoIn4066); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT347);
+						DebugLocation(452, 5);
+						LT345=(IToken)Match(input,LT,Follow._LT_in_bitwiseXORExpressionNoIn4063); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT345);
 
 
 						}
@@ -17418,8 +17413,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(186); }
 
+				DebugLocation(452, 9);
+				char_literal346=(IToken)Match(input,80,Follow._80_in_bitwiseXORExpressionNoIn4066); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_80.Add(char_literal346);
+
+				DebugLocation(452, 13);
+				// JavaScript.g:452:13: ( LT )*
+				try { DebugEnterSubRule(187);
+				while (true)
+				{
+					int alt187=2;
+					try { DebugEnterDecision(187, false);
+					int LA187_1 = input.LA(1);
+
+					if ((LA187_1==LT))
+					{
+						alt187 = 1;
+					}
+
+
+					} finally { DebugExitDecision(187); }
+					switch ( alt187 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:452:13: LT
+						{
+						DebugLocation(452, 13);
+						LT347=(IToken)Match(input,LT,Follow._LT_in_bitwiseXORExpressionNoIn4068); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT347);
+
+
+						}
+						break;
+
+					default:
+						goto loop187;
+					}
+				}
+
+				loop187:
+					;
+
+				} finally { DebugExitSubRule(187); }
+
 				DebugLocation(452, 17);
-				PushFollow(Follow._bitwiseXORExpressionNoIn_in_bitwiseXORExpressionNoIn4069);
+				PushFollow(Follow._bitwiseXORExpressionNoIn_in_bitwiseXORExpressionNoIn4071);
 				bitwiseXORExpressionNoIn348=bitwiseXORExpressionNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -17500,7 +17539,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(187); }
+			} finally { DebugExitSubRule(188); }
 
 
 			}
@@ -17574,27 +17613,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:460:3: equalityExpression ( ( ( LT )* '&' ( LT )* bitwiseANDExpression ) -> ^( '&' equalityExpression bitwiseANDExpression ) | -> equalityExpression )
 			{
 			DebugLocation(460, 3);
-			PushFollow(Follow._equalityExpression_in_bitwiseANDExpression4117);
+			PushFollow(Follow._equalityExpression_in_bitwiseANDExpression4119);
 			equalityExpression349=equalityExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_equalityExpression.Add(equalityExpression349.Tree);
 			DebugLocation(461, 3);
 			// JavaScript.g:461:3: ( ( ( LT )* '&' ( LT )* bitwiseANDExpression ) -> ^( '&' equalityExpression bitwiseANDExpression ) | -> equalityExpression )
-			int alt190=2;
-			try { DebugEnterSubRule(190);
-			try { DebugEnterDecision(190, false);
+			int alt191=2;
+			try { DebugEnterSubRule(191);
+			try { DebugEnterDecision(191, false);
 			try
 			{
-				alt190 = dfa190.Predict(input);
+				alt191 = dfa191.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(190); }
-			switch (alt190)
+			} finally { DebugExitDecision(191); }
+			switch (alt191)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -17607,50 +17646,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(462, 5);
 				// JavaScript.g:462:5: ( LT )*
-				try { DebugEnterSubRule(188);
-				while (true)
-				{
-					int alt188=2;
-					try { DebugEnterDecision(188, false);
-					int LA188_1 = input.LA(1);
-
-					if ((LA188_1==LT))
-					{
-						alt188 = 1;
-					}
-
-
-					} finally { DebugExitDecision(188); }
-					switch ( alt188 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:462:5: LT
-						{
-						DebugLocation(462, 5);
-						LT350=(IToken)Match(input,LT,Follow._LT_in_bitwiseANDExpression4128); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT350);
-
-
-						}
-						break;
-
-					default:
-						goto loop188;
-					}
-				}
-
-				loop188:
-					;
-
-				} finally { DebugExitSubRule(188); }
-
-				DebugLocation(462, 9);
-				char_literal351=(IToken)Match(input,46,Follow._46_in_bitwiseANDExpression4131); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_46.Add(char_literal351);
-
-				DebugLocation(462, 13);
-				// JavaScript.g:462:13: ( LT )*
 				try { DebugEnterSubRule(189);
 				while (true)
 				{
@@ -17669,11 +17664,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:462:13: LT
+						// JavaScript.g:462:5: LT
 						{
-						DebugLocation(462, 13);
-						LT352=(IToken)Match(input,LT,Follow._LT_in_bitwiseANDExpression4133); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT352);
+						DebugLocation(462, 5);
+						LT350=(IToken)Match(input,LT,Follow._LT_in_bitwiseANDExpression4130); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT350);
 
 
 						}
@@ -17689,8 +17684,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(189); }
 
+				DebugLocation(462, 9);
+				char_literal351=(IToken)Match(input,46,Follow._46_in_bitwiseANDExpression4133); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_46.Add(char_literal351);
+
+				DebugLocation(462, 13);
+				// JavaScript.g:462:13: ( LT )*
+				try { DebugEnterSubRule(190);
+				while (true)
+				{
+					int alt190=2;
+					try { DebugEnterDecision(190, false);
+					int LA190_1 = input.LA(1);
+
+					if ((LA190_1==LT))
+					{
+						alt190 = 1;
+					}
+
+
+					} finally { DebugExitDecision(190); }
+					switch ( alt190 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:462:13: LT
+						{
+						DebugLocation(462, 13);
+						LT352=(IToken)Match(input,LT,Follow._LT_in_bitwiseANDExpression4135); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT352);
+
+
+						}
+						break;
+
+					default:
+						goto loop190;
+					}
+				}
+
+				loop190:
+					;
+
+				} finally { DebugExitSubRule(190); }
+
 				DebugLocation(462, 17);
-				PushFollow(Follow._bitwiseANDExpression_in_bitwiseANDExpression4136);
+				PushFollow(Follow._bitwiseANDExpression_in_bitwiseANDExpression4138);
 				bitwiseANDExpression353=bitwiseANDExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -17771,7 +17810,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(190); }
+			} finally { DebugExitSubRule(191); }
 
 
 			}
@@ -17845,27 +17884,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:470:3: equalityExpressionNoIn ( ( ( LT )* '&' ( LT )* bitwiseANDExpressionNoIn ) -> ^( '&' equalityExpressionNoIn bitwiseANDExpressionNoIn ) | -> equalityExpressionNoIn )
 			{
 			DebugLocation(470, 3);
-			PushFollow(Follow._equalityExpressionNoIn_in_bitwiseANDExpressionNoIn4184);
+			PushFollow(Follow._equalityExpressionNoIn_in_bitwiseANDExpressionNoIn4186);
 			equalityExpressionNoIn354=equalityExpressionNoIn();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_equalityExpressionNoIn.Add(equalityExpressionNoIn354.Tree);
 			DebugLocation(471, 3);
 			// JavaScript.g:471:3: ( ( ( LT )* '&' ( LT )* bitwiseANDExpressionNoIn ) -> ^( '&' equalityExpressionNoIn bitwiseANDExpressionNoIn ) | -> equalityExpressionNoIn )
-			int alt193=2;
-			try { DebugEnterSubRule(193);
-			try { DebugEnterDecision(193, false);
+			int alt194=2;
+			try { DebugEnterSubRule(194);
+			try { DebugEnterDecision(194, false);
 			try
 			{
-				alt193 = dfa193.Predict(input);
+				alt194 = dfa194.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(193); }
-			switch (alt193)
+			} finally { DebugExitDecision(194); }
+			switch (alt194)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -17878,50 +17917,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(472, 5);
 				// JavaScript.g:472:5: ( LT )*
-				try { DebugEnterSubRule(191);
-				while (true)
-				{
-					int alt191=2;
-					try { DebugEnterDecision(191, false);
-					int LA191_1 = input.LA(1);
-
-					if ((LA191_1==LT))
-					{
-						alt191 = 1;
-					}
-
-
-					} finally { DebugExitDecision(191); }
-					switch ( alt191 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:472:5: LT
-						{
-						DebugLocation(472, 5);
-						LT355=(IToken)Match(input,LT,Follow._LT_in_bitwiseANDExpressionNoIn4194); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT355);
-
-
-						}
-						break;
-
-					default:
-						goto loop191;
-					}
-				}
-
-				loop191:
-					;
-
-				} finally { DebugExitSubRule(191); }
-
-				DebugLocation(472, 9);
-				char_literal356=(IToken)Match(input,46,Follow._46_in_bitwiseANDExpressionNoIn4197); if (state.failed) return retval; 
-				if (state.backtracking == 0) stream_46.Add(char_literal356);
-
-				DebugLocation(472, 13);
-				// JavaScript.g:472:13: ( LT )*
 				try { DebugEnterSubRule(192);
 				while (true)
 				{
@@ -17940,11 +17935,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:472:13: LT
+						// JavaScript.g:472:5: LT
 						{
-						DebugLocation(472, 13);
-						LT357=(IToken)Match(input,LT,Follow._LT_in_bitwiseANDExpressionNoIn4199); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT357);
+						DebugLocation(472, 5);
+						LT355=(IToken)Match(input,LT,Follow._LT_in_bitwiseANDExpressionNoIn4196); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT355);
 
 
 						}
@@ -17960,8 +17955,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(192); }
 
+				DebugLocation(472, 9);
+				char_literal356=(IToken)Match(input,46,Follow._46_in_bitwiseANDExpressionNoIn4199); if (state.failed) return retval; 
+				if (state.backtracking == 0) stream_46.Add(char_literal356);
+
+				DebugLocation(472, 13);
+				// JavaScript.g:472:13: ( LT )*
+				try { DebugEnterSubRule(193);
+				while (true)
+				{
+					int alt193=2;
+					try { DebugEnterDecision(193, false);
+					int LA193_1 = input.LA(1);
+
+					if ((LA193_1==LT))
+					{
+						alt193 = 1;
+					}
+
+
+					} finally { DebugExitDecision(193); }
+					switch ( alt193 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:472:13: LT
+						{
+						DebugLocation(472, 13);
+						LT357=(IToken)Match(input,LT,Follow._LT_in_bitwiseANDExpressionNoIn4201); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT357);
+
+
+						}
+						break;
+
+					default:
+						goto loop193;
+					}
+				}
+
+				loop193:
+					;
+
+				} finally { DebugExitSubRule(193); }
+
 				DebugLocation(472, 17);
-				PushFollow(Follow._bitwiseANDExpressionNoIn_in_bitwiseANDExpressionNoIn4202);
+				PushFollow(Follow._bitwiseANDExpressionNoIn_in_bitwiseANDExpressionNoIn4204);
 				bitwiseANDExpressionNoIn358=bitwiseANDExpressionNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -18042,7 +18081,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(193); }
+			} finally { DebugExitSubRule(194); }
 
 
 			}
@@ -18119,27 +18158,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:480:3: rel= relationalExpression ( ( ( LT )* (op= '==' |op= '!=' |op= '===' |op= '!==' ) ( LT )* eq= equalityExpression ) -> { op.Text == \"==\" }? ^( '==' $rel $eq) -> { op.Text == \"!=\" }? ^( '!=' $rel $eq) -> { op.Text == \"===\" }? ^( '===' $rel $eq) -> { op.Text == \"!==\" }? ^( '!==' $rel $eq) ->| -> relationalExpression )
 			{
 			DebugLocation(480, 6);
-			PushFollow(Follow._relationalExpression_in_equalityExpression4251);
+			PushFollow(Follow._relationalExpression_in_equalityExpression4253);
 			rel=relationalExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_relationalExpression.Add(rel.Tree);
 			DebugLocation(481, 3);
 			// JavaScript.g:481:3: ( ( ( LT )* (op= '==' |op= '!=' |op= '===' |op= '!==' ) ( LT )* eq= equalityExpression ) -> { op.Text == \"==\" }? ^( '==' $rel $eq) -> { op.Text == \"!=\" }? ^( '!=' $rel $eq) -> { op.Text == \"===\" }? ^( '===' $rel $eq) -> { op.Text == \"!==\" }? ^( '!==' $rel $eq) ->| -> relationalExpression )
-			int alt197=2;
-			try { DebugEnterSubRule(197);
-			try { DebugEnterDecision(197, false);
+			int alt198=2;
+			try { DebugEnterSubRule(198);
+			try { DebugEnterDecision(198, false);
 			try
 			{
-				alt197 = dfa197.Predict(input);
+				alt198 = dfa198.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(197); }
-			switch (alt197)
+			} finally { DebugExitDecision(198); }
+			switch (alt198)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -18152,28 +18191,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(482, 5);
 				// JavaScript.g:482:5: ( LT )*
-				try { DebugEnterSubRule(194);
+				try { DebugEnterSubRule(195);
 				while (true)
 				{
-					int alt194=2;
-					try { DebugEnterDecision(194, false);
-					int LA194_1 = input.LA(1);
+					int alt195=2;
+					try { DebugEnterDecision(195, false);
+					int LA195_1 = input.LA(1);
 
-					if ((LA194_1==LT))
+					if ((LA195_1==LT))
 					{
-						alt194 = 1;
+						alt195 = 1;
 					}
 
 
-					} finally { DebugExitDecision(194); }
-					switch ( alt194 )
+					} finally { DebugExitDecision(195); }
+					switch ( alt195 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:482:5: LT
 						{
 						DebugLocation(482, 5);
-						LT359=(IToken)Match(input,LT,Follow._LT_in_equalityExpression4262); if (state.failed) return retval; 
+						LT359=(IToken)Match(input,LT,Follow._LT_in_equalityExpression4264); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT359);
 
 
@@ -18181,60 +18220,60 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop194;
+						goto loop195;
 					}
 				}
 
-				loop194:
+				loop195:
 					;
 
-				} finally { DebugExitSubRule(194); }
+				} finally { DebugExitSubRule(195); }
 
 				DebugLocation(482, 9);
 				// JavaScript.g:482:9: (op= '==' |op= '!=' |op= '===' |op= '!==' )
-				int alt195=4;
-				try { DebugEnterSubRule(195);
-				try { DebugEnterDecision(195, false);
+				int alt196=4;
+				try { DebugEnterSubRule(196);
+				try { DebugEnterDecision(196, false);
 				switch (input.LA(1))
 				{
 				case 69:
 					{
-					alt195 = 1;
+					alt196 = 1;
 					}
 					break;
 				case 41:
 					{
-					alt195 = 2;
+					alt196 = 2;
 					}
 					break;
 				case 70:
 					{
-					alt195 = 3;
+					alt196 = 3;
 					}
 					break;
 				case 42:
 					{
-					alt195 = 4;
+					alt196 = 4;
 					}
 					break;
 				default:
 					{
 						if (state.backtracking>0) {state.failed=true; return retval;}
-						NoViableAltException nvae = new NoViableAltException("", 195, 0, input, 1);
+						NoViableAltException nvae = new NoViableAltException("", 196, 0, input, 1);
 						DebugRecognitionException(nvae);
 						throw nvae;
 					}
 				}
 
-				} finally { DebugExitDecision(195); }
-				switch (alt195)
+				} finally { DebugExitDecision(196); }
+				switch (alt196)
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:482:10: op= '=='
 					{
 					DebugLocation(482, 12);
-					op=(IToken)Match(input,69,Follow._69_in_equalityExpression4268); if (state.failed) return retval; 
+					op=(IToken)Match(input,69,Follow._69_in_equalityExpression4270); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_69.Add(op);
 
 
@@ -18245,7 +18284,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:482:20: op= '!='
 					{
 					DebugLocation(482, 22);
-					op=(IToken)Match(input,41,Follow._41_in_equalityExpression4274); if (state.failed) return retval; 
+					op=(IToken)Match(input,41,Follow._41_in_equalityExpression4276); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_41.Add(op);
 
 
@@ -18256,7 +18295,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:482:30: op= '==='
 					{
 					DebugLocation(482, 32);
-					op=(IToken)Match(input,70,Follow._70_in_equalityExpression4280); if (state.failed) return retval; 
+					op=(IToken)Match(input,70,Follow._70_in_equalityExpression4282); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_70.Add(op);
 
 
@@ -18267,7 +18306,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:482:41: op= '!=='
 					{
 					DebugLocation(482, 43);
-					op=(IToken)Match(input,42,Follow._42_in_equalityExpression4286); if (state.failed) return retval; 
+					op=(IToken)Match(input,42,Follow._42_in_equalityExpression4288); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_42.Add(op);
 
 
@@ -18275,32 +18314,32 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				}
-				} finally { DebugExitSubRule(195); }
+				} finally { DebugExitSubRule(196); }
 
 				DebugLocation(482, 51);
 				// JavaScript.g:482:51: ( LT )*
-				try { DebugEnterSubRule(196);
+				try { DebugEnterSubRule(197);
 				while (true)
 				{
-					int alt196=2;
-					try { DebugEnterDecision(196, false);
-					int LA196_1 = input.LA(1);
+					int alt197=2;
+					try { DebugEnterDecision(197, false);
+					int LA197_1 = input.LA(1);
 
-					if ((LA196_1==LT))
+					if ((LA197_1==LT))
 					{
-						alt196 = 1;
+						alt197 = 1;
 					}
 
 
-					} finally { DebugExitDecision(196); }
-					switch ( alt196 )
+					} finally { DebugExitDecision(197); }
+					switch ( alt197 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:482:51: LT
 						{
 						DebugLocation(482, 51);
-						LT360=(IToken)Match(input,LT,Follow._LT_in_equalityExpression4289); if (state.failed) return retval; 
+						LT360=(IToken)Match(input,LT,Follow._LT_in_equalityExpression4291); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT360);
 
 
@@ -18308,17 +18347,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop196;
+						goto loop197;
 					}
 				}
 
-				loop196:
+				loop197:
 					;
 
-				} finally { DebugExitSubRule(196); }
+				} finally { DebugExitSubRule(197); }
 
 				DebugLocation(482, 57);
-				PushFollow(Follow._equalityExpression_in_equalityExpression4294);
+				PushFollow(Follow._equalityExpression_in_equalityExpression4296);
 				eq=equalityExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -18464,7 +18503,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(197); }
+			} finally { DebugExitSubRule(198); }
 
 
 			}
@@ -18547,27 +18586,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:494:3: relationalExpressionNoIn ( ( ( LT )* ( '==' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) | '!=' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) | '===' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) | '!==' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) ) ( LT )* equalityExpressionNoIn ) | -> relationalExpressionNoIn )
 			{
 			DebugLocation(494, 3);
-			PushFollow(Follow._relationalExpressionNoIn_in_equalityExpressionNoIn4481);
+			PushFollow(Follow._relationalExpressionNoIn_in_equalityExpressionNoIn4483);
 			relationalExpressionNoIn361=relationalExpressionNoIn();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_relationalExpressionNoIn.Add(relationalExpressionNoIn361.Tree);
 			DebugLocation(495, 3);
 			// JavaScript.g:495:3: ( ( ( LT )* ( '==' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) | '!=' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) | '===' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) | '!==' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) ) ( LT )* equalityExpressionNoIn ) | -> relationalExpressionNoIn )
-			int alt201=2;
-			try { DebugEnterSubRule(201);
-			try { DebugEnterDecision(201, false);
+			int alt202=2;
+			try { DebugEnterSubRule(202);
+			try { DebugEnterDecision(202, false);
 			try
 			{
-				alt201 = dfa201.Predict(input);
+				alt202 = dfa202.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(201); }
-			switch (alt201)
+			} finally { DebugExitDecision(202); }
+			switch (alt202)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -18580,28 +18619,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(497, 5);
 				// JavaScript.g:497:5: ( LT )*
-				try { DebugEnterSubRule(198);
+				try { DebugEnterSubRule(199);
 				while (true)
 				{
-					int alt198=2;
-					try { DebugEnterDecision(198, false);
-					int LA198_1 = input.LA(1);
+					int alt199=2;
+					try { DebugEnterDecision(199, false);
+					int LA199_1 = input.LA(1);
 
-					if ((LA198_1==LT))
+					if ((LA199_1==LT))
 					{
-						alt198 = 1;
+						alt199 = 1;
 					}
 
 
-					} finally { DebugExitDecision(198); }
-					switch ( alt198 )
+					} finally { DebugExitDecision(199); }
+					switch ( alt199 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:497:5: LT
 						{
 						DebugLocation(497, 5);
-						LT362=(IToken)Match(input,LT,Follow._LT_in_equalityExpressionNoIn4496); if (state.failed) return retval; 
+						LT362=(IToken)Match(input,LT,Follow._LT_in_equalityExpressionNoIn4498); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT362);
 
 
@@ -18609,60 +18648,60 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop198;
+						goto loop199;
 					}
 				}
 
-				loop198:
+				loop199:
 					;
 
-				} finally { DebugExitSubRule(198); }
+				} finally { DebugExitSubRule(199); }
 
 				DebugLocation(498, 5);
 				// JavaScript.g:498:5: ( '==' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) | '!=' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) | '===' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) | '!==' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) )
-				int alt199=4;
-				try { DebugEnterSubRule(199);
-				try { DebugEnterDecision(199, false);
+				int alt200=4;
+				try { DebugEnterSubRule(200);
+				try { DebugEnterDecision(200, false);
 				switch (input.LA(1))
 				{
 				case 69:
 					{
-					alt199 = 1;
+					alt200 = 1;
 					}
 					break;
 				case 41:
 					{
-					alt199 = 2;
+					alt200 = 2;
 					}
 					break;
 				case 70:
 					{
-					alt199 = 3;
+					alt200 = 3;
 					}
 					break;
 				case 42:
 					{
-					alt199 = 4;
+					alt200 = 4;
 					}
 					break;
 				default:
 					{
 						if (state.backtracking>0) {state.failed=true; return retval;}
-						NoViableAltException nvae = new NoViableAltException("", 199, 0, input, 1);
+						NoViableAltException nvae = new NoViableAltException("", 200, 0, input, 1);
 						DebugRecognitionException(nvae);
 						throw nvae;
 					}
 				}
 
-				} finally { DebugExitDecision(199); }
-				switch (alt199)
+				} finally { DebugExitDecision(200); }
+				switch (alt200)
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:499:6: '=='
 					{
 					DebugLocation(499, 6);
-					string_literal363=(IToken)Match(input,69,Follow._69_in_equalityExpressionNoIn4511); if (state.failed) return retval; 
+					string_literal363=(IToken)Match(input,69,Follow._69_in_equalityExpressionNoIn4513); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_69.Add(string_literal363);
 
 
@@ -18710,7 +18749,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:500:8: '!='
 					{
 					DebugLocation(500, 8);
-					string_literal364=(IToken)Match(input,41,Follow._41_in_equalityExpressionNoIn4535); if (state.failed) return retval; 
+					string_literal364=(IToken)Match(input,41,Follow._41_in_equalityExpressionNoIn4537); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_41.Add(string_literal364);
 
 
@@ -18758,7 +18797,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:501:8: '==='
 					{
 					DebugLocation(501, 8);
-					string_literal365=(IToken)Match(input,70,Follow._70_in_equalityExpressionNoIn4559); if (state.failed) return retval; 
+					string_literal365=(IToken)Match(input,70,Follow._70_in_equalityExpressionNoIn4561); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_70.Add(string_literal365);
 
 
@@ -18806,7 +18845,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:502:8: '!=='
 					{
 					DebugLocation(502, 8);
-					string_literal366=(IToken)Match(input,42,Follow._42_in_equalityExpressionNoIn4583); if (state.failed) return retval; 
+					string_literal366=(IToken)Match(input,42,Follow._42_in_equalityExpressionNoIn4585); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_42.Add(string_literal366);
 
 
@@ -18851,32 +18890,32 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				}
-				} finally { DebugExitSubRule(199); }
+				} finally { DebugExitSubRule(200); }
 
 				DebugLocation(503, 7);
 				// JavaScript.g:503:7: ( LT )*
-				try { DebugEnterSubRule(200);
+				try { DebugEnterSubRule(201);
 				while (true)
 				{
-					int alt200=2;
-					try { DebugEnterDecision(200, false);
-					int LA200_1 = input.LA(1);
+					int alt201=2;
+					try { DebugEnterDecision(201, false);
+					int LA201_1 = input.LA(1);
 
-					if ((LA200_1==LT))
+					if ((LA201_1==LT))
 					{
-						alt200 = 1;
+						alt201 = 1;
 					}
 
 
-					} finally { DebugExitDecision(200); }
-					switch ( alt200 )
+					} finally { DebugExitDecision(201); }
+					switch ( alt201 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:503:7: LT
 						{
 						DebugLocation(503, 7);
-						LT367=(IToken)Match(input,LT,Follow._LT_in_equalityExpressionNoIn4606); if (state.failed) return retval; 
+						LT367=(IToken)Match(input,LT,Follow._LT_in_equalityExpressionNoIn4608); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT367);
 
 
@@ -18884,17 +18923,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop200;
+						goto loop201;
 					}
 				}
 
-				loop200:
+				loop201:
 					;
 
-				} finally { DebugExitSubRule(200); }
+				} finally { DebugExitSubRule(201); }
 
 				DebugLocation(503, 11);
-				PushFollow(Follow._equalityExpressionNoIn_in_equalityExpressionNoIn4609);
+				PushFollow(Follow._equalityExpressionNoIn_in_equalityExpressionNoIn4611);
 				equalityExpressionNoIn368=equalityExpressionNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -18938,7 +18977,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(201); }
+			} finally { DebugExitSubRule(202); }
 
 
 			}
@@ -19017,27 +19056,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:511:3: se= shiftExpression ( ( ( LT )* (op= '<' |op= '>' |op= '<=' |op= '>=' |op= 'instanceof' |op= 'in' ) ( LT )* rel= relationalExpression ) -> { op.Text == \"<\" }? ^( '<' $se $rel) -> { op.Text == \">\" }? ^( '>' $se $rel) -> { op.Text == \"<=\" }? ^( '<=' $se $rel) -> { op.Text == \">=\" }? ^( '>=' $se $rel) -> { op.Text == \"instanceof\" }? ^( 'instanceof' $se $rel) -> { op.Text == \"in\" }? ^( 'in' $se $rel) ->| -> $se)
 			{
 			DebugLocation(511, 5);
-			PushFollow(Follow._shiftExpression_in_relationalExpression4644);
+			PushFollow(Follow._shiftExpression_in_relationalExpression4646);
 			se=shiftExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_shiftExpression.Add(se.Tree);
 			DebugLocation(512, 3);
 			// JavaScript.g:512:3: ( ( ( LT )* (op= '<' |op= '>' |op= '<=' |op= '>=' |op= 'instanceof' |op= 'in' ) ( LT )* rel= relationalExpression ) -> { op.Text == \"<\" }? ^( '<' $se $rel) -> { op.Text == \">\" }? ^( '>' $se $rel) -> { op.Text == \"<=\" }? ^( '<=' $se $rel) -> { op.Text == \">=\" }? ^( '>=' $se $rel) -> { op.Text == \"instanceof\" }? ^( 'instanceof' $se $rel) -> { op.Text == \"in\" }? ^( 'in' $se $rel) ->| -> $se)
-			int alt205=2;
-			try { DebugEnterSubRule(205);
-			try { DebugEnterDecision(205, false);
+			int alt206=2;
+			try { DebugEnterSubRule(206);
+			try { DebugEnterDecision(206, false);
 			try
 			{
-				alt205 = dfa205.Predict(input);
+				alt206 = dfa206.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(205); }
-			switch (alt205)
+			} finally { DebugExitDecision(206); }
+			switch (alt206)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -19050,28 +19089,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(513, 5);
 				// JavaScript.g:513:5: ( LT )*
-				try { DebugEnterSubRule(202);
+				try { DebugEnterSubRule(203);
 				while (true)
 				{
-					int alt202=2;
-					try { DebugEnterDecision(202, false);
-					int LA202_1 = input.LA(1);
+					int alt203=2;
+					try { DebugEnterDecision(203, false);
+					int LA203_1 = input.LA(1);
 
-					if ((LA202_1==LT))
+					if ((LA203_1==LT))
 					{
-						alt202 = 1;
+						alt203 = 1;
 					}
 
 
-					} finally { DebugExitDecision(202); }
-					switch ( alt202 )
+					} finally { DebugExitDecision(203); }
+					switch ( alt203 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:513:5: LT
 						{
 						DebugLocation(513, 5);
-						LT369=(IToken)Match(input,LT,Follow._LT_in_relationalExpression4655); if (state.failed) return retval; 
+						LT369=(IToken)Match(input,LT,Follow._LT_in_relationalExpression4657); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT369);
 
 
@@ -19079,70 +19118,70 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop202;
+						goto loop203;
 					}
 				}
 
-				loop202:
+				loop203:
 					;
 
-				} finally { DebugExitSubRule(202); }
+				} finally { DebugExitSubRule(203); }
 
 				DebugLocation(513, 9);
 				// JavaScript.g:513:9: (op= '<' |op= '>' |op= '<=' |op= '>=' |op= 'instanceof' |op= 'in' )
-				int alt203=6;
-				try { DebugEnterSubRule(203);
-				try { DebugEnterDecision(203, false);
+				int alt204=6;
+				try { DebugEnterSubRule(204);
+				try { DebugEnterDecision(204, false);
 				switch (input.LA(1))
 				{
 				case 64:
 					{
-					alt203 = 1;
+					alt204 = 1;
 					}
 					break;
 				case 71:
 					{
-					alt203 = 2;
+					alt204 = 2;
 					}
 					break;
 				case 67:
 					{
-					alt203 = 3;
+					alt204 = 3;
 					}
 					break;
 				case 72:
 					{
-					alt203 = 4;
+					alt204 = 4;
 					}
 					break;
 				case 96:
 					{
-					alt203 = 5;
+					alt204 = 5;
 					}
 					break;
 				case 95:
 					{
-					alt203 = 6;
+					alt204 = 6;
 					}
 					break;
 				default:
 					{
 						if (state.backtracking>0) {state.failed=true; return retval;}
-						NoViableAltException nvae = new NoViableAltException("", 203, 0, input, 1);
+						NoViableAltException nvae = new NoViableAltException("", 204, 0, input, 1);
 						DebugRecognitionException(nvae);
 						throw nvae;
 					}
 				}
 
-				} finally { DebugExitDecision(203); }
-				switch (alt203)
+				} finally { DebugExitDecision(204); }
+				switch (alt204)
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:513:10: op= '<'
 					{
 					DebugLocation(513, 12);
-					op=(IToken)Match(input,64,Follow._64_in_relationalExpression4661); if (state.failed) return retval; 
+					op=(IToken)Match(input,64,Follow._64_in_relationalExpression4663); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_64.Add(op);
 
 
@@ -19153,7 +19192,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:513:19: op= '>'
 					{
 					DebugLocation(513, 21);
-					op=(IToken)Match(input,71,Follow._71_in_relationalExpression4667); if (state.failed) return retval; 
+					op=(IToken)Match(input,71,Follow._71_in_relationalExpression4669); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_71.Add(op);
 
 
@@ -19164,7 +19203,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:513:28: op= '<='
 					{
 					DebugLocation(513, 30);
-					op=(IToken)Match(input,67,Follow._67_in_relationalExpression4673); if (state.failed) return retval; 
+					op=(IToken)Match(input,67,Follow._67_in_relationalExpression4675); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_67.Add(op);
 
 
@@ -19175,7 +19214,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:513:38: op= '>='
 					{
 					DebugLocation(513, 40);
-					op=(IToken)Match(input,72,Follow._72_in_relationalExpression4679); if (state.failed) return retval; 
+					op=(IToken)Match(input,72,Follow._72_in_relationalExpression4681); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_72.Add(op);
 
 
@@ -19186,7 +19225,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:513:48: op= 'instanceof'
 					{
 					DebugLocation(513, 50);
-					op=(IToken)Match(input,96,Follow._96_in_relationalExpression4685); if (state.failed) return retval; 
+					op=(IToken)Match(input,96,Follow._96_in_relationalExpression4687); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_96.Add(op);
 
 
@@ -19197,7 +19236,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:513:66: op= 'in'
 					{
 					DebugLocation(513, 68);
-					op=(IToken)Match(input,95,Follow._95_in_relationalExpression4691); if (state.failed) return retval; 
+					op=(IToken)Match(input,95,Follow._95_in_relationalExpression4693); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_95.Add(op);
 
 
@@ -19205,32 +19244,32 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				}
-				} finally { DebugExitSubRule(203); }
+				} finally { DebugExitSubRule(204); }
 
 				DebugLocation(513, 75);
 				// JavaScript.g:513:75: ( LT )*
-				try { DebugEnterSubRule(204);
+				try { DebugEnterSubRule(205);
 				while (true)
 				{
-					int alt204=2;
-					try { DebugEnterDecision(204, false);
-					int LA204_1 = input.LA(1);
+					int alt205=2;
+					try { DebugEnterDecision(205, false);
+					int LA205_1 = input.LA(1);
 
-					if ((LA204_1==LT))
+					if ((LA205_1==LT))
 					{
-						alt204 = 1;
+						alt205 = 1;
 					}
 
 
-					} finally { DebugExitDecision(204); }
-					switch ( alt204 )
+					} finally { DebugExitDecision(205); }
+					switch ( alt205 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:513:75: LT
 						{
 						DebugLocation(513, 75);
-						LT370=(IToken)Match(input,LT,Follow._LT_in_relationalExpression4694); if (state.failed) return retval; 
+						LT370=(IToken)Match(input,LT,Follow._LT_in_relationalExpression4696); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT370);
 
 
@@ -19238,17 +19277,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop204;
+						goto loop205;
 					}
 				}
 
-				loop204:
+				loop205:
 					;
 
-				} finally { DebugExitSubRule(204); }
+				} finally { DebugExitSubRule(205); }
 
 				DebugLocation(513, 82);
-				PushFollow(Follow._relationalExpression_in_relationalExpression4699);
+				PushFollow(Follow._relationalExpression_in_relationalExpression4701);
 				rel=relationalExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -19433,7 +19472,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(205); }
+			} finally { DebugExitSubRule(206); }
 
 
 			}
@@ -19519,27 +19558,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:527:3: shiftExpression ( ( ( LT )* ( '<' -> ^( '<' shiftExpression relationalExpressionNoIn ) | '>' -> ^( '>' shiftExpression relationalExpressionNoIn ) | '<=' -> ^( '<=' shiftExpression relationalExpressionNoIn ) | '>=' -> ^( '>=' shiftExpression relationalExpressionNoIn ) | 'instanceof' -> ^( 'instanceof' shiftExpression relationalExpressionNoIn ) ) ( LT )* relationalExpressionNoIn ) | -> shiftExpression )
 			{
 			DebugLocation(527, 3);
-			PushFollow(Follow._shiftExpression_in_relationalExpressionNoIn4958);
+			PushFollow(Follow._shiftExpression_in_relationalExpressionNoIn4960);
 			shiftExpression371=shiftExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_shiftExpression.Add(shiftExpression371.Tree);
 			DebugLocation(528, 3);
 			// JavaScript.g:528:3: ( ( ( LT )* ( '<' -> ^( '<' shiftExpression relationalExpressionNoIn ) | '>' -> ^( '>' shiftExpression relationalExpressionNoIn ) | '<=' -> ^( '<=' shiftExpression relationalExpressionNoIn ) | '>=' -> ^( '>=' shiftExpression relationalExpressionNoIn ) | 'instanceof' -> ^( 'instanceof' shiftExpression relationalExpressionNoIn ) ) ( LT )* relationalExpressionNoIn ) | -> shiftExpression )
-			int alt209=2;
-			try { DebugEnterSubRule(209);
-			try { DebugEnterDecision(209, false);
+			int alt210=2;
+			try { DebugEnterSubRule(210);
+			try { DebugEnterDecision(210, false);
 			try
 			{
-				alt209 = dfa209.Predict(input);
+				alt210 = dfa210.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(209); }
-			switch (alt209)
+			} finally { DebugExitDecision(210); }
+			switch (alt210)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -19552,28 +19591,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(530, 5);
 				// JavaScript.g:530:5: ( LT )*
-				try { DebugEnterSubRule(206);
+				try { DebugEnterSubRule(207);
 				while (true)
 				{
-					int alt206=2;
-					try { DebugEnterDecision(206, false);
-					int LA206_1 = input.LA(1);
+					int alt207=2;
+					try { DebugEnterDecision(207, false);
+					int LA207_1 = input.LA(1);
 
-					if ((LA206_1==LT))
+					if ((LA207_1==LT))
 					{
-						alt206 = 1;
+						alt207 = 1;
 					}
 
 
-					} finally { DebugExitDecision(206); }
-					switch ( alt206 )
+					} finally { DebugExitDecision(207); }
+					switch ( alt207 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:530:5: LT
 						{
 						DebugLocation(530, 5);
-						LT372=(IToken)Match(input,LT,Follow._LT_in_relationalExpressionNoIn4974); if (state.failed) return retval; 
+						LT372=(IToken)Match(input,LT,Follow._LT_in_relationalExpressionNoIn4976); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT372);
 
 
@@ -19581,65 +19620,65 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop206;
+						goto loop207;
 					}
 				}
 
-				loop206:
+				loop207:
 					;
 
-				} finally { DebugExitSubRule(206); }
+				} finally { DebugExitSubRule(207); }
 
 				DebugLocation(531, 5);
 				// JavaScript.g:531:5: ( '<' -> ^( '<' shiftExpression relationalExpressionNoIn ) | '>' -> ^( '>' shiftExpression relationalExpressionNoIn ) | '<=' -> ^( '<=' shiftExpression relationalExpressionNoIn ) | '>=' -> ^( '>=' shiftExpression relationalExpressionNoIn ) | 'instanceof' -> ^( 'instanceof' shiftExpression relationalExpressionNoIn ) )
-				int alt207=5;
-				try { DebugEnterSubRule(207);
-				try { DebugEnterDecision(207, false);
+				int alt208=5;
+				try { DebugEnterSubRule(208);
+				try { DebugEnterDecision(208, false);
 				switch (input.LA(1))
 				{
 				case 64:
 					{
-					alt207 = 1;
+					alt208 = 1;
 					}
 					break;
 				case 71:
 					{
-					alt207 = 2;
+					alt208 = 2;
 					}
 					break;
 				case 67:
 					{
-					alt207 = 3;
+					alt208 = 3;
 					}
 					break;
 				case 72:
 					{
-					alt207 = 4;
+					alt208 = 4;
 					}
 					break;
 				case 96:
 					{
-					alt207 = 5;
+					alt208 = 5;
 					}
 					break;
 				default:
 					{
 						if (state.backtracking>0) {state.failed=true; return retval;}
-						NoViableAltException nvae = new NoViableAltException("", 207, 0, input, 1);
+						NoViableAltException nvae = new NoViableAltException("", 208, 0, input, 1);
 						DebugRecognitionException(nvae);
 						throw nvae;
 					}
 				}
 
-				} finally { DebugExitDecision(207); }
-				switch (alt207)
+				} finally { DebugExitDecision(208); }
+				switch (alt208)
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:532:6: '<'
 					{
 					DebugLocation(532, 6);
-					char_literal373=(IToken)Match(input,64,Follow._64_in_relationalExpressionNoIn4989); if (state.failed) return retval; 
+					char_literal373=(IToken)Match(input,64,Follow._64_in_relationalExpressionNoIn4991); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_64.Add(char_literal373);
 
 
@@ -19687,7 +19726,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:533:8: '>'
 					{
 					DebugLocation(533, 8);
-					char_literal374=(IToken)Match(input,71,Follow._71_in_relationalExpressionNoIn5017); if (state.failed) return retval; 
+					char_literal374=(IToken)Match(input,71,Follow._71_in_relationalExpressionNoIn5019); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_71.Add(char_literal374);
 
 
@@ -19735,7 +19774,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:534:8: '<='
 					{
 					DebugLocation(534, 8);
-					string_literal375=(IToken)Match(input,67,Follow._67_in_relationalExpressionNoIn5044); if (state.failed) return retval; 
+					string_literal375=(IToken)Match(input,67,Follow._67_in_relationalExpressionNoIn5046); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_67.Add(string_literal375);
 
 
@@ -19783,7 +19822,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:535:8: '>='
 					{
 					DebugLocation(535, 8);
-					string_literal376=(IToken)Match(input,72,Follow._72_in_relationalExpressionNoIn5071); if (state.failed) return retval; 
+					string_literal376=(IToken)Match(input,72,Follow._72_in_relationalExpressionNoIn5073); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_72.Add(string_literal376);
 
 
@@ -19831,7 +19870,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:536:8: 'instanceof'
 					{
 					DebugLocation(536, 8);
-					string_literal377=(IToken)Match(input,96,Follow._96_in_relationalExpressionNoIn5098); if (state.failed) return retval; 
+					string_literal377=(IToken)Match(input,96,Follow._96_in_relationalExpressionNoIn5100); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_96.Add(string_literal377);
 
 
@@ -19876,32 +19915,32 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				}
-				} finally { DebugExitSubRule(207); }
+				} finally { DebugExitSubRule(208); }
 
 				DebugLocation(537, 7);
 				// JavaScript.g:537:7: ( LT )*
-				try { DebugEnterSubRule(208);
+				try { DebugEnterSubRule(209);
 				while (true)
 				{
-					int alt208=2;
-					try { DebugEnterDecision(208, false);
-					int LA208_1 = input.LA(1);
+					int alt209=2;
+					try { DebugEnterDecision(209, false);
+					int LA209_1 = input.LA(1);
 
-					if ((LA208_1==LT))
+					if ((LA209_1==LT))
 					{
-						alt208 = 1;
+						alt209 = 1;
 					}
 
 
-					} finally { DebugExitDecision(208); }
-					switch ( alt208 )
+					} finally { DebugExitDecision(209); }
+					switch ( alt209 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:537:7: LT
 						{
 						DebugLocation(537, 7);
-						LT378=(IToken)Match(input,LT,Follow._LT_in_relationalExpressionNoIn5122); if (state.failed) return retval; 
+						LT378=(IToken)Match(input,LT,Follow._LT_in_relationalExpressionNoIn5124); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT378);
 
 
@@ -19909,17 +19948,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop208;
+						goto loop209;
 					}
 				}
 
-				loop208:
+				loop209:
 					;
 
-				} finally { DebugExitSubRule(208); }
+				} finally { DebugExitSubRule(209); }
 
 				DebugLocation(537, 11);
-				PushFollow(Follow._relationalExpressionNoIn_in_relationalExpressionNoIn5125);
+				PushFollow(Follow._relationalExpressionNoIn_in_relationalExpressionNoIn5127);
 				relationalExpressionNoIn379=relationalExpressionNoIn();
 				PopFollow();
 				if (state.failed) return retval;
@@ -19963,7 +20002,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(209); }
+			} finally { DebugExitSubRule(210); }
 
 
 			}
@@ -20039,27 +20078,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:545:9: add= additiveExpression ( ( ( LT )* (op= '<<' |op= '>>' |op= '>>>' ) ( LT )* shift= shiftExpression ) -> { op.Text == \"<<\" }? ^( '<<' $add $shift) -> { op.Text == \">>\" }? ^( '>>' $add $shift) -> { op.Text == \">>>\" }? ^( '>>>' $add $shift) ->| -> $add)
 			{
 			DebugLocation(545, 12);
-			PushFollow(Follow._additiveExpression_in_shiftExpression5165);
+			PushFollow(Follow._additiveExpression_in_shiftExpression5167);
 			add=additiveExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_additiveExpression.Add(add.Tree);
 			DebugLocation(546, 9);
 			// JavaScript.g:546:9: ( ( ( LT )* (op= '<<' |op= '>>' |op= '>>>' ) ( LT )* shift= shiftExpression ) -> { op.Text == \"<<\" }? ^( '<<' $add $shift) -> { op.Text == \">>\" }? ^( '>>' $add $shift) -> { op.Text == \">>>\" }? ^( '>>>' $add $shift) ->| -> $add)
-			int alt213=2;
-			try { DebugEnterSubRule(213);
-			try { DebugEnterDecision(213, false);
+			int alt214=2;
+			try { DebugEnterSubRule(214);
+			try { DebugEnterDecision(214, false);
 			try
 			{
-				alt213 = dfa213.Predict(input);
+				alt214 = dfa214.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(213); }
-			switch (alt213)
+			} finally { DebugExitDecision(214); }
+			switch (alt214)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -20072,28 +20111,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(547, 14);
 				// JavaScript.g:547:14: ( LT )*
-				try { DebugEnterSubRule(210);
+				try { DebugEnterSubRule(211);
 				while (true)
 				{
-					int alt210=2;
-					try { DebugEnterDecision(210, false);
-					int LA210_1 = input.LA(1);
+					int alt211=2;
+					try { DebugEnterDecision(211, false);
+					int LA211_1 = input.LA(1);
 
-					if ((LA210_1==LT))
+					if ((LA211_1==LT))
 					{
-						alt210 = 1;
+						alt211 = 1;
 					}
 
 
-					} finally { DebugExitDecision(210); }
-					switch ( alt210 )
+					} finally { DebugExitDecision(211); }
+					switch ( alt211 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:547:14: LT
 						{
 						DebugLocation(547, 14);
-						LT380=(IToken)Match(input,LT,Follow._LT_in_shiftExpression5191); if (state.failed) return retval; 
+						LT380=(IToken)Match(input,LT,Follow._LT_in_shiftExpression5193); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT380);
 
 
@@ -20101,55 +20140,55 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop210;
+						goto loop211;
 					}
 				}
 
-				loop210:
+				loop211:
 					;
 
-				} finally { DebugExitSubRule(210); }
+				} finally { DebugExitSubRule(211); }
 
 				DebugLocation(547, 18);
 				// JavaScript.g:547:18: (op= '<<' |op= '>>' |op= '>>>' )
-				int alt211=3;
-				try { DebugEnterSubRule(211);
-				try { DebugEnterDecision(211, false);
+				int alt212=3;
+				try { DebugEnterSubRule(212);
+				try { DebugEnterDecision(212, false);
 				switch (input.LA(1))
 				{
 				case 65:
 					{
-					alt211 = 1;
+					alt212 = 1;
 					}
 					break;
 				case 73:
 					{
-					alt211 = 2;
+					alt212 = 2;
 					}
 					break;
 				case 75:
 					{
-					alt211 = 3;
+					alt212 = 3;
 					}
 					break;
 				default:
 					{
 						if (state.backtracking>0) {state.failed=true; return retval;}
-						NoViableAltException nvae = new NoViableAltException("", 211, 0, input, 1);
+						NoViableAltException nvae = new NoViableAltException("", 212, 0, input, 1);
 						DebugRecognitionException(nvae);
 						throw nvae;
 					}
 				}
 
-				} finally { DebugExitDecision(211); }
-				switch (alt211)
+				} finally { DebugExitDecision(212); }
+				switch (alt212)
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:547:19: op= '<<'
 					{
 					DebugLocation(547, 21);
-					op=(IToken)Match(input,65,Follow._65_in_shiftExpression5197); if (state.failed) return retval; 
+					op=(IToken)Match(input,65,Follow._65_in_shiftExpression5199); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_65.Add(op);
 
 
@@ -20160,7 +20199,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:547:29: op= '>>'
 					{
 					DebugLocation(547, 31);
-					op=(IToken)Match(input,73,Follow._73_in_shiftExpression5203); if (state.failed) return retval; 
+					op=(IToken)Match(input,73,Follow._73_in_shiftExpression5205); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_73.Add(op);
 
 
@@ -20171,7 +20210,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:547:39: op= '>>>'
 					{
 					DebugLocation(547, 41);
-					op=(IToken)Match(input,75,Follow._75_in_shiftExpression5209); if (state.failed) return retval; 
+					op=(IToken)Match(input,75,Follow._75_in_shiftExpression5211); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_75.Add(op);
 
 
@@ -20179,32 +20218,32 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				}
-				} finally { DebugExitSubRule(211); }
+				} finally { DebugExitSubRule(212); }
 
 				DebugLocation(547, 49);
 				// JavaScript.g:547:49: ( LT )*
-				try { DebugEnterSubRule(212);
+				try { DebugEnterSubRule(213);
 				while (true)
 				{
-					int alt212=2;
-					try { DebugEnterDecision(212, false);
-					int LA212_1 = input.LA(1);
+					int alt213=2;
+					try { DebugEnterDecision(213, false);
+					int LA213_1 = input.LA(1);
 
-					if ((LA212_1==LT))
+					if ((LA213_1==LT))
 					{
-						alt212 = 1;
+						alt213 = 1;
 					}
 
 
-					} finally { DebugExitDecision(212); }
-					switch ( alt212 )
+					} finally { DebugExitDecision(213); }
+					switch ( alt213 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:547:49: LT
 						{
 						DebugLocation(547, 49);
-						LT381=(IToken)Match(input,LT,Follow._LT_in_shiftExpression5212); if (state.failed) return retval; 
+						LT381=(IToken)Match(input,LT,Follow._LT_in_shiftExpression5214); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT381);
 
 
@@ -20212,17 +20251,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop212;
+						goto loop213;
 					}
 				}
 
-				loop212:
+				loop213:
 					;
 
-				} finally { DebugExitSubRule(212); }
+				} finally { DebugExitSubRule(213); }
 
 				DebugLocation(547, 58);
-				PushFollow(Follow._shiftExpression_in_shiftExpression5217);
+				PushFollow(Follow._shiftExpression_in_shiftExpression5219);
 				shift=shiftExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -20350,7 +20389,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(213); }
+			} finally { DebugExitSubRule(214); }
 
 
 			}
@@ -20425,33 +20464,33 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:558:3: mult= multiplicativeExpression ( ( LT )* (op= '+' |op= '-' ) ( LT )* add= additiveExpression )?
 			{
 			DebugLocation(558, 7);
-			PushFollow(Follow._multiplicativeExpression_in_additiveExpression5388);
+			PushFollow(Follow._multiplicativeExpression_in_additiveExpression5390);
 			mult=multiplicativeExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_multiplicativeExpression.Add(mult.Tree);
 			DebugLocation(559, 6);
 			// JavaScript.g:559:6: ( ( LT )* (op= '+' |op= '-' ) ( LT )* add= additiveExpression )?
-			int alt217=2;
-			try { DebugEnterSubRule(217);
-			try { DebugEnterDecision(217, false);
-			int LA217_1 = input.LA(1);
+			int alt218=2;
+			try { DebugEnterSubRule(218);
+			try { DebugEnterDecision(218, false);
+			int LA218_1 = input.LA(1);
 
-			if ((LA217_1==LT))
+			if ((LA218_1==LT))
 			{
-				int LA217_2 = input.LA(2);
+				int LA218_2 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred256_JavaScript_fragment)))
+				if ((EvaluatePredicate(synpred257_JavaScript_fragment)))
 				{
-					alt217 = 1;
+					alt218 = 1;
 				}
 			}
-			else if ((LA217_1==52||LA217_1==56))
+			else if ((LA218_1==52||LA218_1==56))
 			{
-				alt217 = 1;
+				alt218 = 1;
 			}
-			} finally { DebugExitDecision(217); }
-			switch (alt217)
+			} finally { DebugExitDecision(218); }
+			switch (alt218)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -20459,28 +20498,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(559, 7);
 				// JavaScript.g:559:7: ( LT )*
-				try { DebugEnterSubRule(214);
+				try { DebugEnterSubRule(215);
 				while (true)
 				{
-					int alt214=2;
-					try { DebugEnterDecision(214, false);
-					int LA214_1 = input.LA(1);
+					int alt215=2;
+					try { DebugEnterDecision(215, false);
+					int LA215_1 = input.LA(1);
 
-					if ((LA214_1==LT))
+					if ((LA215_1==LT))
 					{
-						alt214 = 1;
+						alt215 = 1;
 					}
 
 
-					} finally { DebugExitDecision(214); }
-					switch ( alt214 )
+					} finally { DebugExitDecision(215); }
+					switch ( alt215 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:559:7: LT
 						{
 						DebugLocation(559, 7);
-						LT382=(IToken)Match(input,LT,Follow._LT_in_additiveExpression5397); if (state.failed) return retval; 
+						LT382=(IToken)Match(input,LT,Follow._LT_in_additiveExpression5399); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT382);
 
 
@@ -20488,46 +20527,46 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop214;
+						goto loop215;
 					}
 				}
 
-				loop214:
+				loop215:
 					;
 
-				} finally { DebugExitSubRule(214); }
+				} finally { DebugExitSubRule(215); }
 
 				DebugLocation(559, 11);
 				// JavaScript.g:559:11: (op= '+' |op= '-' )
-				int alt215=2;
-				try { DebugEnterSubRule(215);
-				try { DebugEnterDecision(215, false);
-				int LA215_1 = input.LA(1);
+				int alt216=2;
+				try { DebugEnterSubRule(216);
+				try { DebugEnterDecision(216, false);
+				int LA216_1 = input.LA(1);
 
-				if ((LA215_1==52))
+				if ((LA216_1==52))
 				{
-					alt215 = 1;
+					alt216 = 1;
 				}
-				else if ((LA215_1==56))
+				else if ((LA216_1==56))
 				{
-					alt215 = 2;
+					alt216 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 215, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 216, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
-				} finally { DebugExitDecision(215); }
-				switch (alt215)
+				} finally { DebugExitDecision(216); }
+				switch (alt216)
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:559:12: op= '+'
 					{
 					DebugLocation(559, 14);
-					op=(IToken)Match(input,52,Follow._52_in_additiveExpression5403); if (state.failed) return retval; 
+					op=(IToken)Match(input,52,Follow._52_in_additiveExpression5405); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_52.Add(op);
 
 
@@ -20538,7 +20577,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:559:21: op= '-'
 					{
 					DebugLocation(559, 23);
-					op=(IToken)Match(input,56,Follow._56_in_additiveExpression5409); if (state.failed) return retval; 
+					op=(IToken)Match(input,56,Follow._56_in_additiveExpression5411); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_56.Add(op);
 
 
@@ -20546,32 +20585,32 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				}
-				} finally { DebugExitSubRule(215); }
+				} finally { DebugExitSubRule(216); }
 
 				DebugLocation(559, 29);
 				// JavaScript.g:559:29: ( LT )*
-				try { DebugEnterSubRule(216);
+				try { DebugEnterSubRule(217);
 				while (true)
 				{
-					int alt216=2;
-					try { DebugEnterDecision(216, false);
-					int LA216_1 = input.LA(1);
+					int alt217=2;
+					try { DebugEnterDecision(217, false);
+					int LA217_1 = input.LA(1);
 
-					if ((LA216_1==LT))
+					if ((LA217_1==LT))
 					{
-						alt216 = 1;
+						alt217 = 1;
 					}
 
 
-					} finally { DebugExitDecision(216); }
-					switch ( alt216 )
+					} finally { DebugExitDecision(217); }
+					switch ( alt217 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:559:29: LT
 						{
 						DebugLocation(559, 29);
-						LT383=(IToken)Match(input,LT,Follow._LT_in_additiveExpression5412); if (state.failed) return retval; 
+						LT383=(IToken)Match(input,LT,Follow._LT_in_additiveExpression5414); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT383);
 
 
@@ -20579,17 +20618,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop216;
+						goto loop217;
 					}
 				}
 
-				loop216:
+				loop217:
 					;
 
-				} finally { DebugExitSubRule(216); }
+				} finally { DebugExitSubRule(217); }
 
 				DebugLocation(559, 36);
-				PushFollow(Follow._additiveExpression_in_additiveExpression5417);
+				PushFollow(Follow._additiveExpression_in_additiveExpression5419);
 				add=additiveExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -20599,7 +20638,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(217); }
+			} finally { DebugExitSubRule(218); }
 
 
 
@@ -20746,27 +20785,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:568:3: ue= unaryExpression ( ( ( LT )* (op= '*' |op= '/' |op= '%' ) ( LT )* me= multiplicativeExpression ) -> { op.Text == \"*\" }? ^( '*' $ue $me) -> { op.Text == \"/\" }? ^( '/' $ue $me) -> { op.Text == \"\\%\" }? ^( '%' $ue $me) ->| -> $ue)
 			{
 			DebugLocation(568, 5);
-			PushFollow(Follow._unaryExpression_in_multiplicativeExpression5530);
+			PushFollow(Follow._unaryExpression_in_multiplicativeExpression5532);
 			ue=unaryExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_unaryExpression.Add(ue.Tree);
 			DebugLocation(569, 3);
 			// JavaScript.g:569:3: ( ( ( LT )* (op= '*' |op= '/' |op= '%' ) ( LT )* me= multiplicativeExpression ) -> { op.Text == \"*\" }? ^( '*' $ue $me) -> { op.Text == \"/\" }? ^( '/' $ue $me) -> { op.Text == \"\\%\" }? ^( '%' $ue $me) ->| -> $ue)
-			int alt221=2;
-			try { DebugEnterSubRule(221);
-			try { DebugEnterDecision(221, false);
+			int alt222=2;
+			try { DebugEnterSubRule(222);
+			try { DebugEnterDecision(222, false);
 			try
 			{
-				alt221 = dfa221.Predict(input);
+				alt222 = dfa222.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(221); }
-			switch (alt221)
+			} finally { DebugExitDecision(222); }
+			switch (alt222)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -20779,28 +20818,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(570, 5);
 				// JavaScript.g:570:5: ( LT )*
-				try { DebugEnterSubRule(218);
+				try { DebugEnterSubRule(219);
 				while (true)
 				{
-					int alt218=2;
-					try { DebugEnterDecision(218, false);
-					int LA218_1 = input.LA(1);
+					int alt219=2;
+					try { DebugEnterDecision(219, false);
+					int LA219_1 = input.LA(1);
 
-					if ((LA218_1==LT))
+					if ((LA219_1==LT))
 					{
-						alt218 = 1;
+						alt219 = 1;
 					}
 
 
-					} finally { DebugExitDecision(218); }
-					switch ( alt218 )
+					} finally { DebugExitDecision(219); }
+					switch ( alt219 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:570:5: LT
 						{
 						DebugLocation(570, 5);
-						LT384=(IToken)Match(input,LT,Follow._LT_in_multiplicativeExpression5541); if (state.failed) return retval; 
+						LT384=(IToken)Match(input,LT,Follow._LT_in_multiplicativeExpression5543); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT384);
 
 
@@ -20808,55 +20847,55 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop218;
+						goto loop219;
 					}
 				}
 
-				loop218:
+				loop219:
 					;
 
-				} finally { DebugExitSubRule(218); }
+				} finally { DebugExitSubRule(219); }
 
 				DebugLocation(570, 9);
 				// JavaScript.g:570:9: (op= '*' |op= '/' |op= '%' )
-				int alt219=3;
-				try { DebugEnterSubRule(219);
-				try { DebugEnterDecision(219, false);
+				int alt220=3;
+				try { DebugEnterSubRule(220);
+				try { DebugEnterDecision(220, false);
 				switch (input.LA(1))
 				{
 				case 50:
 					{
-					alt219 = 1;
+					alt220 = 1;
 					}
 					break;
 				case 60:
 					{
-					alt219 = 2;
+					alt220 = 2;
 					}
 					break;
 				case 43:
 					{
-					alt219 = 3;
+					alt220 = 3;
 					}
 					break;
 				default:
 					{
 						if (state.backtracking>0) {state.failed=true; return retval;}
-						NoViableAltException nvae = new NoViableAltException("", 219, 0, input, 1);
+						NoViableAltException nvae = new NoViableAltException("", 220, 0, input, 1);
 						DebugRecognitionException(nvae);
 						throw nvae;
 					}
 				}
 
-				} finally { DebugExitDecision(219); }
-				switch (alt219)
+				} finally { DebugExitDecision(220); }
+				switch (alt220)
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:570:10: op= '*'
 					{
 					DebugLocation(570, 12);
-					op=(IToken)Match(input,50,Follow._50_in_multiplicativeExpression5547); if (state.failed) return retval; 
+					op=(IToken)Match(input,50,Follow._50_in_multiplicativeExpression5549); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_50.Add(op);
 
 
@@ -20867,7 +20906,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:570:19: op= '/'
 					{
 					DebugLocation(570, 21);
-					op=(IToken)Match(input,60,Follow._60_in_multiplicativeExpression5553); if (state.failed) return retval; 
+					op=(IToken)Match(input,60,Follow._60_in_multiplicativeExpression5555); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_60.Add(op);
 
 
@@ -20878,7 +20917,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:570:28: op= '%'
 					{
 					DebugLocation(570, 30);
-					op=(IToken)Match(input,43,Follow._43_in_multiplicativeExpression5559); if (state.failed) return retval; 
+					op=(IToken)Match(input,43,Follow._43_in_multiplicativeExpression5561); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_43.Add(op);
 
 
@@ -20886,32 +20925,32 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				}
-				} finally { DebugExitSubRule(219); }
+				} finally { DebugExitSubRule(220); }
 
 				DebugLocation(570, 36);
 				// JavaScript.g:570:36: ( LT )*
-				try { DebugEnterSubRule(220);
+				try { DebugEnterSubRule(221);
 				while (true)
 				{
-					int alt220=2;
-					try { DebugEnterDecision(220, false);
-					int LA220_1 = input.LA(1);
+					int alt221=2;
+					try { DebugEnterDecision(221, false);
+					int LA221_1 = input.LA(1);
 
-					if ((LA220_1==LT))
+					if ((LA221_1==LT))
 					{
-						alt220 = 1;
+						alt221 = 1;
 					}
 
 
-					} finally { DebugExitDecision(220); }
-					switch ( alt220 )
+					} finally { DebugExitDecision(221); }
+					switch ( alt221 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:570:36: LT
 						{
 						DebugLocation(570, 36);
-						LT385=(IToken)Match(input,LT,Follow._LT_in_multiplicativeExpression5562); if (state.failed) return retval; 
+						LT385=(IToken)Match(input,LT,Follow._LT_in_multiplicativeExpression5564); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT385);
 
 
@@ -20919,17 +20958,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop220;
+						goto loop221;
 					}
 				}
 
-				loop220:
+				loop221:
 					;
 
-				} finally { DebugExitSubRule(220); }
+				} finally { DebugExitSubRule(221); }
 
 				DebugLocation(570, 42);
-				PushFollow(Follow._multiplicativeExpression_in_multiplicativeExpression5567);
+				PushFollow(Follow._multiplicativeExpression_in_multiplicativeExpression5569);
 				me=multiplicativeExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -21057,7 +21096,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(221); }
+			} finally { DebugExitSubRule(222); }
 
 
 			}
@@ -21130,34 +21169,34 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 74)) { return retval; }
 
 			// JavaScript.g:580:2: (pfe= postfixExpression -> $pfe| ( (op= 'delete' |op= 'void' |op= 'typeof' |op= '++' |op= '--' |op= '+' |op= '-' |op= '~' |op= '!' ) ue= unaryExpression ) -> { op.Text == \"delete\" }? ^( 'delete' $ue) -> { op.Text == \"void\" }? ^( 'void' $ue) -> { op.Text == \"typeof\" }? ^( 'typeof' $ue) -> { op.Text == \"++\" }? ^( '++' $ue) -> { op.Text == \"--\" }? ^( '--' $ue) -> { op.Text == \"+\" }? ^( '+' $ue) -> { op.Text == \"-\" }? ^( '-' $ue) -> { op.Text == \"~\" }? ^( '~' $ue) -> { op.Text == \"!\" }? ^( '!' $ue) ->)
-			int alt223=2;
-			try { DebugEnterDecision(223, false);
-			int LA223_1 = input.LA(1);
+			int alt224=2;
+			try { DebugEnterDecision(224, false);
+			int LA224_1 = input.LA(1);
 
-			if ((LA223_1==Identifier||LA223_1==NumericLiteral||LA223_1==StringLiteral||LA223_1==48||LA223_1==78||LA223_1==90||LA223_1==93||(LA223_1>=97 && LA223_1<=98)||LA223_1==101||LA223_1==103||LA223_1==110))
+			if ((LA224_1==Identifier||LA224_1==NumericLiteral||LA224_1==StringLiteral||LA224_1==48||LA224_1==78||LA224_1==90||LA224_1==93||(LA224_1>=97 && LA224_1<=98)||LA224_1==101||LA224_1==103||LA224_1==110))
 			{
-				alt223 = 1;
+				alt224 = 1;
 			}
-			else if ((LA223_1==40||(LA223_1>=52 && LA223_1<=53)||(LA223_1>=56 && LA223_1<=57)||LA223_1==87||LA223_1==105||LA223_1==107||LA223_1==115))
+			else if ((LA224_1==40||(LA224_1>=52 && LA224_1<=53)||(LA224_1>=56 && LA224_1<=57)||LA224_1==87||LA224_1==105||LA224_1==107||LA224_1==115))
 			{
-				alt223 = 2;
+				alt224 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 223, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 224, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(223); }
-			switch (alt223)
+			} finally { DebugExitDecision(224); }
+			switch (alt224)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:580:4: pfe= postfixExpression
 				{
 				DebugLocation(580, 7);
-				PushFollow(Follow._postfixExpression_in_unaryExpression5720);
+				PushFollow(Follow._postfixExpression_in_unaryExpression5722);
 				pfe=postfixExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -21202,74 +21241,74 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(583, 13);
 				// JavaScript.g:583:13: (op= 'delete' |op= 'void' |op= 'typeof' |op= '++' |op= '--' |op= '+' |op= '-' |op= '~' |op= '!' )
-				int alt222=9;
-				try { DebugEnterSubRule(222);
-				try { DebugEnterDecision(222, false);
+				int alt223=9;
+				try { DebugEnterSubRule(223);
+				try { DebugEnterDecision(223, false);
 				switch (input.LA(1))
 				{
 				case 87:
 					{
-					alt222 = 1;
+					alt223 = 1;
 					}
 					break;
 				case 107:
 					{
-					alt222 = 2;
+					alt223 = 2;
 					}
 					break;
 				case 105:
 					{
-					alt222 = 3;
+					alt223 = 3;
 					}
 					break;
 				case 53:
 					{
-					alt222 = 4;
+					alt223 = 4;
 					}
 					break;
 				case 57:
 					{
-					alt222 = 5;
+					alt223 = 5;
 					}
 					break;
 				case 52:
 					{
-					alt222 = 6;
+					alt223 = 6;
 					}
 					break;
 				case 56:
 					{
-					alt222 = 7;
+					alt223 = 7;
 					}
 					break;
 				case 115:
 					{
-					alt222 = 8;
+					alt223 = 8;
 					}
 					break;
 				case 40:
 					{
-					alt222 = 9;
+					alt223 = 9;
 					}
 					break;
 				default:
 					{
 						if (state.backtracking>0) {state.failed=true; return retval;}
-						NoViableAltException nvae = new NoViableAltException("", 222, 0, input, 1);
+						NoViableAltException nvae = new NoViableAltException("", 223, 0, input, 1);
 						DebugRecognitionException(nvae);
 						throw nvae;
 					}
 				}
 
-				} finally { DebugExitDecision(222); }
-				switch (alt222)
+				} finally { DebugExitDecision(223); }
+				switch (alt223)
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:583:14: op= 'delete'
 					{
 					DebugLocation(583, 16);
-					op=(IToken)Match(input,87,Follow._87_in_unaryExpression5756); if (state.failed) return retval; 
+					op=(IToken)Match(input,87,Follow._87_in_unaryExpression5758); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_87.Add(op);
 
 
@@ -21280,7 +21319,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:583:28: op= 'void'
 					{
 					DebugLocation(583, 30);
-					op=(IToken)Match(input,107,Follow._107_in_unaryExpression5762); if (state.failed) return retval; 
+					op=(IToken)Match(input,107,Follow._107_in_unaryExpression5764); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_107.Add(op);
 
 
@@ -21291,7 +21330,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:583:40: op= 'typeof'
 					{
 					DebugLocation(583, 42);
-					op=(IToken)Match(input,105,Follow._105_in_unaryExpression5768); if (state.failed) return retval; 
+					op=(IToken)Match(input,105,Follow._105_in_unaryExpression5770); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_105.Add(op);
 
 
@@ -21302,7 +21341,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:583:54: op= '++'
 					{
 					DebugLocation(583, 56);
-					op=(IToken)Match(input,53,Follow._53_in_unaryExpression5774); if (state.failed) return retval; 
+					op=(IToken)Match(input,53,Follow._53_in_unaryExpression5776); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_53.Add(op);
 
 
@@ -21313,7 +21352,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:583:64: op= '--'
 					{
 					DebugLocation(583, 66);
-					op=(IToken)Match(input,57,Follow._57_in_unaryExpression5780); if (state.failed) return retval; 
+					op=(IToken)Match(input,57,Follow._57_in_unaryExpression5782); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_57.Add(op);
 
 
@@ -21324,7 +21363,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:583:74: op= '+'
 					{
 					DebugLocation(583, 76);
-					op=(IToken)Match(input,52,Follow._52_in_unaryExpression5786); if (state.failed) return retval; 
+					op=(IToken)Match(input,52,Follow._52_in_unaryExpression5788); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_52.Add(op);
 
 
@@ -21335,7 +21374,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:583:83: op= '-'
 					{
 					DebugLocation(583, 85);
-					op=(IToken)Match(input,56,Follow._56_in_unaryExpression5792); if (state.failed) return retval; 
+					op=(IToken)Match(input,56,Follow._56_in_unaryExpression5794); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_56.Add(op);
 
 
@@ -21346,7 +21385,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:583:92: op= '~'
 					{
 					DebugLocation(583, 94);
-					op=(IToken)Match(input,115,Follow._115_in_unaryExpression5798); if (state.failed) return retval; 
+					op=(IToken)Match(input,115,Follow._115_in_unaryExpression5800); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_115.Add(op);
 
 
@@ -21357,7 +21396,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					// JavaScript.g:583:101: op= '!'
 					{
 					DebugLocation(583, 103);
-					op=(IToken)Match(input,40,Follow._40_in_unaryExpression5804); if (state.failed) return retval; 
+					op=(IToken)Match(input,40,Follow._40_in_unaryExpression5806); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_40.Add(op);
 
 
@@ -21365,10 +21404,10 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				}
-				} finally { DebugExitSubRule(222); }
+				} finally { DebugExitSubRule(223); }
 
 				DebugLocation(584, 15);
-				PushFollow(Follow._unaryExpression_in_unaryExpression5822);
+				PushFollow(Follow._unaryExpression_in_unaryExpression5824);
 				ue=unaryExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -21624,26 +21663,26 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:600:3: leftHandSideExpression ( '++' -> ^( '++' leftHandSideExpression ) | '--' -> ^( '--' leftHandSideExpression ) | -> leftHandSideExpression )
 			{
 			DebugLocation(600, 3);
-			PushFollow(Follow._leftHandSideExpression_in_postfixExpression6074);
+			PushFollow(Follow._leftHandSideExpression_in_postfixExpression6076);
 			leftHandSideExpression386=leftHandSideExpression();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_leftHandSideExpression.Add(leftHandSideExpression386.Tree);
 			DebugLocation(601, 3);
 			// JavaScript.g:601:3: ( '++' -> ^( '++' leftHandSideExpression ) | '--' -> ^( '--' leftHandSideExpression ) | -> leftHandSideExpression )
-			int alt224=3;
-			try { DebugEnterSubRule(224);
-			try { DebugEnterDecision(224, false);
+			int alt225=3;
+			try { DebugEnterSubRule(225);
+			try { DebugEnterDecision(225, false);
 			switch (input.LA(1))
 			{
 			case 53:
 				{
-				alt224 = 1;
+				alt225 = 1;
 				}
 				break;
 			case 57:
 				{
-				alt224 = 2;
+				alt225 = 2;
 				}
 				break;
 			case EOF:
@@ -21679,27 +21718,27 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			case 113:
 			case 114:
 				{
-				alt224 = 3;
+				alt225 = 3;
 				}
 				break;
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 224, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 225, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(224); }
-			switch (alt224)
+			} finally { DebugExitDecision(225); }
+			switch (alt225)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:602:4: '++'
 				{
 				DebugLocation(602, 4);
-				string_literal387=(IToken)Match(input,53,Follow._53_in_postfixExpression6084); if (state.failed) return retval; 
+				string_literal387=(IToken)Match(input,53,Follow._53_in_postfixExpression6086); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_53.Add(string_literal387);
 
 
@@ -21745,7 +21784,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:603:6: '--'
 				{
 				DebugLocation(603, 6);
-				string_literal388=(IToken)Match(input,57,Follow._57_in_postfixExpression6104); if (state.failed) return retval; 
+				string_literal388=(IToken)Match(input,57,Follow._57_in_postfixExpression6106); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_57.Add(string_literal388);
 
 
@@ -21819,7 +21858,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(224); }
+			} finally { DebugExitSubRule(225); }
 
 
 			}
@@ -21902,18 +21941,18 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 76)) { return retval; }
 
 			// JavaScript.g:609:2: ( 'this' -> ^( 'this' ) | Identifier -> ^( Identifier ) | literal -> literal | arrayLiteral -> arrayLiteral | objectLiteral -> objectLiteral | '(' ( LT )* expression ( LT )* ')' -> expression )
-			int alt227=6;
-			try { DebugEnterDecision(227, false);
+			int alt228=6;
+			try { DebugEnterDecision(228, false);
 			switch (input.LA(1))
 			{
 			case 101:
 				{
-				alt227 = 1;
+				alt228 = 1;
 				}
 				break;
 			case Identifier:
 				{
-				alt227 = 2;
+				alt228 = 2;
 				}
 				break;
 			case NumericLiteral:
@@ -21922,42 +21961,42 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			case 98:
 			case 103:
 				{
-				alt227 = 3;
+				alt228 = 3;
 				}
 				break;
 			case 78:
 				{
-				alt227 = 4;
+				alt228 = 4;
 				}
 				break;
 			case 110:
 				{
-				alt227 = 5;
+				alt228 = 5;
 				}
 				break;
 			case 48:
 				{
-				alt227 = 6;
+				alt228 = 6;
 				}
 				break;
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 227, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 228, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(227); }
-			switch (alt227)
+			} finally { DebugExitDecision(228); }
+			switch (alt228)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:609:4: 'this'
 				{
 				DebugLocation(609, 4);
-				string_literal389=(IToken)Match(input,101,Follow._101_in_primaryExpression6142); if (state.failed) return retval; 
+				string_literal389=(IToken)Match(input,101,Follow._101_in_primaryExpression6144); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_101.Add(string_literal389);
 
 
@@ -22000,7 +22039,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:610:4: Identifier
 				{
 				DebugLocation(610, 4);
-				Identifier390=(IToken)Match(input,Identifier,Follow._Identifier_in_primaryExpression6163); if (state.failed) return retval; 
+				Identifier390=(IToken)Match(input,Identifier,Follow._Identifier_in_primaryExpression6165); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_Identifier.Add(Identifier390);
 
 
@@ -22043,7 +22082,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:611:4: literal
 				{
 				DebugLocation(611, 4);
-				PushFollow(Follow._literal_in_primaryExpression6183);
+				PushFollow(Follow._literal_in_primaryExpression6185);
 				literal391=literal();
 				PopFollow();
 				if (state.failed) return retval;
@@ -22081,7 +22120,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:612:4: arrayLiteral
 				{
 				DebugLocation(612, 4);
-				PushFollow(Follow._arrayLiteral_in_primaryExpression6197);
+				PushFollow(Follow._arrayLiteral_in_primaryExpression6199);
 				arrayLiteral392=arrayLiteral();
 				PopFollow();
 				if (state.failed) return retval;
@@ -22119,7 +22158,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:613:4: objectLiteral
 				{
 				DebugLocation(613, 4);
-				PushFollow(Follow._objectLiteral_in_primaryExpression6210);
+				PushFollow(Follow._objectLiteral_in_primaryExpression6212);
 				objectLiteral393=objectLiteral();
 				PopFollow();
 				if (state.failed) return retval;
@@ -22157,57 +22196,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:614:4: '(' ( LT )* expression ( LT )* ')'
 				{
 				DebugLocation(614, 4);
-				char_literal394=(IToken)Match(input,48,Follow._48_in_primaryExpression6223); if (state.failed) return retval; 
+				char_literal394=(IToken)Match(input,48,Follow._48_in_primaryExpression6225); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_48.Add(char_literal394);
 
 				DebugLocation(614, 8);
 				// JavaScript.g:614:8: ( LT )*
-				try { DebugEnterSubRule(225);
-				while (true)
-				{
-					int alt225=2;
-					try { DebugEnterDecision(225, false);
-					int LA225_1 = input.LA(1);
-
-					if ((LA225_1==LT))
-					{
-						alt225 = 1;
-					}
-
-
-					} finally { DebugExitDecision(225); }
-					switch ( alt225 )
-					{
-					case 1:
-						DebugEnterAlt(1);
-						// JavaScript.g:614:8: LT
-						{
-						DebugLocation(614, 8);
-						LT395=(IToken)Match(input,LT,Follow._LT_in_primaryExpression6225); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT395);
-
-
-						}
-						break;
-
-					default:
-						goto loop225;
-					}
-				}
-
-				loop225:
-					;
-
-				} finally { DebugExitSubRule(225); }
-
-				DebugLocation(614, 12);
-				PushFollow(Follow._expression_in_primaryExpression6228);
-				expression396=expression();
-				PopFollow();
-				if (state.failed) return retval;
-				if (state.backtracking == 0) stream_expression.Add(expression396.Tree);
-				DebugLocation(614, 23);
-				// JavaScript.g:614:23: ( LT )*
 				try { DebugEnterSubRule(226);
 				while (true)
 				{
@@ -22226,11 +22219,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// JavaScript.g:614:23: LT
+						// JavaScript.g:614:8: LT
 						{
-						DebugLocation(614, 23);
-						LT397=(IToken)Match(input,LT,Follow._LT_in_primaryExpression6230); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_LT.Add(LT397);
+						DebugLocation(614, 8);
+						LT395=(IToken)Match(input,LT,Follow._LT_in_primaryExpression6227); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT395);
 
 
 						}
@@ -22246,8 +22239,54 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 				} finally { DebugExitSubRule(226); }
 
+				DebugLocation(614, 12);
+				PushFollow(Follow._expression_in_primaryExpression6230);
+				expression396=expression();
+				PopFollow();
+				if (state.failed) return retval;
+				if (state.backtracking == 0) stream_expression.Add(expression396.Tree);
+				DebugLocation(614, 23);
+				// JavaScript.g:614:23: ( LT )*
+				try { DebugEnterSubRule(227);
+				while (true)
+				{
+					int alt227=2;
+					try { DebugEnterDecision(227, false);
+					int LA227_1 = input.LA(1);
+
+					if ((LA227_1==LT))
+					{
+						alt227 = 1;
+					}
+
+
+					} finally { DebugExitDecision(227); }
+					switch ( alt227 )
+					{
+					case 1:
+						DebugEnterAlt(1);
+						// JavaScript.g:614:23: LT
+						{
+						DebugLocation(614, 23);
+						LT397=(IToken)Match(input,LT,Follow._LT_in_primaryExpression6232); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_LT.Add(LT397);
+
+
+						}
+						break;
+
+					default:
+						goto loop227;
+					}
+				}
+
+				loop227:
+					;
+
+				} finally { DebugExitSubRule(227); }
+
 				DebugLocation(614, 27);
-				char_literal398=(IToken)Match(input,49,Follow._49_in_primaryExpression6233); if (state.failed) return retval; 
+				char_literal398=(IToken)Match(input,49,Follow._49_in_primaryExpression6235); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_49.Add(char_literal398);
 
 
@@ -22358,40 +22397,40 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:619:4: '[' ( LT )* ( assignmentExpression )? ( ( LT )* ',' ( ( LT )* assignmentExpression )? )* ( LT )* ']'
 			{
 			DebugLocation(619, 4);
-			char_literal399=(IToken)Match(input,78,Follow._78_in_arrayLiteral6250); if (state.failed) return retval; 
+			char_literal399=(IToken)Match(input,78,Follow._78_in_arrayLiteral6252); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_78.Add(char_literal399);
 
 			DebugLocation(619, 8);
 			// JavaScript.g:619:8: ( LT )*
-			try { DebugEnterSubRule(228);
+			try { DebugEnterSubRule(229);
 			while (true)
 			{
-				int alt228=2;
-				try { DebugEnterDecision(228, false);
-				int LA228_1 = input.LA(1);
+				int alt229=2;
+				try { DebugEnterDecision(229, false);
+				int LA229_1 = input.LA(1);
 
-				if ((LA228_1==LT))
+				if ((LA229_1==LT))
 				{
-					int LA228_2 = input.LA(2);
+					int LA229_2 = input.LA(2);
 
-					if ((EvaluatePredicate(synpred280_JavaScript_fragment)))
+					if ((EvaluatePredicate(synpred281_JavaScript_fragment)))
 					{
-						alt228 = 1;
+						alt229 = 1;
 					}
 
 
 				}
 
 
-				} finally { DebugExitDecision(228); }
-				switch ( alt228 )
+				} finally { DebugExitDecision(229); }
+				switch ( alt229 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:619:8: LT
 					{
 					DebugLocation(619, 8);
-					LT400=(IToken)Match(input,LT,Follow._LT_in_arrayLiteral6252); if (state.failed) return retval; 
+					LT400=(IToken)Match(input,LT,Follow._LT_in_arrayLiteral6254); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT400);
 
 
@@ -22399,35 +22438,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop228;
+					goto loop229;
 				}
 			}
 
-			loop228:
+			loop229:
 				;
 
-			} finally { DebugExitSubRule(228); }
+			} finally { DebugExitSubRule(229); }
 
 			DebugLocation(619, 12);
 			// JavaScript.g:619:12: ( assignmentExpression )?
-			int alt229=2;
-			try { DebugEnterSubRule(229);
-			try { DebugEnterDecision(229, false);
-			int LA229_1 = input.LA(1);
+			int alt230=2;
+			try { DebugEnterSubRule(230);
+			try { DebugEnterDecision(230, false);
+			int LA230_1 = input.LA(1);
 
-			if ((LA229_1==Identifier||LA229_1==NumericLiteral||LA229_1==StringLiteral||LA229_1==40||LA229_1==48||(LA229_1>=52 && LA229_1<=53)||(LA229_1>=56 && LA229_1<=57)||LA229_1==78||LA229_1==87||LA229_1==90||LA229_1==93||(LA229_1>=97 && LA229_1<=98)||LA229_1==101||LA229_1==103||LA229_1==105||LA229_1==107||LA229_1==110||LA229_1==115))
+			if ((LA230_1==Identifier||LA230_1==NumericLiteral||LA230_1==StringLiteral||LA230_1==40||LA230_1==48||(LA230_1>=52 && LA230_1<=53)||(LA230_1>=56 && LA230_1<=57)||LA230_1==78||LA230_1==87||LA230_1==90||LA230_1==93||(LA230_1>=97 && LA230_1<=98)||LA230_1==101||LA230_1==103||LA230_1==105||LA230_1==107||LA230_1==110||LA230_1==115))
 			{
-				alt229 = 1;
+				alt230 = 1;
 			}
-			} finally { DebugExitDecision(229); }
-			switch (alt229)
+			} finally { DebugExitDecision(230); }
+			switch (alt230)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:619:12: assignmentExpression
 				{
 				DebugLocation(619, 12);
-				PushFollow(Follow._assignmentExpression_in_arrayLiteral6255);
+				PushFollow(Follow._assignmentExpression_in_arrayLiteral6257);
 				assignmentExpression401=assignmentExpression();
 				PopFollow();
 				if (state.failed) return retval;
@@ -22437,26 +22476,26 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(229); }
+			} finally { DebugExitSubRule(230); }
 
 			DebugLocation(619, 34);
 			// JavaScript.g:619:34: ( ( LT )* ',' ( ( LT )* assignmentExpression )? )*
-			try { DebugEnterSubRule(233);
+			try { DebugEnterSubRule(234);
 			while (true)
 			{
-				int alt233=2;
-				try { DebugEnterDecision(233, false);
+				int alt234=2;
+				try { DebugEnterDecision(234, false);
 				try
 				{
-					alt233 = dfa233.Predict(input);
+					alt234 = dfa234.Predict(input);
 				}
 				catch (NoViableAltException nvae)
 				{
 					DebugRecognitionException(nvae);
 					throw;
 				}
-				} finally { DebugExitDecision(233); }
-				switch ( alt233 )
+				} finally { DebugExitDecision(234); }
+				switch ( alt234 )
 				{
 				case 1:
 					DebugEnterAlt(1);
@@ -22464,28 +22503,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					{
 					DebugLocation(619, 35);
 					// JavaScript.g:619:35: ( LT )*
-					try { DebugEnterSubRule(230);
+					try { DebugEnterSubRule(231);
 					while (true)
 					{
-						int alt230=2;
-						try { DebugEnterDecision(230, false);
-						int LA230_1 = input.LA(1);
+						int alt231=2;
+						try { DebugEnterDecision(231, false);
+						int LA231_1 = input.LA(1);
 
-						if ((LA230_1==LT))
+						if ((LA231_1==LT))
 						{
-							alt230 = 1;
+							alt231 = 1;
 						}
 
 
-						} finally { DebugExitDecision(230); }
-						switch ( alt230 )
+						} finally { DebugExitDecision(231); }
+						switch ( alt231 )
 						{
 						case 1:
 							DebugEnterAlt(1);
 							// JavaScript.g:619:35: LT
 							{
 							DebugLocation(619, 35);
-							LT402=(IToken)Match(input,LT,Follow._LT_in_arrayLiteral6259); if (state.failed) return retval; 
+							LT402=(IToken)Match(input,LT,Follow._LT_in_arrayLiteral6261); if (state.failed) return retval; 
 							if (state.backtracking == 0) stream_LT.Add(LT402);
 
 
@@ -22493,35 +22532,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 							break;
 
 						default:
-							goto loop230;
+							goto loop231;
 						}
 					}
 
-					loop230:
+					loop231:
 						;
 
-					} finally { DebugExitSubRule(230); }
+					} finally { DebugExitSubRule(231); }
 
 					DebugLocation(619, 39);
-					char_literal403=(IToken)Match(input,55,Follow._55_in_arrayLiteral6262); if (state.failed) return retval; 
+					char_literal403=(IToken)Match(input,55,Follow._55_in_arrayLiteral6264); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_55.Add(char_literal403);
 
 					DebugLocation(619, 43);
 					// JavaScript.g:619:43: ( ( LT )* assignmentExpression )?
-					int alt232=2;
-					try { DebugEnterSubRule(232);
-					try { DebugEnterDecision(232, false);
+					int alt233=2;
+					try { DebugEnterSubRule(233);
+					try { DebugEnterDecision(233, false);
 					try
 					{
-						alt232 = dfa232.Predict(input);
+						alt233 = dfa233.Predict(input);
 					}
 					catch (NoViableAltException nvae)
 					{
 						DebugRecognitionException(nvae);
 						throw;
 					}
-					} finally { DebugExitDecision(232); }
-					switch (alt232)
+					} finally { DebugExitDecision(233); }
+					switch (alt233)
 					{
 					case 1:
 						DebugEnterAlt(1);
@@ -22529,28 +22568,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						{
 						DebugLocation(619, 44);
 						// JavaScript.g:619:44: ( LT )*
-						try { DebugEnterSubRule(231);
+						try { DebugEnterSubRule(232);
 						while (true)
 						{
-							int alt231=2;
-							try { DebugEnterDecision(231, false);
-							int LA231_1 = input.LA(1);
+							int alt232=2;
+							try { DebugEnterDecision(232, false);
+							int LA232_1 = input.LA(1);
 
-							if ((LA231_1==LT))
+							if ((LA232_1==LT))
 							{
-								alt231 = 1;
+								alt232 = 1;
 							}
 
 
-							} finally { DebugExitDecision(231); }
-							switch ( alt231 )
+							} finally { DebugExitDecision(232); }
+							switch ( alt232 )
 							{
 							case 1:
 								DebugEnterAlt(1);
 								// JavaScript.g:619:44: LT
 								{
 								DebugLocation(619, 44);
-								LT404=(IToken)Match(input,LT,Follow._LT_in_arrayLiteral6265); if (state.failed) return retval; 
+								LT404=(IToken)Match(input,LT,Follow._LT_in_arrayLiteral6267); if (state.failed) return retval; 
 								if (state.backtracking == 0) stream_LT.Add(LT404);
 
 
@@ -22558,17 +22597,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 								break;
 
 							default:
-								goto loop231;
+								goto loop232;
 							}
 						}
 
-						loop231:
+						loop232:
 							;
 
-						} finally { DebugExitSubRule(231); }
+						} finally { DebugExitSubRule(232); }
 
 						DebugLocation(619, 48);
-						PushFollow(Follow._assignmentExpression_in_arrayLiteral6268);
+						PushFollow(Follow._assignmentExpression_in_arrayLiteral6270);
 						assignmentExpression405=assignmentExpression();
 						PopFollow();
 						if (state.failed) return retval;
@@ -22578,47 +22617,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					}
-					} finally { DebugExitSubRule(232); }
-
-
-					}
-					break;
-
-				default:
-					goto loop233;
-				}
-			}
-
-			loop233:
-				;
-
-			} finally { DebugExitSubRule(233); }
-
-			DebugLocation(619, 73);
-			// JavaScript.g:619:73: ( LT )*
-			try { DebugEnterSubRule(234);
-			while (true)
-			{
-				int alt234=2;
-				try { DebugEnterDecision(234, false);
-				int LA234_1 = input.LA(1);
-
-				if ((LA234_1==LT))
-				{
-					alt234 = 1;
-				}
-
-
-				} finally { DebugExitDecision(234); }
-				switch ( alt234 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:619:73: LT
-					{
-					DebugLocation(619, 73);
-					LT406=(IToken)Match(input,LT,Follow._LT_in_arrayLiteral6274); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT406);
+					} finally { DebugExitSubRule(233); }
 
 
 					}
@@ -22634,8 +22633,48 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(234); }
 
+			DebugLocation(619, 73);
+			// JavaScript.g:619:73: ( LT )*
+			try { DebugEnterSubRule(235);
+			while (true)
+			{
+				int alt235=2;
+				try { DebugEnterDecision(235, false);
+				int LA235_1 = input.LA(1);
+
+				if ((LA235_1==LT))
+				{
+					alt235 = 1;
+				}
+
+
+				} finally { DebugExitDecision(235); }
+				switch ( alt235 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:619:73: LT
+					{
+					DebugLocation(619, 73);
+					LT406=(IToken)Match(input,LT,Follow._LT_in_arrayLiteral6276); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT406);
+
+
+					}
+					break;
+
+				default:
+					goto loop235;
+				}
+			}
+
+			loop235:
+				;
+
+			} finally { DebugExitSubRule(235); }
+
 			DebugLocation(619, 77);
-			char_literal407=(IToken)Match(input,79,Follow._79_in_arrayLiteral6277); if (state.failed) return retval; 
+			char_literal407=(IToken)Match(input,79,Follow._79_in_arrayLiteral6279); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_79.Add(char_literal407);
 
 
@@ -22761,25 +22800,25 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:625:4: '{' ( ( LT )* propertyNameAndValue ( ( LT )* ',' ( LT )* propertyNameAndValue )* )? ( LT )* '}'
 			{
 			DebugLocation(625, 4);
-			char_literal408=(IToken)Match(input,110,Follow._110_in_objectLiteral6312); if (state.failed) return retval; 
+			char_literal408=(IToken)Match(input,110,Follow._110_in_objectLiteral6314); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_110.Add(char_literal408);
 
 			DebugLocation(625, 8);
 			// JavaScript.g:625:8: ( ( LT )* propertyNameAndValue ( ( LT )* ',' ( LT )* propertyNameAndValue )* )?
-			int alt239=2;
-			try { DebugEnterSubRule(239);
-			try { DebugEnterDecision(239, false);
+			int alt240=2;
+			try { DebugEnterSubRule(240);
+			try { DebugEnterDecision(240, false);
 			try
 			{
-				alt239 = dfa239.Predict(input);
+				alt240 = dfa240.Predict(input);
 			}
 			catch (NoViableAltException nvae)
 			{
 				DebugRecognitionException(nvae);
 				throw;
 			}
-			} finally { DebugExitDecision(239); }
-			switch (alt239)
+			} finally { DebugExitDecision(240); }
+			switch (alt240)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -22787,28 +22826,28 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				DebugLocation(625, 9);
 				// JavaScript.g:625:9: ( LT )*
-				try { DebugEnterSubRule(235);
+				try { DebugEnterSubRule(236);
 				while (true)
 				{
-					int alt235=2;
-					try { DebugEnterDecision(235, false);
-					int LA235_1 = input.LA(1);
+					int alt236=2;
+					try { DebugEnterDecision(236, false);
+					int LA236_1 = input.LA(1);
 
-					if ((LA235_1==LT))
+					if ((LA236_1==LT))
 					{
-						alt235 = 1;
+						alt236 = 1;
 					}
 
 
-					} finally { DebugExitDecision(235); }
-					switch ( alt235 )
+					} finally { DebugExitDecision(236); }
+					switch ( alt236 )
 					{
 					case 1:
 						DebugEnterAlt(1);
 						// JavaScript.g:625:9: LT
 						{
 						DebugLocation(625, 9);
-						LT409=(IToken)Match(input,LT,Follow._LT_in_objectLiteral6315); if (state.failed) return retval; 
+						LT409=(IToken)Match(input,LT,Follow._LT_in_objectLiteral6317); if (state.failed) return retval; 
 						if (state.backtracking == 0) stream_LT.Add(LT409);
 
 
@@ -22816,39 +22855,39 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop235;
+						goto loop236;
 					}
 				}
 
-				loop235:
+				loop236:
 					;
 
-				} finally { DebugExitSubRule(235); }
+				} finally { DebugExitSubRule(236); }
 
 				DebugLocation(625, 13);
-				PushFollow(Follow._propertyNameAndValue_in_objectLiteral6318);
+				PushFollow(Follow._propertyNameAndValue_in_objectLiteral6320);
 				propertyNameAndValue410=propertyNameAndValue();
 				PopFollow();
 				if (state.failed) return retval;
 				if (state.backtracking == 0) stream_propertyNameAndValue.Add(propertyNameAndValue410.Tree);
 				DebugLocation(625, 34);
 				// JavaScript.g:625:34: ( ( LT )* ',' ( LT )* propertyNameAndValue )*
-				try { DebugEnterSubRule(238);
+				try { DebugEnterSubRule(239);
 				while (true)
 				{
-					int alt238=2;
-					try { DebugEnterDecision(238, false);
+					int alt239=2;
+					try { DebugEnterDecision(239, false);
 					try
 					{
-						alt238 = dfa238.Predict(input);
+						alt239 = dfa239.Predict(input);
 					}
 					catch (NoViableAltException nvae)
 					{
 						DebugRecognitionException(nvae);
 						throw;
 					}
-					} finally { DebugExitDecision(238); }
-					switch ( alt238 )
+					} finally { DebugExitDecision(239); }
+					switch ( alt239 )
 					{
 					case 1:
 						DebugEnterAlt(1);
@@ -22856,50 +22895,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						{
 						DebugLocation(625, 35);
 						// JavaScript.g:625:35: ( LT )*
-						try { DebugEnterSubRule(236);
-						while (true)
-						{
-							int alt236=2;
-							try { DebugEnterDecision(236, false);
-							int LA236_1 = input.LA(1);
-
-							if ((LA236_1==LT))
-							{
-								alt236 = 1;
-							}
-
-
-							} finally { DebugExitDecision(236); }
-							switch ( alt236 )
-							{
-							case 1:
-								DebugEnterAlt(1);
-								// JavaScript.g:625:35: LT
-								{
-								DebugLocation(625, 35);
-								LT411=(IToken)Match(input,LT,Follow._LT_in_objectLiteral6321); if (state.failed) return retval; 
-								if (state.backtracking == 0) stream_LT.Add(LT411);
-
-
-								}
-								break;
-
-							default:
-								goto loop236;
-							}
-						}
-
-						loop236:
-							;
-
-						} finally { DebugExitSubRule(236); }
-
-						DebugLocation(625, 39);
-						char_literal412=(IToken)Match(input,55,Follow._55_in_objectLiteral6324); if (state.failed) return retval; 
-						if (state.backtracking == 0) stream_55.Add(char_literal412);
-
-						DebugLocation(625, 43);
-						// JavaScript.g:625:43: ( LT )*
 						try { DebugEnterSubRule(237);
 						while (true)
 						{
@@ -22918,11 +22913,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 							{
 							case 1:
 								DebugEnterAlt(1);
-								// JavaScript.g:625:43: LT
+								// JavaScript.g:625:35: LT
 								{
-								DebugLocation(625, 43);
-								LT413=(IToken)Match(input,LT,Follow._LT_in_objectLiteral6326); if (state.failed) return retval; 
-								if (state.backtracking == 0) stream_LT.Add(LT413);
+								DebugLocation(625, 35);
+								LT411=(IToken)Match(input,LT,Follow._LT_in_objectLiteral6323); if (state.failed) return retval; 
+								if (state.backtracking == 0) stream_LT.Add(LT411);
 
 
 								}
@@ -22938,8 +22933,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 						} finally { DebugExitSubRule(237); }
 
+						DebugLocation(625, 39);
+						char_literal412=(IToken)Match(input,55,Follow._55_in_objectLiteral6326); if (state.failed) return retval; 
+						if (state.backtracking == 0) stream_55.Add(char_literal412);
+
+						DebugLocation(625, 43);
+						// JavaScript.g:625:43: ( LT )*
+						try { DebugEnterSubRule(238);
+						while (true)
+						{
+							int alt238=2;
+							try { DebugEnterDecision(238, false);
+							int LA238_1 = input.LA(1);
+
+							if ((LA238_1==LT))
+							{
+								alt238 = 1;
+							}
+
+
+							} finally { DebugExitDecision(238); }
+							switch ( alt238 )
+							{
+							case 1:
+								DebugEnterAlt(1);
+								// JavaScript.g:625:43: LT
+								{
+								DebugLocation(625, 43);
+								LT413=(IToken)Match(input,LT,Follow._LT_in_objectLiteral6328); if (state.failed) return retval; 
+								if (state.backtracking == 0) stream_LT.Add(LT413);
+
+
+								}
+								break;
+
+							default:
+								goto loop238;
+							}
+						}
+
+						loop238:
+							;
+
+						} finally { DebugExitSubRule(238); }
+
 						DebugLocation(625, 47);
-						PushFollow(Follow._propertyNameAndValue_in_objectLiteral6329);
+						PushFollow(Follow._propertyNameAndValue_in_objectLiteral6331);
 						propertyNameAndValue414=propertyNameAndValue();
 						PopFollow();
 						if (state.failed) return retval;
@@ -22949,46 +22988,46 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 						break;
 
 					default:
-						goto loop238;
+						goto loop239;
 					}
 				}
 
-				loop238:
+				loop239:
 					;
 
-				} finally { DebugExitSubRule(238); }
+				} finally { DebugExitSubRule(239); }
 
 
 				}
 				break;
 
 			}
-			} finally { DebugExitSubRule(239); }
+			} finally { DebugExitSubRule(240); }
 
 			DebugLocation(625, 72);
 			// JavaScript.g:625:72: ( LT )*
-			try { DebugEnterSubRule(240);
+			try { DebugEnterSubRule(241);
 			while (true)
 			{
-				int alt240=2;
-				try { DebugEnterDecision(240, false);
-				int LA240_1 = input.LA(1);
+				int alt241=2;
+				try { DebugEnterDecision(241, false);
+				int LA241_1 = input.LA(1);
 
-				if ((LA240_1==LT))
+				if ((LA241_1==LT))
 				{
-					alt240 = 1;
+					alt241 = 1;
 				}
 
 
-				} finally { DebugExitDecision(240); }
-				switch ( alt240 )
+				} finally { DebugExitDecision(241); }
+				switch ( alt241 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:625:72: LT
 					{
 					DebugLocation(625, 72);
-					LT415=(IToken)Match(input,LT,Follow._LT_in_objectLiteral6335); if (state.failed) return retval; 
+					LT415=(IToken)Match(input,LT,Follow._LT_in_objectLiteral6337); if (state.failed) return retval; 
 					if (state.backtracking == 0) stream_LT.Add(LT415);
 
 
@@ -22996,17 +23035,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 					break;
 
 				default:
-					goto loop240;
+					goto loop241;
 				}
 			}
 
-			loop240:
+			loop241:
 				;
 
-			} finally { DebugExitSubRule(240); }
+			} finally { DebugExitSubRule(241); }
 
 			DebugLocation(625, 76);
-			char_literal416=(IToken)Match(input,114,Follow._114_in_objectLiteral6338); if (state.failed) return retval; 
+			char_literal416=(IToken)Match(input,114,Follow._114_in_objectLiteral6340); if (state.failed) return retval; 
 			if (state.backtracking == 0) stream_114.Add(char_literal416);
 
 
@@ -23123,57 +23162,13 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:630:4: propertyName ( LT )* ':' ( LT )* assignmentExpression
 			{
 			DebugLocation(630, 4);
-			PushFollow(Follow._propertyName_in_propertyNameAndValue6366);
+			PushFollow(Follow._propertyName_in_propertyNameAndValue6368);
 			propertyName417=propertyName();
 			PopFollow();
 			if (state.failed) return retval;
 			if (state.backtracking == 0) stream_propertyName.Add(propertyName417.Tree);
 			DebugLocation(630, 17);
 			// JavaScript.g:630:17: ( LT )*
-			try { DebugEnterSubRule(241);
-			while (true)
-			{
-				int alt241=2;
-				try { DebugEnterDecision(241, false);
-				int LA241_1 = input.LA(1);
-
-				if ((LA241_1==LT))
-				{
-					alt241 = 1;
-				}
-
-
-				} finally { DebugExitDecision(241); }
-				switch ( alt241 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:630:17: LT
-					{
-					DebugLocation(630, 17);
-					LT418=(IToken)Match(input,LT,Follow._LT_in_propertyNameAndValue6368); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT418);
-
-
-					}
-					break;
-
-				default:
-					goto loop241;
-				}
-			}
-
-			loop241:
-				;
-
-			} finally { DebugExitSubRule(241); }
-
-			DebugLocation(630, 21);
-			char_literal419=(IToken)Match(input,62,Follow._62_in_propertyNameAndValue6371); if (state.failed) return retval; 
-			if (state.backtracking == 0) stream_62.Add(char_literal419);
-
-			DebugLocation(630, 25);
-			// JavaScript.g:630:25: ( LT )*
 			try { DebugEnterSubRule(242);
 			while (true)
 			{
@@ -23192,11 +23187,11 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:630:25: LT
+					// JavaScript.g:630:17: LT
 					{
-					DebugLocation(630, 25);
-					LT420=(IToken)Match(input,LT,Follow._LT_in_propertyNameAndValue6373); if (state.failed) return retval; 
-					if (state.backtracking == 0) stream_LT.Add(LT420);
+					DebugLocation(630, 17);
+					LT418=(IToken)Match(input,LT,Follow._LT_in_propertyNameAndValue6370); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT418);
 
 
 					}
@@ -23212,8 +23207,52 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(242); }
 
+			DebugLocation(630, 21);
+			char_literal419=(IToken)Match(input,62,Follow._62_in_propertyNameAndValue6373); if (state.failed) return retval; 
+			if (state.backtracking == 0) stream_62.Add(char_literal419);
+
+			DebugLocation(630, 25);
+			// JavaScript.g:630:25: ( LT )*
+			try { DebugEnterSubRule(243);
+			while (true)
+			{
+				int alt243=2;
+				try { DebugEnterDecision(243, false);
+				int LA243_1 = input.LA(1);
+
+				if ((LA243_1==LT))
+				{
+					alt243 = 1;
+				}
+
+
+				} finally { DebugExitDecision(243); }
+				switch ( alt243 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:630:25: LT
+					{
+					DebugLocation(630, 25);
+					LT420=(IToken)Match(input,LT,Follow._LT_in_propertyNameAndValue6375); if (state.failed) return retval; 
+					if (state.backtracking == 0) stream_LT.Add(LT420);
+
+
+					}
+					break;
+
+				default:
+					goto loop243;
+				}
+			}
+
+			loop243:
+				;
+
+			} finally { DebugExitSubRule(243); }
+
 			DebugLocation(630, 29);
-			PushFollow(Follow._assignmentExpression_in_propertyNameAndValue6376);
+			PushFollow(Follow._assignmentExpression_in_propertyNameAndValue6378);
 			assignmentExpression421=assignmentExpression();
 			PopFollow();
 			if (state.failed) return retval;
@@ -23320,43 +23359,43 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 80)) { return retval; }
 
 			// JavaScript.g:635:2: ( Identifier -> Identifier | StringLiteral -> StringLiteral | NumericLiteral -> NumericLiteral )
-			int alt243=3;
-			try { DebugEnterDecision(243, false);
+			int alt244=3;
+			try { DebugEnterDecision(244, false);
 			switch (input.LA(1))
 			{
 			case Identifier:
 				{
-				alt243 = 1;
+				alt244 = 1;
 				}
 				break;
 			case StringLiteral:
 				{
-				alt243 = 2;
+				alt244 = 2;
 				}
 				break;
 			case NumericLiteral:
 				{
-				alt243 = 3;
+				alt244 = 3;
 				}
 				break;
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 243, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 244, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(243); }
-			switch (alt243)
+			} finally { DebugExitDecision(244); }
+			switch (alt244)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:635:4: Identifier
 				{
 				DebugLocation(635, 4);
-				Identifier422=(IToken)Match(input,Identifier,Follow._Identifier_in_propertyName6405); if (state.failed) return retval; 
+				Identifier422=(IToken)Match(input,Identifier,Follow._Identifier_in_propertyName6407); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_Identifier.Add(Identifier422);
 
 
@@ -23392,7 +23431,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:636:4: StringLiteral
 				{
 				DebugLocation(636, 4);
-				StringLiteral423=(IToken)Match(input,StringLiteral,Follow._StringLiteral_in_propertyName6420); if (state.failed) return retval; 
+				StringLiteral423=(IToken)Match(input,StringLiteral,Follow._StringLiteral_in_propertyName6422); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_StringLiteral.Add(StringLiteral423);
 
 
@@ -23428,7 +23467,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:637:4: NumericLiteral
 				{
 				DebugLocation(637, 4);
-				NumericLiteral424=(IToken)Match(input,NumericLiteral,Follow._NumericLiteral_in_propertyName6435); if (state.failed) return retval; 
+				NumericLiteral424=(IToken)Match(input,NumericLiteral,Follow._NumericLiteral_in_propertyName6437); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_NumericLiteral.Add(NumericLiteral424);
 
 
@@ -23529,53 +23568,53 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 81)) { return retval; }
 
 			// JavaScript.g:642:2: ( 'null' -> 'null' | 'true' -> 'true' | 'false' -> 'false' | StringLiteral -> StringLiteral | NumericLiteral -> NumericLiteral )
-			int alt244=5;
-			try { DebugEnterDecision(244, false);
+			int alt245=5;
+			try { DebugEnterDecision(245, false);
 			switch (input.LA(1))
 			{
 			case 98:
 				{
-				alt244 = 1;
+				alt245 = 1;
 				}
 				break;
 			case 103:
 				{
-				alt244 = 2;
+				alt245 = 2;
 				}
 				break;
 			case 90:
 				{
-				alt244 = 3;
+				alt245 = 3;
 				}
 				break;
 			case StringLiteral:
 				{
-				alt244 = 4;
+				alt245 = 4;
 				}
 				break;
 			case NumericLiteral:
 				{
-				alt244 = 5;
+				alt245 = 5;
 				}
 				break;
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 244, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 245, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(244); }
-			switch (alt244)
+			} finally { DebugExitDecision(245); }
+			switch (alt245)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:642:4: 'null'
 				{
 				DebugLocation(642, 4);
-				string_literal425=(IToken)Match(input,98,Follow._98_in_literal6456); if (state.failed) return retval; 
+				string_literal425=(IToken)Match(input,98,Follow._98_in_literal6458); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_98.Add(string_literal425);
 
 
@@ -23611,7 +23650,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:643:4: 'true'
 				{
 				DebugLocation(643, 4);
-				string_literal426=(IToken)Match(input,103,Follow._103_in_literal6472); if (state.failed) return retval; 
+				string_literal426=(IToken)Match(input,103,Follow._103_in_literal6474); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_103.Add(string_literal426);
 
 
@@ -23647,7 +23686,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:644:4: 'false'
 				{
 				DebugLocation(644, 4);
-				string_literal427=(IToken)Match(input,90,Follow._90_in_literal6488); if (state.failed) return retval; 
+				string_literal427=(IToken)Match(input,90,Follow._90_in_literal6490); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_90.Add(string_literal427);
 
 
@@ -23683,7 +23722,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:645:4: StringLiteral
 				{
 				DebugLocation(645, 4);
-				StringLiteral428=(IToken)Match(input,StringLiteral,Follow._StringLiteral_in_literal6504); if (state.failed) return retval; 
+				StringLiteral428=(IToken)Match(input,StringLiteral,Follow._StringLiteral_in_literal6506); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_StringLiteral.Add(StringLiteral428);
 
 
@@ -23719,7 +23758,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:646:4: NumericLiteral
 				{
 				DebugLocation(646, 4);
-				NumericLiteral429=(IToken)Match(input,NumericLiteral,Follow._NumericLiteral_in_literal6519); if (state.failed) return retval; 
+				NumericLiteral429=(IToken)Match(input,NumericLiteral,Follow._NumericLiteral_in_literal6521); if (state.failed) return retval; 
 				if (state.backtracking == 0) stream_NumericLiteral.Add(NumericLiteral429);
 
 
@@ -23844,15 +23883,45 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 	}
 	// $ANTLR end synpred9_JavaScript
 
-	partial void EnterRule_synpred21_JavaScript_fragment();
-	partial void LeaveRule_synpred21_JavaScript_fragment();
+	partial void EnterRule_synpred19_JavaScript_fragment();
+	partial void LeaveRule_synpred19_JavaScript_fragment();
 
-	// $ANTLR start synpred21_JavaScript
-	public void synpred21_JavaScript_fragment()
+	// $ANTLR start synpred19_JavaScript
+	public void synpred19_JavaScript_fragment()
 	{
-		EnterRule_synpred21_JavaScript_fragment();
-		EnterRule("synpred21_JavaScript_fragment", 102);
-		TraceIn("synpred21_JavaScript_fragment", 102);
+		EnterRule_synpred19_JavaScript_fragment();
+		EnterRule("synpred19_JavaScript_fragment", 100);
+		TraceIn("synpred19_JavaScript_fragment", 100);
+		try
+		{
+			// JavaScript.g:71:8: ( LT )
+			DebugEnterAlt(1);
+			// JavaScript.g:71:8: LT
+			{
+			DebugLocation(71, 8);
+			Match(input,LT,Follow._LT_in_synpred19_JavaScript397); if (state.failed) return;
+
+			}
+
+		}
+		finally
+		{
+			TraceOut("synpred19_JavaScript_fragment", 100);
+			LeaveRule("synpred19_JavaScript_fragment", 100);
+			LeaveRule_synpred19_JavaScript_fragment();
+		}
+	}
+	// $ANTLR end synpred19_JavaScript
+
+	partial void EnterRule_synpred22_JavaScript_fragment();
+	partial void LeaveRule_synpred22_JavaScript_fragment();
+
+	// $ANTLR start synpred22_JavaScript
+	public void synpred22_JavaScript_fragment()
+	{
+		EnterRule_synpred22_JavaScript_fragment();
+		EnterRule("synpred22_JavaScript_fragment", 103);
+		TraceIn("synpred22_JavaScript_fragment", 103);
 		try
 		{
 			// JavaScript.g:76:4: ( statementBlock )
@@ -23860,7 +23929,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:76:4: statementBlock
 			{
 			DebugLocation(76, 4);
-			PushFollow(Follow._statementBlock_in_synpred21_JavaScript430);
+			PushFollow(Follow._statementBlock_in_synpred22_JavaScript432);
 			statementBlock();
 			PopFollow();
 			if (state.failed) return;
@@ -23870,22 +23939,22 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 		finally
 		{
-			TraceOut("synpred21_JavaScript_fragment", 102);
-			LeaveRule("synpred21_JavaScript_fragment", 102);
-			LeaveRule_synpred21_JavaScript_fragment();
+			TraceOut("synpred22_JavaScript_fragment", 103);
+			LeaveRule("synpred22_JavaScript_fragment", 103);
+			LeaveRule_synpred22_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred21_JavaScript
+	// $ANTLR end synpred22_JavaScript
 
-	partial void EnterRule_synpred24_JavaScript_fragment();
-	partial void LeaveRule_synpred24_JavaScript_fragment();
+	partial void EnterRule_synpred25_JavaScript_fragment();
+	partial void LeaveRule_synpred25_JavaScript_fragment();
 
-	// $ANTLR start synpred24_JavaScript
-	public void synpred24_JavaScript_fragment()
+	// $ANTLR start synpred25_JavaScript
+	public void synpred25_JavaScript_fragment()
 	{
-		EnterRule_synpred24_JavaScript_fragment();
-		EnterRule("synpred24_JavaScript_fragment", 105);
-		TraceIn("synpred24_JavaScript_fragment", 105);
+		EnterRule_synpred25_JavaScript_fragment();
+		EnterRule("synpred25_JavaScript_fragment", 106);
+		TraceIn("synpred25_JavaScript_fragment", 106);
 		try
 		{
 			// JavaScript.g:79:4: ( expressionStatement )
@@ -23893,7 +23962,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:79:4: expressionStatement
 			{
 			DebugLocation(79, 4);
-			PushFollow(Follow._expressionStatement_in_synpred24_JavaScript445);
+			PushFollow(Follow._expressionStatement_in_synpred25_JavaScript447);
 			expressionStatement();
 			PopFollow();
 			if (state.failed) return;
@@ -23903,22 +23972,22 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 		finally
 		{
-			TraceOut("synpred24_JavaScript_fragment", 105);
-			LeaveRule("synpred24_JavaScript_fragment", 105);
-			LeaveRule_synpred24_JavaScript_fragment();
+			TraceOut("synpred25_JavaScript_fragment", 106);
+			LeaveRule("synpred25_JavaScript_fragment", 106);
+			LeaveRule_synpred25_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred24_JavaScript
+	// $ANTLR end synpred25_JavaScript
 
-	partial void EnterRule_synpred31_JavaScript_fragment();
-	partial void LeaveRule_synpred31_JavaScript_fragment();
+	partial void EnterRule_synpred32_JavaScript_fragment();
+	partial void LeaveRule_synpred32_JavaScript_fragment();
 
-	// $ANTLR start synpred31_JavaScript
-	public void synpred31_JavaScript_fragment()
+	// $ANTLR start synpred32_JavaScript
+	public void synpred32_JavaScript_fragment()
 	{
-		EnterRule_synpred31_JavaScript_fragment();
-		EnterRule("synpred31_JavaScript_fragment", 112);
-		TraceIn("synpred31_JavaScript_fragment", 112);
+		EnterRule_synpred32_JavaScript_fragment();
+		EnterRule("synpred32_JavaScript_fragment", 113);
+		TraceIn("synpred32_JavaScript_fragment", 113);
 		try
 		{
 			// JavaScript.g:86:4: ( labelledStatement )
@@ -23926,7 +23995,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:86:4: labelledStatement
 			{
 			DebugLocation(86, 4);
-			PushFollow(Follow._labelledStatement_in_synpred31_JavaScript480);
+			PushFollow(Follow._labelledStatement_in_synpred32_JavaScript482);
 			labelledStatement();
 			PopFollow();
 			if (state.failed) return;
@@ -23936,22 +24005,22 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 		finally
 		{
-			TraceOut("synpred31_JavaScript_fragment", 112);
-			LeaveRule("synpred31_JavaScript_fragment", 112);
-			LeaveRule_synpred31_JavaScript_fragment();
+			TraceOut("synpred32_JavaScript_fragment", 113);
+			LeaveRule("synpred32_JavaScript_fragment", 113);
+			LeaveRule_synpred32_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred31_JavaScript
+	// $ANTLR end synpred32_JavaScript
 
-	partial void EnterRule_synpred34_JavaScript_fragment();
-	partial void LeaveRule_synpred34_JavaScript_fragment();
+	partial void EnterRule_synpred35_JavaScript_fragment();
+	partial void LeaveRule_synpred35_JavaScript_fragment();
 
-	// $ANTLR start synpred34_JavaScript
-	public void synpred34_JavaScript_fragment()
+	// $ANTLR start synpred35_JavaScript
+	public void synpred35_JavaScript_fragment()
 	{
-		EnterRule_synpred34_JavaScript_fragment();
-		EnterRule("synpred34_JavaScript_fragment", 115);
-		TraceIn("synpred34_JavaScript_fragment", 115);
+		EnterRule_synpred35_JavaScript_fragment();
+		EnterRule("synpred35_JavaScript_fragment", 116);
+		TraceIn("synpred35_JavaScript_fragment", 116);
 		try
 		{
 			// JavaScript.g:93:8: ( LT )
@@ -23959,29 +24028,29 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:93:8: LT
 			{
 			DebugLocation(93, 8);
-			Match(input,LT,Follow._LT_in_synpred34_JavaScript509); if (state.failed) return;
+			Match(input,LT,Follow._LT_in_synpred35_JavaScript511); if (state.failed) return;
 
 			}
 
 		}
 		finally
 		{
-			TraceOut("synpred34_JavaScript_fragment", 115);
-			LeaveRule("synpred34_JavaScript_fragment", 115);
-			LeaveRule_synpred34_JavaScript_fragment();
+			TraceOut("synpred35_JavaScript_fragment", 116);
+			LeaveRule("synpred35_JavaScript_fragment", 116);
+			LeaveRule_synpred35_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred34_JavaScript
+	// $ANTLR end synpred35_JavaScript
 
-	partial void EnterRule_synpred47_JavaScript_fragment();
-	partial void LeaveRule_synpred47_JavaScript_fragment();
+	partial void EnterRule_synpred48_JavaScript_fragment();
+	partial void LeaveRule_synpred48_JavaScript_fragment();
 
-	// $ANTLR start synpred47_JavaScript
-	public void synpred47_JavaScript_fragment()
+	// $ANTLR start synpred48_JavaScript
+	public void synpred48_JavaScript_fragment()
 	{
-		EnterRule_synpred47_JavaScript_fragment();
-		EnterRule("synpred47_JavaScript_fragment", 128);
-		TraceIn("synpred47_JavaScript_fragment", 128);
+		EnterRule_synpred48_JavaScript_fragment();
+		EnterRule("synpred48_JavaScript_fragment", 129);
+		TraceIn("synpred48_JavaScript_fragment", 129);
 		try
 		{
 			// JavaScript.g:114:15: ( LT )
@@ -23989,29 +24058,29 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:114:15: LT
 			{
 			DebugLocation(114, 15);
-			Match(input,LT,Follow._LT_in_synpred47_JavaScript668); if (state.failed) return;
+			Match(input,LT,Follow._LT_in_synpred48_JavaScript670); if (state.failed) return;
 
 			}
 
 		}
 		finally
 		{
-			TraceOut("synpred47_JavaScript_fragment", 128);
-			LeaveRule("synpred47_JavaScript_fragment", 128);
-			LeaveRule_synpred47_JavaScript_fragment();
+			TraceOut("synpred48_JavaScript_fragment", 129);
+			LeaveRule("synpred48_JavaScript_fragment", 129);
+			LeaveRule_synpred48_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred47_JavaScript
+	// $ANTLR end synpred48_JavaScript
 
-	partial void EnterRule_synpred49_JavaScript_fragment();
-	partial void LeaveRule_synpred49_JavaScript_fragment();
+	partial void EnterRule_synpred50_JavaScript_fragment();
+	partial void LeaveRule_synpred50_JavaScript_fragment();
 
-	// $ANTLR start synpred49_JavaScript
-	public void synpred49_JavaScript_fragment()
+	// $ANTLR start synpred50_JavaScript
+	public void synpred50_JavaScript_fragment()
 	{
-		EnterRule_synpred49_JavaScript_fragment();
-		EnterRule("synpred49_JavaScript_fragment", 130);
-		TraceIn("synpred49_JavaScript_fragment", 130);
+		EnterRule_synpred50_JavaScript_fragment();
+		EnterRule("synpred50_JavaScript_fragment", 131);
+		TraceIn("synpred50_JavaScript_fragment", 131);
 		try
 		{
 			// JavaScript.g:121:15: ( LT )
@@ -24019,31 +24088,31 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:121:15: LT
 			{
 			DebugLocation(121, 15);
-			Match(input,LT,Follow._LT_in_synpred49_JavaScript720); if (state.failed) return;
+			Match(input,LT,Follow._LT_in_synpred50_JavaScript722); if (state.failed) return;
 
 			}
 
 		}
 		finally
 		{
-			TraceOut("synpred49_JavaScript_fragment", 130);
-			LeaveRule("synpred49_JavaScript_fragment", 130);
-			LeaveRule_synpred49_JavaScript_fragment();
+			TraceOut("synpred50_JavaScript_fragment", 131);
+			LeaveRule("synpred50_JavaScript_fragment", 131);
+			LeaveRule_synpred50_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred49_JavaScript
+	// $ANTLR end synpred50_JavaScript
 
-	partial void EnterRule_synpred60_JavaScript_fragment();
-	partial void LeaveRule_synpred60_JavaScript_fragment();
+	partial void EnterRule_synpred61_JavaScript_fragment();
+	partial void LeaveRule_synpred61_JavaScript_fragment();
 
-	// $ANTLR start synpred60_JavaScript
-	public void synpred60_JavaScript_fragment()
+	// $ANTLR start synpred61_JavaScript
+	public void synpred61_JavaScript_fragment()
 	{
 		AstParserRuleReturnScope<CommonTree, IToken> elsestmt = default(AstParserRuleReturnScope<CommonTree, IToken>);
 
-		EnterRule_synpred60_JavaScript_fragment();
-		EnterRule("synpred60_JavaScript_fragment", 141);
-		TraceIn("synpred60_JavaScript_fragment", 141);
+		EnterRule_synpred61_JavaScript_fragment();
+		EnterRule("synpred61_JavaScript_fragment", 142);
+		TraceIn("synpred61_JavaScript_fragment", 142);
 		try
 		{
 			// JavaScript.g:144:62: ( ( LT )* 'else' ( LT )* elsestmt= statement )
@@ -24052,46 +24121,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			{
 			DebugLocation(144, 62);
 			// JavaScript.g:144:62: ( LT )*
-			try { DebugEnterSubRule(257);
-			while (true)
-			{
-				int alt257=2;
-				try { DebugEnterDecision(257, false);
-				int LA257_1 = input.LA(1);
-
-				if ((LA257_1==LT))
-				{
-					alt257 = 1;
-				}
-
-
-				} finally { DebugExitDecision(257); }
-				switch ( alt257 )
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// JavaScript.g:144:62: LT
-					{
-					DebugLocation(144, 62);
-					Match(input,LT,Follow._LT_in_synpred60_JavaScript883); if (state.failed) return;
-
-					}
-					break;
-
-				default:
-					goto loop257;
-				}
-			}
-
-			loop257:
-				;
-
-			} finally { DebugExitSubRule(257); }
-
-			DebugLocation(144, 66);
-			Match(input,89,Follow._89_in_synpred60_JavaScript886); if (state.failed) return;
-			DebugLocation(144, 73);
-			// JavaScript.g:144:73: ( LT )*
 			try { DebugEnterSubRule(258);
 			while (true)
 			{
@@ -24110,10 +24139,10 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// JavaScript.g:144:73: LT
+					// JavaScript.g:144:62: LT
 					{
-					DebugLocation(144, 73);
-					Match(input,LT,Follow._LT_in_synpred60_JavaScript888); if (state.failed) return;
+					DebugLocation(144, 62);
+					Match(input,LT,Follow._LT_in_synpred61_JavaScript885); if (state.failed) return;
 
 					}
 					break;
@@ -24128,8 +24157,48 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 
 			} finally { DebugExitSubRule(258); }
 
+			DebugLocation(144, 66);
+			Match(input,89,Follow._89_in_synpred61_JavaScript888); if (state.failed) return;
+			DebugLocation(144, 73);
+			// JavaScript.g:144:73: ( LT )*
+			try { DebugEnterSubRule(259);
+			while (true)
+			{
+				int alt259=2;
+				try { DebugEnterDecision(259, false);
+				int LA259_1 = input.LA(1);
+
+				if ((LA259_1==LT))
+				{
+					alt259 = 1;
+				}
+
+
+				} finally { DebugExitDecision(259); }
+				switch ( alt259 )
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// JavaScript.g:144:73: LT
+					{
+					DebugLocation(144, 73);
+					Match(input,LT,Follow._LT_in_synpred61_JavaScript890); if (state.failed) return;
+
+					}
+					break;
+
+				default:
+					goto loop259;
+				}
+			}
+
+			loop259:
+				;
+
+			} finally { DebugExitSubRule(259); }
+
 			DebugLocation(144, 85);
-			PushFollow(Follow._statement_in_synpred60_JavaScript893);
+			PushFollow(Follow._statement_in_synpred61_JavaScript895);
 			elsestmt=statement();
 			PopFollow();
 			if (state.failed) return;
@@ -24139,22 +24208,22 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 		finally
 		{
-			TraceOut("synpred60_JavaScript_fragment", 141);
-			LeaveRule("synpred60_JavaScript_fragment", 141);
-			LeaveRule_synpred60_JavaScript_fragment();
+			TraceOut("synpred61_JavaScript_fragment", 142);
+			LeaveRule("synpred61_JavaScript_fragment", 142);
+			LeaveRule_synpred61_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred60_JavaScript
+	// $ANTLR end synpred61_JavaScript
 
-	partial void EnterRule_synpred63_JavaScript_fragment();
-	partial void LeaveRule_synpred63_JavaScript_fragment();
+	partial void EnterRule_synpred64_JavaScript_fragment();
+	partial void LeaveRule_synpred64_JavaScript_fragment();
 
-	// $ANTLR start synpred63_JavaScript
-	public void synpred63_JavaScript_fragment()
+	// $ANTLR start synpred64_JavaScript
+	public void synpred64_JavaScript_fragment()
 	{
-		EnterRule_synpred63_JavaScript_fragment();
-		EnterRule("synpred63_JavaScript_fragment", 144);
-		TraceIn("synpred63_JavaScript_fragment", 144);
+		EnterRule_synpred64_JavaScript_fragment();
+		EnterRule("synpred64_JavaScript_fragment", 145);
+		TraceIn("synpred64_JavaScript_fragment", 145);
 		try
 		{
 			// JavaScript.g:151:4: ( forStatement )
@@ -24162,7 +24231,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:151:4: forStatement
 			{
 			DebugLocation(151, 4);
-			PushFollow(Follow._forStatement_in_synpred63_JavaScript939);
+			PushFollow(Follow._forStatement_in_synpred64_JavaScript941);
 			forStatement();
 			PopFollow();
 			if (state.failed) return;
@@ -24172,22 +24241,22 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 		finally
 		{
-			TraceOut("synpred63_JavaScript_fragment", 144);
-			LeaveRule("synpred63_JavaScript_fragment", 144);
-			LeaveRule_synpred63_JavaScript_fragment();
+			TraceOut("synpred64_JavaScript_fragment", 145);
+			LeaveRule("synpred64_JavaScript_fragment", 145);
+			LeaveRule_synpred64_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred63_JavaScript
+	// $ANTLR end synpred64_JavaScript
 
-	partial void EnterRule_synpred118_JavaScript_fragment();
-	partial void LeaveRule_synpred118_JavaScript_fragment();
+	partial void EnterRule_synpred119_JavaScript_fragment();
+	partial void LeaveRule_synpred119_JavaScript_fragment();
 
-	// $ANTLR start synpred118_JavaScript
-	public void synpred118_JavaScript_fragment()
+	// $ANTLR start synpred119_JavaScript
+	public void synpred119_JavaScript_fragment()
 	{
-		EnterRule_synpred118_JavaScript_fragment();
-		EnterRule("synpred118_JavaScript_fragment", 199);
-		TraceIn("synpred118_JavaScript_fragment", 199);
+		EnterRule_synpred119_JavaScript_fragment();
+		EnterRule("synpred119_JavaScript_fragment", 200);
+		TraceIn("synpred119_JavaScript_fragment", 200);
 		try
 		{
 			// JavaScript.g:226:34: ( LT )
@@ -24195,29 +24264,29 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:226:34: LT
 			{
 			DebugLocation(226, 34);
-			Match(input,LT,Follow._LT_in_synpred118_JavaScript1675); if (state.failed) return;
+			Match(input,LT,Follow._LT_in_synpred119_JavaScript1677); if (state.failed) return;
 
 			}
 
 		}
 		finally
 		{
-			TraceOut("synpred118_JavaScript_fragment", 199);
-			LeaveRule("synpred118_JavaScript_fragment", 199);
-			LeaveRule_synpred118_JavaScript_fragment();
+			TraceOut("synpred119_JavaScript_fragment", 200);
+			LeaveRule("synpred119_JavaScript_fragment", 200);
+			LeaveRule_synpred119_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred118_JavaScript
+	// $ANTLR end synpred119_JavaScript
 
-	partial void EnterRule_synpred121_JavaScript_fragment();
-	partial void LeaveRule_synpred121_JavaScript_fragment();
+	partial void EnterRule_synpred122_JavaScript_fragment();
+	partial void LeaveRule_synpred122_JavaScript_fragment();
 
-	// $ANTLR start synpred121_JavaScript
-	public void synpred121_JavaScript_fragment()
+	// $ANTLR start synpred122_JavaScript
+	public void synpred122_JavaScript_fragment()
 	{
-		EnterRule_synpred121_JavaScript_fragment();
-		EnterRule("synpred121_JavaScript_fragment", 202);
-		TraceIn("synpred121_JavaScript_fragment", 202);
+		EnterRule_synpred122_JavaScript_fragment();
+		EnterRule("synpred122_JavaScript_fragment", 203);
+		TraceIn("synpred122_JavaScript_fragment", 203);
 		try
 		{
 			// JavaScript.g:230:22: ( LT )
@@ -24225,29 +24294,29 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:230:22: LT
 			{
 			DebugLocation(230, 22);
-			Match(input,LT,Follow._LT_in_synpred121_JavaScript1714); if (state.failed) return;
+			Match(input,LT,Follow._LT_in_synpred122_JavaScript1716); if (state.failed) return;
 
 			}
 
 		}
 		finally
 		{
-			TraceOut("synpred121_JavaScript_fragment", 202);
-			LeaveRule("synpred121_JavaScript_fragment", 202);
-			LeaveRule_synpred121_JavaScript_fragment();
+			TraceOut("synpred122_JavaScript_fragment", 203);
+			LeaveRule("synpred122_JavaScript_fragment", 203);
+			LeaveRule_synpred122_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred121_JavaScript
+	// $ANTLR end synpred122_JavaScript
 
-	partial void EnterRule_synpred140_JavaScript_fragment();
-	partial void LeaveRule_synpred140_JavaScript_fragment();
+	partial void EnterRule_synpred141_JavaScript_fragment();
+	partial void LeaveRule_synpred141_JavaScript_fragment();
 
-	// $ANTLR start synpred140_JavaScript
-	public void synpred140_JavaScript_fragment()
+	// $ANTLR start synpred141_JavaScript
+	public void synpred141_JavaScript_fragment()
 	{
-		EnterRule_synpred140_JavaScript_fragment();
-		EnterRule("synpred140_JavaScript_fragment", 221);
-		TraceIn("synpred140_JavaScript_fragment", 221);
+		EnterRule_synpred141_JavaScript_fragment();
+		EnterRule("synpred141_JavaScript_fragment", 222);
+		TraceIn("synpred141_JavaScript_fragment", 222);
 		try
 		{
 			// JavaScript.g:261:4: ( conditionalExpression )
@@ -24255,7 +24324,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:261:4: conditionalExpression
 			{
 			DebugLocation(261, 4);
-			PushFollow(Follow._conditionalExpression_in_synpred140_JavaScript1985);
+			PushFollow(Follow._conditionalExpression_in_synpred141_JavaScript1987);
 			conditionalExpression();
 			PopFollow();
 			if (state.failed) return;
@@ -24265,22 +24334,22 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 		finally
 		{
-			TraceOut("synpred140_JavaScript_fragment", 221);
-			LeaveRule("synpred140_JavaScript_fragment", 221);
-			LeaveRule_synpred140_JavaScript_fragment();
+			TraceOut("synpred141_JavaScript_fragment", 222);
+			LeaveRule("synpred141_JavaScript_fragment", 222);
+			LeaveRule_synpred141_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred140_JavaScript
+	// $ANTLR end synpred141_JavaScript
 
-	partial void EnterRule_synpred143_JavaScript_fragment();
-	partial void LeaveRule_synpred143_JavaScript_fragment();
+	partial void EnterRule_synpred144_JavaScript_fragment();
+	partial void LeaveRule_synpred144_JavaScript_fragment();
 
-	// $ANTLR start synpred143_JavaScript
-	public void synpred143_JavaScript_fragment()
+	// $ANTLR start synpred144_JavaScript
+	public void synpred144_JavaScript_fragment()
 	{
-		EnterRule_synpred143_JavaScript_fragment();
-		EnterRule("synpred143_JavaScript_fragment", 224);
-		TraceIn("synpred143_JavaScript_fragment", 224);
+		EnterRule_synpred144_JavaScript_fragment();
+		EnterRule("synpred144_JavaScript_fragment", 225);
+		TraceIn("synpred144_JavaScript_fragment", 225);
 		try
 		{
 			// JavaScript.g:279:4: ( conditionalExpressionNoIn )
@@ -24288,7 +24357,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:279:4: conditionalExpressionNoIn
 			{
 			DebugLocation(279, 4);
-			PushFollow(Follow._conditionalExpressionNoIn_in_synpred143_JavaScript2297);
+			PushFollow(Follow._conditionalExpressionNoIn_in_synpred144_JavaScript2299);
 			conditionalExpressionNoIn();
 			PopFollow();
 			if (state.failed) return;
@@ -24298,45 +24367,12 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 		finally
 		{
-			TraceOut("synpred143_JavaScript_fragment", 224);
-			LeaveRule("synpred143_JavaScript_fragment", 224);
-			LeaveRule_synpred143_JavaScript_fragment();
+			TraceOut("synpred144_JavaScript_fragment", 225);
+			LeaveRule("synpred144_JavaScript_fragment", 225);
+			LeaveRule_synpred144_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred143_JavaScript
-
-	partial void EnterRule_synpred157_JavaScript_fragment();
-	partial void LeaveRule_synpred157_JavaScript_fragment();
-
-	// $ANTLR start synpred157_JavaScript
-	public void synpred157_JavaScript_fragment()
-	{
-		EnterRule_synpred157_JavaScript_fragment();
-		EnterRule("synpred157_JavaScript_fragment", 238);
-		TraceIn("synpred157_JavaScript_fragment", 238);
-		try
-		{
-			// JavaScript.g:301:4: ( callExpression )
-			DebugEnterAlt(1);
-			// JavaScript.g:301:4: callExpression
-			{
-			DebugLocation(301, 4);
-			PushFollow(Follow._callExpression_in_synpred157_JavaScript2663);
-			callExpression();
-			PopFollow();
-			if (state.failed) return;
-
-			}
-
-		}
-		finally
-		{
-			TraceOut("synpred157_JavaScript_fragment", 238);
-			LeaveRule("synpred157_JavaScript_fragment", 238);
-			LeaveRule_synpred157_JavaScript_fragment();
-		}
-	}
-	// $ANTLR end synpred157_JavaScript
+	// $ANTLR end synpred144_JavaScript
 
 	partial void EnterRule_synpred158_JavaScript_fragment();
 	partial void LeaveRule_synpred158_JavaScript_fragment();
@@ -24349,13 +24385,13 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		TraceIn("synpred158_JavaScript_fragment", 239);
 		try
 		{
-			// JavaScript.g:306:4: ( memberExpression )
+			// JavaScript.g:301:4: ( callExpression )
 			DebugEnterAlt(1);
-			// JavaScript.g:306:4: memberExpression
+			// JavaScript.g:301:4: callExpression
 			{
-			DebugLocation(306, 4);
-			PushFollow(Follow._memberExpression_in_synpred158_JavaScript2680);
-			memberExpression();
+			DebugLocation(301, 4);
+			PushFollow(Follow._callExpression_in_synpred158_JavaScript2665);
+			callExpression();
 			PopFollow();
 			if (state.failed) return;
 
@@ -24371,15 +24407,48 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 	}
 	// $ANTLR end synpred158_JavaScript
 
-	partial void EnterRule_synpred162_JavaScript_fragment();
-	partial void LeaveRule_synpred162_JavaScript_fragment();
+	partial void EnterRule_synpred159_JavaScript_fragment();
+	partial void LeaveRule_synpred159_JavaScript_fragment();
 
-	// $ANTLR start synpred162_JavaScript
-	public void synpred162_JavaScript_fragment()
+	// $ANTLR start synpred159_JavaScript
+	public void synpred159_JavaScript_fragment()
 	{
-		EnterRule_synpred162_JavaScript_fragment();
-		EnterRule("synpred162_JavaScript_fragment", 243);
-		TraceIn("synpred162_JavaScript_fragment", 243);
+		EnterRule_synpred159_JavaScript_fragment();
+		EnterRule("synpred159_JavaScript_fragment", 240);
+		TraceIn("synpred159_JavaScript_fragment", 240);
+		try
+		{
+			// JavaScript.g:306:4: ( memberExpression )
+			DebugEnterAlt(1);
+			// JavaScript.g:306:4: memberExpression
+			{
+			DebugLocation(306, 4);
+			PushFollow(Follow._memberExpression_in_synpred159_JavaScript2682);
+			memberExpression();
+			PopFollow();
+			if (state.failed) return;
+
+			}
+
+		}
+		finally
+		{
+			TraceOut("synpred159_JavaScript_fragment", 240);
+			LeaveRule("synpred159_JavaScript_fragment", 240);
+			LeaveRule_synpred159_JavaScript_fragment();
+		}
+	}
+	// $ANTLR end synpred159_JavaScript
+
+	partial void EnterRule_synpred163_JavaScript_fragment();
+	partial void LeaveRule_synpred163_JavaScript_fragment();
+
+	// $ANTLR start synpred163_JavaScript
+	public void synpred163_JavaScript_fragment()
+	{
+		EnterRule_synpred163_JavaScript_fragment();
+		EnterRule("synpred163_JavaScript_fragment", 244);
+		TraceIn("synpred163_JavaScript_fragment", 244);
 		try
 		{
 			// JavaScript.g:314:13: ( ( LT )* ( indexSuffix | propertyReferenceSuffix ) )
@@ -24388,73 +24457,73 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			{
 			DebugLocation(314, 13);
 			// JavaScript.g:314:13: ( LT )*
-			try { DebugEnterSubRule(272);
+			try { DebugEnterSubRule(273);
 			while (true)
 			{
-				int alt272=2;
-				try { DebugEnterDecision(272, false);
-				int LA272_1 = input.LA(1);
+				int alt273=2;
+				try { DebugEnterDecision(273, false);
+				int LA273_1 = input.LA(1);
 
-				if ((LA272_1==LT))
+				if ((LA273_1==LT))
 				{
-					alt272 = 1;
+					alt273 = 1;
 				}
 
 
-				} finally { DebugExitDecision(272); }
-				switch ( alt272 )
+				} finally { DebugExitDecision(273); }
+				switch ( alt273 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:314:13: LT
 					{
 					DebugLocation(314, 13);
-					Match(input,LT,Follow._LT_in_synpred162_JavaScript2756); if (state.failed) return;
+					Match(input,LT,Follow._LT_in_synpred163_JavaScript2758); if (state.failed) return;
 
 					}
 					break;
 
 				default:
-					goto loop272;
+					goto loop273;
 				}
 			}
 
-			loop272:
+			loop273:
 				;
 
-			} finally { DebugExitSubRule(272); }
+			} finally { DebugExitSubRule(273); }
 
 			DebugLocation(315, 13);
 			// JavaScript.g:315:13: ( indexSuffix | propertyReferenceSuffix )
-			int alt273=2;
-			try { DebugEnterSubRule(273);
-			try { DebugEnterDecision(273, false);
-			int LA273_1 = input.LA(1);
+			int alt274=2;
+			try { DebugEnterSubRule(274);
+			try { DebugEnterDecision(274, false);
+			int LA274_1 = input.LA(1);
 
-			if ((LA273_1==78))
+			if ((LA274_1==78))
 			{
-				alt273 = 1;
+				alt274 = 1;
 			}
-			else if ((LA273_1==59))
+			else if ((LA274_1==59))
 			{
-				alt273 = 2;
+				alt274 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return;}
-				NoViableAltException nvae = new NoViableAltException("", 273, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 274, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(273); }
-			switch (alt273)
+			} finally { DebugExitDecision(274); }
+			switch (alt274)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:316:17: indexSuffix
 				{
 				DebugLocation(316, 17);
-				PushFollow(Follow._indexSuffix_in_synpred162_JavaScript2790);
+				PushFollow(Follow._indexSuffix_in_synpred163_JavaScript2792);
 				indexSuffix();
 				PopFollow();
 				if (state.failed) return;
@@ -24466,7 +24535,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:317:19: propertyReferenceSuffix
 				{
 				DebugLocation(317, 19);
-				PushFollow(Follow._propertyReferenceSuffix_in_synpred162_JavaScript2854);
+				PushFollow(Follow._propertyReferenceSuffix_in_synpred163_JavaScript2856);
 				propertyReferenceSuffix();
 				PopFollow();
 				if (state.failed) return;
@@ -24475,7 +24544,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(273); }
+			} finally { DebugExitSubRule(274); }
 
 
 			}
@@ -24483,26 +24552,26 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 		finally
 		{
-			TraceOut("synpred162_JavaScript_fragment", 243);
-			LeaveRule("synpred162_JavaScript_fragment", 243);
-			LeaveRule_synpred162_JavaScript_fragment();
+			TraceOut("synpred163_JavaScript_fragment", 244);
+			LeaveRule("synpred163_JavaScript_fragment", 244);
+			LeaveRule_synpred163_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred162_JavaScript
+	// $ANTLR end synpred163_JavaScript
 
-	partial void EnterRule_synpred170_JavaScript_fragment();
-	partial void LeaveRule_synpred170_JavaScript_fragment();
+	partial void EnterRule_synpred171_JavaScript_fragment();
+	partial void LeaveRule_synpred171_JavaScript_fragment();
 
-	// $ANTLR start synpred170_JavaScript
-	public void synpred170_JavaScript_fragment()
+	// $ANTLR start synpred171_JavaScript
+	public void synpred171_JavaScript_fragment()
 	{
 		AstParserRuleReturnScope<CommonTree, IToken> args = default(AstParserRuleReturnScope<CommonTree, IToken>);
 		AstParserRuleReturnScope<CommonTree, IToken> idx = default(AstParserRuleReturnScope<CommonTree, IToken>);
 		AstParserRuleReturnScope<CommonTree, IToken> prop = default(AstParserRuleReturnScope<CommonTree, IToken>);
 
-		EnterRule_synpred170_JavaScript_fragment();
-		EnterRule("synpred170_JavaScript_fragment", 251);
-		TraceIn("synpred170_JavaScript_fragment", 251);
+		EnterRule_synpred171_JavaScript_fragment();
+		EnterRule("synpred171_JavaScript_fragment", 252);
+		TraceIn("synpred171_JavaScript_fragment", 252);
 		try
 		{
 			// JavaScript.g:332:13: ( ( LT )* (args= arguments |idx= indexSuffix |prop= propertyReferenceSuffix ) )
@@ -24511,82 +24580,82 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			{
 			DebugLocation(332, 13);
 			// JavaScript.g:332:13: ( LT )*
-			try { DebugEnterSubRule(274);
+			try { DebugEnterSubRule(275);
 			while (true)
 			{
-				int alt274=2;
-				try { DebugEnterDecision(274, false);
-				int LA274_1 = input.LA(1);
+				int alt275=2;
+				try { DebugEnterDecision(275, false);
+				int LA275_1 = input.LA(1);
 
-				if ((LA274_1==LT))
+				if ((LA275_1==LT))
 				{
-					alt274 = 1;
+					alt275 = 1;
 				}
 
 
-				} finally { DebugExitDecision(274); }
-				switch ( alt274 )
+				} finally { DebugExitDecision(275); }
+				switch ( alt275 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:332:13: LT
 					{
 					DebugLocation(332, 13);
-					Match(input,LT,Follow._LT_in_synpred170_JavaScript3073); if (state.failed) return;
+					Match(input,LT,Follow._LT_in_synpred171_JavaScript3075); if (state.failed) return;
 
 					}
 					break;
 
 				default:
-					goto loop274;
+					goto loop275;
 				}
 			}
 
-			loop274:
+			loop275:
 				;
 
-			} finally { DebugExitSubRule(274); }
+			} finally { DebugExitSubRule(275); }
 
 			DebugLocation(333, 13);
 			// JavaScript.g:333:13: (args= arguments |idx= indexSuffix |prop= propertyReferenceSuffix )
-			int alt275=3;
-			try { DebugEnterSubRule(275);
-			try { DebugEnterDecision(275, false);
+			int alt276=3;
+			try { DebugEnterSubRule(276);
+			try { DebugEnterDecision(276, false);
 			switch (input.LA(1))
 			{
 			case 48:
 				{
-				alt275 = 1;
+				alt276 = 1;
 				}
 				break;
 			case 78:
 				{
-				alt275 = 2;
+				alt276 = 2;
 				}
 				break;
 			case 59:
 				{
-				alt275 = 3;
+				alt276 = 3;
 				}
 				break;
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return;}
-					NoViableAltException nvae = new NoViableAltException("", 275, 0, input, 1);
+					NoViableAltException nvae = new NoViableAltException("", 276, 0, input, 1);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(275); }
-			switch (alt275)
+			} finally { DebugExitDecision(276); }
+			switch (alt276)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:334:17: args= arguments
 				{
 				DebugLocation(334, 21);
-				PushFollow(Follow._arguments_in_synpred170_JavaScript3109);
+				PushFollow(Follow._arguments_in_synpred171_JavaScript3111);
 				args=arguments();
 				PopFollow();
 				if (state.failed) return;
@@ -24598,7 +24667,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:335:16: idx= indexSuffix
 				{
 				DebugLocation(335, 19);
-				PushFollow(Follow._indexSuffix_in_synpred170_JavaScript3162);
+				PushFollow(Follow._indexSuffix_in_synpred171_JavaScript3164);
 				idx=indexSuffix();
 				PopFollow();
 				if (state.failed) return;
@@ -24610,7 +24679,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:336:16: prop= propertyReferenceSuffix
 				{
 				DebugLocation(336, 20);
-				PushFollow(Follow._propertyReferenceSuffix_in_synpred170_JavaScript3212);
+				PushFollow(Follow._propertyReferenceSuffix_in_synpred171_JavaScript3214);
 				prop=propertyReferenceSuffix();
 				PopFollow();
 				if (state.failed) return;
@@ -24619,7 +24688,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				break;
 
 			}
-			} finally { DebugExitSubRule(275); }
+			} finally { DebugExitSubRule(276); }
 
 
 			}
@@ -24627,25 +24696,25 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 		finally
 		{
-			TraceOut("synpred170_JavaScript_fragment", 251);
-			LeaveRule("synpred170_JavaScript_fragment", 251);
-			LeaveRule_synpred170_JavaScript_fragment();
+			TraceOut("synpred171_JavaScript_fragment", 252);
+			LeaveRule("synpred171_JavaScript_fragment", 252);
+			LeaveRule_synpred171_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred170_JavaScript
+	// $ANTLR end synpred171_JavaScript
 
-	partial void EnterRule_synpred256_JavaScript_fragment();
-	partial void LeaveRule_synpred256_JavaScript_fragment();
+	partial void EnterRule_synpred257_JavaScript_fragment();
+	partial void LeaveRule_synpred257_JavaScript_fragment();
 
-	// $ANTLR start synpred256_JavaScript
-	public void synpred256_JavaScript_fragment()
+	// $ANTLR start synpred257_JavaScript
+	public void synpred257_JavaScript_fragment()
 	{
 		IToken op = default(IToken);
 		AstParserRuleReturnScope<CommonTree, IToken> add = default(AstParserRuleReturnScope<CommonTree, IToken>);
 
-		EnterRule_synpred256_JavaScript_fragment();
-		EnterRule("synpred256_JavaScript_fragment", 337);
-		TraceIn("synpred256_JavaScript_fragment", 337);
+		EnterRule_synpred257_JavaScript_fragment();
+		EnterRule("synpred257_JavaScript_fragment", 338);
+		TraceIn("synpred257_JavaScript_fragment", 338);
 		try
 		{
 			// JavaScript.g:559:7: ( ( LT )* (op= '+' |op= '-' ) ( LT )* add= additiveExpression )
@@ -24654,73 +24723,73 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			{
 			DebugLocation(559, 7);
 			// JavaScript.g:559:7: ( LT )*
-			try { DebugEnterSubRule(323);
+			try { DebugEnterSubRule(324);
 			while (true)
 			{
-				int alt323=2;
-				try { DebugEnterDecision(323, false);
-				int LA323_1 = input.LA(1);
+				int alt324=2;
+				try { DebugEnterDecision(324, false);
+				int LA324_1 = input.LA(1);
 
-				if ((LA323_1==LT))
+				if ((LA324_1==LT))
 				{
-					alt323 = 1;
+					alt324 = 1;
 				}
 
 
-				} finally { DebugExitDecision(323); }
-				switch ( alt323 )
+				} finally { DebugExitDecision(324); }
+				switch ( alt324 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:559:7: LT
 					{
 					DebugLocation(559, 7);
-					Match(input,LT,Follow._LT_in_synpred256_JavaScript5397); if (state.failed) return;
+					Match(input,LT,Follow._LT_in_synpred257_JavaScript5399); if (state.failed) return;
 
 					}
 					break;
 
 				default:
-					goto loop323;
+					goto loop324;
 				}
 			}
 
-			loop323:
+			loop324:
 				;
 
-			} finally { DebugExitSubRule(323); }
+			} finally { DebugExitSubRule(324); }
 
 			DebugLocation(559, 11);
 			// JavaScript.g:559:11: (op= '+' |op= '-' )
-			int alt324=2;
-			try { DebugEnterSubRule(324);
-			try { DebugEnterDecision(324, false);
-			int LA324_1 = input.LA(1);
+			int alt325=2;
+			try { DebugEnterSubRule(325);
+			try { DebugEnterDecision(325, false);
+			int LA325_1 = input.LA(1);
 
-			if ((LA324_1==52))
+			if ((LA325_1==52))
 			{
-				alt324 = 1;
+				alt325 = 1;
 			}
-			else if ((LA324_1==56))
+			else if ((LA325_1==56))
 			{
-				alt324 = 2;
+				alt325 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return;}
-				NoViableAltException nvae = new NoViableAltException("", 324, 0, input, 1);
+				NoViableAltException nvae = new NoViableAltException("", 325, 0, input, 1);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(324); }
-			switch (alt324)
+			} finally { DebugExitDecision(325); }
+			switch (alt325)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// JavaScript.g:559:12: op= '+'
 				{
 				DebugLocation(559, 14);
-				op=(IToken)Match(input,52,Follow._52_in_synpred256_JavaScript5403); if (state.failed) return;
+				op=(IToken)Match(input,52,Follow._52_in_synpred257_JavaScript5405); if (state.failed) return;
 
 				}
 				break;
@@ -24729,54 +24798,54 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				// JavaScript.g:559:21: op= '-'
 				{
 				DebugLocation(559, 23);
-				op=(IToken)Match(input,56,Follow._56_in_synpred256_JavaScript5409); if (state.failed) return;
+				op=(IToken)Match(input,56,Follow._56_in_synpred257_JavaScript5411); if (state.failed) return;
 
 				}
 				break;
 
 			}
-			} finally { DebugExitSubRule(324); }
+			} finally { DebugExitSubRule(325); }
 
 			DebugLocation(559, 29);
 			// JavaScript.g:559:29: ( LT )*
-			try { DebugEnterSubRule(325);
+			try { DebugEnterSubRule(326);
 			while (true)
 			{
-				int alt325=2;
-				try { DebugEnterDecision(325, false);
-				int LA325_1 = input.LA(1);
+				int alt326=2;
+				try { DebugEnterDecision(326, false);
+				int LA326_1 = input.LA(1);
 
-				if ((LA325_1==LT))
+				if ((LA326_1==LT))
 				{
-					alt325 = 1;
+					alt326 = 1;
 				}
 
 
-				} finally { DebugExitDecision(325); }
-				switch ( alt325 )
+				} finally { DebugExitDecision(326); }
+				switch ( alt326 )
 				{
 				case 1:
 					DebugEnterAlt(1);
 					// JavaScript.g:559:29: LT
 					{
 					DebugLocation(559, 29);
-					Match(input,LT,Follow._LT_in_synpred256_JavaScript5412); if (state.failed) return;
+					Match(input,LT,Follow._LT_in_synpred257_JavaScript5414); if (state.failed) return;
 
 					}
 					break;
 
 				default:
-					goto loop325;
+					goto loop326;
 				}
 			}
 
-			loop325:
+			loop326:
 				;
 
-			} finally { DebugExitSubRule(325); }
+			} finally { DebugExitSubRule(326); }
 
 			DebugLocation(559, 36);
-			PushFollow(Follow._additiveExpression_in_synpred256_JavaScript5417);
+			PushFollow(Follow._additiveExpression_in_synpred257_JavaScript5419);
 			add=additiveExpression();
 			PopFollow();
 			if (state.failed) return;
@@ -24786,22 +24855,22 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 		finally
 		{
-			TraceOut("synpred256_JavaScript_fragment", 337);
-			LeaveRule("synpred256_JavaScript_fragment", 337);
-			LeaveRule_synpred256_JavaScript_fragment();
+			TraceOut("synpred257_JavaScript_fragment", 338);
+			LeaveRule("synpred257_JavaScript_fragment", 338);
+			LeaveRule_synpred257_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred256_JavaScript
+	// $ANTLR end synpred257_JavaScript
 
-	partial void EnterRule_synpred280_JavaScript_fragment();
-	partial void LeaveRule_synpred280_JavaScript_fragment();
+	partial void EnterRule_synpred281_JavaScript_fragment();
+	partial void LeaveRule_synpred281_JavaScript_fragment();
 
-	// $ANTLR start synpred280_JavaScript
-	public void synpred280_JavaScript_fragment()
+	// $ANTLR start synpred281_JavaScript
+	public void synpred281_JavaScript_fragment()
 	{
-		EnterRule_synpred280_JavaScript_fragment();
-		EnterRule("synpred280_JavaScript_fragment", 361);
-		TraceIn("synpred280_JavaScript_fragment", 361);
+		EnterRule_synpred281_JavaScript_fragment();
+		EnterRule("synpred281_JavaScript_fragment", 362);
+		TraceIn("synpred281_JavaScript_fragment", 362);
 		try
 		{
 			// JavaScript.g:619:8: ( LT )
@@ -24809,19 +24878,19 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			// JavaScript.g:619:8: LT
 			{
 			DebugLocation(619, 8);
-			Match(input,LT,Follow._LT_in_synpred280_JavaScript6252); if (state.failed) return;
+			Match(input,LT,Follow._LT_in_synpred281_JavaScript6254); if (state.failed) return;
 
 			}
 
 		}
 		finally
 		{
-			TraceOut("synpred280_JavaScript_fragment", 361);
-			LeaveRule("synpred280_JavaScript_fragment", 361);
-			LeaveRule_synpred280_JavaScript_fragment();
+			TraceOut("synpred281_JavaScript_fragment", 362);
+			LeaveRule("synpred281_JavaScript_fragment", 362);
+			LeaveRule_synpred281_JavaScript_fragment();
 		}
 	}
-	// $ANTLR end synpred280_JavaScript
+	// $ANTLR end synpred281_JavaScript
 	#endregion Rules
 
 	#region Synpreds
@@ -24853,42 +24922,42 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 	private DFA4 dfa4;
 	private DFA17 dfa17;
 	private DFA16 dfa16;
-	private DFA26 dfa26;
-	private DFA31 dfa31;
-	private DFA34 dfa34;
-	private DFA60 dfa60;
-	private DFA63 dfa63;
-	private DFA66 dfa66;
-	private DFA96 dfa96;
+	private DFA27 dfa27;
+	private DFA32 dfa32;
+	private DFA35 dfa35;
+	private DFA61 dfa61;
+	private DFA64 dfa64;
+	private DFA67 dfa67;
+	private DFA97 dfa97;
+	private DFA101 dfa101;
 	private DFA100 dfa100;
-	private DFA99 dfa99;
-	private DFA113 dfa113;
-	private DFA122 dfa122;
-	private DFA125 dfa125;
+	private DFA114 dfa114;
+	private DFA123 dfa123;
+	private DFA126 dfa126;
+	private DFA150 dfa150;
 	private DFA149 dfa149;
-	private DFA148 dfa148;
-	private DFA158 dfa158;
-	private DFA163 dfa163;
-	private DFA166 dfa166;
-	private DFA169 dfa169;
-	private DFA172 dfa172;
-	private DFA175 dfa175;
-	private DFA178 dfa178;
-	private DFA181 dfa181;
-	private DFA184 dfa184;
-	private DFA187 dfa187;
-	private DFA190 dfa190;
-	private DFA193 dfa193;
-	private DFA197 dfa197;
-	private DFA201 dfa201;
-	private DFA205 dfa205;
-	private DFA209 dfa209;
-	private DFA213 dfa213;
-	private DFA221 dfa221;
+	private DFA159 dfa159;
+	private DFA164 dfa164;
+	private DFA167 dfa167;
+	private DFA170 dfa170;
+	private DFA173 dfa173;
+	private DFA176 dfa176;
+	private DFA179 dfa179;
+	private DFA182 dfa182;
+	private DFA185 dfa185;
+	private DFA188 dfa188;
+	private DFA191 dfa191;
+	private DFA194 dfa194;
+	private DFA198 dfa198;
+	private DFA202 dfa202;
+	private DFA206 dfa206;
+	private DFA210 dfa210;
+	private DFA214 dfa214;
+	private DFA222 dfa222;
+	private DFA234 dfa234;
 	private DFA233 dfa233;
-	private DFA232 dfa232;
+	private DFA240 dfa240;
 	private DFA239 dfa239;
-	private DFA238 dfa238;
 
 	protected override void InitDFAs()
 	{
@@ -24896,42 +24965,42 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		dfa4 = new DFA4( this );
 		dfa17 = new DFA17( this );
 		dfa16 = new DFA16( this );
-		dfa26 = new DFA26( this );
-		dfa31 = new DFA31( this );
-		dfa34 = new DFA34( this );
-		dfa60 = new DFA60( this );
-		dfa63 = new DFA63( this );
-		dfa66 = new DFA66( this );
-		dfa96 = new DFA96( this );
+		dfa27 = new DFA27( this );
+		dfa32 = new DFA32( this );
+		dfa35 = new DFA35( this );
+		dfa61 = new DFA61( this );
+		dfa64 = new DFA64( this );
+		dfa67 = new DFA67( this );
+		dfa97 = new DFA97( this );
+		dfa101 = new DFA101( this );
 		dfa100 = new DFA100( this );
-		dfa99 = new DFA99( this );
-		dfa113 = new DFA113( this );
-		dfa122 = new DFA122( this );
-		dfa125 = new DFA125( this );
+		dfa114 = new DFA114( this );
+		dfa123 = new DFA123( this );
+		dfa126 = new DFA126( this );
+		dfa150 = new DFA150( this );
 		dfa149 = new DFA149( this );
-		dfa148 = new DFA148( this );
-		dfa158 = new DFA158( this );
-		dfa163 = new DFA163( this );
-		dfa166 = new DFA166( this );
-		dfa169 = new DFA169( this );
-		dfa172 = new DFA172( this );
-		dfa175 = new DFA175( this );
-		dfa178 = new DFA178( this );
-		dfa181 = new DFA181( this );
-		dfa184 = new DFA184( this );
-		dfa187 = new DFA187( this );
-		dfa190 = new DFA190( this );
-		dfa193 = new DFA193( this );
-		dfa197 = new DFA197( this );
-		dfa201 = new DFA201( this );
-		dfa205 = new DFA205( this );
-		dfa209 = new DFA209( this );
-		dfa213 = new DFA213( this );
-		dfa221 = new DFA221( this );
+		dfa159 = new DFA159( this );
+		dfa164 = new DFA164( this );
+		dfa167 = new DFA167( this );
+		dfa170 = new DFA170( this );
+		dfa173 = new DFA173( this );
+		dfa176 = new DFA176( this );
+		dfa179 = new DFA179( this );
+		dfa182 = new DFA182( this );
+		dfa185 = new DFA185( this );
+		dfa188 = new DFA188( this );
+		dfa191 = new DFA191( this );
+		dfa194 = new DFA194( this );
+		dfa198 = new DFA198( this );
+		dfa202 = new DFA202( this );
+		dfa206 = new DFA206( this );
+		dfa210 = new DFA210( this );
+		dfa214 = new DFA214( this );
+		dfa222 = new DFA222( this );
+		dfa234 = new DFA234( this );
 		dfa233 = new DFA233( this );
-		dfa232 = new DFA232( this );
+		dfa240 = new DFA240( this );
 		dfa239 = new DFA239( this );
-		dfa238 = new DFA238( this );
 	}
 
 	private class DFA4 : DFA
@@ -25123,21 +25192,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA26 : DFA
+	private class DFA27 : DFA
 	{
-		private const string DFA26_eotS =
+		private const string DFA27_eotS =
 			"\x4\xFFFF";
-		private const string DFA26_eofS =
+		private const string DFA27_eofS =
 			"\x1\x2\x3\xFFFF";
-		private const string DFA26_minS =
+		private const string DFA27_minS =
 			"\x2\x15\x2\xFFFF";
-		private const string DFA26_maxS =
+		private const string DFA27_maxS =
 			"\x2\x73\x2\xFFFF";
-		private const string DFA26_acceptS =
+		private const string DFA27_acceptS =
 			"\x2\xFFFF\x1\x2\x1\x1";
-		private const string DFA26_specialS =
+		private const string DFA27_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA26_transitionS =
+		private static readonly string[] DFA27_transitionS =
 			{
 				"\x1\x3\x2\xFFFF\x1\x1\x2\xFFFF\x1\x3\x4\xFFFF\x1\x3\x7\xFFFF\x1\x3\x7"+
 				"\xFFFF\x1\x3\x3\xFFFF\x2\x3\x2\xFFFF\x2\x3\x5\xFFFF\x1\x3\xE\xFFFF\x1"+
@@ -25151,35 +25220,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA26_eot = DFA.UnpackEncodedString(DFA26_eotS);
-		private static readonly short[] DFA26_eof = DFA.UnpackEncodedString(DFA26_eofS);
-		private static readonly char[] DFA26_min = DFA.UnpackEncodedStringToUnsignedChars(DFA26_minS);
-		private static readonly char[] DFA26_max = DFA.UnpackEncodedStringToUnsignedChars(DFA26_maxS);
-		private static readonly short[] DFA26_accept = DFA.UnpackEncodedString(DFA26_acceptS);
-		private static readonly short[] DFA26_special = DFA.UnpackEncodedString(DFA26_specialS);
-		private static readonly short[][] DFA26_transition;
+		private static readonly short[] DFA27_eot = DFA.UnpackEncodedString(DFA27_eotS);
+		private static readonly short[] DFA27_eof = DFA.UnpackEncodedString(DFA27_eofS);
+		private static readonly char[] DFA27_min = DFA.UnpackEncodedStringToUnsignedChars(DFA27_minS);
+		private static readonly char[] DFA27_max = DFA.UnpackEncodedStringToUnsignedChars(DFA27_maxS);
+		private static readonly short[] DFA27_accept = DFA.UnpackEncodedString(DFA27_acceptS);
+		private static readonly short[] DFA27_special = DFA.UnpackEncodedString(DFA27_specialS);
+		private static readonly short[][] DFA27_transition;
 
-		static DFA26()
+		static DFA27()
 		{
-			int numStates = DFA26_transitionS.Length;
-			DFA26_transition = new short[numStates][];
+			int numStates = DFA27_transitionS.Length;
+			DFA27_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA26_transition[i] = DFA.UnpackEncodedString(DFA26_transitionS[i]);
+				DFA27_transition[i] = DFA.UnpackEncodedString(DFA27_transitionS[i]);
 			}
 		}
 
-		public DFA26( BaseRecognizer recognizer )
+		public DFA27( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 26;
-			this.eot = DFA26_eot;
-			this.eof = DFA26_eof;
-			this.min = DFA26_min;
-			this.max = DFA26_max;
-			this.accept = DFA26_accept;
-			this.special = DFA26_special;
-			this.transition = DFA26_transition;
+			this.decisionNumber = 27;
+			this.eot = DFA27_eot;
+			this.eof = DFA27_eof;
+			this.min = DFA27_min;
+			this.max = DFA27_max;
+			this.accept = DFA27_accept;
+			this.special = DFA27_special;
+			this.transition = DFA27_transition;
 		}
 
 		public override string Description { get { return "()* loopback of 97:14: ( ( LT !)* statement )*"; } }
@@ -25190,21 +25259,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA31 : DFA
+	private class DFA32 : DFA
 	{
-		private const string DFA31_eotS =
+		private const string DFA32_eotS =
 			"\x5\xFFFF";
-		private const string DFA31_eofS =
+		private const string DFA32_eofS =
 			"\x1\xFFFF\x1\x2\x2\xFFFF\x1\x2";
-		private const string DFA31_minS =
+		private const string DFA32_minS =
 			"\x1\x18\x1\x15\x2\xFFFF\x1\x15";
-		private const string DFA31_maxS =
+		private const string DFA32_maxS =
 			"\x1\x3F\x1\x73\x2\xFFFF\x1\x73";
-		private const string DFA31_acceptS =
+		private const string DFA32_acceptS =
 			"\x2\xFFFF\x1\x2\x1\x1\x1\xFFFF";
-		private const string DFA31_specialS =
+		private const string DFA32_specialS =
 			"\x5\xFFFF}>";
-		private static readonly string[] DFA31_transitionS =
+		private static readonly string[] DFA32_transitionS =
 			{
 				"\x1\x1\x1E\xFFFF\x1\x3\x7\xFFFF\x1\x2",
 				"\x1\x2\x2\xFFFF\x1\x4\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x7\xFFFF\x1\x2\x7"+
@@ -25219,35 +25288,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				"\xFFFF\x2\x2"
 			};
 
-		private static readonly short[] DFA31_eot = DFA.UnpackEncodedString(DFA31_eotS);
-		private static readonly short[] DFA31_eof = DFA.UnpackEncodedString(DFA31_eofS);
-		private static readonly char[] DFA31_min = DFA.UnpackEncodedStringToUnsignedChars(DFA31_minS);
-		private static readonly char[] DFA31_max = DFA.UnpackEncodedStringToUnsignedChars(DFA31_maxS);
-		private static readonly short[] DFA31_accept = DFA.UnpackEncodedString(DFA31_acceptS);
-		private static readonly short[] DFA31_special = DFA.UnpackEncodedString(DFA31_specialS);
-		private static readonly short[][] DFA31_transition;
+		private static readonly short[] DFA32_eot = DFA.UnpackEncodedString(DFA32_eotS);
+		private static readonly short[] DFA32_eof = DFA.UnpackEncodedString(DFA32_eofS);
+		private static readonly char[] DFA32_min = DFA.UnpackEncodedStringToUnsignedChars(DFA32_minS);
+		private static readonly char[] DFA32_max = DFA.UnpackEncodedStringToUnsignedChars(DFA32_maxS);
+		private static readonly short[] DFA32_accept = DFA.UnpackEncodedString(DFA32_acceptS);
+		private static readonly short[] DFA32_special = DFA.UnpackEncodedString(DFA32_specialS);
+		private static readonly short[][] DFA32_transition;
 
-		static DFA31()
+		static DFA32()
 		{
-			int numStates = DFA31_transitionS.Length;
-			DFA31_transition = new short[numStates][];
+			int numStates = DFA32_transitionS.Length;
+			DFA32_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA31_transition[i] = DFA.UnpackEncodedString(DFA31_transitionS[i]);
+				DFA32_transition[i] = DFA.UnpackEncodedString(DFA32_transitionS[i]);
 			}
 		}
 
-		public DFA31( BaseRecognizer recognizer )
+		public DFA32( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 31;
-			this.eot = DFA31_eot;
-			this.eof = DFA31_eof;
-			this.min = DFA31_min;
-			this.max = DFA31_max;
-			this.accept = DFA31_accept;
-			this.special = DFA31_special;
-			this.transition = DFA31_transition;
+			this.decisionNumber = 32;
+			this.eot = DFA32_eot;
+			this.eof = DFA32_eof;
+			this.min = DFA32_min;
+			this.max = DFA32_max;
+			this.accept = DFA32_accept;
+			this.special = DFA32_special;
+			this.transition = DFA32_transition;
 		}
 
 		public override string Description { get { return "()* loopback of 106:24: ( ( LT )* ',' ( LT )* variableDeclaration )*"; } }
@@ -25258,21 +25327,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA34 : DFA
+	private class DFA35 : DFA
 	{
-		private const string DFA34_eotS =
+		private const string DFA35_eotS =
 			"\x4\xFFFF";
-		private const string DFA34_eofS =
+		private const string DFA35_eofS =
 			"\x1\x2\x3\xFFFF";
-		private const string DFA34_minS =
+		private const string DFA35_minS =
 			"\x2\x18\x2\xFFFF";
-		private const string DFA34_maxS =
+		private const string DFA35_maxS =
 			"\x2\x3F\x2\xFFFF";
-		private const string DFA34_acceptS =
+		private const string DFA35_acceptS =
 			"\x2\xFFFF\x1\x2\x1\x1";
-		private const string DFA34_specialS =
+		private const string DFA35_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA34_transitionS =
+		private static readonly string[] DFA35_transitionS =
 			{
 				"\x1\x1\x1E\xFFFF\x1\x3\x7\xFFFF\x1\x2",
 				"\x1\x1\x1E\xFFFF\x1\x3\x7\xFFFF\x1\x2",
@@ -25280,35 +25349,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA34_eot = DFA.UnpackEncodedString(DFA34_eotS);
-		private static readonly short[] DFA34_eof = DFA.UnpackEncodedString(DFA34_eofS);
-		private static readonly char[] DFA34_min = DFA.UnpackEncodedStringToUnsignedChars(DFA34_minS);
-		private static readonly char[] DFA34_max = DFA.UnpackEncodedStringToUnsignedChars(DFA34_maxS);
-		private static readonly short[] DFA34_accept = DFA.UnpackEncodedString(DFA34_acceptS);
-		private static readonly short[] DFA34_special = DFA.UnpackEncodedString(DFA34_specialS);
-		private static readonly short[][] DFA34_transition;
+		private static readonly short[] DFA35_eot = DFA.UnpackEncodedString(DFA35_eotS);
+		private static readonly short[] DFA35_eof = DFA.UnpackEncodedString(DFA35_eofS);
+		private static readonly char[] DFA35_min = DFA.UnpackEncodedStringToUnsignedChars(DFA35_minS);
+		private static readonly char[] DFA35_max = DFA.UnpackEncodedStringToUnsignedChars(DFA35_maxS);
+		private static readonly short[] DFA35_accept = DFA.UnpackEncodedString(DFA35_acceptS);
+		private static readonly short[] DFA35_special = DFA.UnpackEncodedString(DFA35_specialS);
+		private static readonly short[][] DFA35_transition;
 
-		static DFA34()
+		static DFA35()
 		{
-			int numStates = DFA34_transitionS.Length;
-			DFA34_transition = new short[numStates][];
+			int numStates = DFA35_transitionS.Length;
+			DFA35_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA34_transition[i] = DFA.UnpackEncodedString(DFA34_transitionS[i]);
+				DFA35_transition[i] = DFA.UnpackEncodedString(DFA35_transitionS[i]);
 			}
 		}
 
-		public DFA34( BaseRecognizer recognizer )
+		public DFA35( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 34;
-			this.eot = DFA34_eot;
-			this.eof = DFA34_eof;
-			this.min = DFA34_min;
-			this.max = DFA34_max;
-			this.accept = DFA34_accept;
-			this.special = DFA34_special;
-			this.transition = DFA34_transition;
+			this.decisionNumber = 35;
+			this.eot = DFA35_eot;
+			this.eof = DFA35_eof;
+			this.min = DFA35_min;
+			this.max = DFA35_max;
+			this.accept = DFA35_accept;
+			this.special = DFA35_special;
+			this.transition = DFA35_transition;
 		}
 
 		public override string Description { get { return "()* loopback of 110:28: ( ( LT )* ',' ( LT )* variableDeclarationNoIn )*"; } }
@@ -25319,21 +25388,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA60 : DFA
+	private class DFA61 : DFA
 	{
-		private const string DFA60_eotS =
+		private const string DFA61_eotS =
 			"\x4\xFFFF";
-		private const string DFA60_eofS =
+		private const string DFA61_eofS =
 			"\x4\xFFFF";
-		private const string DFA60_minS =
+		private const string DFA61_minS =
 			"\x2\x15\x2\xFFFF";
-		private const string DFA60_maxS =
+		private const string DFA61_maxS =
 			"\x2\x73\x2\xFFFF";
-		private const string DFA60_acceptS =
+		private const string DFA61_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2";
-		private const string DFA60_specialS =
+		private const string DFA61_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA60_transitionS =
+		private static readonly string[] DFA61_transitionS =
 			{
 				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x7\xFFFF\x1\x2\x7"+
 				"\xFFFF\x1\x2\x3\xFFFF\x2\x2\x2\xFFFF\x2\x2\x5\xFFFF\x1\x3\xE\xFFFF\x1"+
@@ -25347,35 +25416,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA60_eot = DFA.UnpackEncodedString(DFA60_eotS);
-		private static readonly short[] DFA60_eof = DFA.UnpackEncodedString(DFA60_eofS);
-		private static readonly char[] DFA60_min = DFA.UnpackEncodedStringToUnsignedChars(DFA60_minS);
-		private static readonly char[] DFA60_max = DFA.UnpackEncodedStringToUnsignedChars(DFA60_maxS);
-		private static readonly short[] DFA60_accept = DFA.UnpackEncodedString(DFA60_acceptS);
-		private static readonly short[] DFA60_special = DFA.UnpackEncodedString(DFA60_specialS);
-		private static readonly short[][] DFA60_transition;
+		private static readonly short[] DFA61_eot = DFA.UnpackEncodedString(DFA61_eotS);
+		private static readonly short[] DFA61_eof = DFA.UnpackEncodedString(DFA61_eofS);
+		private static readonly char[] DFA61_min = DFA.UnpackEncodedStringToUnsignedChars(DFA61_minS);
+		private static readonly char[] DFA61_max = DFA.UnpackEncodedStringToUnsignedChars(DFA61_maxS);
+		private static readonly short[] DFA61_accept = DFA.UnpackEncodedString(DFA61_acceptS);
+		private static readonly short[] DFA61_special = DFA.UnpackEncodedString(DFA61_specialS);
+		private static readonly short[][] DFA61_transition;
 
-		static DFA60()
+		static DFA61()
 		{
-			int numStates = DFA60_transitionS.Length;
-			DFA60_transition = new short[numStates][];
+			int numStates = DFA61_transitionS.Length;
+			DFA61_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA60_transition[i] = DFA.UnpackEncodedString(DFA60_transitionS[i]);
+				DFA61_transition[i] = DFA.UnpackEncodedString(DFA61_transitionS[i]);
 			}
 		}
 
-		public DFA60( BaseRecognizer recognizer )
+		public DFA61( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 60;
-			this.eot = DFA60_eot;
-			this.eof = DFA60_eof;
-			this.min = DFA60_min;
-			this.max = DFA60_max;
-			this.accept = DFA60_accept;
-			this.special = DFA60_special;
-			this.transition = DFA60_transition;
+			this.decisionNumber = 61;
+			this.eot = DFA61_eot;
+			this.eof = DFA61_eof;
+			this.min = DFA61_min;
+			this.max = DFA61_max;
+			this.accept = DFA61_accept;
+			this.special = DFA61_special;
+			this.transition = DFA61_transition;
 		}
 
 		public override string Description { get { return "166:18: ( ( LT )* forStatementInitialiserPart )?"; } }
@@ -25386,21 +25455,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA63 : DFA
+	private class DFA64 : DFA
 	{
-		private const string DFA63_eotS =
+		private const string DFA64_eotS =
 			"\x4\xFFFF";
-		private const string DFA63_eofS =
+		private const string DFA64_eofS =
 			"\x4\xFFFF";
-		private const string DFA63_minS =
+		private const string DFA64_minS =
 			"\x2\x15\x2\xFFFF";
-		private const string DFA63_maxS =
+		private const string DFA64_maxS =
 			"\x2\x73\x2\xFFFF";
-		private const string DFA63_acceptS =
+		private const string DFA64_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2";
-		private const string DFA63_specialS =
+		private const string DFA64_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA63_transitionS =
+		private static readonly string[] DFA64_transitionS =
 			{
 				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x7\xFFFF\x1\x2\x7"+
 				"\xFFFF\x1\x2\x3\xFFFF\x2\x2\x2\xFFFF\x2\x2\x5\xFFFF\x1\x3\xE\xFFFF\x1"+
@@ -25416,35 +25485,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA63_eot = DFA.UnpackEncodedString(DFA63_eotS);
-		private static readonly short[] DFA63_eof = DFA.UnpackEncodedString(DFA63_eofS);
-		private static readonly char[] DFA63_min = DFA.UnpackEncodedStringToUnsignedChars(DFA63_minS);
-		private static readonly char[] DFA63_max = DFA.UnpackEncodedStringToUnsignedChars(DFA63_maxS);
-		private static readonly short[] DFA63_accept = DFA.UnpackEncodedString(DFA63_acceptS);
-		private static readonly short[] DFA63_special = DFA.UnpackEncodedString(DFA63_specialS);
-		private static readonly short[][] DFA63_transition;
+		private static readonly short[] DFA64_eot = DFA.UnpackEncodedString(DFA64_eotS);
+		private static readonly short[] DFA64_eof = DFA.UnpackEncodedString(DFA64_eofS);
+		private static readonly char[] DFA64_min = DFA.UnpackEncodedStringToUnsignedChars(DFA64_minS);
+		private static readonly char[] DFA64_max = DFA.UnpackEncodedStringToUnsignedChars(DFA64_maxS);
+		private static readonly short[] DFA64_accept = DFA.UnpackEncodedString(DFA64_acceptS);
+		private static readonly short[] DFA64_special = DFA.UnpackEncodedString(DFA64_specialS);
+		private static readonly short[][] DFA64_transition;
 
-		static DFA63()
+		static DFA64()
 		{
-			int numStates = DFA63_transitionS.Length;
-			DFA63_transition = new short[numStates][];
+			int numStates = DFA64_transitionS.Length;
+			DFA64_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA63_transition[i] = DFA.UnpackEncodedString(DFA63_transitionS[i]);
+				DFA64_transition[i] = DFA.UnpackEncodedString(DFA64_transitionS[i]);
 			}
 		}
 
-		public DFA63( BaseRecognizer recognizer )
+		public DFA64( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 63;
-			this.eot = DFA63_eot;
-			this.eof = DFA63_eof;
-			this.min = DFA63_min;
-			this.max = DFA63_max;
-			this.accept = DFA63_accept;
-			this.special = DFA63_special;
-			this.transition = DFA63_transition;
+			this.decisionNumber = 64;
+			this.eot = DFA64_eot;
+			this.eof = DFA64_eof;
+			this.min = DFA64_min;
+			this.max = DFA64_max;
+			this.accept = DFA64_accept;
+			this.special = DFA64_special;
+			this.transition = DFA64_transition;
 		}
 
 		public override string Description { get { return "166:61: ( ( LT )* condition= expression )?"; } }
@@ -25455,21 +25524,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA66 : DFA
+	private class DFA67 : DFA
 	{
-		private const string DFA66_eotS =
+		private const string DFA67_eotS =
 			"\x4\xFFFF";
-		private const string DFA66_eofS =
+		private const string DFA67_eofS =
 			"\x4\xFFFF";
-		private const string DFA66_minS =
+		private const string DFA67_minS =
 			"\x2\x15\x2\xFFFF";
-		private const string DFA66_maxS =
+		private const string DFA67_maxS =
 			"\x2\x73\x2\xFFFF";
-		private const string DFA66_acceptS =
+		private const string DFA67_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2";
-		private const string DFA66_specialS =
+		private const string DFA67_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA66_transitionS =
+		private static readonly string[] DFA67_transitionS =
 			{
 				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x7\xFFFF\x1\x2\x7"+
 				"\xFFFF\x1\x2\x1\x3\x2\xFFFF\x2\x2\x2\xFFFF\x2\x2\x14\xFFFF\x1\x2\x8"+
@@ -25485,35 +25554,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA66_eot = DFA.UnpackEncodedString(DFA66_eotS);
-		private static readonly short[] DFA66_eof = DFA.UnpackEncodedString(DFA66_eofS);
-		private static readonly char[] DFA66_min = DFA.UnpackEncodedStringToUnsignedChars(DFA66_minS);
-		private static readonly char[] DFA66_max = DFA.UnpackEncodedStringToUnsignedChars(DFA66_maxS);
-		private static readonly short[] DFA66_accept = DFA.UnpackEncodedString(DFA66_acceptS);
-		private static readonly short[] DFA66_special = DFA.UnpackEncodedString(DFA66_specialS);
-		private static readonly short[][] DFA66_transition;
+		private static readonly short[] DFA67_eot = DFA.UnpackEncodedString(DFA67_eotS);
+		private static readonly short[] DFA67_eof = DFA.UnpackEncodedString(DFA67_eofS);
+		private static readonly char[] DFA67_min = DFA.UnpackEncodedStringToUnsignedChars(DFA67_minS);
+		private static readonly char[] DFA67_max = DFA.UnpackEncodedStringToUnsignedChars(DFA67_maxS);
+		private static readonly short[] DFA67_accept = DFA.UnpackEncodedString(DFA67_acceptS);
+		private static readonly short[] DFA67_special = DFA.UnpackEncodedString(DFA67_specialS);
+		private static readonly short[][] DFA67_transition;
 
-		static DFA66()
+		static DFA67()
 		{
-			int numStates = DFA66_transitionS.Length;
-			DFA66_transition = new short[numStates][];
+			int numStates = DFA67_transitionS.Length;
+			DFA67_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA66_transition[i] = DFA.UnpackEncodedString(DFA66_transitionS[i]);
+				DFA67_transition[i] = DFA.UnpackEncodedString(DFA67_transitionS[i]);
 			}
 		}
 
-		public DFA66( BaseRecognizer recognizer )
+		public DFA67( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 66;
-			this.eot = DFA66_eot;
-			this.eof = DFA66_eof;
-			this.min = DFA66_min;
-			this.max = DFA66_max;
-			this.accept = DFA66_accept;
-			this.special = DFA66_special;
-			this.transition = DFA66_transition;
+			this.decisionNumber = 67;
+			this.eot = DFA67_eot;
+			this.eof = DFA67_eof;
+			this.min = DFA67_min;
+			this.max = DFA67_max;
+			this.accept = DFA67_accept;
+			this.special = DFA67_special;
+			this.transition = DFA67_transition;
 		}
 
 		public override string Description { get { return "166:97: ( ( LT )* incr= expression )?"; } }
@@ -25524,21 +25593,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA96 : DFA
+	private class DFA97 : DFA
 	{
-		private const string DFA96_eotS =
+		private const string DFA97_eotS =
 			"\x4\xFFFF";
-		private const string DFA96_eofS =
+		private const string DFA97_eofS =
 			"\x4\xFFFF";
-		private const string DFA96_minS =
+		private const string DFA97_minS =
 			"\x2\x18\x2\xFFFF";
-		private const string DFA96_maxS =
+		private const string DFA97_maxS =
 			"\x2\x72\x2\xFFFF";
-		private const string DFA96_acceptS =
+		private const string DFA97_acceptS =
 			"\x2\xFFFF\x1\x2\x1\x1";
-		private const string DFA96_specialS =
+		private const string DFA97_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA96_transitionS =
+		private static readonly string[] DFA97_transitionS =
 			{
 				"\x1\x1\x3A\xFFFF\x1\x3\x2\xFFFF\x1\x2\x1B\xFFFF\x1\x2",
 				"\x1\x1\x3A\xFFFF\x1\x3\x2\xFFFF\x1\x2\x1B\xFFFF\x1\x2",
@@ -25546,38 +25615,99 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA96_eot = DFA.UnpackEncodedString(DFA96_eotS);
-		private static readonly short[] DFA96_eof = DFA.UnpackEncodedString(DFA96_eofS);
-		private static readonly char[] DFA96_min = DFA.UnpackEncodedStringToUnsignedChars(DFA96_minS);
-		private static readonly char[] DFA96_max = DFA.UnpackEncodedStringToUnsignedChars(DFA96_maxS);
-		private static readonly short[] DFA96_accept = DFA.UnpackEncodedString(DFA96_acceptS);
-		private static readonly short[] DFA96_special = DFA.UnpackEncodedString(DFA96_specialS);
-		private static readonly short[][] DFA96_transition;
+		private static readonly short[] DFA97_eot = DFA.UnpackEncodedString(DFA97_eotS);
+		private static readonly short[] DFA97_eof = DFA.UnpackEncodedString(DFA97_eofS);
+		private static readonly char[] DFA97_min = DFA.UnpackEncodedStringToUnsignedChars(DFA97_minS);
+		private static readonly char[] DFA97_max = DFA.UnpackEncodedStringToUnsignedChars(DFA97_maxS);
+		private static readonly short[] DFA97_accept = DFA.UnpackEncodedString(DFA97_acceptS);
+		private static readonly short[] DFA97_special = DFA.UnpackEncodedString(DFA97_specialS);
+		private static readonly short[][] DFA97_transition;
 
-		static DFA96()
+		static DFA97()
 		{
-			int numStates = DFA96_transitionS.Length;
-			DFA96_transition = new short[numStates][];
+			int numStates = DFA97_transitionS.Length;
+			DFA97_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA96_transition[i] = DFA.UnpackEncodedString(DFA96_transitionS[i]);
+				DFA97_transition[i] = DFA.UnpackEncodedString(DFA97_transitionS[i]);
 			}
 		}
 
-		public DFA96( BaseRecognizer recognizer )
+		public DFA97( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 96;
-			this.eot = DFA96_eot;
-			this.eof = DFA96_eof;
-			this.min = DFA96_min;
-			this.max = DFA96_max;
-			this.accept = DFA96_accept;
-			this.special = DFA96_special;
-			this.transition = DFA96_transition;
+			this.decisionNumber = 97;
+			this.eot = DFA97_eot;
+			this.eof = DFA97_eof;
+			this.min = DFA97_min;
+			this.max = DFA97_max;
+			this.accept = DFA97_accept;
+			this.special = DFA97_special;
+			this.transition = DFA97_transition;
 		}
 
 		public override string Description { get { return "()* loopback of 222:9: ( ( LT !)* caseClause )*"; } }
+
+		public override void Error(NoViableAltException nvae)
+		{
+			DebugRecognitionException(nvae);
+		}
+	}
+
+	private class DFA101 : DFA
+	{
+		private const string DFA101_eotS =
+			"\x4\xFFFF";
+		private const string DFA101_eofS =
+			"\x4\xFFFF";
+		private const string DFA101_minS =
+			"\x2\x18\x2\xFFFF";
+		private const string DFA101_maxS =
+			"\x2\x72\x2\xFFFF";
+		private const string DFA101_acceptS =
+			"\x2\xFFFF\x1\x1\x1\x2";
+		private const string DFA101_specialS =
+			"\x4\xFFFF}>";
+		private static readonly string[] DFA101_transitionS =
+			{
+				"\x1\x1\x3D\xFFFF\x1\x2\x1B\xFFFF\x1\x3",
+				"\x1\x1\x3D\xFFFF\x1\x2\x1B\xFFFF\x1\x3",
+				"",
+				""
+			};
+
+		private static readonly short[] DFA101_eot = DFA.UnpackEncodedString(DFA101_eotS);
+		private static readonly short[] DFA101_eof = DFA.UnpackEncodedString(DFA101_eofS);
+		private static readonly char[] DFA101_min = DFA.UnpackEncodedStringToUnsignedChars(DFA101_minS);
+		private static readonly char[] DFA101_max = DFA.UnpackEncodedStringToUnsignedChars(DFA101_maxS);
+		private static readonly short[] DFA101_accept = DFA.UnpackEncodedString(DFA101_acceptS);
+		private static readonly short[] DFA101_special = DFA.UnpackEncodedString(DFA101_specialS);
+		private static readonly short[][] DFA101_transition;
+
+		static DFA101()
+		{
+			int numStates = DFA101_transitionS.Length;
+			DFA101_transition = new short[numStates][];
+			for ( int i=0; i < numStates; i++ )
+			{
+				DFA101_transition[i] = DFA.UnpackEncodedString(DFA101_transitionS[i]);
+			}
+		}
+
+		public DFA101( BaseRecognizer recognizer )
+		{
+			this.recognizer = recognizer;
+			this.decisionNumber = 101;
+			this.eot = DFA101_eot;
+			this.eof = DFA101_eof;
+			this.min = DFA101_min;
+			this.max = DFA101_max;
+			this.accept = DFA101_accept;
+			this.special = DFA101_special;
+			this.transition = DFA101_transition;
+		}
+
+		public override string Description { get { return "222:28: ( ( LT !)* defaultClause ( ( LT !)* caseClause )* )?"; } }
 
 		public override void Error(NoViableAltException nvae)
 		{
@@ -25596,13 +25726,13 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		private const string DFA100_maxS =
 			"\x2\x72\x2\xFFFF";
 		private const string DFA100_acceptS =
-			"\x2\xFFFF\x1\x1\x1\x2";
+			"\x2\xFFFF\x1\x2\x1\x1";
 		private const string DFA100_specialS =
 			"\x4\xFFFF}>";
 		private static readonly string[] DFA100_transitionS =
 			{
-				"\x1\x1\x3D\xFFFF\x1\x2\x1B\xFFFF\x1\x3",
-				"\x1\x1\x3D\xFFFF\x1\x2\x1B\xFFFF\x1\x3",
+				"\x1\x1\x3A\xFFFF\x1\x3\x1E\xFFFF\x1\x2",
+				"\x1\x1\x3A\xFFFF\x1\x3\x1E\xFFFF\x1\x2",
 				"",
 				""
 			};
@@ -25638,67 +25768,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			this.transition = DFA100_transition;
 		}
 
-		public override string Description { get { return "222:28: ( ( LT !)* defaultClause ( ( LT !)* caseClause )* )?"; } }
-
-		public override void Error(NoViableAltException nvae)
-		{
-			DebugRecognitionException(nvae);
-		}
-	}
-
-	private class DFA99 : DFA
-	{
-		private const string DFA99_eotS =
-			"\x4\xFFFF";
-		private const string DFA99_eofS =
-			"\x4\xFFFF";
-		private const string DFA99_minS =
-			"\x2\x18\x2\xFFFF";
-		private const string DFA99_maxS =
-			"\x2\x72\x2\xFFFF";
-		private const string DFA99_acceptS =
-			"\x2\xFFFF\x1\x2\x1\x1";
-		private const string DFA99_specialS =
-			"\x4\xFFFF}>";
-		private static readonly string[] DFA99_transitionS =
-			{
-				"\x1\x1\x3A\xFFFF\x1\x3\x1E\xFFFF\x1\x2",
-				"\x1\x1\x3A\xFFFF\x1\x3\x1E\xFFFF\x1\x2",
-				"",
-				""
-			};
-
-		private static readonly short[] DFA99_eot = DFA.UnpackEncodedString(DFA99_eotS);
-		private static readonly short[] DFA99_eof = DFA.UnpackEncodedString(DFA99_eofS);
-		private static readonly char[] DFA99_min = DFA.UnpackEncodedStringToUnsignedChars(DFA99_minS);
-		private static readonly char[] DFA99_max = DFA.UnpackEncodedStringToUnsignedChars(DFA99_maxS);
-		private static readonly short[] DFA99_accept = DFA.UnpackEncodedString(DFA99_acceptS);
-		private static readonly short[] DFA99_special = DFA.UnpackEncodedString(DFA99_specialS);
-		private static readonly short[][] DFA99_transition;
-
-		static DFA99()
-		{
-			int numStates = DFA99_transitionS.Length;
-			DFA99_transition = new short[numStates][];
-			for ( int i=0; i < numStates; i++ )
-			{
-				DFA99_transition[i] = DFA.UnpackEncodedString(DFA99_transitionS[i]);
-			}
-		}
-
-		public DFA99( BaseRecognizer recognizer )
-		{
-			this.recognizer = recognizer;
-			this.decisionNumber = 99;
-			this.eot = DFA99_eot;
-			this.eof = DFA99_eof;
-			this.min = DFA99_min;
-			this.max = DFA99_max;
-			this.accept = DFA99_accept;
-			this.special = DFA99_special;
-			this.transition = DFA99_transition;
-		}
-
 		public override string Description { get { return "()* loopback of 222:48: ( ( LT !)* caseClause )*"; } }
 
 		public override void Error(NoViableAltException nvae)
@@ -25707,21 +25776,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA113 : DFA
+	private class DFA114 : DFA
 	{
-		private const string DFA113_eotS =
+		private const string DFA114_eotS =
 			"\x4\xFFFF";
-		private const string DFA113_eofS =
+		private const string DFA114_eofS =
 			"\x2\x3\x2\xFFFF";
-		private const string DFA113_minS =
+		private const string DFA114_minS =
 			"\x2\x15\x2\xFFFF";
-		private const string DFA113_maxS =
+		private const string DFA114_maxS =
 			"\x2\x73\x2\xFFFF";
-		private const string DFA113_acceptS =
+		private const string DFA114_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2";
-		private const string DFA113_specialS =
+		private const string DFA114_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA113_transitionS =
+		private static readonly string[] DFA114_transitionS =
 			{
 				"\x1\x3\x2\xFFFF\x1\x1\x2\xFFFF\x1\x3\x4\xFFFF\x1\x3\x7\xFFFF\x1\x3\x7"+
 				"\xFFFF\x1\x3\x3\xFFFF\x2\x3\x2\xFFFF\x2\x3\x5\xFFFF\x1\x3\xE\xFFFF\x1"+
@@ -25735,35 +25804,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA113_eot = DFA.UnpackEncodedString(DFA113_eotS);
-		private static readonly short[] DFA113_eof = DFA.UnpackEncodedString(DFA113_eofS);
-		private static readonly char[] DFA113_min = DFA.UnpackEncodedStringToUnsignedChars(DFA113_minS);
-		private static readonly char[] DFA113_max = DFA.UnpackEncodedStringToUnsignedChars(DFA113_maxS);
-		private static readonly short[] DFA113_accept = DFA.UnpackEncodedString(DFA113_acceptS);
-		private static readonly short[] DFA113_special = DFA.UnpackEncodedString(DFA113_specialS);
-		private static readonly short[][] DFA113_transition;
+		private static readonly short[] DFA114_eot = DFA.UnpackEncodedString(DFA114_eotS);
+		private static readonly short[] DFA114_eof = DFA.UnpackEncodedString(DFA114_eofS);
+		private static readonly char[] DFA114_min = DFA.UnpackEncodedStringToUnsignedChars(DFA114_minS);
+		private static readonly char[] DFA114_max = DFA.UnpackEncodedStringToUnsignedChars(DFA114_maxS);
+		private static readonly short[] DFA114_accept = DFA.UnpackEncodedString(DFA114_acceptS);
+		private static readonly short[] DFA114_special = DFA.UnpackEncodedString(DFA114_specialS);
+		private static readonly short[][] DFA114_transition;
 
-		static DFA113()
+		static DFA114()
 		{
-			int numStates = DFA113_transitionS.Length;
-			DFA113_transition = new short[numStates][];
+			int numStates = DFA114_transitionS.Length;
+			DFA114_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA113_transition[i] = DFA.UnpackEncodedString(DFA113_transitionS[i]);
+				DFA114_transition[i] = DFA.UnpackEncodedString(DFA114_transitionS[i]);
 			}
 		}
 
-		public DFA113( BaseRecognizer recognizer )
+		public DFA114( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 113;
-			this.eot = DFA113_eot;
-			this.eof = DFA113_eof;
-			this.min = DFA113_min;
-			this.max = DFA113_max;
-			this.accept = DFA113_accept;
-			this.special = DFA113_special;
-			this.transition = DFA113_transition;
+			this.decisionNumber = 114;
+			this.eot = DFA114_eot;
+			this.eof = DFA114_eof;
+			this.min = DFA114_min;
+			this.max = DFA114_max;
+			this.accept = DFA114_accept;
+			this.special = DFA114_special;
+			this.transition = DFA114_transition;
 		}
 
 		public override string Description { get { return "238:62: ( ( LT )* finallyClause )?"; } }
@@ -25774,21 +25843,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA122 : DFA
+	private class DFA123 : DFA
 	{
-		private const string DFA122_eotS =
+		private const string DFA123_eotS =
 			"\x5\xFFFF";
-		private const string DFA122_eofS =
+		private const string DFA123_eofS =
 			"\x2\x2\x2\xFFFF\x1\x2";
-		private const string DFA122_minS =
+		private const string DFA123_minS =
 			"\x1\x18\x1\x15\x2\xFFFF\x1\x15";
-		private const string DFA122_maxS =
+		private const string DFA123_maxS =
 			"\x1\x4F\x1\x73\x2\xFFFF\x1\x73";
-		private const string DFA122_acceptS =
+		private const string DFA123_acceptS =
 			"\x2\xFFFF\x1\x2\x1\x1\x1\xFFFF";
-		private const string DFA122_specialS =
+		private const string DFA123_specialS =
 			"\x5\xFFFF}>";
-		private static readonly string[] DFA122_transitionS =
+		private static readonly string[] DFA123_transitionS =
 			{
 				"\x1\x1\x18\xFFFF\x1\x2\x5\xFFFF\x1\x3\x6\xFFFF\x2\x2\xF\xFFFF\x1\x2",
 				"\x1\x2\x2\xFFFF\x1\x4\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x7\xFFFF\x1\x2\x7"+
@@ -25803,35 +25872,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				"\xFFFF\x2\x2"
 			};
 
-		private static readonly short[] DFA122_eot = DFA.UnpackEncodedString(DFA122_eotS);
-		private static readonly short[] DFA122_eof = DFA.UnpackEncodedString(DFA122_eofS);
-		private static readonly char[] DFA122_min = DFA.UnpackEncodedStringToUnsignedChars(DFA122_minS);
-		private static readonly char[] DFA122_max = DFA.UnpackEncodedStringToUnsignedChars(DFA122_maxS);
-		private static readonly short[] DFA122_accept = DFA.UnpackEncodedString(DFA122_acceptS);
-		private static readonly short[] DFA122_special = DFA.UnpackEncodedString(DFA122_specialS);
-		private static readonly short[][] DFA122_transition;
+		private static readonly short[] DFA123_eot = DFA.UnpackEncodedString(DFA123_eotS);
+		private static readonly short[] DFA123_eof = DFA.UnpackEncodedString(DFA123_eofS);
+		private static readonly char[] DFA123_min = DFA.UnpackEncodedStringToUnsignedChars(DFA123_minS);
+		private static readonly char[] DFA123_max = DFA.UnpackEncodedStringToUnsignedChars(DFA123_maxS);
+		private static readonly short[] DFA123_accept = DFA.UnpackEncodedString(DFA123_acceptS);
+		private static readonly short[] DFA123_special = DFA.UnpackEncodedString(DFA123_specialS);
+		private static readonly short[][] DFA123_transition;
 
-		static DFA122()
+		static DFA123()
 		{
-			int numStates = DFA122_transitionS.Length;
-			DFA122_transition = new short[numStates][];
+			int numStates = DFA123_transitionS.Length;
+			DFA123_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA122_transition[i] = DFA.UnpackEncodedString(DFA122_transitionS[i]);
+				DFA123_transition[i] = DFA.UnpackEncodedString(DFA123_transitionS[i]);
 			}
 		}
 
-		public DFA122( BaseRecognizer recognizer )
+		public DFA123( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 122;
-			this.eot = DFA122_eot;
-			this.eof = DFA122_eof;
-			this.min = DFA122_min;
-			this.max = DFA122_max;
-			this.accept = DFA122_accept;
-			this.special = DFA122_special;
-			this.transition = DFA122_transition;
+			this.decisionNumber = 123;
+			this.eot = DFA123_eot;
+			this.eof = DFA123_eof;
+			this.min = DFA123_min;
+			this.max = DFA123_max;
+			this.accept = DFA123_accept;
+			this.special = DFA123_special;
+			this.transition = DFA123_transition;
 		}
 
 		public override string Description { get { return "()* loopback of 253:25: ( ( LT )* ',' ( LT )* assignmentExpression )*"; } }
@@ -25842,21 +25911,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA125 : DFA
+	private class DFA126 : DFA
 	{
-		private const string DFA125_eotS =
+		private const string DFA126_eotS =
 			"\x4\xFFFF";
-		private const string DFA125_eofS =
+		private const string DFA126_eofS =
 			"\x1\x2\x3\xFFFF";
-		private const string DFA125_minS =
+		private const string DFA126_minS =
 			"\x2\x18\x2\xFFFF";
-		private const string DFA125_maxS =
+		private const string DFA126_maxS =
 			"\x2\x3F\x2\xFFFF";
-		private const string DFA125_acceptS =
+		private const string DFA126_acceptS =
 			"\x2\xFFFF\x1\x2\x1\x1";
-		private const string DFA125_specialS =
+		private const string DFA126_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA125_transitionS =
+		private static readonly string[] DFA126_transitionS =
 			{
 				"\x1\x1\x1E\xFFFF\x1\x3\x7\xFFFF\x1\x2",
 				"\x1\x1\x1E\xFFFF\x1\x3\x7\xFFFF\x1\x2",
@@ -25864,38 +25933,107 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA125_eot = DFA.UnpackEncodedString(DFA125_eotS);
-		private static readonly short[] DFA125_eof = DFA.UnpackEncodedString(DFA125_eofS);
-		private static readonly char[] DFA125_min = DFA.UnpackEncodedStringToUnsignedChars(DFA125_minS);
-		private static readonly char[] DFA125_max = DFA.UnpackEncodedStringToUnsignedChars(DFA125_maxS);
-		private static readonly short[] DFA125_accept = DFA.UnpackEncodedString(DFA125_acceptS);
-		private static readonly short[] DFA125_special = DFA.UnpackEncodedString(DFA125_specialS);
-		private static readonly short[][] DFA125_transition;
+		private static readonly short[] DFA126_eot = DFA.UnpackEncodedString(DFA126_eotS);
+		private static readonly short[] DFA126_eof = DFA.UnpackEncodedString(DFA126_eofS);
+		private static readonly char[] DFA126_min = DFA.UnpackEncodedStringToUnsignedChars(DFA126_minS);
+		private static readonly char[] DFA126_max = DFA.UnpackEncodedStringToUnsignedChars(DFA126_maxS);
+		private static readonly short[] DFA126_accept = DFA.UnpackEncodedString(DFA126_acceptS);
+		private static readonly short[] DFA126_special = DFA.UnpackEncodedString(DFA126_specialS);
+		private static readonly short[][] DFA126_transition;
 
-		static DFA125()
+		static DFA126()
 		{
-			int numStates = DFA125_transitionS.Length;
-			DFA125_transition = new short[numStates][];
+			int numStates = DFA126_transitionS.Length;
+			DFA126_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA125_transition[i] = DFA.UnpackEncodedString(DFA125_transitionS[i]);
+				DFA126_transition[i] = DFA.UnpackEncodedString(DFA126_transitionS[i]);
 			}
 		}
 
-		public DFA125( BaseRecognizer recognizer )
+		public DFA126( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 125;
-			this.eot = DFA125_eot;
-			this.eof = DFA125_eof;
-			this.min = DFA125_min;
-			this.max = DFA125_max;
-			this.accept = DFA125_accept;
-			this.special = DFA125_special;
-			this.transition = DFA125_transition;
+			this.decisionNumber = 126;
+			this.eot = DFA126_eot;
+			this.eof = DFA126_eof;
+			this.min = DFA126_min;
+			this.max = DFA126_max;
+			this.accept = DFA126_accept;
+			this.special = DFA126_special;
+			this.transition = DFA126_transition;
 		}
 
 		public override string Description { get { return "()* loopback of 257:29: ( ( LT )* ',' ( LT )* assignmentExpressionNoIn )*"; } }
+
+		public override void Error(NoViableAltException nvae)
+		{
+			DebugRecognitionException(nvae);
+		}
+	}
+
+	private class DFA150 : DFA
+	{
+		private const string DFA150_eotS =
+			"\x4\xFFFF";
+		private const string DFA150_eofS =
+			"\x4\xFFFF";
+		private const string DFA150_minS =
+			"\x2\x15\x2\xFFFF";
+		private const string DFA150_maxS =
+			"\x2\x73\x2\xFFFF";
+		private const string DFA150_acceptS =
+			"\x2\xFFFF\x1\x1\x1\x2";
+		private const string DFA150_specialS =
+			"\x4\xFFFF}>";
+		private static readonly string[] DFA150_transitionS =
+			{
+				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x7\xFFFF\x1\x2\x7"+
+				"\xFFFF\x1\x2\x1\x3\x2\xFFFF\x2\x2\x2\xFFFF\x2\x2\x14\xFFFF\x1\x2\x8"+
+				"\xFFFF\x1\x2\x2\xFFFF\x1\x2\x2\xFFFF\x1\x2\x3\xFFFF\x2\x2\x2\xFFFF\x1"+
+				"\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x2\xFFFF\x1\x2\x4\xFFFF"+
+				"\x1\x2",
+				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x7\xFFFF\x1\x2\x7"+
+				"\xFFFF\x1\x2\x1\x3\x2\xFFFF\x2\x2\x2\xFFFF\x2\x2\x14\xFFFF\x1\x2\x8"+
+				"\xFFFF\x1\x2\x2\xFFFF\x1\x2\x2\xFFFF\x1\x2\x3\xFFFF\x2\x2\x2\xFFFF\x1"+
+				"\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x2\xFFFF\x1\x2\x4\xFFFF"+
+				"\x1\x2",
+				"",
+				""
+			};
+
+		private static readonly short[] DFA150_eot = DFA.UnpackEncodedString(DFA150_eotS);
+		private static readonly short[] DFA150_eof = DFA.UnpackEncodedString(DFA150_eofS);
+		private static readonly char[] DFA150_min = DFA.UnpackEncodedStringToUnsignedChars(DFA150_minS);
+		private static readonly char[] DFA150_max = DFA.UnpackEncodedStringToUnsignedChars(DFA150_maxS);
+		private static readonly short[] DFA150_accept = DFA.UnpackEncodedString(DFA150_acceptS);
+		private static readonly short[] DFA150_special = DFA.UnpackEncodedString(DFA150_specialS);
+		private static readonly short[][] DFA150_transition;
+
+		static DFA150()
+		{
+			int numStates = DFA150_transitionS.Length;
+			DFA150_transition = new short[numStates][];
+			for ( int i=0; i < numStates; i++ )
+			{
+				DFA150_transition[i] = DFA.UnpackEncodedString(DFA150_transitionS[i]);
+			}
+		}
+
+		public DFA150( BaseRecognizer recognizer )
+		{
+			this.recognizer = recognizer;
+			this.decisionNumber = 150;
+			this.eot = DFA150_eot;
+			this.eof = DFA150_eof;
+			this.min = DFA150_min;
+			this.max = DFA150_max;
+			this.accept = DFA150_accept;
+			this.special = DFA150_special;
+			this.transition = DFA150_transition;
+		}
+
+		public override string Description { get { return "346:8: ( ( LT )* assignmentExpression ( ( LT )* ',' ( LT )* assignmentExpression )* )?"; } }
 
 		public override void Error(NoViableAltException nvae)
 		{
@@ -25910,25 +26048,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		private const string DFA149_eofS =
 			"\x4\xFFFF";
 		private const string DFA149_minS =
-			"\x2\x15\x2\xFFFF";
+			"\x2\x18\x2\xFFFF";
 		private const string DFA149_maxS =
-			"\x2\x73\x2\xFFFF";
+			"\x2\x37\x2\xFFFF";
 		private const string DFA149_acceptS =
-			"\x2\xFFFF\x1\x1\x1\x2";
+			"\x2\xFFFF\x1\x2\x1\x1";
 		private const string DFA149_specialS =
 			"\x4\xFFFF}>";
 		private static readonly string[] DFA149_transitionS =
 			{
-				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x7\xFFFF\x1\x2\x7"+
-				"\xFFFF\x1\x2\x1\x3\x2\xFFFF\x2\x2\x2\xFFFF\x2\x2\x14\xFFFF\x1\x2\x8"+
-				"\xFFFF\x1\x2\x2\xFFFF\x1\x2\x2\xFFFF\x1\x2\x3\xFFFF\x2\x2\x2\xFFFF\x1"+
-				"\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x2\xFFFF\x1\x2\x4\xFFFF"+
-				"\x1\x2",
-				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x7\xFFFF\x1\x2\x7"+
-				"\xFFFF\x1\x2\x1\x3\x2\xFFFF\x2\x2\x2\xFFFF\x2\x2\x14\xFFFF\x1\x2\x8"+
-				"\xFFFF\x1\x2\x2\xFFFF\x1\x2\x2\xFFFF\x1\x2\x3\xFFFF\x2\x2\x2\xFFFF\x1"+
-				"\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x2\xFFFF\x1\x2\x4\xFFFF"+
-				"\x1\x2",
+				"\x1\x1\x18\xFFFF\x1\x2\x5\xFFFF\x1\x3",
+				"\x1\x1\x18\xFFFF\x1\x2\x5\xFFFF\x1\x3",
 				"",
 				""
 			};
@@ -25964,67 +26094,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			this.transition = DFA149_transition;
 		}
 
-		public override string Description { get { return "346:8: ( ( LT )* assignmentExpression ( ( LT )* ',' ( LT )* assignmentExpression )* )?"; } }
-
-		public override void Error(NoViableAltException nvae)
-		{
-			DebugRecognitionException(nvae);
-		}
-	}
-
-	private class DFA148 : DFA
-	{
-		private const string DFA148_eotS =
-			"\x4\xFFFF";
-		private const string DFA148_eofS =
-			"\x4\xFFFF";
-		private const string DFA148_minS =
-			"\x2\x18\x2\xFFFF";
-		private const string DFA148_maxS =
-			"\x2\x37\x2\xFFFF";
-		private const string DFA148_acceptS =
-			"\x2\xFFFF\x1\x2\x1\x1";
-		private const string DFA148_specialS =
-			"\x4\xFFFF}>";
-		private static readonly string[] DFA148_transitionS =
-			{
-				"\x1\x1\x18\xFFFF\x1\x2\x5\xFFFF\x1\x3",
-				"\x1\x1\x18\xFFFF\x1\x2\x5\xFFFF\x1\x3",
-				"",
-				""
-			};
-
-		private static readonly short[] DFA148_eot = DFA.UnpackEncodedString(DFA148_eotS);
-		private static readonly short[] DFA148_eof = DFA.UnpackEncodedString(DFA148_eofS);
-		private static readonly char[] DFA148_min = DFA.UnpackEncodedStringToUnsignedChars(DFA148_minS);
-		private static readonly char[] DFA148_max = DFA.UnpackEncodedStringToUnsignedChars(DFA148_maxS);
-		private static readonly short[] DFA148_accept = DFA.UnpackEncodedString(DFA148_acceptS);
-		private static readonly short[] DFA148_special = DFA.UnpackEncodedString(DFA148_specialS);
-		private static readonly short[][] DFA148_transition;
-
-		static DFA148()
-		{
-			int numStates = DFA148_transitionS.Length;
-			DFA148_transition = new short[numStates][];
-			for ( int i=0; i < numStates; i++ )
-			{
-				DFA148_transition[i] = DFA.UnpackEncodedString(DFA148_transitionS[i]);
-			}
-		}
-
-		public DFA148( BaseRecognizer recognizer )
-		{
-			this.recognizer = recognizer;
-			this.decisionNumber = 148;
-			this.eot = DFA148_eot;
-			this.eof = DFA148_eof;
-			this.min = DFA148_min;
-			this.max = DFA148_max;
-			this.accept = DFA148_accept;
-			this.special = DFA148_special;
-			this.transition = DFA148_transition;
-		}
-
 		public override string Description { get { return "()* loopback of 346:34: ( ( LT )* ',' ( LT )* assignmentExpression )*"; } }
 
 		public override void Error(NoViableAltException nvae)
@@ -26033,21 +26102,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA158 : DFA
+	private class DFA159 : DFA
 	{
-		private const string DFA158_eotS =
+		private const string DFA159_eotS =
 			"\x5\xFFFF";
-		private const string DFA158_eofS =
+		private const string DFA159_eofS =
 			"\x2\x3\x2\xFFFF\x1\x3";
-		private const string DFA158_minS =
+		private const string DFA159_minS =
 			"\x1\x18\x1\x15\x2\xFFFF\x1\x15";
-		private const string DFA158_maxS =
+		private const string DFA159_maxS =
 			"\x1\x72\x1\x73\x2\xFFFF\x1\x73";
-		private const string DFA158_acceptS =
+		private const string DFA159_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2\x1\xFFFF";
-		private const string DFA158_specialS =
+		private const string DFA159_specialS =
 			"\x5\xFFFF}>";
-		private static readonly string[] DFA158_transitionS =
+		private static readonly string[] DFA159_transitionS =
 			{
 				"\x1\x1\x18\xFFFF\x1\x3\x5\xFFFF\x1\x3\x6\xFFFF\x2\x3\xD\xFFFF\x1\x2"+
 				"\x1\xFFFF\x1\x3\x22\xFFFF\x1\x3",
@@ -26063,35 +26132,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				"\x3\xFFFF\x2\x3"
 			};
 
-		private static readonly short[] DFA158_eot = DFA.UnpackEncodedString(DFA158_eotS);
-		private static readonly short[] DFA158_eof = DFA.UnpackEncodedString(DFA158_eofS);
-		private static readonly char[] DFA158_min = DFA.UnpackEncodedStringToUnsignedChars(DFA158_minS);
-		private static readonly char[] DFA158_max = DFA.UnpackEncodedStringToUnsignedChars(DFA158_maxS);
-		private static readonly short[] DFA158_accept = DFA.UnpackEncodedString(DFA158_acceptS);
-		private static readonly short[] DFA158_special = DFA.UnpackEncodedString(DFA158_specialS);
-		private static readonly short[][] DFA158_transition;
+		private static readonly short[] DFA159_eot = DFA.UnpackEncodedString(DFA159_eotS);
+		private static readonly short[] DFA159_eof = DFA.UnpackEncodedString(DFA159_eofS);
+		private static readonly char[] DFA159_min = DFA.UnpackEncodedStringToUnsignedChars(DFA159_minS);
+		private static readonly char[] DFA159_max = DFA.UnpackEncodedStringToUnsignedChars(DFA159_maxS);
+		private static readonly short[] DFA159_accept = DFA.UnpackEncodedString(DFA159_acceptS);
+		private static readonly short[] DFA159_special = DFA.UnpackEncodedString(DFA159_specialS);
+		private static readonly short[][] DFA159_transition;
 
-		static DFA158()
+		static DFA159()
 		{
-			int numStates = DFA158_transitionS.Length;
-			DFA158_transition = new short[numStates][];
+			int numStates = DFA159_transitionS.Length;
+			DFA159_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA158_transition[i] = DFA.UnpackEncodedString(DFA158_transitionS[i]);
+				DFA159_transition[i] = DFA.UnpackEncodedString(DFA159_transitionS[i]);
 			}
 		}
 
-		public DFA158( BaseRecognizer recognizer )
+		public DFA159( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 158;
-			this.eot = DFA158_eot;
-			this.eof = DFA158_eof;
-			this.min = DFA158_min;
-			this.max = DFA158_max;
-			this.accept = DFA158_accept;
-			this.special = DFA158_special;
-			this.transition = DFA158_transition;
+			this.decisionNumber = 159;
+			this.eot = DFA159_eot;
+			this.eof = DFA159_eof;
+			this.min = DFA159_min;
+			this.max = DFA159_max;
+			this.accept = DFA159_accept;
+			this.special = DFA159_special;
+			this.transition = DFA159_transition;
 		}
 
 		public override string Description { get { return "361:3: ( ( LT )* '?' ( LT )* iftrue= assignmentExpression ( LT )* ':' ( LT )* iffalse= assignmentExpression -> ^( '?' logicalORExpression $iftrue $iffalse) | -> logicalORExpression )"; } }
@@ -26102,21 +26171,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA163 : DFA
+	private class DFA164 : DFA
 	{
-		private const string DFA163_eotS =
+		private const string DFA164_eotS =
 			"\x4\xFFFF";
-		private const string DFA163_eofS =
+		private const string DFA164_eofS =
 			"\x1\x3\x3\xFFFF";
-		private const string DFA163_minS =
+		private const string DFA164_minS =
 			"\x2\x18\x2\xFFFF";
-		private const string DFA163_maxS =
+		private const string DFA164_maxS =
 			"\x2\x5F\x2\xFFFF";
-		private const string DFA163_acceptS =
+		private const string DFA164_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2";
-		private const string DFA163_specialS =
+		private const string DFA164_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA163_transitionS =
+		private static readonly string[] DFA164_transitionS =
 			{
 				"\x1\x1\x1E\xFFFF\x1\x3\x6\xFFFF\x2\x3\xD\xFFFF\x1\x2\x11\xFFFF\x1\x3",
 				"\x1\x1\x1E\xFFFF\x1\x3\x6\xFFFF\x2\x3\xD\xFFFF\x1\x2\x11\xFFFF\x1\x3",
@@ -26124,35 +26193,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA163_eot = DFA.UnpackEncodedString(DFA163_eotS);
-		private static readonly short[] DFA163_eof = DFA.UnpackEncodedString(DFA163_eofS);
-		private static readonly char[] DFA163_min = DFA.UnpackEncodedStringToUnsignedChars(DFA163_minS);
-		private static readonly char[] DFA163_max = DFA.UnpackEncodedStringToUnsignedChars(DFA163_maxS);
-		private static readonly short[] DFA163_accept = DFA.UnpackEncodedString(DFA163_acceptS);
-		private static readonly short[] DFA163_special = DFA.UnpackEncodedString(DFA163_specialS);
-		private static readonly short[][] DFA163_transition;
+		private static readonly short[] DFA164_eot = DFA.UnpackEncodedString(DFA164_eotS);
+		private static readonly short[] DFA164_eof = DFA.UnpackEncodedString(DFA164_eofS);
+		private static readonly char[] DFA164_min = DFA.UnpackEncodedStringToUnsignedChars(DFA164_minS);
+		private static readonly char[] DFA164_max = DFA.UnpackEncodedStringToUnsignedChars(DFA164_maxS);
+		private static readonly short[] DFA164_accept = DFA.UnpackEncodedString(DFA164_acceptS);
+		private static readonly short[] DFA164_special = DFA.UnpackEncodedString(DFA164_specialS);
+		private static readonly short[][] DFA164_transition;
 
-		static DFA163()
+		static DFA164()
 		{
-			int numStates = DFA163_transitionS.Length;
-			DFA163_transition = new short[numStates][];
+			int numStates = DFA164_transitionS.Length;
+			DFA164_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA163_transition[i] = DFA.UnpackEncodedString(DFA163_transitionS[i]);
+				DFA164_transition[i] = DFA.UnpackEncodedString(DFA164_transitionS[i]);
 			}
 		}
 
-		public DFA163( BaseRecognizer recognizer )
+		public DFA164( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 163;
-			this.eot = DFA163_eot;
-			this.eof = DFA163_eof;
-			this.min = DFA163_min;
-			this.max = DFA163_max;
-			this.accept = DFA163_accept;
-			this.special = DFA163_special;
-			this.transition = DFA163_transition;
+			this.decisionNumber = 164;
+			this.eot = DFA164_eot;
+			this.eof = DFA164_eof;
+			this.min = DFA164_min;
+			this.max = DFA164_max;
+			this.accept = DFA164_accept;
+			this.special = DFA164_special;
+			this.transition = DFA164_transition;
 		}
 
 		public override string Description { get { return "371:3: ( ( LT )* '?' ( LT )* iftrue= assignmentExpressionNoIn ( LT )* ':' ( LT )* iffalse= assignmentExpressionNoIn -> ^( '?' logicalORExpressionNoIn $iftrue $iffalse) | -> logicalORExpressionNoIn )"; } }
@@ -26163,21 +26232,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA166 : DFA
+	private class DFA167 : DFA
 	{
-		private const string DFA166_eotS =
+		private const string DFA167_eotS =
 			"\x5\xFFFF";
-		private const string DFA166_eofS =
+		private const string DFA167_eofS =
 			"\x2\x3\x2\xFFFF\x1\x3";
-		private const string DFA166_minS =
+		private const string DFA167_minS =
 			"\x1\x18\x1\x15\x2\xFFFF\x1\x15";
-		private const string DFA166_maxS =
+		private const string DFA167_maxS =
 			"\x1\x72\x1\x73\x2\xFFFF\x1\x73";
-		private const string DFA166_acceptS =
+		private const string DFA167_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2\x1\xFFFF";
-		private const string DFA166_specialS =
+		private const string DFA167_specialS =
 			"\x5\xFFFF}>";
-		private static readonly string[] DFA166_transitionS =
+		private static readonly string[] DFA167_transitionS =
 			{
 				"\x1\x1\x18\xFFFF\x1\x3\x5\xFFFF\x1\x3\x6\xFFFF\x2\x3\xD\xFFFF\x1\x3"+
 				"\x1\xFFFF\x1\x3\x21\xFFFF\x1\x2\x1\x3",
@@ -26193,35 +26262,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				"\x1\x2\x2\x3"
 			};
 
-		private static readonly short[] DFA166_eot = DFA.UnpackEncodedString(DFA166_eotS);
-		private static readonly short[] DFA166_eof = DFA.UnpackEncodedString(DFA166_eofS);
-		private static readonly char[] DFA166_min = DFA.UnpackEncodedStringToUnsignedChars(DFA166_minS);
-		private static readonly char[] DFA166_max = DFA.UnpackEncodedStringToUnsignedChars(DFA166_maxS);
-		private static readonly short[] DFA166_accept = DFA.UnpackEncodedString(DFA166_acceptS);
-		private static readonly short[] DFA166_special = DFA.UnpackEncodedString(DFA166_specialS);
-		private static readonly short[][] DFA166_transition;
+		private static readonly short[] DFA167_eot = DFA.UnpackEncodedString(DFA167_eotS);
+		private static readonly short[] DFA167_eof = DFA.UnpackEncodedString(DFA167_eofS);
+		private static readonly char[] DFA167_min = DFA.UnpackEncodedStringToUnsignedChars(DFA167_minS);
+		private static readonly char[] DFA167_max = DFA.UnpackEncodedStringToUnsignedChars(DFA167_maxS);
+		private static readonly short[] DFA167_accept = DFA.UnpackEncodedString(DFA167_acceptS);
+		private static readonly short[] DFA167_special = DFA.UnpackEncodedString(DFA167_specialS);
+		private static readonly short[][] DFA167_transition;
 
-		static DFA166()
+		static DFA167()
 		{
-			int numStates = DFA166_transitionS.Length;
-			DFA166_transition = new short[numStates][];
+			int numStates = DFA167_transitionS.Length;
+			DFA167_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA166_transition[i] = DFA.UnpackEncodedString(DFA166_transitionS[i]);
+				DFA167_transition[i] = DFA.UnpackEncodedString(DFA167_transitionS[i]);
 			}
 		}
 
-		public DFA166( BaseRecognizer recognizer )
+		public DFA167( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 166;
-			this.eot = DFA166_eot;
-			this.eof = DFA166_eof;
-			this.min = DFA166_min;
-			this.max = DFA166_max;
-			this.accept = DFA166_accept;
-			this.special = DFA166_special;
-			this.transition = DFA166_transition;
+			this.decisionNumber = 167;
+			this.eot = DFA167_eot;
+			this.eof = DFA167_eof;
+			this.min = DFA167_min;
+			this.max = DFA167_max;
+			this.accept = DFA167_accept;
+			this.special = DFA167_special;
+			this.transition = DFA167_transition;
 		}
 
 		public override string Description { get { return "381:3: ( ( ( LT )* '||' ( LT )* logicalORExpression ) -> ^( '||' logicalANDExpression logicalORExpression ) | -> logicalANDExpression )"; } }
@@ -26232,21 +26301,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA169 : DFA
+	private class DFA170 : DFA
 	{
-		private const string DFA169_eotS =
+		private const string DFA170_eotS =
 			"\x4\xFFFF";
-		private const string DFA169_eofS =
+		private const string DFA170_eofS =
 			"\x1\x3\x3\xFFFF";
-		private const string DFA169_minS =
+		private const string DFA170_minS =
 			"\x2\x18\x2\xFFFF";
-		private const string DFA169_maxS =
+		private const string DFA170_maxS =
 			"\x2\x71\x2\xFFFF";
-		private const string DFA169_acceptS =
+		private const string DFA170_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2";
-		private const string DFA169_specialS =
+		private const string DFA170_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA169_transitionS =
+		private static readonly string[] DFA170_transitionS =
 			{
 				"\x1\x1\x1E\xFFFF\x1\x3\x6\xFFFF\x2\x3\xD\xFFFF\x1\x3\x11\xFFFF\x1\x3"+
 				"\x11\xFFFF\x1\x2",
@@ -26256,35 +26325,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA169_eot = DFA.UnpackEncodedString(DFA169_eotS);
-		private static readonly short[] DFA169_eof = DFA.UnpackEncodedString(DFA169_eofS);
-		private static readonly char[] DFA169_min = DFA.UnpackEncodedStringToUnsignedChars(DFA169_minS);
-		private static readonly char[] DFA169_max = DFA.UnpackEncodedStringToUnsignedChars(DFA169_maxS);
-		private static readonly short[] DFA169_accept = DFA.UnpackEncodedString(DFA169_acceptS);
-		private static readonly short[] DFA169_special = DFA.UnpackEncodedString(DFA169_specialS);
-		private static readonly short[][] DFA169_transition;
+		private static readonly short[] DFA170_eot = DFA.UnpackEncodedString(DFA170_eotS);
+		private static readonly short[] DFA170_eof = DFA.UnpackEncodedString(DFA170_eofS);
+		private static readonly char[] DFA170_min = DFA.UnpackEncodedStringToUnsignedChars(DFA170_minS);
+		private static readonly char[] DFA170_max = DFA.UnpackEncodedStringToUnsignedChars(DFA170_maxS);
+		private static readonly short[] DFA170_accept = DFA.UnpackEncodedString(DFA170_acceptS);
+		private static readonly short[] DFA170_special = DFA.UnpackEncodedString(DFA170_specialS);
+		private static readonly short[][] DFA170_transition;
 
-		static DFA169()
+		static DFA170()
 		{
-			int numStates = DFA169_transitionS.Length;
-			DFA169_transition = new short[numStates][];
+			int numStates = DFA170_transitionS.Length;
+			DFA170_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA169_transition[i] = DFA.UnpackEncodedString(DFA169_transitionS[i]);
+				DFA170_transition[i] = DFA.UnpackEncodedString(DFA170_transitionS[i]);
 			}
 		}
 
-		public DFA169( BaseRecognizer recognizer )
+		public DFA170( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 169;
-			this.eot = DFA169_eot;
-			this.eof = DFA169_eof;
-			this.min = DFA169_min;
-			this.max = DFA169_max;
-			this.accept = DFA169_accept;
-			this.special = DFA169_special;
-			this.transition = DFA169_transition;
+			this.decisionNumber = 170;
+			this.eot = DFA170_eot;
+			this.eof = DFA170_eof;
+			this.min = DFA170_min;
+			this.max = DFA170_max;
+			this.accept = DFA170_accept;
+			this.special = DFA170_special;
+			this.transition = DFA170_transition;
 		}
 
 		public override string Description { get { return "391:3: ( ( ( LT )* '||' ( LT )* logicalORExpressionNoIn ) -> ^( '||' logicalANDExpressionNoIn logicalORExpressionNoIn ) | -> logicalANDExpressionNoIn )"; } }
@@ -26295,21 +26364,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA172 : DFA
+	private class DFA173 : DFA
 	{
-		private const string DFA172_eotS =
+		private const string DFA173_eotS =
 			"\x5\xFFFF";
-		private const string DFA172_eofS =
+		private const string DFA173_eofS =
 			"\x2\x3\x2\xFFFF\x1\x3";
-		private const string DFA172_minS =
+		private const string DFA173_minS =
 			"\x1\x18\x1\x15\x2\xFFFF\x1\x15";
-		private const string DFA172_maxS =
+		private const string DFA173_maxS =
 			"\x1\x72\x1\x73\x2\xFFFF\x1\x73";
-		private const string DFA172_acceptS =
+		private const string DFA173_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2\x1\xFFFF";
-		private const string DFA172_specialS =
+		private const string DFA173_specialS =
 			"\x5\xFFFF}>";
-		private static readonly string[] DFA172_transitionS =
+		private static readonly string[] DFA173_transitionS =
 			{
 				"\x1\x1\x14\xFFFF\x1\x2\x3\xFFFF\x1\x3\x5\xFFFF\x1\x3\x6\xFFFF\x2\x3"+
 				"\xD\xFFFF\x1\x3\x1\xFFFF\x1\x3\x21\xFFFF\x2\x3",
@@ -26325,35 +26394,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				"\xE\x3\x2\xFFFF\x3\x3"
 			};
 
-		private static readonly short[] DFA172_eot = DFA.UnpackEncodedString(DFA172_eotS);
-		private static readonly short[] DFA172_eof = DFA.UnpackEncodedString(DFA172_eofS);
-		private static readonly char[] DFA172_min = DFA.UnpackEncodedStringToUnsignedChars(DFA172_minS);
-		private static readonly char[] DFA172_max = DFA.UnpackEncodedStringToUnsignedChars(DFA172_maxS);
-		private static readonly short[] DFA172_accept = DFA.UnpackEncodedString(DFA172_acceptS);
-		private static readonly short[] DFA172_special = DFA.UnpackEncodedString(DFA172_specialS);
-		private static readonly short[][] DFA172_transition;
+		private static readonly short[] DFA173_eot = DFA.UnpackEncodedString(DFA173_eotS);
+		private static readonly short[] DFA173_eof = DFA.UnpackEncodedString(DFA173_eofS);
+		private static readonly char[] DFA173_min = DFA.UnpackEncodedStringToUnsignedChars(DFA173_minS);
+		private static readonly char[] DFA173_max = DFA.UnpackEncodedStringToUnsignedChars(DFA173_maxS);
+		private static readonly short[] DFA173_accept = DFA.UnpackEncodedString(DFA173_acceptS);
+		private static readonly short[] DFA173_special = DFA.UnpackEncodedString(DFA173_specialS);
+		private static readonly short[][] DFA173_transition;
 
-		static DFA172()
+		static DFA173()
 		{
-			int numStates = DFA172_transitionS.Length;
-			DFA172_transition = new short[numStates][];
+			int numStates = DFA173_transitionS.Length;
+			DFA173_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA172_transition[i] = DFA.UnpackEncodedString(DFA172_transitionS[i]);
+				DFA173_transition[i] = DFA.UnpackEncodedString(DFA173_transitionS[i]);
 			}
 		}
 
-		public DFA172( BaseRecognizer recognizer )
+		public DFA173( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 172;
-			this.eot = DFA172_eot;
-			this.eof = DFA172_eof;
-			this.min = DFA172_min;
-			this.max = DFA172_max;
-			this.accept = DFA172_accept;
-			this.special = DFA172_special;
-			this.transition = DFA172_transition;
+			this.decisionNumber = 173;
+			this.eot = DFA173_eot;
+			this.eof = DFA173_eof;
+			this.min = DFA173_min;
+			this.max = DFA173_max;
+			this.accept = DFA173_accept;
+			this.special = DFA173_special;
+			this.transition = DFA173_transition;
 		}
 
 		public override string Description { get { return "401:3: ( ( ( LT )* '&&' ( LT )* logicalANDExpression ) -> ^( '&&' bitwiseORExpression logicalANDExpression ) | -> bitwiseORExpression )"; } }
@@ -26364,21 +26433,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA175 : DFA
+	private class DFA176 : DFA
 	{
-		private const string DFA175_eotS =
+		private const string DFA176_eotS =
 			"\x4\xFFFF";
-		private const string DFA175_eofS =
+		private const string DFA176_eofS =
 			"\x1\x3\x3\xFFFF";
-		private const string DFA175_minS =
+		private const string DFA176_minS =
 			"\x2\x18\x2\xFFFF";
-		private const string DFA175_maxS =
+		private const string DFA176_maxS =
 			"\x2\x71\x2\xFFFF";
-		private const string DFA175_acceptS =
+		private const string DFA176_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2";
-		private const string DFA175_specialS =
+		private const string DFA176_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA175_transitionS =
+		private static readonly string[] DFA176_transitionS =
 			{
 				"\x1\x1\x14\xFFFF\x1\x2\x9\xFFFF\x1\x3\x6\xFFFF\x2\x3\xD\xFFFF\x1\x3"+
 				"\x11\xFFFF\x1\x3\x11\xFFFF\x1\x3",
@@ -26388,35 +26457,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA175_eot = DFA.UnpackEncodedString(DFA175_eotS);
-		private static readonly short[] DFA175_eof = DFA.UnpackEncodedString(DFA175_eofS);
-		private static readonly char[] DFA175_min = DFA.UnpackEncodedStringToUnsignedChars(DFA175_minS);
-		private static readonly char[] DFA175_max = DFA.UnpackEncodedStringToUnsignedChars(DFA175_maxS);
-		private static readonly short[] DFA175_accept = DFA.UnpackEncodedString(DFA175_acceptS);
-		private static readonly short[] DFA175_special = DFA.UnpackEncodedString(DFA175_specialS);
-		private static readonly short[][] DFA175_transition;
+		private static readonly short[] DFA176_eot = DFA.UnpackEncodedString(DFA176_eotS);
+		private static readonly short[] DFA176_eof = DFA.UnpackEncodedString(DFA176_eofS);
+		private static readonly char[] DFA176_min = DFA.UnpackEncodedStringToUnsignedChars(DFA176_minS);
+		private static readonly char[] DFA176_max = DFA.UnpackEncodedStringToUnsignedChars(DFA176_maxS);
+		private static readonly short[] DFA176_accept = DFA.UnpackEncodedString(DFA176_acceptS);
+		private static readonly short[] DFA176_special = DFA.UnpackEncodedString(DFA176_specialS);
+		private static readonly short[][] DFA176_transition;
 
-		static DFA175()
+		static DFA176()
 		{
-			int numStates = DFA175_transitionS.Length;
-			DFA175_transition = new short[numStates][];
+			int numStates = DFA176_transitionS.Length;
+			DFA176_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA175_transition[i] = DFA.UnpackEncodedString(DFA175_transitionS[i]);
+				DFA176_transition[i] = DFA.UnpackEncodedString(DFA176_transitionS[i]);
 			}
 		}
 
-		public DFA175( BaseRecognizer recognizer )
+		public DFA176( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 175;
-			this.eot = DFA175_eot;
-			this.eof = DFA175_eof;
-			this.min = DFA175_min;
-			this.max = DFA175_max;
-			this.accept = DFA175_accept;
-			this.special = DFA175_special;
-			this.transition = DFA175_transition;
+			this.decisionNumber = 176;
+			this.eot = DFA176_eot;
+			this.eof = DFA176_eof;
+			this.min = DFA176_min;
+			this.max = DFA176_max;
+			this.accept = DFA176_accept;
+			this.special = DFA176_special;
+			this.transition = DFA176_transition;
 		}
 
 		public override string Description { get { return "411:3: ( ( ( LT )* '&&' ( LT )* logicalANDExpressionNoIn ) -> ^( '&&' bitwiseORExpressionNoIn logicalANDExpressionNoIn ) | -> bitwiseORExpressionNoIn )"; } }
@@ -26427,21 +26496,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA178 : DFA
+	private class DFA179 : DFA
 	{
-		private const string DFA178_eotS =
+		private const string DFA179_eotS =
 			"\x5\xFFFF";
-		private const string DFA178_eofS =
+		private const string DFA179_eofS =
 			"\x2\x3\x2\xFFFF\x1\x3";
-		private const string DFA178_minS =
+		private const string DFA179_minS =
 			"\x1\x18\x1\x15\x2\xFFFF\x1\x15";
-		private const string DFA178_maxS =
+		private const string DFA179_maxS =
 			"\x1\x72\x1\x73\x2\xFFFF\x1\x73";
-		private const string DFA178_acceptS =
+		private const string DFA179_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2\x1\xFFFF";
-		private const string DFA178_specialS =
+		private const string DFA179_specialS =
 			"\x5\xFFFF}>";
-		private static readonly string[] DFA178_transitionS =
+		private static readonly string[] DFA179_transitionS =
 			{
 				"\x1\x1\x14\xFFFF\x1\x3\x3\xFFFF\x1\x3\x5\xFFFF\x1\x3\x6\xFFFF\x2\x3"+
 				"\xD\xFFFF\x1\x3\x1\xFFFF\x1\x3\x1F\xFFFF\x1\x2\x1\xFFFF\x2\x3",
@@ -26457,35 +26526,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				"\xE\x3\x1\x2\x1\xFFFF\x3\x3"
 			};
 
-		private static readonly short[] DFA178_eot = DFA.UnpackEncodedString(DFA178_eotS);
-		private static readonly short[] DFA178_eof = DFA.UnpackEncodedString(DFA178_eofS);
-		private static readonly char[] DFA178_min = DFA.UnpackEncodedStringToUnsignedChars(DFA178_minS);
-		private static readonly char[] DFA178_max = DFA.UnpackEncodedStringToUnsignedChars(DFA178_maxS);
-		private static readonly short[] DFA178_accept = DFA.UnpackEncodedString(DFA178_acceptS);
-		private static readonly short[] DFA178_special = DFA.UnpackEncodedString(DFA178_specialS);
-		private static readonly short[][] DFA178_transition;
+		private static readonly short[] DFA179_eot = DFA.UnpackEncodedString(DFA179_eotS);
+		private static readonly short[] DFA179_eof = DFA.UnpackEncodedString(DFA179_eofS);
+		private static readonly char[] DFA179_min = DFA.UnpackEncodedStringToUnsignedChars(DFA179_minS);
+		private static readonly char[] DFA179_max = DFA.UnpackEncodedStringToUnsignedChars(DFA179_maxS);
+		private static readonly short[] DFA179_accept = DFA.UnpackEncodedString(DFA179_acceptS);
+		private static readonly short[] DFA179_special = DFA.UnpackEncodedString(DFA179_specialS);
+		private static readonly short[][] DFA179_transition;
 
-		static DFA178()
+		static DFA179()
 		{
-			int numStates = DFA178_transitionS.Length;
-			DFA178_transition = new short[numStates][];
+			int numStates = DFA179_transitionS.Length;
+			DFA179_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA178_transition[i] = DFA.UnpackEncodedString(DFA178_transitionS[i]);
+				DFA179_transition[i] = DFA.UnpackEncodedString(DFA179_transitionS[i]);
 			}
 		}
 
-		public DFA178( BaseRecognizer recognizer )
+		public DFA179( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 178;
-			this.eot = DFA178_eot;
-			this.eof = DFA178_eof;
-			this.min = DFA178_min;
-			this.max = DFA178_max;
-			this.accept = DFA178_accept;
-			this.special = DFA178_special;
-			this.transition = DFA178_transition;
+			this.decisionNumber = 179;
+			this.eot = DFA179_eot;
+			this.eof = DFA179_eof;
+			this.min = DFA179_min;
+			this.max = DFA179_max;
+			this.accept = DFA179_accept;
+			this.special = DFA179_special;
+			this.transition = DFA179_transition;
 		}
 
 		public override string Description { get { return "421:3: ( ( ( LT )* '|' ( LT )* bitwiseORExpression ) -> ^( '|' bitwiseXORExpression bitwiseORExpression ) | -> bitwiseXORExpression )"; } }
@@ -26496,21 +26565,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA181 : DFA
+	private class DFA182 : DFA
 	{
-		private const string DFA181_eotS =
+		private const string DFA182_eotS =
 			"\x4\xFFFF";
-		private const string DFA181_eofS =
+		private const string DFA182_eofS =
 			"\x1\x3\x3\xFFFF";
-		private const string DFA181_minS =
+		private const string DFA182_minS =
 			"\x2\x18\x2\xFFFF";
-		private const string DFA181_maxS =
+		private const string DFA182_maxS =
 			"\x2\x71\x2\xFFFF";
-		private const string DFA181_acceptS =
+		private const string DFA182_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2";
-		private const string DFA181_specialS =
+		private const string DFA182_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA181_transitionS =
+		private static readonly string[] DFA182_transitionS =
 			{
 				"\x1\x1\x14\xFFFF\x1\x3\x9\xFFFF\x1\x3\x6\xFFFF\x2\x3\xD\xFFFF\x1\x3"+
 				"\x11\xFFFF\x1\x3\xF\xFFFF\x1\x2\x1\xFFFF\x1\x3",
@@ -26520,35 +26589,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA181_eot = DFA.UnpackEncodedString(DFA181_eotS);
-		private static readonly short[] DFA181_eof = DFA.UnpackEncodedString(DFA181_eofS);
-		private static readonly char[] DFA181_min = DFA.UnpackEncodedStringToUnsignedChars(DFA181_minS);
-		private static readonly char[] DFA181_max = DFA.UnpackEncodedStringToUnsignedChars(DFA181_maxS);
-		private static readonly short[] DFA181_accept = DFA.UnpackEncodedString(DFA181_acceptS);
-		private static readonly short[] DFA181_special = DFA.UnpackEncodedString(DFA181_specialS);
-		private static readonly short[][] DFA181_transition;
+		private static readonly short[] DFA182_eot = DFA.UnpackEncodedString(DFA182_eotS);
+		private static readonly short[] DFA182_eof = DFA.UnpackEncodedString(DFA182_eofS);
+		private static readonly char[] DFA182_min = DFA.UnpackEncodedStringToUnsignedChars(DFA182_minS);
+		private static readonly char[] DFA182_max = DFA.UnpackEncodedStringToUnsignedChars(DFA182_maxS);
+		private static readonly short[] DFA182_accept = DFA.UnpackEncodedString(DFA182_acceptS);
+		private static readonly short[] DFA182_special = DFA.UnpackEncodedString(DFA182_specialS);
+		private static readonly short[][] DFA182_transition;
 
-		static DFA181()
+		static DFA182()
 		{
-			int numStates = DFA181_transitionS.Length;
-			DFA181_transition = new short[numStates][];
+			int numStates = DFA182_transitionS.Length;
+			DFA182_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA181_transition[i] = DFA.UnpackEncodedString(DFA181_transitionS[i]);
+				DFA182_transition[i] = DFA.UnpackEncodedString(DFA182_transitionS[i]);
 			}
 		}
 
-		public DFA181( BaseRecognizer recognizer )
+		public DFA182( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 181;
-			this.eot = DFA181_eot;
-			this.eof = DFA181_eof;
-			this.min = DFA181_min;
-			this.max = DFA181_max;
-			this.accept = DFA181_accept;
-			this.special = DFA181_special;
-			this.transition = DFA181_transition;
+			this.decisionNumber = 182;
+			this.eot = DFA182_eot;
+			this.eof = DFA182_eof;
+			this.min = DFA182_min;
+			this.max = DFA182_max;
+			this.accept = DFA182_accept;
+			this.special = DFA182_special;
+			this.transition = DFA182_transition;
 		}
 
 		public override string Description { get { return "431:3: ( ( ( LT )* '|' ( LT )* bitwiseORExpressionNoIn ) -> ^( '|' bitwiseXORExpressionNoIn bitwiseORExpressionNoIn ) | -> bitwiseXORExpressionNoIn )"; } }
@@ -26559,21 +26628,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA184 : DFA
+	private class DFA185 : DFA
 	{
-		private const string DFA184_eotS =
+		private const string DFA185_eotS =
 			"\x5\xFFFF";
-		private const string DFA184_eofS =
+		private const string DFA185_eofS =
 			"\x2\x3\x2\xFFFF\x1\x3";
-		private const string DFA184_minS =
+		private const string DFA185_minS =
 			"\x1\x18\x1\x15\x2\xFFFF\x1\x15";
-		private const string DFA184_maxS =
+		private const string DFA185_maxS =
 			"\x1\x72\x1\x73\x2\xFFFF\x1\x73";
-		private const string DFA184_acceptS =
+		private const string DFA185_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2\x1\xFFFF";
-		private const string DFA184_specialS =
+		private const string DFA185_specialS =
 			"\x5\xFFFF}>";
-		private static readonly string[] DFA184_transitionS =
+		private static readonly string[] DFA185_transitionS =
 			{
 				"\x1\x1\x14\xFFFF\x1\x3\x3\xFFFF\x1\x3\x5\xFFFF\x1\x3\x6\xFFFF\x2\x3"+
 				"\xD\xFFFF\x1\x3\x1\xFFFF\x1\x3\x1\x2\x1E\xFFFF\x1\x3\x1\xFFFF\x2\x3",
@@ -26589,35 +26658,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				"\x2\xFFFF\xF\x3\x1\xFFFF\x3\x3"
 			};
 
-		private static readonly short[] DFA184_eot = DFA.UnpackEncodedString(DFA184_eotS);
-		private static readonly short[] DFA184_eof = DFA.UnpackEncodedString(DFA184_eofS);
-		private static readonly char[] DFA184_min = DFA.UnpackEncodedStringToUnsignedChars(DFA184_minS);
-		private static readonly char[] DFA184_max = DFA.UnpackEncodedStringToUnsignedChars(DFA184_maxS);
-		private static readonly short[] DFA184_accept = DFA.UnpackEncodedString(DFA184_acceptS);
-		private static readonly short[] DFA184_special = DFA.UnpackEncodedString(DFA184_specialS);
-		private static readonly short[][] DFA184_transition;
+		private static readonly short[] DFA185_eot = DFA.UnpackEncodedString(DFA185_eotS);
+		private static readonly short[] DFA185_eof = DFA.UnpackEncodedString(DFA185_eofS);
+		private static readonly char[] DFA185_min = DFA.UnpackEncodedStringToUnsignedChars(DFA185_minS);
+		private static readonly char[] DFA185_max = DFA.UnpackEncodedStringToUnsignedChars(DFA185_maxS);
+		private static readonly short[] DFA185_accept = DFA.UnpackEncodedString(DFA185_acceptS);
+		private static readonly short[] DFA185_special = DFA.UnpackEncodedString(DFA185_specialS);
+		private static readonly short[][] DFA185_transition;
 
-		static DFA184()
+		static DFA185()
 		{
-			int numStates = DFA184_transitionS.Length;
-			DFA184_transition = new short[numStates][];
+			int numStates = DFA185_transitionS.Length;
+			DFA185_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA184_transition[i] = DFA.UnpackEncodedString(DFA184_transitionS[i]);
+				DFA185_transition[i] = DFA.UnpackEncodedString(DFA185_transitionS[i]);
 			}
 		}
 
-		public DFA184( BaseRecognizer recognizer )
+		public DFA185( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 184;
-			this.eot = DFA184_eot;
-			this.eof = DFA184_eof;
-			this.min = DFA184_min;
-			this.max = DFA184_max;
-			this.accept = DFA184_accept;
-			this.special = DFA184_special;
-			this.transition = DFA184_transition;
+			this.decisionNumber = 185;
+			this.eot = DFA185_eot;
+			this.eof = DFA185_eof;
+			this.min = DFA185_min;
+			this.max = DFA185_max;
+			this.accept = DFA185_accept;
+			this.special = DFA185_special;
+			this.transition = DFA185_transition;
 		}
 
 		public override string Description { get { return "441:3: ( ( ( LT )* '^' ( LT )* bitwiseXORExpression ) -> ^( '^' bitwiseANDExpression bitwiseXORExpression ) | -> bitwiseANDExpression )"; } }
@@ -26628,21 +26697,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA187 : DFA
+	private class DFA188 : DFA
 	{
-		private const string DFA187_eotS =
+		private const string DFA188_eotS =
 			"\x4\xFFFF";
-		private const string DFA187_eofS =
+		private const string DFA188_eofS =
 			"\x1\x3\x3\xFFFF";
-		private const string DFA187_minS =
+		private const string DFA188_minS =
 			"\x2\x18\x2\xFFFF";
-		private const string DFA187_maxS =
+		private const string DFA188_maxS =
 			"\x2\x71\x2\xFFFF";
-		private const string DFA187_acceptS =
+		private const string DFA188_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2";
-		private const string DFA187_specialS =
+		private const string DFA188_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA187_transitionS =
+		private static readonly string[] DFA188_transitionS =
 			{
 				"\x1\x1\x14\xFFFF\x1\x3\x9\xFFFF\x1\x3\x6\xFFFF\x2\x3\xD\xFFFF\x1\x3"+
 				"\x2\xFFFF\x1\x2\xE\xFFFF\x1\x3\xF\xFFFF\x1\x3\x1\xFFFF\x1\x3",
@@ -26652,35 +26721,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA187_eot = DFA.UnpackEncodedString(DFA187_eotS);
-		private static readonly short[] DFA187_eof = DFA.UnpackEncodedString(DFA187_eofS);
-		private static readonly char[] DFA187_min = DFA.UnpackEncodedStringToUnsignedChars(DFA187_minS);
-		private static readonly char[] DFA187_max = DFA.UnpackEncodedStringToUnsignedChars(DFA187_maxS);
-		private static readonly short[] DFA187_accept = DFA.UnpackEncodedString(DFA187_acceptS);
-		private static readonly short[] DFA187_special = DFA.UnpackEncodedString(DFA187_specialS);
-		private static readonly short[][] DFA187_transition;
+		private static readonly short[] DFA188_eot = DFA.UnpackEncodedString(DFA188_eotS);
+		private static readonly short[] DFA188_eof = DFA.UnpackEncodedString(DFA188_eofS);
+		private static readonly char[] DFA188_min = DFA.UnpackEncodedStringToUnsignedChars(DFA188_minS);
+		private static readonly char[] DFA188_max = DFA.UnpackEncodedStringToUnsignedChars(DFA188_maxS);
+		private static readonly short[] DFA188_accept = DFA.UnpackEncodedString(DFA188_acceptS);
+		private static readonly short[] DFA188_special = DFA.UnpackEncodedString(DFA188_specialS);
+		private static readonly short[][] DFA188_transition;
 
-		static DFA187()
+		static DFA188()
 		{
-			int numStates = DFA187_transitionS.Length;
-			DFA187_transition = new short[numStates][];
+			int numStates = DFA188_transitionS.Length;
+			DFA188_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA187_transition[i] = DFA.UnpackEncodedString(DFA187_transitionS[i]);
+				DFA188_transition[i] = DFA.UnpackEncodedString(DFA188_transitionS[i]);
 			}
 		}
 
-		public DFA187( BaseRecognizer recognizer )
+		public DFA188( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 187;
-			this.eot = DFA187_eot;
-			this.eof = DFA187_eof;
-			this.min = DFA187_min;
-			this.max = DFA187_max;
-			this.accept = DFA187_accept;
-			this.special = DFA187_special;
-			this.transition = DFA187_transition;
+			this.decisionNumber = 188;
+			this.eot = DFA188_eot;
+			this.eof = DFA188_eof;
+			this.min = DFA188_min;
+			this.max = DFA188_max;
+			this.accept = DFA188_accept;
+			this.special = DFA188_special;
+			this.transition = DFA188_transition;
 		}
 
 		public override string Description { get { return "451:3: ( ( ( LT )* '^' ( LT )* bitwiseXORExpressionNoIn ) -> ^( '^' bitwiseANDExpressionNoIn bitwiseXORExpressionNoIn ) | -> bitwiseANDExpressionNoIn )"; } }
@@ -26691,21 +26760,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA190 : DFA
+	private class DFA191 : DFA
 	{
-		private const string DFA190_eotS =
+		private const string DFA191_eotS =
 			"\x5\xFFFF";
-		private const string DFA190_eofS =
+		private const string DFA191_eofS =
 			"\x2\x3\x2\xFFFF\x1\x3";
-		private const string DFA190_minS =
+		private const string DFA191_minS =
 			"\x1\x18\x1\x15\x2\xFFFF\x1\x15";
-		private const string DFA190_maxS =
+		private const string DFA191_maxS =
 			"\x1\x72\x1\x73\x2\xFFFF\x1\x73";
-		private const string DFA190_acceptS =
+		private const string DFA191_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2\x1\xFFFF";
-		private const string DFA190_specialS =
+		private const string DFA191_specialS =
 			"\x5\xFFFF}>";
-		private static readonly string[] DFA190_transitionS =
+		private static readonly string[] DFA191_transitionS =
 			{
 				"\x1\x1\x14\xFFFF\x1\x3\x1\x2\x2\xFFFF\x1\x3\x5\xFFFF\x1\x3\x6\xFFFF"+
 				"\x2\x3\xD\xFFFF\x1\x3\x1\xFFFF\x2\x3\x1E\xFFFF\x1\x3\x1\xFFFF\x2\x3",
@@ -26721,35 +26790,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				"\xFFFF\xF\x3\x1\xFFFF\x3\x3"
 			};
 
-		private static readonly short[] DFA190_eot = DFA.UnpackEncodedString(DFA190_eotS);
-		private static readonly short[] DFA190_eof = DFA.UnpackEncodedString(DFA190_eofS);
-		private static readonly char[] DFA190_min = DFA.UnpackEncodedStringToUnsignedChars(DFA190_minS);
-		private static readonly char[] DFA190_max = DFA.UnpackEncodedStringToUnsignedChars(DFA190_maxS);
-		private static readonly short[] DFA190_accept = DFA.UnpackEncodedString(DFA190_acceptS);
-		private static readonly short[] DFA190_special = DFA.UnpackEncodedString(DFA190_specialS);
-		private static readonly short[][] DFA190_transition;
+		private static readonly short[] DFA191_eot = DFA.UnpackEncodedString(DFA191_eotS);
+		private static readonly short[] DFA191_eof = DFA.UnpackEncodedString(DFA191_eofS);
+		private static readonly char[] DFA191_min = DFA.UnpackEncodedStringToUnsignedChars(DFA191_minS);
+		private static readonly char[] DFA191_max = DFA.UnpackEncodedStringToUnsignedChars(DFA191_maxS);
+		private static readonly short[] DFA191_accept = DFA.UnpackEncodedString(DFA191_acceptS);
+		private static readonly short[] DFA191_special = DFA.UnpackEncodedString(DFA191_specialS);
+		private static readonly short[][] DFA191_transition;
 
-		static DFA190()
+		static DFA191()
 		{
-			int numStates = DFA190_transitionS.Length;
-			DFA190_transition = new short[numStates][];
+			int numStates = DFA191_transitionS.Length;
+			DFA191_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA190_transition[i] = DFA.UnpackEncodedString(DFA190_transitionS[i]);
+				DFA191_transition[i] = DFA.UnpackEncodedString(DFA191_transitionS[i]);
 			}
 		}
 
-		public DFA190( BaseRecognizer recognizer )
+		public DFA191( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 190;
-			this.eot = DFA190_eot;
-			this.eof = DFA190_eof;
-			this.min = DFA190_min;
-			this.max = DFA190_max;
-			this.accept = DFA190_accept;
-			this.special = DFA190_special;
-			this.transition = DFA190_transition;
+			this.decisionNumber = 191;
+			this.eot = DFA191_eot;
+			this.eof = DFA191_eof;
+			this.min = DFA191_min;
+			this.max = DFA191_max;
+			this.accept = DFA191_accept;
+			this.special = DFA191_special;
+			this.transition = DFA191_transition;
 		}
 
 		public override string Description { get { return "461:3: ( ( ( LT )* '&' ( LT )* bitwiseANDExpression ) -> ^( '&' equalityExpression bitwiseANDExpression ) | -> equalityExpression )"; } }
@@ -26760,21 +26829,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA193 : DFA
+	private class DFA194 : DFA
 	{
-		private const string DFA193_eotS =
+		private const string DFA194_eotS =
 			"\x4\xFFFF";
-		private const string DFA193_eofS =
+		private const string DFA194_eofS =
 			"\x1\x3\x3\xFFFF";
-		private const string DFA193_minS =
+		private const string DFA194_minS =
 			"\x2\x18\x2\xFFFF";
-		private const string DFA193_maxS =
+		private const string DFA194_maxS =
 			"\x2\x71\x2\xFFFF";
-		private const string DFA193_acceptS =
+		private const string DFA194_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2";
-		private const string DFA193_specialS =
+		private const string DFA194_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA193_transitionS =
+		private static readonly string[] DFA194_transitionS =
 			{
 				"\x1\x1\x14\xFFFF\x1\x3\x1\x2\x8\xFFFF\x1\x3\x6\xFFFF\x2\x3\xD\xFFFF"+
 				"\x1\x3\x2\xFFFF\x1\x3\xE\xFFFF\x1\x3\xF\xFFFF\x1\x3\x1\xFFFF\x1\x3",
@@ -26784,35 +26853,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA193_eot = DFA.UnpackEncodedString(DFA193_eotS);
-		private static readonly short[] DFA193_eof = DFA.UnpackEncodedString(DFA193_eofS);
-		private static readonly char[] DFA193_min = DFA.UnpackEncodedStringToUnsignedChars(DFA193_minS);
-		private static readonly char[] DFA193_max = DFA.UnpackEncodedStringToUnsignedChars(DFA193_maxS);
-		private static readonly short[] DFA193_accept = DFA.UnpackEncodedString(DFA193_acceptS);
-		private static readonly short[] DFA193_special = DFA.UnpackEncodedString(DFA193_specialS);
-		private static readonly short[][] DFA193_transition;
+		private static readonly short[] DFA194_eot = DFA.UnpackEncodedString(DFA194_eotS);
+		private static readonly short[] DFA194_eof = DFA.UnpackEncodedString(DFA194_eofS);
+		private static readonly char[] DFA194_min = DFA.UnpackEncodedStringToUnsignedChars(DFA194_minS);
+		private static readonly char[] DFA194_max = DFA.UnpackEncodedStringToUnsignedChars(DFA194_maxS);
+		private static readonly short[] DFA194_accept = DFA.UnpackEncodedString(DFA194_acceptS);
+		private static readonly short[] DFA194_special = DFA.UnpackEncodedString(DFA194_specialS);
+		private static readonly short[][] DFA194_transition;
 
-		static DFA193()
+		static DFA194()
 		{
-			int numStates = DFA193_transitionS.Length;
-			DFA193_transition = new short[numStates][];
+			int numStates = DFA194_transitionS.Length;
+			DFA194_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA193_transition[i] = DFA.UnpackEncodedString(DFA193_transitionS[i]);
+				DFA194_transition[i] = DFA.UnpackEncodedString(DFA194_transitionS[i]);
 			}
 		}
 
-		public DFA193( BaseRecognizer recognizer )
+		public DFA194( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 193;
-			this.eot = DFA193_eot;
-			this.eof = DFA193_eof;
-			this.min = DFA193_min;
-			this.max = DFA193_max;
-			this.accept = DFA193_accept;
-			this.special = DFA193_special;
-			this.transition = DFA193_transition;
+			this.decisionNumber = 194;
+			this.eot = DFA194_eot;
+			this.eof = DFA194_eof;
+			this.min = DFA194_min;
+			this.max = DFA194_max;
+			this.accept = DFA194_accept;
+			this.special = DFA194_special;
+			this.transition = DFA194_transition;
 		}
 
 		public override string Description { get { return "471:3: ( ( ( LT )* '&' ( LT )* bitwiseANDExpressionNoIn ) -> ^( '&' equalityExpressionNoIn bitwiseANDExpressionNoIn ) | -> equalityExpressionNoIn )"; } }
@@ -26823,21 +26892,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA197 : DFA
+	private class DFA198 : DFA
 	{
-		private const string DFA197_eotS =
+		private const string DFA198_eotS =
 			"\x5\xFFFF";
-		private const string DFA197_eofS =
+		private const string DFA198_eofS =
 			"\x2\x3\x2\xFFFF\x1\x3";
-		private const string DFA197_minS =
+		private const string DFA198_minS =
 			"\x1\x18\x1\x15\x2\xFFFF\x1\x15";
-		private const string DFA197_maxS =
+		private const string DFA198_maxS =
 			"\x1\x72\x1\x73\x2\xFFFF\x1\x73";
-		private const string DFA197_acceptS =
+		private const string DFA198_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2\x1\xFFFF";
-		private const string DFA197_specialS =
+		private const string DFA198_specialS =
 			"\x5\xFFFF}>";
-		private static readonly string[] DFA197_transitionS =
+		private static readonly string[] DFA198_transitionS =
 			{
 				"\x1\x1\x10\xFFFF\x2\x2\x2\xFFFF\x2\x3\x2\xFFFF\x1\x3\x5\xFFFF\x1\x3"+
 				"\x6\xFFFF\x2\x3\x5\xFFFF\x2\x2\x6\xFFFF\x1\x3\x1\xFFFF\x2\x3\x1E\xFFFF"+
@@ -26854,35 +26923,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				"\xFFFF\x3\x3\x2\xFFFF\xF\x3\x1\xFFFF\x3\x3"
 			};
 
-		private static readonly short[] DFA197_eot = DFA.UnpackEncodedString(DFA197_eotS);
-		private static readonly short[] DFA197_eof = DFA.UnpackEncodedString(DFA197_eofS);
-		private static readonly char[] DFA197_min = DFA.UnpackEncodedStringToUnsignedChars(DFA197_minS);
-		private static readonly char[] DFA197_max = DFA.UnpackEncodedStringToUnsignedChars(DFA197_maxS);
-		private static readonly short[] DFA197_accept = DFA.UnpackEncodedString(DFA197_acceptS);
-		private static readonly short[] DFA197_special = DFA.UnpackEncodedString(DFA197_specialS);
-		private static readonly short[][] DFA197_transition;
+		private static readonly short[] DFA198_eot = DFA.UnpackEncodedString(DFA198_eotS);
+		private static readonly short[] DFA198_eof = DFA.UnpackEncodedString(DFA198_eofS);
+		private static readonly char[] DFA198_min = DFA.UnpackEncodedStringToUnsignedChars(DFA198_minS);
+		private static readonly char[] DFA198_max = DFA.UnpackEncodedStringToUnsignedChars(DFA198_maxS);
+		private static readonly short[] DFA198_accept = DFA.UnpackEncodedString(DFA198_acceptS);
+		private static readonly short[] DFA198_special = DFA.UnpackEncodedString(DFA198_specialS);
+		private static readonly short[][] DFA198_transition;
 
-		static DFA197()
+		static DFA198()
 		{
-			int numStates = DFA197_transitionS.Length;
-			DFA197_transition = new short[numStates][];
+			int numStates = DFA198_transitionS.Length;
+			DFA198_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA197_transition[i] = DFA.UnpackEncodedString(DFA197_transitionS[i]);
+				DFA198_transition[i] = DFA.UnpackEncodedString(DFA198_transitionS[i]);
 			}
 		}
 
-		public DFA197( BaseRecognizer recognizer )
+		public DFA198( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 197;
-			this.eot = DFA197_eot;
-			this.eof = DFA197_eof;
-			this.min = DFA197_min;
-			this.max = DFA197_max;
-			this.accept = DFA197_accept;
-			this.special = DFA197_special;
-			this.transition = DFA197_transition;
+			this.decisionNumber = 198;
+			this.eot = DFA198_eot;
+			this.eof = DFA198_eof;
+			this.min = DFA198_min;
+			this.max = DFA198_max;
+			this.accept = DFA198_accept;
+			this.special = DFA198_special;
+			this.transition = DFA198_transition;
 		}
 
 		public override string Description { get { return "481:3: ( ( ( LT )* (op= '==' |op= '!=' |op= '===' |op= '!==' ) ( LT )* eq= equalityExpression ) -> { op.Text == \"==\" }? ^( '==' $rel $eq) -> { op.Text == \"!=\" }? ^( '!=' $rel $eq) -> { op.Text == \"===\" }? ^( '===' $rel $eq) -> { op.Text == \"!==\" }? ^( '!==' $rel $eq) ->| -> relationalExpression )"; } }
@@ -26893,21 +26962,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA201 : DFA
+	private class DFA202 : DFA
 	{
-		private const string DFA201_eotS =
+		private const string DFA202_eotS =
 			"\x4\xFFFF";
-		private const string DFA201_eofS =
+		private const string DFA202_eofS =
 			"\x1\x3\x3\xFFFF";
-		private const string DFA201_minS =
+		private const string DFA202_minS =
 			"\x2\x18\x2\xFFFF";
-		private const string DFA201_maxS =
+		private const string DFA202_maxS =
 			"\x2\x71\x2\xFFFF";
-		private const string DFA201_acceptS =
+		private const string DFA202_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2";
-		private const string DFA201_specialS =
+		private const string DFA202_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA201_transitionS =
+		private static readonly string[] DFA202_transitionS =
 			{
 				"\x1\x1\x10\xFFFF\x2\x2\x2\xFFFF\x2\x3\x8\xFFFF\x1\x3\x6\xFFFF\x2\x3"+
 				"\x5\xFFFF\x2\x2\x6\xFFFF\x1\x3\x2\xFFFF\x1\x3\xE\xFFFF\x1\x3\xF\xFFFF"+
@@ -26919,35 +26988,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA201_eot = DFA.UnpackEncodedString(DFA201_eotS);
-		private static readonly short[] DFA201_eof = DFA.UnpackEncodedString(DFA201_eofS);
-		private static readonly char[] DFA201_min = DFA.UnpackEncodedStringToUnsignedChars(DFA201_minS);
-		private static readonly char[] DFA201_max = DFA.UnpackEncodedStringToUnsignedChars(DFA201_maxS);
-		private static readonly short[] DFA201_accept = DFA.UnpackEncodedString(DFA201_acceptS);
-		private static readonly short[] DFA201_special = DFA.UnpackEncodedString(DFA201_specialS);
-		private static readonly short[][] DFA201_transition;
+		private static readonly short[] DFA202_eot = DFA.UnpackEncodedString(DFA202_eotS);
+		private static readonly short[] DFA202_eof = DFA.UnpackEncodedString(DFA202_eofS);
+		private static readonly char[] DFA202_min = DFA.UnpackEncodedStringToUnsignedChars(DFA202_minS);
+		private static readonly char[] DFA202_max = DFA.UnpackEncodedStringToUnsignedChars(DFA202_maxS);
+		private static readonly short[] DFA202_accept = DFA.UnpackEncodedString(DFA202_acceptS);
+		private static readonly short[] DFA202_special = DFA.UnpackEncodedString(DFA202_specialS);
+		private static readonly short[][] DFA202_transition;
 
-		static DFA201()
+		static DFA202()
 		{
-			int numStates = DFA201_transitionS.Length;
-			DFA201_transition = new short[numStates][];
+			int numStates = DFA202_transitionS.Length;
+			DFA202_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA201_transition[i] = DFA.UnpackEncodedString(DFA201_transitionS[i]);
+				DFA202_transition[i] = DFA.UnpackEncodedString(DFA202_transitionS[i]);
 			}
 		}
 
-		public DFA201( BaseRecognizer recognizer )
+		public DFA202( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 201;
-			this.eot = DFA201_eot;
-			this.eof = DFA201_eof;
-			this.min = DFA201_min;
-			this.max = DFA201_max;
-			this.accept = DFA201_accept;
-			this.special = DFA201_special;
-			this.transition = DFA201_transition;
+			this.decisionNumber = 202;
+			this.eot = DFA202_eot;
+			this.eof = DFA202_eof;
+			this.min = DFA202_min;
+			this.max = DFA202_max;
+			this.accept = DFA202_accept;
+			this.special = DFA202_special;
+			this.transition = DFA202_transition;
 		}
 
 		public override string Description { get { return "495:3: ( ( ( LT )* ( '==' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) | '!=' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) | '===' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) | '!==' -> ^( '==' relationalExpressionNoIn equalityExpressionNoIn ) ) ( LT )* equalityExpressionNoIn ) | -> relationalExpressionNoIn )"; } }
@@ -26958,21 +27027,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA205 : DFA
+	private class DFA206 : DFA
 	{
-		private const string DFA205_eotS =
+		private const string DFA206_eotS =
 			"\x5\xFFFF";
-		private const string DFA205_eofS =
+		private const string DFA206_eofS =
 			"\x2\x3\x2\xFFFF\x1\x3";
-		private const string DFA205_minS =
+		private const string DFA206_minS =
 			"\x1\x18\x1\x15\x2\xFFFF\x1\x15";
-		private const string DFA205_maxS =
+		private const string DFA206_maxS =
 			"\x1\x72\x1\x73\x2\xFFFF\x1\x73";
-		private const string DFA205_acceptS =
+		private const string DFA206_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2\x1\xFFFF";
-		private const string DFA205_specialS =
+		private const string DFA206_specialS =
 			"\x5\xFFFF}>";
-		private static readonly string[] DFA205_transitionS =
+		private static readonly string[] DFA206_transitionS =
 			{
 				"\x1\x1\x10\xFFFF\x2\x3\x2\xFFFF\x2\x3\x2\xFFFF\x1\x3\x5\xFFFF\x1\x3"+
 				"\x6\xFFFF\x2\x3\x1\x2\x2\xFFFF\x1\x2\x1\xFFFF\x2\x3\x2\x2\x4\xFFFF\x1"+
@@ -26989,35 +27058,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				"\x2\x3\x1\xFFFF\x6\x3\x1\xFFFF\x3\x3\x2\x2\xF\x3\x1\xFFFF\x3\x3"
 			};
 
-		private static readonly short[] DFA205_eot = DFA.UnpackEncodedString(DFA205_eotS);
-		private static readonly short[] DFA205_eof = DFA.UnpackEncodedString(DFA205_eofS);
-		private static readonly char[] DFA205_min = DFA.UnpackEncodedStringToUnsignedChars(DFA205_minS);
-		private static readonly char[] DFA205_max = DFA.UnpackEncodedStringToUnsignedChars(DFA205_maxS);
-		private static readonly short[] DFA205_accept = DFA.UnpackEncodedString(DFA205_acceptS);
-		private static readonly short[] DFA205_special = DFA.UnpackEncodedString(DFA205_specialS);
-		private static readonly short[][] DFA205_transition;
+		private static readonly short[] DFA206_eot = DFA.UnpackEncodedString(DFA206_eotS);
+		private static readonly short[] DFA206_eof = DFA.UnpackEncodedString(DFA206_eofS);
+		private static readonly char[] DFA206_min = DFA.UnpackEncodedStringToUnsignedChars(DFA206_minS);
+		private static readonly char[] DFA206_max = DFA.UnpackEncodedStringToUnsignedChars(DFA206_maxS);
+		private static readonly short[] DFA206_accept = DFA.UnpackEncodedString(DFA206_acceptS);
+		private static readonly short[] DFA206_special = DFA.UnpackEncodedString(DFA206_specialS);
+		private static readonly short[][] DFA206_transition;
 
-		static DFA205()
+		static DFA206()
 		{
-			int numStates = DFA205_transitionS.Length;
-			DFA205_transition = new short[numStates][];
+			int numStates = DFA206_transitionS.Length;
+			DFA206_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA205_transition[i] = DFA.UnpackEncodedString(DFA205_transitionS[i]);
+				DFA206_transition[i] = DFA.UnpackEncodedString(DFA206_transitionS[i]);
 			}
 		}
 
-		public DFA205( BaseRecognizer recognizer )
+		public DFA206( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 205;
-			this.eot = DFA205_eot;
-			this.eof = DFA205_eof;
-			this.min = DFA205_min;
-			this.max = DFA205_max;
-			this.accept = DFA205_accept;
-			this.special = DFA205_special;
-			this.transition = DFA205_transition;
+			this.decisionNumber = 206;
+			this.eot = DFA206_eot;
+			this.eof = DFA206_eof;
+			this.min = DFA206_min;
+			this.max = DFA206_max;
+			this.accept = DFA206_accept;
+			this.special = DFA206_special;
+			this.transition = DFA206_transition;
 		}
 
 		public override string Description { get { return "512:3: ( ( ( LT )* (op= '<' |op= '>' |op= '<=' |op= '>=' |op= 'instanceof' |op= 'in' ) ( LT )* rel= relationalExpression ) -> { op.Text == \"<\" }? ^( '<' $se $rel) -> { op.Text == \">\" }? ^( '>' $se $rel) -> { op.Text == \"<=\" }? ^( '<=' $se $rel) -> { op.Text == \">=\" }? ^( '>=' $se $rel) -> { op.Text == \"instanceof\" }? ^( 'instanceof' $se $rel) -> { op.Text == \"in\" }? ^( 'in' $se $rel) ->| -> $se)"; } }
@@ -27028,21 +27097,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA209 : DFA
+	private class DFA210 : DFA
 	{
-		private const string DFA209_eotS =
+		private const string DFA210_eotS =
 			"\x4\xFFFF";
-		private const string DFA209_eofS =
+		private const string DFA210_eofS =
 			"\x1\x3\x3\xFFFF";
-		private const string DFA209_minS =
+		private const string DFA210_minS =
 			"\x2\x18\x2\xFFFF";
-		private const string DFA209_maxS =
+		private const string DFA210_maxS =
 			"\x2\x71\x2\xFFFF";
-		private const string DFA209_acceptS =
+		private const string DFA210_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2";
-		private const string DFA209_specialS =
+		private const string DFA210_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA209_transitionS =
+		private static readonly string[] DFA210_transitionS =
 			{
 				"\x1\x1\x10\xFFFF\x2\x3\x2\xFFFF\x2\x3\x8\xFFFF\x1\x3\x6\xFFFF\x2\x3"+
 				"\x1\x2\x2\xFFFF\x1\x2\x1\xFFFF\x2\x3\x2\x2\x4\xFFFF\x1\x3\x2\xFFFF\x1"+
@@ -27054,35 +27123,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				""
 			};
 
-		private static readonly short[] DFA209_eot = DFA.UnpackEncodedString(DFA209_eotS);
-		private static readonly short[] DFA209_eof = DFA.UnpackEncodedString(DFA209_eofS);
-		private static readonly char[] DFA209_min = DFA.UnpackEncodedStringToUnsignedChars(DFA209_minS);
-		private static readonly char[] DFA209_max = DFA.UnpackEncodedStringToUnsignedChars(DFA209_maxS);
-		private static readonly short[] DFA209_accept = DFA.UnpackEncodedString(DFA209_acceptS);
-		private static readonly short[] DFA209_special = DFA.UnpackEncodedString(DFA209_specialS);
-		private static readonly short[][] DFA209_transition;
+		private static readonly short[] DFA210_eot = DFA.UnpackEncodedString(DFA210_eotS);
+		private static readonly short[] DFA210_eof = DFA.UnpackEncodedString(DFA210_eofS);
+		private static readonly char[] DFA210_min = DFA.UnpackEncodedStringToUnsignedChars(DFA210_minS);
+		private static readonly char[] DFA210_max = DFA.UnpackEncodedStringToUnsignedChars(DFA210_maxS);
+		private static readonly short[] DFA210_accept = DFA.UnpackEncodedString(DFA210_acceptS);
+		private static readonly short[] DFA210_special = DFA.UnpackEncodedString(DFA210_specialS);
+		private static readonly short[][] DFA210_transition;
 
-		static DFA209()
+		static DFA210()
 		{
-			int numStates = DFA209_transitionS.Length;
-			DFA209_transition = new short[numStates][];
+			int numStates = DFA210_transitionS.Length;
+			DFA210_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA209_transition[i] = DFA.UnpackEncodedString(DFA209_transitionS[i]);
+				DFA210_transition[i] = DFA.UnpackEncodedString(DFA210_transitionS[i]);
 			}
 		}
 
-		public DFA209( BaseRecognizer recognizer )
+		public DFA210( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 209;
-			this.eot = DFA209_eot;
-			this.eof = DFA209_eof;
-			this.min = DFA209_min;
-			this.max = DFA209_max;
-			this.accept = DFA209_accept;
-			this.special = DFA209_special;
-			this.transition = DFA209_transition;
+			this.decisionNumber = 210;
+			this.eot = DFA210_eot;
+			this.eof = DFA210_eof;
+			this.min = DFA210_min;
+			this.max = DFA210_max;
+			this.accept = DFA210_accept;
+			this.special = DFA210_special;
+			this.transition = DFA210_transition;
 		}
 
 		public override string Description { get { return "528:3: ( ( ( LT )* ( '<' -> ^( '<' shiftExpression relationalExpressionNoIn ) | '>' -> ^( '>' shiftExpression relationalExpressionNoIn ) | '<=' -> ^( '<=' shiftExpression relationalExpressionNoIn ) | '>=' -> ^( '>=' shiftExpression relationalExpressionNoIn ) | 'instanceof' -> ^( 'instanceof' shiftExpression relationalExpressionNoIn ) ) ( LT )* relationalExpressionNoIn ) | -> shiftExpression )"; } }
@@ -27093,21 +27162,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA213 : DFA
+	private class DFA214 : DFA
 	{
-		private const string DFA213_eotS =
+		private const string DFA214_eotS =
 			"\x5\xFFFF";
-		private const string DFA213_eofS =
+		private const string DFA214_eofS =
 			"\x2\x3\x2\xFFFF\x1\x3";
-		private const string DFA213_minS =
+		private const string DFA214_minS =
 			"\x1\x18\x1\x15\x2\xFFFF\x1\x15";
-		private const string DFA213_maxS =
+		private const string DFA214_maxS =
 			"\x1\x72\x1\x73\x2\xFFFF\x1\x73";
-		private const string DFA213_acceptS =
+		private const string DFA214_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2\x1\xFFFF";
-		private const string DFA213_specialS =
+		private const string DFA214_specialS =
 			"\x5\xFFFF}>";
-		private static readonly string[] DFA213_transitionS =
+		private static readonly string[] DFA214_transitionS =
 			{
 				"\x1\x1\x10\xFFFF\x2\x3\x2\xFFFF\x2\x3\x2\xFFFF\x1\x3\x5\xFFFF\x1\x3"+
 				"\x6\xFFFF\x3\x3\x1\x2\x1\xFFFF\x1\x3\x1\xFFFF\x4\x3\x1\x2\x1\xFFFF\x1"+
@@ -27125,35 +27194,35 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				"\x4\x3\x1\xFFFF\x2\x3\x1\xFFFF\x6\x3\x1\xFFFF\x14\x3\x1\xFFFF\x3\x3"
 			};
 
-		private static readonly short[] DFA213_eot = DFA.UnpackEncodedString(DFA213_eotS);
-		private static readonly short[] DFA213_eof = DFA.UnpackEncodedString(DFA213_eofS);
-		private static readonly char[] DFA213_min = DFA.UnpackEncodedStringToUnsignedChars(DFA213_minS);
-		private static readonly char[] DFA213_max = DFA.UnpackEncodedStringToUnsignedChars(DFA213_maxS);
-		private static readonly short[] DFA213_accept = DFA.UnpackEncodedString(DFA213_acceptS);
-		private static readonly short[] DFA213_special = DFA.UnpackEncodedString(DFA213_specialS);
-		private static readonly short[][] DFA213_transition;
+		private static readonly short[] DFA214_eot = DFA.UnpackEncodedString(DFA214_eotS);
+		private static readonly short[] DFA214_eof = DFA.UnpackEncodedString(DFA214_eofS);
+		private static readonly char[] DFA214_min = DFA.UnpackEncodedStringToUnsignedChars(DFA214_minS);
+		private static readonly char[] DFA214_max = DFA.UnpackEncodedStringToUnsignedChars(DFA214_maxS);
+		private static readonly short[] DFA214_accept = DFA.UnpackEncodedString(DFA214_acceptS);
+		private static readonly short[] DFA214_special = DFA.UnpackEncodedString(DFA214_specialS);
+		private static readonly short[][] DFA214_transition;
 
-		static DFA213()
+		static DFA214()
 		{
-			int numStates = DFA213_transitionS.Length;
-			DFA213_transition = new short[numStates][];
+			int numStates = DFA214_transitionS.Length;
+			DFA214_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA213_transition[i] = DFA.UnpackEncodedString(DFA213_transitionS[i]);
+				DFA214_transition[i] = DFA.UnpackEncodedString(DFA214_transitionS[i]);
 			}
 		}
 
-		public DFA213( BaseRecognizer recognizer )
+		public DFA214( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 213;
-			this.eot = DFA213_eot;
-			this.eof = DFA213_eof;
-			this.min = DFA213_min;
-			this.max = DFA213_max;
-			this.accept = DFA213_accept;
-			this.special = DFA213_special;
-			this.transition = DFA213_transition;
+			this.decisionNumber = 214;
+			this.eot = DFA214_eot;
+			this.eof = DFA214_eof;
+			this.min = DFA214_min;
+			this.max = DFA214_max;
+			this.accept = DFA214_accept;
+			this.special = DFA214_special;
+			this.transition = DFA214_transition;
 		}
 
 		public override string Description { get { return "546:9: ( ( ( LT )* (op= '<<' |op= '>>' |op= '>>>' ) ( LT )* shift= shiftExpression ) -> { op.Text == \"<<\" }? ^( '<<' $add $shift) -> { op.Text == \">>\" }? ^( '>>' $add $shift) -> { op.Text == \">>>\" }? ^( '>>>' $add $shift) ->| -> $add)"; } }
@@ -27164,21 +27233,21 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA221 : DFA
+	private class DFA222 : DFA
 	{
-		private const string DFA221_eotS =
+		private const string DFA222_eotS =
 			"\x5\xFFFF";
-		private const string DFA221_eofS =
+		private const string DFA222_eofS =
 			"\x2\x3\x2\xFFFF\x1\x3";
-		private const string DFA221_minS =
+		private const string DFA222_minS =
 			"\x1\x18\x1\x15\x2\xFFFF\x1\x15";
-		private const string DFA221_maxS =
+		private const string DFA222_maxS =
 			"\x1\x72\x1\x73\x2\xFFFF\x1\x73";
-		private const string DFA221_acceptS =
+		private const string DFA222_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2\x1\xFFFF";
-		private const string DFA221_specialS =
+		private const string DFA222_specialS =
 			"\x5\xFFFF}>";
-		private static readonly string[] DFA221_transitionS =
+		private static readonly string[] DFA222_transitionS =
 			{
 				"\x1\x1\x10\xFFFF\x2\x3\x1\x2\x1\xFFFF\x2\x3\x2\xFFFF\x1\x3\x1\x2\x1"+
 				"\xFFFF\x1\x3\x2\xFFFF\x2\x3\x3\xFFFF\x1\x2\x1\xFFFF\x4\x3\x1\xFFFF\x1"+
@@ -27198,38 +27267,99 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 				"\x1\xFFFF\x3\x3"
 			};
 
-		private static readonly short[] DFA221_eot = DFA.UnpackEncodedString(DFA221_eotS);
-		private static readonly short[] DFA221_eof = DFA.UnpackEncodedString(DFA221_eofS);
-		private static readonly char[] DFA221_min = DFA.UnpackEncodedStringToUnsignedChars(DFA221_minS);
-		private static readonly char[] DFA221_max = DFA.UnpackEncodedStringToUnsignedChars(DFA221_maxS);
-		private static readonly short[] DFA221_accept = DFA.UnpackEncodedString(DFA221_acceptS);
-		private static readonly short[] DFA221_special = DFA.UnpackEncodedString(DFA221_specialS);
-		private static readonly short[][] DFA221_transition;
+		private static readonly short[] DFA222_eot = DFA.UnpackEncodedString(DFA222_eotS);
+		private static readonly short[] DFA222_eof = DFA.UnpackEncodedString(DFA222_eofS);
+		private static readonly char[] DFA222_min = DFA.UnpackEncodedStringToUnsignedChars(DFA222_minS);
+		private static readonly char[] DFA222_max = DFA.UnpackEncodedStringToUnsignedChars(DFA222_maxS);
+		private static readonly short[] DFA222_accept = DFA.UnpackEncodedString(DFA222_acceptS);
+		private static readonly short[] DFA222_special = DFA.UnpackEncodedString(DFA222_specialS);
+		private static readonly short[][] DFA222_transition;
 
-		static DFA221()
+		static DFA222()
 		{
-			int numStates = DFA221_transitionS.Length;
-			DFA221_transition = new short[numStates][];
+			int numStates = DFA222_transitionS.Length;
+			DFA222_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA221_transition[i] = DFA.UnpackEncodedString(DFA221_transitionS[i]);
+				DFA222_transition[i] = DFA.UnpackEncodedString(DFA222_transitionS[i]);
 			}
 		}
 
-		public DFA221( BaseRecognizer recognizer )
+		public DFA222( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 221;
-			this.eot = DFA221_eot;
-			this.eof = DFA221_eof;
-			this.min = DFA221_min;
-			this.max = DFA221_max;
-			this.accept = DFA221_accept;
-			this.special = DFA221_special;
-			this.transition = DFA221_transition;
+			this.decisionNumber = 222;
+			this.eot = DFA222_eot;
+			this.eof = DFA222_eof;
+			this.min = DFA222_min;
+			this.max = DFA222_max;
+			this.accept = DFA222_accept;
+			this.special = DFA222_special;
+			this.transition = DFA222_transition;
 		}
 
 		public override string Description { get { return "569:3: ( ( ( LT )* (op= '*' |op= '/' |op= '%' ) ( LT )* me= multiplicativeExpression ) -> { op.Text == \"*\" }? ^( '*' $ue $me) -> { op.Text == \"/\" }? ^( '/' $ue $me) -> { op.Text == \"\\%\" }? ^( '%' $ue $me) ->| -> $ue)"; } }
+
+		public override void Error(NoViableAltException nvae)
+		{
+			DebugRecognitionException(nvae);
+		}
+	}
+
+	private class DFA234 : DFA
+	{
+		private const string DFA234_eotS =
+			"\x4\xFFFF";
+		private const string DFA234_eofS =
+			"\x4\xFFFF";
+		private const string DFA234_minS =
+			"\x2\x18\x2\xFFFF";
+		private const string DFA234_maxS =
+			"\x2\x4F\x2\xFFFF";
+		private const string DFA234_acceptS =
+			"\x2\xFFFF\x1\x2\x1\x1";
+		private const string DFA234_specialS =
+			"\x4\xFFFF}>";
+		private static readonly string[] DFA234_transitionS =
+			{
+				"\x1\x1\x1E\xFFFF\x1\x3\x17\xFFFF\x1\x2",
+				"\x1\x1\x1E\xFFFF\x1\x3\x17\xFFFF\x1\x2",
+				"",
+				""
+			};
+
+		private static readonly short[] DFA234_eot = DFA.UnpackEncodedString(DFA234_eotS);
+		private static readonly short[] DFA234_eof = DFA.UnpackEncodedString(DFA234_eofS);
+		private static readonly char[] DFA234_min = DFA.UnpackEncodedStringToUnsignedChars(DFA234_minS);
+		private static readonly char[] DFA234_max = DFA.UnpackEncodedStringToUnsignedChars(DFA234_maxS);
+		private static readonly short[] DFA234_accept = DFA.UnpackEncodedString(DFA234_acceptS);
+		private static readonly short[] DFA234_special = DFA.UnpackEncodedString(DFA234_specialS);
+		private static readonly short[][] DFA234_transition;
+
+		static DFA234()
+		{
+			int numStates = DFA234_transitionS.Length;
+			DFA234_transition = new short[numStates][];
+			for ( int i=0; i < numStates; i++ )
+			{
+				DFA234_transition[i] = DFA.UnpackEncodedString(DFA234_transitionS[i]);
+			}
+		}
+
+		public DFA234( BaseRecognizer recognizer )
+		{
+			this.recognizer = recognizer;
+			this.decisionNumber = 234;
+			this.eot = DFA234_eot;
+			this.eof = DFA234_eof;
+			this.min = DFA234_min;
+			this.max = DFA234_max;
+			this.accept = DFA234_accept;
+			this.special = DFA234_special;
+			this.transition = DFA234_transition;
+		}
+
+		public override string Description { get { return "()* loopback of 619:34: ( ( LT )* ',' ( ( LT )* assignmentExpression )? )*"; } }
 
 		public override void Error(NoViableAltException nvae)
 		{
@@ -27244,17 +27374,25 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		private const string DFA233_eofS =
 			"\x4\xFFFF";
 		private const string DFA233_minS =
-			"\x2\x18\x2\xFFFF";
+			"\x2\x15\x2\xFFFF";
 		private const string DFA233_maxS =
-			"\x2\x4F\x2\xFFFF";
+			"\x2\x73\x2\xFFFF";
 		private const string DFA233_acceptS =
-			"\x2\xFFFF\x1\x2\x1\x1";
+			"\x2\xFFFF\x1\x1\x1\x2";
 		private const string DFA233_specialS =
 			"\x4\xFFFF}>";
 		private static readonly string[] DFA233_transitionS =
 			{
-				"\x1\x1\x1E\xFFFF\x1\x3\x17\xFFFF\x1\x2",
-				"\x1\x1\x1E\xFFFF\x1\x3\x17\xFFFF\x1\x2",
+				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x7\xFFFF\x1\x2\x7"+
+				"\xFFFF\x1\x2\x3\xFFFF\x2\x2\x1\xFFFF\x1\x3\x2\x2\x14\xFFFF\x1\x2\x1"+
+				"\x3\x7\xFFFF\x1\x2\x2\xFFFF\x1\x2\x2\xFFFF\x1\x2\x3\xFFFF\x2\x2\x2\xFFFF"+
+				"\x1\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x2\xFFFF\x1\x2\x4"+
+				"\xFFFF\x1\x2",
+				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x7\xFFFF\x1\x2\x7"+
+				"\xFFFF\x1\x2\x3\xFFFF\x2\x2\x1\xFFFF\x1\x3\x2\x2\x14\xFFFF\x1\x2\x1"+
+				"\x3\x7\xFFFF\x1\x2\x2\xFFFF\x1\x2\x2\xFFFF\x1\x2\x3\xFFFF\x2\x2\x2\xFFFF"+
+				"\x1\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x2\xFFFF\x1\x2\x4"+
+				"\xFFFF\x1\x2",
 				"",
 				""
 			};
@@ -27290,7 +27428,7 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			this.transition = DFA233_transition;
 		}
 
-		public override string Description { get { return "()* loopback of 619:34: ( ( LT )* ',' ( ( LT )* assignmentExpression )? )*"; } }
+		public override string Description { get { return "619:43: ( ( LT )* assignmentExpression )?"; } }
 
 		public override void Error(NoViableAltException nvae)
 		{
@@ -27298,68 +27436,60 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		}
 	}
 
-	private class DFA232 : DFA
+	private class DFA240 : DFA
 	{
-		private const string DFA232_eotS =
+		private const string DFA240_eotS =
 			"\x4\xFFFF";
-		private const string DFA232_eofS =
+		private const string DFA240_eofS =
 			"\x4\xFFFF";
-		private const string DFA232_minS =
+		private const string DFA240_minS =
 			"\x2\x15\x2\xFFFF";
-		private const string DFA232_maxS =
-			"\x2\x73\x2\xFFFF";
-		private const string DFA232_acceptS =
+		private const string DFA240_maxS =
+			"\x2\x72\x2\xFFFF";
+		private const string DFA240_acceptS =
 			"\x2\xFFFF\x1\x1\x1\x2";
-		private const string DFA232_specialS =
+		private const string DFA240_specialS =
 			"\x4\xFFFF}>";
-		private static readonly string[] DFA232_transitionS =
+		private static readonly string[] DFA240_transitionS =
 			{
-				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x7\xFFFF\x1\x2\x7"+
-				"\xFFFF\x1\x2\x3\xFFFF\x2\x2\x1\xFFFF\x1\x3\x2\x2\x14\xFFFF\x1\x2\x1"+
-				"\x3\x7\xFFFF\x1\x2\x2\xFFFF\x1\x2\x2\xFFFF\x1\x2\x3\xFFFF\x2\x2\x2\xFFFF"+
-				"\x1\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x2\xFFFF\x1\x2\x4"+
-				"\xFFFF\x1\x2",
-				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x7\xFFFF\x1\x2\x7"+
-				"\xFFFF\x1\x2\x3\xFFFF\x2\x2\x1\xFFFF\x1\x3\x2\x2\x14\xFFFF\x1\x2\x1"+
-				"\x3\x7\xFFFF\x1\x2\x2\xFFFF\x1\x2\x2\xFFFF\x1\x2\x3\xFFFF\x2\x2\x2\xFFFF"+
-				"\x1\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x1\xFFFF\x1\x2\x2\xFFFF\x1\x2\x4"+
-				"\xFFFF\x1\x2",
+				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x51\xFFFF\x1\x3",
+				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x51\xFFFF\x1\x3",
 				"",
 				""
 			};
 
-		private static readonly short[] DFA232_eot = DFA.UnpackEncodedString(DFA232_eotS);
-		private static readonly short[] DFA232_eof = DFA.UnpackEncodedString(DFA232_eofS);
-		private static readonly char[] DFA232_min = DFA.UnpackEncodedStringToUnsignedChars(DFA232_minS);
-		private static readonly char[] DFA232_max = DFA.UnpackEncodedStringToUnsignedChars(DFA232_maxS);
-		private static readonly short[] DFA232_accept = DFA.UnpackEncodedString(DFA232_acceptS);
-		private static readonly short[] DFA232_special = DFA.UnpackEncodedString(DFA232_specialS);
-		private static readonly short[][] DFA232_transition;
+		private static readonly short[] DFA240_eot = DFA.UnpackEncodedString(DFA240_eotS);
+		private static readonly short[] DFA240_eof = DFA.UnpackEncodedString(DFA240_eofS);
+		private static readonly char[] DFA240_min = DFA.UnpackEncodedStringToUnsignedChars(DFA240_minS);
+		private static readonly char[] DFA240_max = DFA.UnpackEncodedStringToUnsignedChars(DFA240_maxS);
+		private static readonly short[] DFA240_accept = DFA.UnpackEncodedString(DFA240_acceptS);
+		private static readonly short[] DFA240_special = DFA.UnpackEncodedString(DFA240_specialS);
+		private static readonly short[][] DFA240_transition;
 
-		static DFA232()
+		static DFA240()
 		{
-			int numStates = DFA232_transitionS.Length;
-			DFA232_transition = new short[numStates][];
+			int numStates = DFA240_transitionS.Length;
+			DFA240_transition = new short[numStates][];
 			for ( int i=0; i < numStates; i++ )
 			{
-				DFA232_transition[i] = DFA.UnpackEncodedString(DFA232_transitionS[i]);
+				DFA240_transition[i] = DFA.UnpackEncodedString(DFA240_transitionS[i]);
 			}
 		}
 
-		public DFA232( BaseRecognizer recognizer )
+		public DFA240( BaseRecognizer recognizer )
 		{
 			this.recognizer = recognizer;
-			this.decisionNumber = 232;
-			this.eot = DFA232_eot;
-			this.eof = DFA232_eof;
-			this.min = DFA232_min;
-			this.max = DFA232_max;
-			this.accept = DFA232_accept;
-			this.special = DFA232_special;
-			this.transition = DFA232_transition;
+			this.decisionNumber = 240;
+			this.eot = DFA240_eot;
+			this.eof = DFA240_eof;
+			this.min = DFA240_min;
+			this.max = DFA240_max;
+			this.accept = DFA240_accept;
+			this.special = DFA240_special;
+			this.transition = DFA240_transition;
 		}
 
-		public override string Description { get { return "619:43: ( ( LT )* assignmentExpression )?"; } }
+		public override string Description { get { return "625:8: ( ( LT )* propertyNameAndValue ( ( LT )* ',' ( LT )* propertyNameAndValue )* )?"; } }
 
 		public override void Error(NoViableAltException nvae)
 		{
@@ -27374,17 +27504,17 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		private const string DFA239_eofS =
 			"\x4\xFFFF";
 		private const string DFA239_minS =
-			"\x2\x15\x2\xFFFF";
+			"\x2\x18\x2\xFFFF";
 		private const string DFA239_maxS =
 			"\x2\x72\x2\xFFFF";
 		private const string DFA239_acceptS =
-			"\x2\xFFFF\x1\x1\x1\x2";
+			"\x2\xFFFF\x1\x2\x1\x1";
 		private const string DFA239_specialS =
 			"\x4\xFFFF}>";
 		private static readonly string[] DFA239_transitionS =
 			{
-				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x51\xFFFF\x1\x3",
-				"\x1\x2\x2\xFFFF\x1\x1\x2\xFFFF\x1\x2\x4\xFFFF\x1\x2\x51\xFFFF\x1\x3",
+				"\x1\x1\x1E\xFFFF\x1\x3\x3A\xFFFF\x1\x2",
+				"\x1\x1\x1E\xFFFF\x1\x3\x3A\xFFFF\x1\x2",
 				"",
 				""
 			};
@@ -27418,67 +27548,6 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 			this.accept = DFA239_accept;
 			this.special = DFA239_special;
 			this.transition = DFA239_transition;
-		}
-
-		public override string Description { get { return "625:8: ( ( LT )* propertyNameAndValue ( ( LT )* ',' ( LT )* propertyNameAndValue )* )?"; } }
-
-		public override void Error(NoViableAltException nvae)
-		{
-			DebugRecognitionException(nvae);
-		}
-	}
-
-	private class DFA238 : DFA
-	{
-		private const string DFA238_eotS =
-			"\x4\xFFFF";
-		private const string DFA238_eofS =
-			"\x4\xFFFF";
-		private const string DFA238_minS =
-			"\x2\x18\x2\xFFFF";
-		private const string DFA238_maxS =
-			"\x2\x72\x2\xFFFF";
-		private const string DFA238_acceptS =
-			"\x2\xFFFF\x1\x2\x1\x1";
-		private const string DFA238_specialS =
-			"\x4\xFFFF}>";
-		private static readonly string[] DFA238_transitionS =
-			{
-				"\x1\x1\x1E\xFFFF\x1\x3\x3A\xFFFF\x1\x2",
-				"\x1\x1\x1E\xFFFF\x1\x3\x3A\xFFFF\x1\x2",
-				"",
-				""
-			};
-
-		private static readonly short[] DFA238_eot = DFA.UnpackEncodedString(DFA238_eotS);
-		private static readonly short[] DFA238_eof = DFA.UnpackEncodedString(DFA238_eofS);
-		private static readonly char[] DFA238_min = DFA.UnpackEncodedStringToUnsignedChars(DFA238_minS);
-		private static readonly char[] DFA238_max = DFA.UnpackEncodedStringToUnsignedChars(DFA238_maxS);
-		private static readonly short[] DFA238_accept = DFA.UnpackEncodedString(DFA238_acceptS);
-		private static readonly short[] DFA238_special = DFA.UnpackEncodedString(DFA238_specialS);
-		private static readonly short[][] DFA238_transition;
-
-		static DFA238()
-		{
-			int numStates = DFA238_transitionS.Length;
-			DFA238_transition = new short[numStates][];
-			for ( int i=0; i < numStates; i++ )
-			{
-				DFA238_transition[i] = DFA.UnpackEncodedString(DFA238_transitionS[i]);
-			}
-		}
-
-		public DFA238( BaseRecognizer recognizer )
-		{
-			this.recognizer = recognizer;
-			this.decisionNumber = 238;
-			this.eot = DFA238_eot;
-			this.eof = DFA238_eof;
-			this.min = DFA238_min;
-			this.max = DFA238_max;
-			this.accept = DFA238_accept;
-			this.special = DFA238_special;
-			this.transition = DFA238_transition;
 		}
 
 		public override string Description { get { return "()* loopback of 625:34: ( ( LT )* ',' ( LT )* propertyNameAndValue )*"; } }
@@ -27527,493 +27596,494 @@ namespace  Jacobsoft.Amd.Internals.AntlrGenerated
 		public static readonly BitSet _Identifier_in_formalParameterList354 = new BitSet(new ulong[]{0x82000001000000UL});
 		public static readonly BitSet _LT_in_formalParameterList360 = new BitSet(new ulong[]{0x2000001000000UL});
 		public static readonly BitSet _49_in_formalParameterList363 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _110_in_functionBody395 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _LT_in_functionBody397 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _110_in_functionBody395 = new BitSet(new ulong[]{0x8331010109200000UL,0xC7FFE75A44000UL});
+		public static readonly BitSet _LT_in_functionBody397 = new BitSet(new ulong[]{0x8331010109200000UL,0xC7FFE75A44000UL});
 		public static readonly BitSet _sourceElements_in_functionBody400 = new BitSet(new ulong[]{0x1000000UL,0x4000000000000UL});
-		public static readonly BitSet _LT_in_functionBody402 = new BitSet(new ulong[]{0x1000000UL,0x4000000000000UL});
-		public static readonly BitSet _114_in_functionBody405 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _statementBlock_in_statement430 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _variableStatement_in_statement435 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _emptyStatement_in_statement440 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _expressionStatement_in_statement445 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _ifStatement_in_statement450 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _iterationStatement_in_statement455 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _continueStatement_in_statement460 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _breakStatement_in_statement465 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _returnStatement_in_statement470 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _withStatement_in_statement475 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _labelledStatement_in_statement480 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _switchStatement_in_statement485 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _throwStatement_in_statement490 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _tryStatement_in_statement495 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _110_in_statementBlock507 = new BitSet(new ulong[]{0x8331010109200000UL,0xC7FFE75A44000UL});
-		public static readonly BitSet _LT_in_statementBlock509 = new BitSet(new ulong[]{0x8331010109200000UL,0xC7FFE75A44000UL});
-		public static readonly BitSet _statementList_in_statementBlock512 = new BitSet(new ulong[]{0x1000000UL,0x4000000000000UL});
-		public static readonly BitSet _LT_in_statementBlock515 = new BitSet(new ulong[]{0x1000000UL,0x4000000000000UL});
-		public static readonly BitSet _114_in_statementBlock518 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _statement_in_statementList544 = new BitSet(new ulong[]{0x8331010109200002UL,0x87FFE75A44000UL});
-		public static readonly BitSet _LT_in_statementList547 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _statement_in_statementList551 = new BitSet(new ulong[]{0x8331010109200002UL,0x87FFE75A44000UL});
-		public static readonly BitSet _106_in_variableStatement565 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _LT_in_variableStatement567 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _variableDeclarationList_in_variableStatement570 = new BitSet(new ulong[]{0x8000000001000000UL});
-		public static readonly BitSet _LT_in_variableStatement573 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _63_in_variableStatement577 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _variableDeclaration_in_variableDeclarationList606 = new BitSet(new ulong[]{0x80000001000002UL});
-		public static readonly BitSet _LT_in_variableDeclarationList609 = new BitSet(new ulong[]{0x80000001000000UL});
-		public static readonly BitSet _55_in_variableDeclarationList612 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _LT_in_variableDeclarationList614 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _variableDeclaration_in_variableDeclarationList617 = new BitSet(new ulong[]{0x80000001000002UL});
-		public static readonly BitSet _variableDeclarationNoIn_in_variableDeclarationListNoIn636 = new BitSet(new ulong[]{0x80000001000002UL});
-		public static readonly BitSet _LT_in_variableDeclarationListNoIn639 = new BitSet(new ulong[]{0x80000001000000UL});
-		public static readonly BitSet _55_in_variableDeclarationListNoIn642 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _LT_in_variableDeclarationListNoIn644 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _variableDeclarationNoIn_in_variableDeclarationListNoIn647 = new BitSet(new ulong[]{0x80000001000002UL});
-		public static readonly BitSet _Identifier_in_variableDeclaration666 = new BitSet(new ulong[]{0x1000002UL,0x10UL});
-		public static readonly BitSet _LT_in_variableDeclaration668 = new BitSet(new ulong[]{0x1000002UL,0x10UL});
-		public static readonly BitSet _initialiser_in_variableDeclaration671 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _Identifier_in_variableDeclarationNoIn718 = new BitSet(new ulong[]{0x1000002UL,0x10UL});
-		public static readonly BitSet _LT_in_variableDeclarationNoIn720 = new BitSet(new ulong[]{0x1000002UL,0x10UL});
-		public static readonly BitSet _initialiserNoIn_in_variableDeclarationNoIn723 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _68_in_initialiser768 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_initialiser770 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpression_in_initialiser773 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _68_in_initialiserNoIn792 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_initialiserNoIn794 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpressionNoIn_in_initialiserNoIn797 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _63_in_emptyStatement813 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _expression_in_expressionStatement834 = new BitSet(new ulong[]{0x8000000001000000UL});
-		public static readonly BitSet _LT_in_expressionStatement837 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _63_in_expressionStatement841 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _94_in_ifStatement858 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _LT_in_ifStatement860 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _48_in_ifStatement863 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_ifStatement865 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _expression_in_ifStatement868 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _LT_in_ifStatement870 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _49_in_ifStatement873 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _LT_in_ifStatement875 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _statement_in_ifStatement880 = new BitSet(new ulong[]{0x1000002UL,0x2000000UL});
-		public static readonly BitSet _LT_in_ifStatement883 = new BitSet(new ulong[]{0x1000000UL,0x2000000UL});
-		public static readonly BitSet _89_in_ifStatement886 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _LT_in_ifStatement888 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _statement_in_ifStatement893 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _doWhileStatement_in_iterationStatement929 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _whileStatement_in_iterationStatement934 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _forStatement_in_iterationStatement939 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _forInStatement_in_iterationStatement944 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _88_in_doWhileStatement956 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _LT_in_doWhileStatement958 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _statement_in_doWhileStatement961 = new BitSet(new ulong[]{0x1000000UL,0x100000000000UL});
-		public static readonly BitSet _LT_in_doWhileStatement963 = new BitSet(new ulong[]{0x1000000UL,0x100000000000UL});
-		public static readonly BitSet _108_in_doWhileStatement966 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _LT_in_doWhileStatement968 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _48_in_doWhileStatement971 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
-		public static readonly BitSet _expression_in_doWhileStatement973 = new BitSet(new ulong[]{0x2000000000000UL});
-		public static readonly BitSet _49_in_doWhileStatement975 = new BitSet(new ulong[]{0x8000000001000000UL});
-		public static readonly BitSet _LT_in_doWhileStatement978 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _63_in_doWhileStatement982 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _108_in_whileStatement1012 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _LT_in_whileStatement1014 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _48_in_whileStatement1017 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_whileStatement1019 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _expression_in_whileStatement1022 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _LT_in_whileStatement1024 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _49_in_whileStatement1027 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _LT_in_whileStatement1029 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _statement_in_whileStatement1032 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _92_in_forStatement1062 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _LT_in_forStatement1064 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _48_in_forStatement1067 = new BitSet(new ulong[]{0x8331010109200000UL,0x84EA624804000UL});
-		public static readonly BitSet _LT_in_forStatement1070 = new BitSet(new ulong[]{0x331010109200000UL,0x84EA624804000UL});
-		public static readonly BitSet _forStatementInitialiserPart_in_forStatement1073 = new BitSet(new ulong[]{0x8000000001000000UL});
-		public static readonly BitSet _LT_in_forStatement1077 = new BitSet(new ulong[]{0x8000000001000000UL});
-		public static readonly BitSet _63_in_forStatement1080 = new BitSet(new ulong[]{0x8331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_forStatement1083 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _expression_in_forStatement1088 = new BitSet(new ulong[]{0x8000000001000000UL});
-		public static readonly BitSet _LT_in_forStatement1092 = new BitSet(new ulong[]{0x8000000001000000UL});
-		public static readonly BitSet _63_in_forStatement1095 = new BitSet(new ulong[]{0x333010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_forStatement1098 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _expression_in_forStatement1103 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _LT_in_forStatement1107 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _49_in_forStatement1110 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _LT_in_forStatement1112 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _statement_in_forStatement1115 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _expressionNoIn_in_forStatementInitialiserPart1211 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _106_in_forStatementInitialiserPart1216 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _LT_in_forStatementInitialiserPart1218 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _variableDeclarationListNoIn_in_forStatementInitialiserPart1221 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _92_in_forInStatement1249 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _LT_in_forInStatement1251 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _48_in_forInStatement1254 = new BitSet(new ulong[]{0x1000109200000UL,0x44A624004000UL});
-		public static readonly BitSet _LT_in_forInStatement1256 = new BitSet(new ulong[]{0x1000109200000UL,0x44A624004000UL});
-		public static readonly BitSet _forInStatementInitialiserPart_in_forInStatement1259 = new BitSet(new ulong[]{0x1000000UL,0x80000000UL});
-		public static readonly BitSet _LT_in_forInStatement1261 = new BitSet(new ulong[]{0x1000000UL,0x80000000UL});
-		public static readonly BitSet _95_in_forInStatement1264 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_forInStatement1266 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _expression_in_forInStatement1269 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _LT_in_forInStatement1271 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _49_in_forInStatement1274 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _LT_in_forInStatement1276 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _statement_in_forInStatement1279 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _leftHandSideExpression_in_forInStatementInitialiserPart1321 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _106_in_forInStatementInitialiserPart1326 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _LT_in_forInStatementInitialiserPart1328 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _variableDeclarationNoIn_in_forInStatementInitialiserPart1331 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _85_in_continueStatement1346 = new BitSet(new ulong[]{0x8000000001200000UL});
-		public static readonly BitSet _Identifier_in_continueStatement1348 = new BitSet(new ulong[]{0x8000000001000000UL});
-		public static readonly BitSet _LT_in_continueStatement1352 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _63_in_continueStatement1356 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _82_in_breakStatement1390 = new BitSet(new ulong[]{0x8000000001200000UL});
-		public static readonly BitSet _Identifier_in_breakStatement1392 = new BitSet(new ulong[]{0x8000000001000000UL});
-		public static readonly BitSet _LT_in_breakStatement1396 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _63_in_breakStatement1400 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _99_in_returnStatement1431 = new BitSet(new ulong[]{0x8331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _expression_in_returnStatement1433 = new BitSet(new ulong[]{0x8000000001000000UL});
-		public static readonly BitSet _LT_in_returnStatement1437 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _63_in_returnStatement1441 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _109_in_withStatement1468 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _LT_in_withStatement1470 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _48_in_withStatement1473 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_withStatement1475 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _expression_in_withStatement1478 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _LT_in_withStatement1480 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _49_in_withStatement1483 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _LT_in_withStatement1485 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _statement_in_withStatement1488 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _Identifier_in_labelledStatement1517 = new BitSet(new ulong[]{0x4000000001000000UL});
-		public static readonly BitSet _LT_in_labelledStatement1519 = new BitSet(new ulong[]{0x4000000001000000UL});
-		public static readonly BitSet _62_in_labelledStatement1522 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _LT_in_labelledStatement1524 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _statement_in_labelledStatement1527 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _100_in_switchStatement1568 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _LT_in_switchStatement1570 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _48_in_switchStatement1573 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_switchStatement1575 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _expression_in_switchStatement1578 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _LT_in_switchStatement1580 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _49_in_switchStatement1583 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
-		public static readonly BitSet _LT_in_switchStatement1585 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
-		public static readonly BitSet _caseBlock_in_switchStatement1588 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _110_in_caseBlock1617 = new BitSet(new ulong[]{0x1000000UL,0x4000000480000UL});
-		public static readonly BitSet _LT_in_caseBlock1621 = new BitSet(new ulong[]{0x1000000UL,0x80000UL});
-		public static readonly BitSet _caseClause_in_caseBlock1625 = new BitSet(new ulong[]{0x1000000UL,0x4000000480000UL});
-		public static readonly BitSet _LT_in_caseBlock1630 = new BitSet(new ulong[]{0x1000000UL,0x400000UL});
-		public static readonly BitSet _defaultClause_in_caseBlock1634 = new BitSet(new ulong[]{0x1000000UL,0x4000000080000UL});
-		public static readonly BitSet _LT_in_caseBlock1637 = new BitSet(new ulong[]{0x1000000UL,0x80000UL});
-		public static readonly BitSet _caseClause_in_caseBlock1641 = new BitSet(new ulong[]{0x1000000UL,0x4000000080000UL});
-		public static readonly BitSet _LT_in_caseBlock1647 = new BitSet(new ulong[]{0x1000000UL,0x4000000000000UL});
-		public static readonly BitSet _114_in_caseBlock1651 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _83_in_caseClause1663 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_caseClause1665 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _expression_in_caseClause1668 = new BitSet(new ulong[]{0x4000000001000000UL});
-		public static readonly BitSet _LT_in_caseClause1670 = new BitSet(new ulong[]{0x4000000001000000UL});
-		public static readonly BitSet _62_in_caseClause1673 = new BitSet(new ulong[]{0x8331010109200002UL,0x87FFE75A44000UL});
-		public static readonly BitSet _LT_in_caseClause1675 = new BitSet(new ulong[]{0x8331010109200002UL,0x87FFE75A44000UL});
-		public static readonly BitSet _statementList_in_caseClause1678 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _86_in_defaultClause1707 = new BitSet(new ulong[]{0x4000000001000000UL});
-		public static readonly BitSet _LT_in_defaultClause1709 = new BitSet(new ulong[]{0x4000000001000000UL});
-		public static readonly BitSet _62_in_defaultClause1712 = new BitSet(new ulong[]{0x8331010109200002UL,0x87FFE75A44000UL});
-		public static readonly BitSet _LT_in_defaultClause1714 = new BitSet(new ulong[]{0x8331010109200002UL,0x87FFE75A44000UL});
-		public static readonly BitSet _statementList_in_defaultClause1717 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _102_in_throwStatement1744 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
-		public static readonly BitSet _expression_in_throwStatement1746 = new BitSet(new ulong[]{0x8000000001000000UL});
-		public static readonly BitSet _LT_in_throwStatement1749 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _63_in_throwStatement1753 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _104_in_tryStatement1778 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
-		public static readonly BitSet _LT_in_tryStatement1780 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
-		public static readonly BitSet _statementBlock_in_tryStatement1783 = new BitSet(new ulong[]{0x1000000UL,0x8100000UL});
-		public static readonly BitSet _LT_in_tryStatement1785 = new BitSet(new ulong[]{0x1000000UL,0x8100000UL});
-		public static readonly BitSet _finallyClause_in_tryStatement1789 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _catchClause_in_tryStatement1793 = new BitSet(new ulong[]{0x1000002UL,0x8000000UL});
-		public static readonly BitSet _LT_in_tryStatement1796 = new BitSet(new ulong[]{0x1000000UL,0x8000000UL});
-		public static readonly BitSet _finallyClause_in_tryStatement1799 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _84_in_catchClause1841 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _LT_in_catchClause1843 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _48_in_catchClause1846 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _LT_in_catchClause1848 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _Identifier_in_catchClause1851 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _LT_in_catchClause1853 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _49_in_catchClause1856 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
-		public static readonly BitSet _LT_in_catchClause1858 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
-		public static readonly BitSet _statementBlock_in_catchClause1861 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _91_in_finallyClause1895 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
-		public static readonly BitSet _LT_in_finallyClause1897 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
-		public static readonly BitSet _statementBlock_in_finallyClause1900 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _assignmentExpression_in_expression1925 = new BitSet(new ulong[]{0x80000001000002UL});
-		public static readonly BitSet _LT_in_expression1928 = new BitSet(new ulong[]{0x80000001000000UL});
-		public static readonly BitSet _55_in_expression1931 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_expression1933 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpression_in_expression1936 = new BitSet(new ulong[]{0x80000001000002UL});
-		public static readonly BitSet _assignmentExpressionNoIn_in_expressionNoIn1955 = new BitSet(new ulong[]{0x80000001000002UL});
-		public static readonly BitSet _LT_in_expressionNoIn1958 = new BitSet(new ulong[]{0x80000001000000UL});
-		public static readonly BitSet _55_in_expressionNoIn1961 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_expressionNoIn1963 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpressionNoIn_in_expressionNoIn1966 = new BitSet(new ulong[]{0x80000001000002UL});
-		public static readonly BitSet _conditionalExpression_in_assignmentExpression1985 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _leftHandSideExpression_in_assignmentExpression1996 = new BitSet(new ulong[]{0x2448900001000000UL,0x1000000021414UL});
-		public static readonly BitSet _LT_in_assignmentExpression1998 = new BitSet(new ulong[]{0x2448900001000000UL,0x1000000021414UL});
-		public static readonly BitSet _assignmentOperator_in_assignmentExpression2003 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_assignmentExpression2005 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpression_in_assignmentExpression2010 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _conditionalExpressionNoIn_in_assignmentExpressionNoIn2297 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _leftHandSideExpression_in_assignmentExpressionNoIn2308 = new BitSet(new ulong[]{0x2448900001000000UL,0x1000000021414UL});
-		public static readonly BitSet _LT_in_assignmentExpressionNoIn2310 = new BitSet(new ulong[]{0x2448900001000000UL,0x1000000021414UL});
-		public static readonly BitSet _assignmentOperator_in_assignmentExpressionNoIn2315 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_assignmentExpressionNoIn2317 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpressionNoIn_in_assignmentExpressionNoIn2322 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _callExpression_in_leftHandSideExpression2663 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _newExpression_in_leftHandSideExpression2668 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _memberExpression_in_newExpression2680 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _97_in_newExpression2685 = new BitSet(new ulong[]{0x1000109200000UL,0x40A624004000UL});
-		public static readonly BitSet _LT_in_newExpression2687 = new BitSet(new ulong[]{0x1000109200000UL,0x40A624004000UL});
-		public static readonly BitSet _newExpression_in_newExpression2690 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _nonMemberExpression_in_memberExpression2727 = new BitSet(new ulong[]{0x800000001000002UL,0x4000UL});
-		public static readonly BitSet _LT_in_memberExpression2756 = new BitSet(new ulong[]{0x800000001000000UL,0x4000UL});
-		public static readonly BitSet _indexSuffix_in_memberExpression2790 = new BitSet(new ulong[]{0x800000001000002UL,0x4000UL});
-		public static readonly BitSet _propertyReferenceSuffix_in_memberExpression2854 = new BitSet(new ulong[]{0x800000001000002UL,0x4000UL});
-		public static readonly BitSet _primaryExpression_in_nonMemberExpression2926 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _functionExpression_in_nonMemberExpression2959 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _97_in_nonMemberExpression2991 = new BitSet(new ulong[]{0x1000109200000UL,0x40A624004000UL});
-		public static readonly BitSet _LT_in_nonMemberExpression2993 = new BitSet(new ulong[]{0x1000109200000UL,0x40A624004000UL});
-		public static readonly BitSet _memberExpression_in_nonMemberExpression2996 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _LT_in_nonMemberExpression2999 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _arguments_in_nonMemberExpression3002 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _primaryCallExpression_in_callExpression3043 = new BitSet(new ulong[]{0x801000001000002UL,0x4000UL});
-		public static readonly BitSet _LT_in_callExpression3073 = new BitSet(new ulong[]{0x801000001000000UL,0x4000UL});
-		public static readonly BitSet _arguments_in_callExpression3109 = new BitSet(new ulong[]{0x801000001000002UL,0x4000UL});
-		public static readonly BitSet _indexSuffix_in_callExpression3162 = new BitSet(new ulong[]{0x801000001000002UL,0x4000UL});
-		public static readonly BitSet _propertyReferenceSuffix_in_callExpression3212 = new BitSet(new ulong[]{0x801000001000002UL,0x4000UL});
-		public static readonly BitSet _memberExpression_in_primaryCallExpression3274 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _LT_in_primaryCallExpression3276 = new BitSet(new ulong[]{0x1000001000000UL});
-		public static readonly BitSet _arguments_in_primaryCallExpression3281 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _48_in_arguments3313 = new BitSet(new ulong[]{0x333010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_arguments3316 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpression_in_arguments3319 = new BitSet(new ulong[]{0x82000001000000UL});
-		public static readonly BitSet _LT_in_arguments3322 = new BitSet(new ulong[]{0x80000001000000UL});
-		public static readonly BitSet _55_in_arguments3325 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_arguments3327 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpression_in_arguments3330 = new BitSet(new ulong[]{0x82000001000000UL});
-		public static readonly BitSet _LT_in_arguments3336 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _49_in_arguments3339 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _78_in_indexSuffix3367 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_indexSuffix3369 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _expression_in_indexSuffix3372 = new BitSet(new ulong[]{0x1000000UL,0x8000UL});
-		public static readonly BitSet _LT_in_indexSuffix3374 = new BitSet(new ulong[]{0x1000000UL,0x8000UL});
-		public static readonly BitSet _79_in_indexSuffix3377 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _59_in_propertyReferenceSuffix3394 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _LT_in_propertyReferenceSuffix3396 = new BitSet(new ulong[]{0x1200000UL});
-		public static readonly BitSet _Identifier_in_propertyReferenceSuffix3399 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _logicalORExpression_in_conditionalExpression3421 = new BitSet(new ulong[]{0x1000002UL,0x2000UL});
-		public static readonly BitSet _LT_in_conditionalExpression3431 = new BitSet(new ulong[]{0x1000000UL,0x2000UL});
-		public static readonly BitSet _77_in_conditionalExpression3434 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_conditionalExpression3436 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpression_in_conditionalExpression3441 = new BitSet(new ulong[]{0x4000000001000000UL});
-		public static readonly BitSet _LT_in_conditionalExpression3443 = new BitSet(new ulong[]{0x4000000001000000UL});
-		public static readonly BitSet _62_in_conditionalExpression3446 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_conditionalExpression3448 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpression_in_conditionalExpression3453 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _logicalORExpressionNoIn_in_conditionalExpressionNoIn3503 = new BitSet(new ulong[]{0x1000002UL,0x2000UL});
-		public static readonly BitSet _LT_in_conditionalExpressionNoIn3513 = new BitSet(new ulong[]{0x1000000UL,0x2000UL});
-		public static readonly BitSet _77_in_conditionalExpressionNoIn3516 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_conditionalExpressionNoIn3518 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpressionNoIn_in_conditionalExpressionNoIn3523 = new BitSet(new ulong[]{0x4000000001000000UL});
-		public static readonly BitSet _LT_in_conditionalExpressionNoIn3525 = new BitSet(new ulong[]{0x4000000001000000UL});
-		public static readonly BitSet _62_in_conditionalExpressionNoIn3528 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_conditionalExpressionNoIn3530 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpressionNoIn_in_conditionalExpressionNoIn3535 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _logicalANDExpression_in_logicalORExpression3586 = new BitSet(new ulong[]{0x1000002UL,0x2000000000000UL});
-		public static readonly BitSet _LT_in_logicalORExpression3597 = new BitSet(new ulong[]{0x1000000UL,0x2000000000000UL});
-		public static readonly BitSet _113_in_logicalORExpression3600 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_logicalORExpression3602 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _logicalORExpression_in_logicalORExpression3605 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _logicalANDExpressionNoIn_in_logicalORExpressionNoIn3653 = new BitSet(new ulong[]{0x1000002UL,0x2000000000000UL});
-		public static readonly BitSet _LT_in_logicalORExpressionNoIn3663 = new BitSet(new ulong[]{0x1000000UL,0x2000000000000UL});
-		public static readonly BitSet _113_in_logicalORExpressionNoIn3666 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_logicalORExpressionNoIn3668 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _logicalORExpressionNoIn_in_logicalORExpressionNoIn3671 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _bitwiseORExpression_in_logicalANDExpression3719 = new BitSet(new ulong[]{0x200001000002UL});
-		public static readonly BitSet _LT_in_logicalANDExpression3730 = new BitSet(new ulong[]{0x200001000000UL});
-		public static readonly BitSet _45_in_logicalANDExpression3733 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_logicalANDExpression3735 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _logicalANDExpression_in_logicalANDExpression3738 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _bitwiseORExpressionNoIn_in_logicalANDExpressionNoIn3786 = new BitSet(new ulong[]{0x200001000002UL});
-		public static readonly BitSet _LT_in_logicalANDExpressionNoIn3796 = new BitSet(new ulong[]{0x200001000000UL});
-		public static readonly BitSet _45_in_logicalANDExpressionNoIn3799 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_logicalANDExpressionNoIn3801 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _logicalANDExpressionNoIn_in_logicalANDExpressionNoIn3804 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _bitwiseXORExpression_in_bitwiseORExpression3852 = new BitSet(new ulong[]{0x1000002UL,0x800000000000UL});
-		public static readonly BitSet _LT_in_bitwiseORExpression3862 = new BitSet(new ulong[]{0x1000000UL,0x800000000000UL});
-		public static readonly BitSet _111_in_bitwiseORExpression3865 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_bitwiseORExpression3867 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _bitwiseORExpression_in_bitwiseORExpression3870 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _bitwiseXORExpressionNoIn_in_bitwiseORExpressionNoIn3918 = new BitSet(new ulong[]{0x1000002UL,0x800000000000UL});
-		public static readonly BitSet _LT_in_bitwiseORExpressionNoIn3928 = new BitSet(new ulong[]{0x1000000UL,0x800000000000UL});
-		public static readonly BitSet _111_in_bitwiseORExpressionNoIn3931 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_bitwiseORExpressionNoIn3933 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _bitwiseORExpressionNoIn_in_bitwiseORExpressionNoIn3936 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _bitwiseANDExpression_in_bitwiseXORExpression3984 = new BitSet(new ulong[]{0x1000002UL,0x10000UL});
-		public static readonly BitSet _LT_in_bitwiseXORExpression3995 = new BitSet(new ulong[]{0x1000000UL,0x10000UL});
-		public static readonly BitSet _80_in_bitwiseXORExpression3998 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_bitwiseXORExpression4000 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _bitwiseXORExpression_in_bitwiseXORExpression4003 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _bitwiseANDExpressionNoIn_in_bitwiseXORExpressionNoIn4051 = new BitSet(new ulong[]{0x1000002UL,0x10000UL});
-		public static readonly BitSet _LT_in_bitwiseXORExpressionNoIn4061 = new BitSet(new ulong[]{0x1000000UL,0x10000UL});
-		public static readonly BitSet _80_in_bitwiseXORExpressionNoIn4064 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_bitwiseXORExpressionNoIn4066 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _bitwiseXORExpressionNoIn_in_bitwiseXORExpressionNoIn4069 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _equalityExpression_in_bitwiseANDExpression4117 = new BitSet(new ulong[]{0x400001000002UL});
-		public static readonly BitSet _LT_in_bitwiseANDExpression4128 = new BitSet(new ulong[]{0x400001000000UL});
-		public static readonly BitSet _46_in_bitwiseANDExpression4131 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_bitwiseANDExpression4133 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _bitwiseANDExpression_in_bitwiseANDExpression4136 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _equalityExpressionNoIn_in_bitwiseANDExpressionNoIn4184 = new BitSet(new ulong[]{0x400001000002UL});
-		public static readonly BitSet _LT_in_bitwiseANDExpressionNoIn4194 = new BitSet(new ulong[]{0x400001000000UL});
-		public static readonly BitSet _46_in_bitwiseANDExpressionNoIn4197 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_bitwiseANDExpressionNoIn4199 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _bitwiseANDExpressionNoIn_in_bitwiseANDExpressionNoIn4202 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _relationalExpression_in_equalityExpression4251 = new BitSet(new ulong[]{0x60001000002UL,0x60UL});
-		public static readonly BitSet _LT_in_equalityExpression4262 = new BitSet(new ulong[]{0x60001000000UL,0x60UL});
-		public static readonly BitSet _69_in_equalityExpression4268 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _41_in_equalityExpression4274 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _70_in_equalityExpression4280 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _42_in_equalityExpression4286 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_equalityExpression4289 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _equalityExpression_in_equalityExpression4294 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _relationalExpressionNoIn_in_equalityExpressionNoIn4481 = new BitSet(new ulong[]{0x60001000002UL,0x60UL});
-		public static readonly BitSet _LT_in_equalityExpressionNoIn4496 = new BitSet(new ulong[]{0x60001000000UL,0x60UL});
-		public static readonly BitSet _69_in_equalityExpressionNoIn4511 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _41_in_equalityExpressionNoIn4535 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _70_in_equalityExpressionNoIn4559 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _42_in_equalityExpressionNoIn4583 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_equalityExpressionNoIn4606 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _equalityExpressionNoIn_in_equalityExpressionNoIn4609 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _shiftExpression_in_relationalExpression4644 = new BitSet(new ulong[]{0x1000002UL,0x180000189UL});
-		public static readonly BitSet _LT_in_relationalExpression4655 = new BitSet(new ulong[]{0x1000000UL,0x180000189UL});
-		public static readonly BitSet _64_in_relationalExpression4661 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _71_in_relationalExpression4667 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _67_in_relationalExpression4673 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _72_in_relationalExpression4679 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _96_in_relationalExpression4685 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _95_in_relationalExpression4691 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_relationalExpression4694 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _relationalExpression_in_relationalExpression4699 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _shiftExpression_in_relationalExpressionNoIn4958 = new BitSet(new ulong[]{0x1000002UL,0x100000189UL});
-		public static readonly BitSet _LT_in_relationalExpressionNoIn4974 = new BitSet(new ulong[]{0x1000000UL,0x100000189UL});
-		public static readonly BitSet _64_in_relationalExpressionNoIn4989 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _71_in_relationalExpressionNoIn5017 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _67_in_relationalExpressionNoIn5044 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _72_in_relationalExpressionNoIn5071 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _96_in_relationalExpressionNoIn5098 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_relationalExpressionNoIn5122 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _relationalExpressionNoIn_in_relationalExpressionNoIn5125 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _additiveExpression_in_shiftExpression5165 = new BitSet(new ulong[]{0x1000002UL,0xA02UL});
-		public static readonly BitSet _LT_in_shiftExpression5191 = new BitSet(new ulong[]{0x1000000UL,0xA02UL});
-		public static readonly BitSet _65_in_shiftExpression5197 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _73_in_shiftExpression5203 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _75_in_shiftExpression5209 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_shiftExpression5212 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _shiftExpression_in_shiftExpression5217 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _multiplicativeExpression_in_additiveExpression5388 = new BitSet(new ulong[]{0x110000001000002UL});
-		public static readonly BitSet _LT_in_additiveExpression5397 = new BitSet(new ulong[]{0x110000001000000UL});
-		public static readonly BitSet _52_in_additiveExpression5403 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _56_in_additiveExpression5409 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_additiveExpression5412 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _additiveExpression_in_additiveExpression5417 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _unaryExpression_in_multiplicativeExpression5530 = new BitSet(new ulong[]{0x1004080001000002UL});
-		public static readonly BitSet _LT_in_multiplicativeExpression5541 = new BitSet(new ulong[]{0x1004080001000000UL});
-		public static readonly BitSet _50_in_multiplicativeExpression5547 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _60_in_multiplicativeExpression5553 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _43_in_multiplicativeExpression5559 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_multiplicativeExpression5562 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _multiplicativeExpression_in_multiplicativeExpression5567 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _postfixExpression_in_unaryExpression5720 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _87_in_unaryExpression5756 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
-		public static readonly BitSet _107_in_unaryExpression5762 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
-		public static readonly BitSet _105_in_unaryExpression5768 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
-		public static readonly BitSet _53_in_unaryExpression5774 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
-		public static readonly BitSet _57_in_unaryExpression5780 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
-		public static readonly BitSet _52_in_unaryExpression5786 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
-		public static readonly BitSet _56_in_unaryExpression5792 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
-		public static readonly BitSet _115_in_unaryExpression5798 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
-		public static readonly BitSet _40_in_unaryExpression5804 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
-		public static readonly BitSet _unaryExpression_in_unaryExpression5822 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _leftHandSideExpression_in_postfixExpression6074 = new BitSet(new ulong[]{0x220000000000002UL});
-		public static readonly BitSet _53_in_postfixExpression6084 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _57_in_postfixExpression6104 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _101_in_primaryExpression6142 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _Identifier_in_primaryExpression6163 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _literal_in_primaryExpression6183 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _arrayLiteral_in_primaryExpression6197 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _objectLiteral_in_primaryExpression6210 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _48_in_primaryExpression6223 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_primaryExpression6225 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _expression_in_primaryExpression6228 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _LT_in_primaryExpression6230 = new BitSet(new ulong[]{0x2000001000000UL});
-		public static readonly BitSet _49_in_primaryExpression6233 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _78_in_arrayLiteral6250 = new BitSet(new ulong[]{0x3B1010109200000UL,0x84AA62480C000UL});
-		public static readonly BitSet _LT_in_arrayLiteral6252 = new BitSet(new ulong[]{0x3B1010109200000UL,0x84AA62480C000UL});
-		public static readonly BitSet _assignmentExpression_in_arrayLiteral6255 = new BitSet(new ulong[]{0x80000001000000UL,0x8000UL});
-		public static readonly BitSet _LT_in_arrayLiteral6259 = new BitSet(new ulong[]{0x80000001000000UL});
-		public static readonly BitSet _55_in_arrayLiteral6262 = new BitSet(new ulong[]{0x3B1010109200000UL,0x84AA62480C000UL});
-		public static readonly BitSet _LT_in_arrayLiteral6265 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpression_in_arrayLiteral6268 = new BitSet(new ulong[]{0x80000001000000UL,0x8000UL});
-		public static readonly BitSet _LT_in_arrayLiteral6274 = new BitSet(new ulong[]{0x1000000UL,0x8000UL});
-		public static readonly BitSet _79_in_arrayLiteral6277 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _110_in_objectLiteral6312 = new BitSet(new ulong[]{0x109200000UL,0x4000000000000UL});
-		public static readonly BitSet _LT_in_objectLiteral6315 = new BitSet(new ulong[]{0x109200000UL});
-		public static readonly BitSet _propertyNameAndValue_in_objectLiteral6318 = new BitSet(new ulong[]{0x80000001000000UL,0x4000000000000UL});
-		public static readonly BitSet _LT_in_objectLiteral6321 = new BitSet(new ulong[]{0x80000001000000UL});
-		public static readonly BitSet _55_in_objectLiteral6324 = new BitSet(new ulong[]{0x109200000UL});
-		public static readonly BitSet _LT_in_objectLiteral6326 = new BitSet(new ulong[]{0x109200000UL});
-		public static readonly BitSet _propertyNameAndValue_in_objectLiteral6329 = new BitSet(new ulong[]{0x80000001000000UL,0x4000000000000UL});
-		public static readonly BitSet _LT_in_objectLiteral6335 = new BitSet(new ulong[]{0x1000000UL,0x4000000000000UL});
-		public static readonly BitSet _114_in_objectLiteral6338 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _propertyName_in_propertyNameAndValue6366 = new BitSet(new ulong[]{0x4000000001000000UL});
-		public static readonly BitSet _LT_in_propertyNameAndValue6368 = new BitSet(new ulong[]{0x4000000001000000UL});
-		public static readonly BitSet _62_in_propertyNameAndValue6371 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_propertyNameAndValue6373 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _assignmentExpression_in_propertyNameAndValue6376 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _Identifier_in_propertyName6405 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _StringLiteral_in_propertyName6420 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _NumericLiteral_in_propertyName6435 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _98_in_literal6456 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _103_in_literal6472 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _90_in_literal6488 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _StringLiteral_in_literal6504 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _NumericLiteral_in_literal6519 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _LT_in_functionBody403 = new BitSet(new ulong[]{0x1000000UL,0x4000000000000UL});
+		public static readonly BitSet _114_in_functionBody406 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _statementBlock_in_statement432 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _variableStatement_in_statement437 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _emptyStatement_in_statement442 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _expressionStatement_in_statement447 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _ifStatement_in_statement452 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _iterationStatement_in_statement457 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _continueStatement_in_statement462 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _breakStatement_in_statement467 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _returnStatement_in_statement472 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _withStatement_in_statement477 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _labelledStatement_in_statement482 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _switchStatement_in_statement487 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _throwStatement_in_statement492 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _tryStatement_in_statement497 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _110_in_statementBlock509 = new BitSet(new ulong[]{0x8331010109200000UL,0xC7FFE75A44000UL});
+		public static readonly BitSet _LT_in_statementBlock511 = new BitSet(new ulong[]{0x8331010109200000UL,0xC7FFE75A44000UL});
+		public static readonly BitSet _statementList_in_statementBlock514 = new BitSet(new ulong[]{0x1000000UL,0x4000000000000UL});
+		public static readonly BitSet _LT_in_statementBlock517 = new BitSet(new ulong[]{0x1000000UL,0x4000000000000UL});
+		public static readonly BitSet _114_in_statementBlock520 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _statement_in_statementList546 = new BitSet(new ulong[]{0x8331010109200002UL,0x87FFE75A44000UL});
+		public static readonly BitSet _LT_in_statementList549 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _statement_in_statementList553 = new BitSet(new ulong[]{0x8331010109200002UL,0x87FFE75A44000UL});
+		public static readonly BitSet _106_in_variableStatement567 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _LT_in_variableStatement569 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _variableDeclarationList_in_variableStatement572 = new BitSet(new ulong[]{0x8000000001000000UL});
+		public static readonly BitSet _LT_in_variableStatement575 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _63_in_variableStatement579 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _variableDeclaration_in_variableDeclarationList608 = new BitSet(new ulong[]{0x80000001000002UL});
+		public static readonly BitSet _LT_in_variableDeclarationList611 = new BitSet(new ulong[]{0x80000001000000UL});
+		public static readonly BitSet _55_in_variableDeclarationList614 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _LT_in_variableDeclarationList616 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _variableDeclaration_in_variableDeclarationList619 = new BitSet(new ulong[]{0x80000001000002UL});
+		public static readonly BitSet _variableDeclarationNoIn_in_variableDeclarationListNoIn638 = new BitSet(new ulong[]{0x80000001000002UL});
+		public static readonly BitSet _LT_in_variableDeclarationListNoIn641 = new BitSet(new ulong[]{0x80000001000000UL});
+		public static readonly BitSet _55_in_variableDeclarationListNoIn644 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _LT_in_variableDeclarationListNoIn646 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _variableDeclarationNoIn_in_variableDeclarationListNoIn649 = new BitSet(new ulong[]{0x80000001000002UL});
+		public static readonly BitSet _Identifier_in_variableDeclaration668 = new BitSet(new ulong[]{0x1000002UL,0x10UL});
+		public static readonly BitSet _LT_in_variableDeclaration670 = new BitSet(new ulong[]{0x1000002UL,0x10UL});
+		public static readonly BitSet _initialiser_in_variableDeclaration673 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _Identifier_in_variableDeclarationNoIn720 = new BitSet(new ulong[]{0x1000002UL,0x10UL});
+		public static readonly BitSet _LT_in_variableDeclarationNoIn722 = new BitSet(new ulong[]{0x1000002UL,0x10UL});
+		public static readonly BitSet _initialiserNoIn_in_variableDeclarationNoIn725 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _68_in_initialiser770 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_initialiser772 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpression_in_initialiser775 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _68_in_initialiserNoIn794 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_initialiserNoIn796 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpressionNoIn_in_initialiserNoIn799 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _63_in_emptyStatement815 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _expression_in_expressionStatement836 = new BitSet(new ulong[]{0x8000000001000000UL});
+		public static readonly BitSet _LT_in_expressionStatement839 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _63_in_expressionStatement843 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _94_in_ifStatement860 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _LT_in_ifStatement862 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _48_in_ifStatement865 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_ifStatement867 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _expression_in_ifStatement870 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _LT_in_ifStatement872 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _49_in_ifStatement875 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _LT_in_ifStatement877 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _statement_in_ifStatement882 = new BitSet(new ulong[]{0x1000002UL,0x2000000UL});
+		public static readonly BitSet _LT_in_ifStatement885 = new BitSet(new ulong[]{0x1000000UL,0x2000000UL});
+		public static readonly BitSet _89_in_ifStatement888 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _LT_in_ifStatement890 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _statement_in_ifStatement895 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _doWhileStatement_in_iterationStatement931 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _whileStatement_in_iterationStatement936 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _forStatement_in_iterationStatement941 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _forInStatement_in_iterationStatement946 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _88_in_doWhileStatement958 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _LT_in_doWhileStatement960 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _statement_in_doWhileStatement963 = new BitSet(new ulong[]{0x1000000UL,0x100000000000UL});
+		public static readonly BitSet _LT_in_doWhileStatement965 = new BitSet(new ulong[]{0x1000000UL,0x100000000000UL});
+		public static readonly BitSet _108_in_doWhileStatement968 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _LT_in_doWhileStatement970 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _48_in_doWhileStatement973 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
+		public static readonly BitSet _expression_in_doWhileStatement975 = new BitSet(new ulong[]{0x2000000000000UL});
+		public static readonly BitSet _49_in_doWhileStatement977 = new BitSet(new ulong[]{0x8000000001000000UL});
+		public static readonly BitSet _LT_in_doWhileStatement980 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _63_in_doWhileStatement984 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _108_in_whileStatement1014 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _LT_in_whileStatement1016 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _48_in_whileStatement1019 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_whileStatement1021 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _expression_in_whileStatement1024 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _LT_in_whileStatement1026 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _49_in_whileStatement1029 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _LT_in_whileStatement1031 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _statement_in_whileStatement1034 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _92_in_forStatement1064 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _LT_in_forStatement1066 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _48_in_forStatement1069 = new BitSet(new ulong[]{0x8331010109200000UL,0x84EA624804000UL});
+		public static readonly BitSet _LT_in_forStatement1072 = new BitSet(new ulong[]{0x331010109200000UL,0x84EA624804000UL});
+		public static readonly BitSet _forStatementInitialiserPart_in_forStatement1075 = new BitSet(new ulong[]{0x8000000001000000UL});
+		public static readonly BitSet _LT_in_forStatement1079 = new BitSet(new ulong[]{0x8000000001000000UL});
+		public static readonly BitSet _63_in_forStatement1082 = new BitSet(new ulong[]{0x8331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_forStatement1085 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _expression_in_forStatement1090 = new BitSet(new ulong[]{0x8000000001000000UL});
+		public static readonly BitSet _LT_in_forStatement1094 = new BitSet(new ulong[]{0x8000000001000000UL});
+		public static readonly BitSet _63_in_forStatement1097 = new BitSet(new ulong[]{0x333010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_forStatement1100 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _expression_in_forStatement1105 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _LT_in_forStatement1109 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _49_in_forStatement1112 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _LT_in_forStatement1114 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _statement_in_forStatement1117 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _expressionNoIn_in_forStatementInitialiserPart1213 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _106_in_forStatementInitialiserPart1218 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _LT_in_forStatementInitialiserPart1220 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _variableDeclarationListNoIn_in_forStatementInitialiserPart1223 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _92_in_forInStatement1251 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _LT_in_forInStatement1253 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _48_in_forInStatement1256 = new BitSet(new ulong[]{0x1000109200000UL,0x44A624004000UL});
+		public static readonly BitSet _LT_in_forInStatement1258 = new BitSet(new ulong[]{0x1000109200000UL,0x44A624004000UL});
+		public static readonly BitSet _forInStatementInitialiserPart_in_forInStatement1261 = new BitSet(new ulong[]{0x1000000UL,0x80000000UL});
+		public static readonly BitSet _LT_in_forInStatement1263 = new BitSet(new ulong[]{0x1000000UL,0x80000000UL});
+		public static readonly BitSet _95_in_forInStatement1266 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_forInStatement1268 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _expression_in_forInStatement1271 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _LT_in_forInStatement1273 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _49_in_forInStatement1276 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _LT_in_forInStatement1278 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _statement_in_forInStatement1281 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _leftHandSideExpression_in_forInStatementInitialiserPart1323 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _106_in_forInStatementInitialiserPart1328 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _LT_in_forInStatementInitialiserPart1330 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _variableDeclarationNoIn_in_forInStatementInitialiserPart1333 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _85_in_continueStatement1348 = new BitSet(new ulong[]{0x8000000001200000UL});
+		public static readonly BitSet _Identifier_in_continueStatement1350 = new BitSet(new ulong[]{0x8000000001000000UL});
+		public static readonly BitSet _LT_in_continueStatement1354 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _63_in_continueStatement1358 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _82_in_breakStatement1392 = new BitSet(new ulong[]{0x8000000001200000UL});
+		public static readonly BitSet _Identifier_in_breakStatement1394 = new BitSet(new ulong[]{0x8000000001000000UL});
+		public static readonly BitSet _LT_in_breakStatement1398 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _63_in_breakStatement1402 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _99_in_returnStatement1433 = new BitSet(new ulong[]{0x8331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _expression_in_returnStatement1435 = new BitSet(new ulong[]{0x8000000001000000UL});
+		public static readonly BitSet _LT_in_returnStatement1439 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _63_in_returnStatement1443 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _109_in_withStatement1470 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _LT_in_withStatement1472 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _48_in_withStatement1475 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_withStatement1477 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _expression_in_withStatement1480 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _LT_in_withStatement1482 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _49_in_withStatement1485 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _LT_in_withStatement1487 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _statement_in_withStatement1490 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _Identifier_in_labelledStatement1519 = new BitSet(new ulong[]{0x4000000001000000UL});
+		public static readonly BitSet _LT_in_labelledStatement1521 = new BitSet(new ulong[]{0x4000000001000000UL});
+		public static readonly BitSet _62_in_labelledStatement1524 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _LT_in_labelledStatement1526 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _statement_in_labelledStatement1529 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _100_in_switchStatement1570 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _LT_in_switchStatement1572 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _48_in_switchStatement1575 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_switchStatement1577 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _expression_in_switchStatement1580 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _LT_in_switchStatement1582 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _49_in_switchStatement1585 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
+		public static readonly BitSet _LT_in_switchStatement1587 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
+		public static readonly BitSet _caseBlock_in_switchStatement1590 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _110_in_caseBlock1619 = new BitSet(new ulong[]{0x1000000UL,0x4000000480000UL});
+		public static readonly BitSet _LT_in_caseBlock1623 = new BitSet(new ulong[]{0x1000000UL,0x80000UL});
+		public static readonly BitSet _caseClause_in_caseBlock1627 = new BitSet(new ulong[]{0x1000000UL,0x4000000480000UL});
+		public static readonly BitSet _LT_in_caseBlock1632 = new BitSet(new ulong[]{0x1000000UL,0x400000UL});
+		public static readonly BitSet _defaultClause_in_caseBlock1636 = new BitSet(new ulong[]{0x1000000UL,0x4000000080000UL});
+		public static readonly BitSet _LT_in_caseBlock1639 = new BitSet(new ulong[]{0x1000000UL,0x80000UL});
+		public static readonly BitSet _caseClause_in_caseBlock1643 = new BitSet(new ulong[]{0x1000000UL,0x4000000080000UL});
+		public static readonly BitSet _LT_in_caseBlock1649 = new BitSet(new ulong[]{0x1000000UL,0x4000000000000UL});
+		public static readonly BitSet _114_in_caseBlock1653 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _83_in_caseClause1665 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_caseClause1667 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _expression_in_caseClause1670 = new BitSet(new ulong[]{0x4000000001000000UL});
+		public static readonly BitSet _LT_in_caseClause1672 = new BitSet(new ulong[]{0x4000000001000000UL});
+		public static readonly BitSet _62_in_caseClause1675 = new BitSet(new ulong[]{0x8331010109200002UL,0x87FFE75A44000UL});
+		public static readonly BitSet _LT_in_caseClause1677 = new BitSet(new ulong[]{0x8331010109200002UL,0x87FFE75A44000UL});
+		public static readonly BitSet _statementList_in_caseClause1680 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _86_in_defaultClause1709 = new BitSet(new ulong[]{0x4000000001000000UL});
+		public static readonly BitSet _LT_in_defaultClause1711 = new BitSet(new ulong[]{0x4000000001000000UL});
+		public static readonly BitSet _62_in_defaultClause1714 = new BitSet(new ulong[]{0x8331010109200002UL,0x87FFE75A44000UL});
+		public static readonly BitSet _LT_in_defaultClause1716 = new BitSet(new ulong[]{0x8331010109200002UL,0x87FFE75A44000UL});
+		public static readonly BitSet _statementList_in_defaultClause1719 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _102_in_throwStatement1746 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
+		public static readonly BitSet _expression_in_throwStatement1748 = new BitSet(new ulong[]{0x8000000001000000UL});
+		public static readonly BitSet _LT_in_throwStatement1751 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _63_in_throwStatement1755 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _104_in_tryStatement1780 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
+		public static readonly BitSet _LT_in_tryStatement1782 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
+		public static readonly BitSet _statementBlock_in_tryStatement1785 = new BitSet(new ulong[]{0x1000000UL,0x8100000UL});
+		public static readonly BitSet _LT_in_tryStatement1787 = new BitSet(new ulong[]{0x1000000UL,0x8100000UL});
+		public static readonly BitSet _finallyClause_in_tryStatement1791 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _catchClause_in_tryStatement1795 = new BitSet(new ulong[]{0x1000002UL,0x8000000UL});
+		public static readonly BitSet _LT_in_tryStatement1798 = new BitSet(new ulong[]{0x1000000UL,0x8000000UL});
+		public static readonly BitSet _finallyClause_in_tryStatement1801 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _84_in_catchClause1843 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _LT_in_catchClause1845 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _48_in_catchClause1848 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _LT_in_catchClause1850 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _Identifier_in_catchClause1853 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _LT_in_catchClause1855 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _49_in_catchClause1858 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
+		public static readonly BitSet _LT_in_catchClause1860 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
+		public static readonly BitSet _statementBlock_in_catchClause1863 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _91_in_finallyClause1897 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
+		public static readonly BitSet _LT_in_finallyClause1899 = new BitSet(new ulong[]{0x1000000UL,0x400000000000UL});
+		public static readonly BitSet _statementBlock_in_finallyClause1902 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _assignmentExpression_in_expression1927 = new BitSet(new ulong[]{0x80000001000002UL});
+		public static readonly BitSet _LT_in_expression1930 = new BitSet(new ulong[]{0x80000001000000UL});
+		public static readonly BitSet _55_in_expression1933 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_expression1935 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpression_in_expression1938 = new BitSet(new ulong[]{0x80000001000002UL});
+		public static readonly BitSet _assignmentExpressionNoIn_in_expressionNoIn1957 = new BitSet(new ulong[]{0x80000001000002UL});
+		public static readonly BitSet _LT_in_expressionNoIn1960 = new BitSet(new ulong[]{0x80000001000000UL});
+		public static readonly BitSet _55_in_expressionNoIn1963 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_expressionNoIn1965 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpressionNoIn_in_expressionNoIn1968 = new BitSet(new ulong[]{0x80000001000002UL});
+		public static readonly BitSet _conditionalExpression_in_assignmentExpression1987 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _leftHandSideExpression_in_assignmentExpression1998 = new BitSet(new ulong[]{0x2448900001000000UL,0x1000000021414UL});
+		public static readonly BitSet _LT_in_assignmentExpression2000 = new BitSet(new ulong[]{0x2448900001000000UL,0x1000000021414UL});
+		public static readonly BitSet _assignmentOperator_in_assignmentExpression2005 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_assignmentExpression2007 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpression_in_assignmentExpression2012 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _conditionalExpressionNoIn_in_assignmentExpressionNoIn2299 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _leftHandSideExpression_in_assignmentExpressionNoIn2310 = new BitSet(new ulong[]{0x2448900001000000UL,0x1000000021414UL});
+		public static readonly BitSet _LT_in_assignmentExpressionNoIn2312 = new BitSet(new ulong[]{0x2448900001000000UL,0x1000000021414UL});
+		public static readonly BitSet _assignmentOperator_in_assignmentExpressionNoIn2317 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_assignmentExpressionNoIn2319 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpressionNoIn_in_assignmentExpressionNoIn2324 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _callExpression_in_leftHandSideExpression2665 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _newExpression_in_leftHandSideExpression2670 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _memberExpression_in_newExpression2682 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _97_in_newExpression2687 = new BitSet(new ulong[]{0x1000109200000UL,0x40A624004000UL});
+		public static readonly BitSet _LT_in_newExpression2689 = new BitSet(new ulong[]{0x1000109200000UL,0x40A624004000UL});
+		public static readonly BitSet _newExpression_in_newExpression2692 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _nonMemberExpression_in_memberExpression2729 = new BitSet(new ulong[]{0x800000001000002UL,0x4000UL});
+		public static readonly BitSet _LT_in_memberExpression2758 = new BitSet(new ulong[]{0x800000001000000UL,0x4000UL});
+		public static readonly BitSet _indexSuffix_in_memberExpression2792 = new BitSet(new ulong[]{0x800000001000002UL,0x4000UL});
+		public static readonly BitSet _propertyReferenceSuffix_in_memberExpression2856 = new BitSet(new ulong[]{0x800000001000002UL,0x4000UL});
+		public static readonly BitSet _primaryExpression_in_nonMemberExpression2928 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _functionExpression_in_nonMemberExpression2961 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _97_in_nonMemberExpression2993 = new BitSet(new ulong[]{0x1000109200000UL,0x40A624004000UL});
+		public static readonly BitSet _LT_in_nonMemberExpression2995 = new BitSet(new ulong[]{0x1000109200000UL,0x40A624004000UL});
+		public static readonly BitSet _memberExpression_in_nonMemberExpression2998 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _LT_in_nonMemberExpression3001 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _arguments_in_nonMemberExpression3004 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _primaryCallExpression_in_callExpression3045 = new BitSet(new ulong[]{0x801000001000002UL,0x4000UL});
+		public static readonly BitSet _LT_in_callExpression3075 = new BitSet(new ulong[]{0x801000001000000UL,0x4000UL});
+		public static readonly BitSet _arguments_in_callExpression3111 = new BitSet(new ulong[]{0x801000001000002UL,0x4000UL});
+		public static readonly BitSet _indexSuffix_in_callExpression3164 = new BitSet(new ulong[]{0x801000001000002UL,0x4000UL});
+		public static readonly BitSet _propertyReferenceSuffix_in_callExpression3214 = new BitSet(new ulong[]{0x801000001000002UL,0x4000UL});
+		public static readonly BitSet _memberExpression_in_primaryCallExpression3276 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _LT_in_primaryCallExpression3278 = new BitSet(new ulong[]{0x1000001000000UL});
+		public static readonly BitSet _arguments_in_primaryCallExpression3283 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _48_in_arguments3315 = new BitSet(new ulong[]{0x333010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_arguments3318 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpression_in_arguments3321 = new BitSet(new ulong[]{0x82000001000000UL});
+		public static readonly BitSet _LT_in_arguments3324 = new BitSet(new ulong[]{0x80000001000000UL});
+		public static readonly BitSet _55_in_arguments3327 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_arguments3329 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpression_in_arguments3332 = new BitSet(new ulong[]{0x82000001000000UL});
+		public static readonly BitSet _LT_in_arguments3338 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _49_in_arguments3341 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _78_in_indexSuffix3369 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_indexSuffix3371 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _expression_in_indexSuffix3374 = new BitSet(new ulong[]{0x1000000UL,0x8000UL});
+		public static readonly BitSet _LT_in_indexSuffix3376 = new BitSet(new ulong[]{0x1000000UL,0x8000UL});
+		public static readonly BitSet _79_in_indexSuffix3379 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _59_in_propertyReferenceSuffix3396 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _LT_in_propertyReferenceSuffix3398 = new BitSet(new ulong[]{0x1200000UL});
+		public static readonly BitSet _Identifier_in_propertyReferenceSuffix3401 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _logicalORExpression_in_conditionalExpression3423 = new BitSet(new ulong[]{0x1000002UL,0x2000UL});
+		public static readonly BitSet _LT_in_conditionalExpression3433 = new BitSet(new ulong[]{0x1000000UL,0x2000UL});
+		public static readonly BitSet _77_in_conditionalExpression3436 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_conditionalExpression3438 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpression_in_conditionalExpression3443 = new BitSet(new ulong[]{0x4000000001000000UL});
+		public static readonly BitSet _LT_in_conditionalExpression3445 = new BitSet(new ulong[]{0x4000000001000000UL});
+		public static readonly BitSet _62_in_conditionalExpression3448 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_conditionalExpression3450 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpression_in_conditionalExpression3455 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _logicalORExpressionNoIn_in_conditionalExpressionNoIn3505 = new BitSet(new ulong[]{0x1000002UL,0x2000UL});
+		public static readonly BitSet _LT_in_conditionalExpressionNoIn3515 = new BitSet(new ulong[]{0x1000000UL,0x2000UL});
+		public static readonly BitSet _77_in_conditionalExpressionNoIn3518 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_conditionalExpressionNoIn3520 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpressionNoIn_in_conditionalExpressionNoIn3525 = new BitSet(new ulong[]{0x4000000001000000UL});
+		public static readonly BitSet _LT_in_conditionalExpressionNoIn3527 = new BitSet(new ulong[]{0x4000000001000000UL});
+		public static readonly BitSet _62_in_conditionalExpressionNoIn3530 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_conditionalExpressionNoIn3532 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpressionNoIn_in_conditionalExpressionNoIn3537 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _logicalANDExpression_in_logicalORExpression3588 = new BitSet(new ulong[]{0x1000002UL,0x2000000000000UL});
+		public static readonly BitSet _LT_in_logicalORExpression3599 = new BitSet(new ulong[]{0x1000000UL,0x2000000000000UL});
+		public static readonly BitSet _113_in_logicalORExpression3602 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_logicalORExpression3604 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _logicalORExpression_in_logicalORExpression3607 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _logicalANDExpressionNoIn_in_logicalORExpressionNoIn3655 = new BitSet(new ulong[]{0x1000002UL,0x2000000000000UL});
+		public static readonly BitSet _LT_in_logicalORExpressionNoIn3665 = new BitSet(new ulong[]{0x1000000UL,0x2000000000000UL});
+		public static readonly BitSet _113_in_logicalORExpressionNoIn3668 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_logicalORExpressionNoIn3670 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _logicalORExpressionNoIn_in_logicalORExpressionNoIn3673 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _bitwiseORExpression_in_logicalANDExpression3721 = new BitSet(new ulong[]{0x200001000002UL});
+		public static readonly BitSet _LT_in_logicalANDExpression3732 = new BitSet(new ulong[]{0x200001000000UL});
+		public static readonly BitSet _45_in_logicalANDExpression3735 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_logicalANDExpression3737 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _logicalANDExpression_in_logicalANDExpression3740 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _bitwiseORExpressionNoIn_in_logicalANDExpressionNoIn3788 = new BitSet(new ulong[]{0x200001000002UL});
+		public static readonly BitSet _LT_in_logicalANDExpressionNoIn3798 = new BitSet(new ulong[]{0x200001000000UL});
+		public static readonly BitSet _45_in_logicalANDExpressionNoIn3801 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_logicalANDExpressionNoIn3803 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _logicalANDExpressionNoIn_in_logicalANDExpressionNoIn3806 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _bitwiseXORExpression_in_bitwiseORExpression3854 = new BitSet(new ulong[]{0x1000002UL,0x800000000000UL});
+		public static readonly BitSet _LT_in_bitwiseORExpression3864 = new BitSet(new ulong[]{0x1000000UL,0x800000000000UL});
+		public static readonly BitSet _111_in_bitwiseORExpression3867 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_bitwiseORExpression3869 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _bitwiseORExpression_in_bitwiseORExpression3872 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _bitwiseXORExpressionNoIn_in_bitwiseORExpressionNoIn3920 = new BitSet(new ulong[]{0x1000002UL,0x800000000000UL});
+		public static readonly BitSet _LT_in_bitwiseORExpressionNoIn3930 = new BitSet(new ulong[]{0x1000000UL,0x800000000000UL});
+		public static readonly BitSet _111_in_bitwiseORExpressionNoIn3933 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_bitwiseORExpressionNoIn3935 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _bitwiseORExpressionNoIn_in_bitwiseORExpressionNoIn3938 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _bitwiseANDExpression_in_bitwiseXORExpression3986 = new BitSet(new ulong[]{0x1000002UL,0x10000UL});
+		public static readonly BitSet _LT_in_bitwiseXORExpression3997 = new BitSet(new ulong[]{0x1000000UL,0x10000UL});
+		public static readonly BitSet _80_in_bitwiseXORExpression4000 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_bitwiseXORExpression4002 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _bitwiseXORExpression_in_bitwiseXORExpression4005 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _bitwiseANDExpressionNoIn_in_bitwiseXORExpressionNoIn4053 = new BitSet(new ulong[]{0x1000002UL,0x10000UL});
+		public static readonly BitSet _LT_in_bitwiseXORExpressionNoIn4063 = new BitSet(new ulong[]{0x1000000UL,0x10000UL});
+		public static readonly BitSet _80_in_bitwiseXORExpressionNoIn4066 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_bitwiseXORExpressionNoIn4068 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _bitwiseXORExpressionNoIn_in_bitwiseXORExpressionNoIn4071 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _equalityExpression_in_bitwiseANDExpression4119 = new BitSet(new ulong[]{0x400001000002UL});
+		public static readonly BitSet _LT_in_bitwiseANDExpression4130 = new BitSet(new ulong[]{0x400001000000UL});
+		public static readonly BitSet _46_in_bitwiseANDExpression4133 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_bitwiseANDExpression4135 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _bitwiseANDExpression_in_bitwiseANDExpression4138 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _equalityExpressionNoIn_in_bitwiseANDExpressionNoIn4186 = new BitSet(new ulong[]{0x400001000002UL});
+		public static readonly BitSet _LT_in_bitwiseANDExpressionNoIn4196 = new BitSet(new ulong[]{0x400001000000UL});
+		public static readonly BitSet _46_in_bitwiseANDExpressionNoIn4199 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_bitwiseANDExpressionNoIn4201 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _bitwiseANDExpressionNoIn_in_bitwiseANDExpressionNoIn4204 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _relationalExpression_in_equalityExpression4253 = new BitSet(new ulong[]{0x60001000002UL,0x60UL});
+		public static readonly BitSet _LT_in_equalityExpression4264 = new BitSet(new ulong[]{0x60001000000UL,0x60UL});
+		public static readonly BitSet _69_in_equalityExpression4270 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _41_in_equalityExpression4276 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _70_in_equalityExpression4282 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _42_in_equalityExpression4288 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_equalityExpression4291 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _equalityExpression_in_equalityExpression4296 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _relationalExpressionNoIn_in_equalityExpressionNoIn4483 = new BitSet(new ulong[]{0x60001000002UL,0x60UL});
+		public static readonly BitSet _LT_in_equalityExpressionNoIn4498 = new BitSet(new ulong[]{0x60001000000UL,0x60UL});
+		public static readonly BitSet _69_in_equalityExpressionNoIn4513 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _41_in_equalityExpressionNoIn4537 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _70_in_equalityExpressionNoIn4561 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _42_in_equalityExpressionNoIn4585 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_equalityExpressionNoIn4608 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _equalityExpressionNoIn_in_equalityExpressionNoIn4611 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _shiftExpression_in_relationalExpression4646 = new BitSet(new ulong[]{0x1000002UL,0x180000189UL});
+		public static readonly BitSet _LT_in_relationalExpression4657 = new BitSet(new ulong[]{0x1000000UL,0x180000189UL});
+		public static readonly BitSet _64_in_relationalExpression4663 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _71_in_relationalExpression4669 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _67_in_relationalExpression4675 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _72_in_relationalExpression4681 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _96_in_relationalExpression4687 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _95_in_relationalExpression4693 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_relationalExpression4696 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _relationalExpression_in_relationalExpression4701 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _shiftExpression_in_relationalExpressionNoIn4960 = new BitSet(new ulong[]{0x1000002UL,0x100000189UL});
+		public static readonly BitSet _LT_in_relationalExpressionNoIn4976 = new BitSet(new ulong[]{0x1000000UL,0x100000189UL});
+		public static readonly BitSet _64_in_relationalExpressionNoIn4991 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _71_in_relationalExpressionNoIn5019 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _67_in_relationalExpressionNoIn5046 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _72_in_relationalExpressionNoIn5073 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _96_in_relationalExpressionNoIn5100 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_relationalExpressionNoIn5124 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _relationalExpressionNoIn_in_relationalExpressionNoIn5127 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _additiveExpression_in_shiftExpression5167 = new BitSet(new ulong[]{0x1000002UL,0xA02UL});
+		public static readonly BitSet _LT_in_shiftExpression5193 = new BitSet(new ulong[]{0x1000000UL,0xA02UL});
+		public static readonly BitSet _65_in_shiftExpression5199 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _73_in_shiftExpression5205 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _75_in_shiftExpression5211 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_shiftExpression5214 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _shiftExpression_in_shiftExpression5219 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _multiplicativeExpression_in_additiveExpression5390 = new BitSet(new ulong[]{0x110000001000002UL});
+		public static readonly BitSet _LT_in_additiveExpression5399 = new BitSet(new ulong[]{0x110000001000000UL});
+		public static readonly BitSet _52_in_additiveExpression5405 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _56_in_additiveExpression5411 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_additiveExpression5414 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _additiveExpression_in_additiveExpression5419 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _unaryExpression_in_multiplicativeExpression5532 = new BitSet(new ulong[]{0x1004080001000002UL});
+		public static readonly BitSet _LT_in_multiplicativeExpression5543 = new BitSet(new ulong[]{0x1004080001000000UL});
+		public static readonly BitSet _50_in_multiplicativeExpression5549 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _60_in_multiplicativeExpression5555 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _43_in_multiplicativeExpression5561 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_multiplicativeExpression5564 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _multiplicativeExpression_in_multiplicativeExpression5569 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _postfixExpression_in_unaryExpression5722 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _87_in_unaryExpression5758 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
+		public static readonly BitSet _107_in_unaryExpression5764 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
+		public static readonly BitSet _105_in_unaryExpression5770 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
+		public static readonly BitSet _53_in_unaryExpression5776 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
+		public static readonly BitSet _57_in_unaryExpression5782 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
+		public static readonly BitSet _52_in_unaryExpression5788 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
+		public static readonly BitSet _56_in_unaryExpression5794 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
+		public static readonly BitSet _115_in_unaryExpression5800 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
+		public static readonly BitSet _40_in_unaryExpression5806 = new BitSet(new ulong[]{0x331010108200000UL,0x84AA624804000UL});
+		public static readonly BitSet _unaryExpression_in_unaryExpression5824 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _leftHandSideExpression_in_postfixExpression6076 = new BitSet(new ulong[]{0x220000000000002UL});
+		public static readonly BitSet _53_in_postfixExpression6086 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _57_in_postfixExpression6106 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _101_in_primaryExpression6144 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _Identifier_in_primaryExpression6165 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _literal_in_primaryExpression6185 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _arrayLiteral_in_primaryExpression6199 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _objectLiteral_in_primaryExpression6212 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _48_in_primaryExpression6225 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_primaryExpression6227 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _expression_in_primaryExpression6230 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _LT_in_primaryExpression6232 = new BitSet(new ulong[]{0x2000001000000UL});
+		public static readonly BitSet _49_in_primaryExpression6235 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _78_in_arrayLiteral6252 = new BitSet(new ulong[]{0x3B1010109200000UL,0x84AA62480C000UL});
+		public static readonly BitSet _LT_in_arrayLiteral6254 = new BitSet(new ulong[]{0x3B1010109200000UL,0x84AA62480C000UL});
+		public static readonly BitSet _assignmentExpression_in_arrayLiteral6257 = new BitSet(new ulong[]{0x80000001000000UL,0x8000UL});
+		public static readonly BitSet _LT_in_arrayLiteral6261 = new BitSet(new ulong[]{0x80000001000000UL});
+		public static readonly BitSet _55_in_arrayLiteral6264 = new BitSet(new ulong[]{0x3B1010109200000UL,0x84AA62480C000UL});
+		public static readonly BitSet _LT_in_arrayLiteral6267 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpression_in_arrayLiteral6270 = new BitSet(new ulong[]{0x80000001000000UL,0x8000UL});
+		public static readonly BitSet _LT_in_arrayLiteral6276 = new BitSet(new ulong[]{0x1000000UL,0x8000UL});
+		public static readonly BitSet _79_in_arrayLiteral6279 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _110_in_objectLiteral6314 = new BitSet(new ulong[]{0x109200000UL,0x4000000000000UL});
+		public static readonly BitSet _LT_in_objectLiteral6317 = new BitSet(new ulong[]{0x109200000UL});
+		public static readonly BitSet _propertyNameAndValue_in_objectLiteral6320 = new BitSet(new ulong[]{0x80000001000000UL,0x4000000000000UL});
+		public static readonly BitSet _LT_in_objectLiteral6323 = new BitSet(new ulong[]{0x80000001000000UL});
+		public static readonly BitSet _55_in_objectLiteral6326 = new BitSet(new ulong[]{0x109200000UL});
+		public static readonly BitSet _LT_in_objectLiteral6328 = new BitSet(new ulong[]{0x109200000UL});
+		public static readonly BitSet _propertyNameAndValue_in_objectLiteral6331 = new BitSet(new ulong[]{0x80000001000000UL,0x4000000000000UL});
+		public static readonly BitSet _LT_in_objectLiteral6337 = new BitSet(new ulong[]{0x1000000UL,0x4000000000000UL});
+		public static readonly BitSet _114_in_objectLiteral6340 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _propertyName_in_propertyNameAndValue6368 = new BitSet(new ulong[]{0x4000000001000000UL});
+		public static readonly BitSet _LT_in_propertyNameAndValue6370 = new BitSet(new ulong[]{0x4000000001000000UL});
+		public static readonly BitSet _62_in_propertyNameAndValue6373 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_propertyNameAndValue6375 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _assignmentExpression_in_propertyNameAndValue6378 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _Identifier_in_propertyName6407 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _StringLiteral_in_propertyName6422 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _NumericLiteral_in_propertyName6437 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _98_in_literal6458 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _103_in_literal6474 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _90_in_literal6490 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _StringLiteral_in_literal6506 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _NumericLiteral_in_literal6521 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _functionDeclaration_in_synpred5_JavaScript187 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _LT_in_synpred9_JavaScript274 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _statementBlock_in_synpred21_JavaScript430 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _expressionStatement_in_synpred24_JavaScript445 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _labelledStatement_in_synpred31_JavaScript480 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _LT_in_synpred34_JavaScript509 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _LT_in_synpred47_JavaScript668 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _LT_in_synpred49_JavaScript720 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _LT_in_synpred60_JavaScript883 = new BitSet(new ulong[]{0x1000000UL,0x2000000UL});
-		public static readonly BitSet _89_in_synpred60_JavaScript886 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _LT_in_synpred60_JavaScript888 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
-		public static readonly BitSet _statement_in_synpred60_JavaScript893 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _forStatement_in_synpred63_JavaScript939 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _LT_in_synpred118_JavaScript1675 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _LT_in_synpred121_JavaScript1714 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _conditionalExpression_in_synpred140_JavaScript1985 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _conditionalExpressionNoIn_in_synpred143_JavaScript2297 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _callExpression_in_synpred157_JavaScript2663 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _memberExpression_in_synpred158_JavaScript2680 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _LT_in_synpred162_JavaScript2756 = new BitSet(new ulong[]{0x800000001000000UL,0x4000UL});
-		public static readonly BitSet _indexSuffix_in_synpred162_JavaScript2790 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _propertyReferenceSuffix_in_synpred162_JavaScript2854 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _LT_in_synpred170_JavaScript3073 = new BitSet(new ulong[]{0x801000001000000UL,0x4000UL});
-		public static readonly BitSet _arguments_in_synpred170_JavaScript3109 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _indexSuffix_in_synpred170_JavaScript3162 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _propertyReferenceSuffix_in_synpred170_JavaScript3212 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _LT_in_synpred256_JavaScript5397 = new BitSet(new ulong[]{0x110000001000000UL});
-		public static readonly BitSet _52_in_synpred256_JavaScript5403 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _56_in_synpred256_JavaScript5409 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _LT_in_synpred256_JavaScript5412 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
-		public static readonly BitSet _additiveExpression_in_synpred256_JavaScript5417 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _LT_in_synpred280_JavaScript6252 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _LT_in_synpred19_JavaScript397 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _statementBlock_in_synpred22_JavaScript432 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _expressionStatement_in_synpred25_JavaScript447 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _labelledStatement_in_synpred32_JavaScript482 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _LT_in_synpred35_JavaScript511 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _LT_in_synpred48_JavaScript670 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _LT_in_synpred50_JavaScript722 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _LT_in_synpred61_JavaScript885 = new BitSet(new ulong[]{0x1000000UL,0x2000000UL});
+		public static readonly BitSet _89_in_synpred61_JavaScript888 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _LT_in_synpred61_JavaScript890 = new BitSet(new ulong[]{0x8331010109200000UL,0x87FFE75A44000UL});
+		public static readonly BitSet _statement_in_synpred61_JavaScript895 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _forStatement_in_synpred64_JavaScript941 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _LT_in_synpred119_JavaScript1677 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _LT_in_synpred122_JavaScript1716 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _conditionalExpression_in_synpred141_JavaScript1987 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _conditionalExpressionNoIn_in_synpred144_JavaScript2299 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _callExpression_in_synpred158_JavaScript2665 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _memberExpression_in_synpred159_JavaScript2682 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _LT_in_synpred163_JavaScript2758 = new BitSet(new ulong[]{0x800000001000000UL,0x4000UL});
+		public static readonly BitSet _indexSuffix_in_synpred163_JavaScript2792 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _propertyReferenceSuffix_in_synpred163_JavaScript2856 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _LT_in_synpred171_JavaScript3075 = new BitSet(new ulong[]{0x801000001000000UL,0x4000UL});
+		public static readonly BitSet _arguments_in_synpred171_JavaScript3111 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _indexSuffix_in_synpred171_JavaScript3164 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _propertyReferenceSuffix_in_synpred171_JavaScript3214 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _LT_in_synpred257_JavaScript5399 = new BitSet(new ulong[]{0x110000001000000UL});
+		public static readonly BitSet _52_in_synpred257_JavaScript5405 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _56_in_synpred257_JavaScript5411 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _LT_in_synpred257_JavaScript5414 = new BitSet(new ulong[]{0x331010109200000UL,0x84AA624804000UL});
+		public static readonly BitSet _additiveExpression_in_synpred257_JavaScript5419 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _LT_in_synpred281_JavaScript6254 = new BitSet(new ulong[]{0x2UL});
 	}
 	#endregion Follow sets
 }

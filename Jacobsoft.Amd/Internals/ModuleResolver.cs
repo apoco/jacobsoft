@@ -13,20 +13,31 @@ namespace Jacobsoft.Amd.Internals
     internal class ModuleResolver : IModuleResolver
     {
         private readonly IAmdConfiguration config;
+        private readonly IModuleRepository repository;
         private readonly IFileSystem fileSystem;
 
         private readonly JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
 
-        public ModuleResolver(IAmdConfiguration config, IFileSystem fileSystem)
+        public ModuleResolver(
+            IAmdConfiguration config, 
+            IModuleRepository repository,
+            IFileSystem fileSystem)
         {
             this.config = config;
+            this.repository = repository;
             this.fileSystem = fileSystem;
         }
 
         public IModule Resolve(string moduleName)
         {
-            var segments = this.GetModulePath(moduleName).ToList();
-            return Resolve(segments);
+            IModule module;
+            if (!this.repository.TryGetModule(moduleName, out module))
+            {
+                var segments = this.GetModulePath(moduleName).ToList();
+                module = this.Resolve(segments);
+                this.repository.Add(module);
+            }
+            return module;
         }
 
         private IModule Resolve(IEnumerable<string> subFolders, string moduleName)
@@ -75,53 +86,74 @@ namespace Jacobsoft.Amd.Internals
 
                 var moduleDef = (
                     from callExpression in program.Children.OfType<CallExpression>()
-                    where callExpression.Children[0].Text == "define"
+                    where callExpression.Function.Text == "define" 
                     select callExpression
                 ).SingleOrDefault();
 
                 if (moduleDef != null)
                 {
-                    var i = 0;
+                    var argsToProcess = new List<Expression>(moduleDef.Arguments);
+                    if (argsToProcess.Count == 0)
+                    {
+                        throw new InvalidModuleException(
+                            normalizedName, 
+                            "Module definition is empty.");
+                    }
+                    else if (argsToProcess.Count > 3)
+                    {
+                        throw new InvalidModuleException(
+                            normalizedName,
+                            "Module definition contains unexpected extra arguments.");
+                    }
 
-                    if (moduleDef.Arguments[i] is StringLiteral)
+                    var factory = argsToProcess.Last();
+                    argsToProcess.Remove(factory);
+
+                    var depsArray = argsToProcess.LastOrDefault() as ArrayLiteral;
+                    if (depsArray == null)
+                    {
+                        tokenStream.InsertBefore(factory.Token, "[], ");
+                    }
+                    else
+                    {
+                        foreach (var arrayItem in depsArray.Items)
+                        {
+                            if (arrayItem is StringLiteral)
+                            {
+                                var dependencyName =
+                                    jsSerializer.Deserialize<string>(arrayItem.Text);
+                                var dependency = this.Resolve(
+                                    subFolders,
+                                    dependencyName);
+                                dependencies.Add(dependency);
+
+                                tokenStream.Replace(
+                                    (arrayItem as StringLiteral).Token.TokenIndex,
+                                    string.Format("'{0}'", dependency.Name));
+                            }
+                        }
+                        argsToProcess.Remove(depsArray);
+                    }
+
+                    var nameLiteral = argsToProcess.LastOrDefault() as StringLiteral;
+                    if (nameLiteral == null)
+                    {
+                        tokenStream.InsertAfter(
+                            moduleDef.ArgumentList.Token,
+                            string.Format("'{0}', ", normalizedName));
+                    }
+                    else
                     {
                         var definedName = 
-                            jsSerializer.Deserialize<string>(moduleDef.Arguments[i].Text);
+                            jsSerializer.Deserialize<string>(nameLiteral.Text);
                         if (definedName != normalizedName)
                         {
-                            throw new InvalidNamedModuleException(
+                            throw new InvalidModuleException(
                                 normalizedName, 
                                 string.Format(
                                     "Module name '{0}' does not match expected value '{1}'. Anonymous modules are recommended.",
                                     definedName,
                                     normalizedName));
-                        }
-                        i++;
-                    }
-                    else
-                    {
-                        tokenStream.InsertBefore(
-                            moduleDef.Arguments[i].Token.TokenIndex,
-                            string.Format("'{0}', ", normalizedName));
-                    }
-
-                    if (moduleDef.Arguments[i] is ArrayLiteral)
-                    {
-                        foreach (var arrayItem in (moduleDef.Arguments[i] as ArrayLiteral).Children)
-                        {
-                            if (arrayItem is StringLiteral)
-                            {
-                                var dependencyName = 
-                                    jsSerializer.Deserialize<string>(arrayItem.Text);
-                                var dependency = this.Resolve(
-                                    subFolders, 
-                                    dependencyName);
-                                dependencies.Add(dependency);
-
-                                tokenStream.Replace(
-                                    (arrayItem as StringLiteral).Token.TokenIndex, 
-                                    string.Format("'{0}'", dependency.Name));
-                            }
                         }
                     }
                 }

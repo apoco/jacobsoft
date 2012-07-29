@@ -11,7 +11,7 @@ namespace Jacobsoft.Amd.Internals
 
         public AutoCastingList(IList<U> wrappedList)
         {
-            this.innerList = wrappedList;
+            this.innerList = wrappedList ?? new List<U>();
         }
 
         public int IndexOf(T item)

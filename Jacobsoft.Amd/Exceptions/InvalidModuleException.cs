@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Jacobsoft.Amd.Exceptions
 {
-    public class InvalidNamedModuleException : ModuleResolutionException
+    public class InvalidModuleException : ModuleResolutionException
     {
-        public InvalidNamedModuleException(string moduleName, string message) 
+        public InvalidModuleException(string moduleName, string message) 
             : base(moduleName, message)
         {
         }

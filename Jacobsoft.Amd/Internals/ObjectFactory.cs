@@ -10,12 +10,20 @@ namespace Jacobsoft.Amd.Internals
     {
         public virtual IAmdConfiguration GetConfiguration()
         {
-            return AmdSystem.Configuration;
+            return new AmdConfiguration();
         }
 
         public virtual IModuleResolver GetModuleResolver()
         {
-            return new ModuleResolver(this.GetConfiguration(), this.GetFileSystem());
+            return new ModuleResolver(
+                AmdConfiguration.Current,
+                this.GetRepository(),
+                this.GetFileSystem());
+        }
+
+        public virtual IModuleRepository GetRepository()
+        {
+            return new ModuleRepository();
         }
 
         public virtual IFileSystem GetFileSystem()

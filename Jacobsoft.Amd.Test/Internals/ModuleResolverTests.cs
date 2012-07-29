@@ -22,6 +22,40 @@ namespace Jacobsoft.Amd.Test.Internals
             this.autoMocker = new AutoMoqer();
         }
 
+        [TestMethod, ExpectedException(typeof(InvalidModuleException))]
+        public void Resolve_WithEmptyModuleDefinition()
+        {
+            var moduleName = "module";
+
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.ModuleFolder)
+                .Returns(@"X:\Modules");
+
+            this.ArrangeJavaScriptFile(
+                @"X:\Modules\module.js",
+                "define();");
+
+            this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleName);
+        }
+
+        [TestMethod, ExpectedException(typeof(InvalidModuleException))]
+        public void Resolve_WithUnexpectedArgumentCountInDefinition()
+        {
+            var moduleName = "module";
+
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.ModuleFolder)
+                .Returns(@"X:\Modules");
+
+            this.ArrangeJavaScriptFile(
+                @"X:\Modules\module.js",
+                @"define('module', ['foo', 'bar'], { some: 'value' }, function() { alert('Yo!'); });");
+
+            this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleName);
+        }
+
         [TestMethod]
         public void Resolve_WithNameAlreadyDefined()
         {
@@ -38,10 +72,10 @@ namespace Jacobsoft.Amd.Test.Internals
 
             var module = this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleName);
             Assert.AreEqual("module", module.Name);
-            Assert.AreEqual("define('module', function() { return 23; });", module.Content);
+            Assert.AreEqual("define('module', [], function() { return 23; });", module.Content);
         }
 
-        [TestMethod, ExpectedException(typeof(InvalidNamedModuleException))]
+        [TestMethod, ExpectedException(typeof(InvalidModuleException))]
         public void Resolve_InvalidNameDefined()
         {
             var moduleName = "module";
@@ -74,7 +108,26 @@ namespace Jacobsoft.Amd.Test.Internals
 
             var module = this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleName);
             Assert.AreEqual("module", module.Name);
-            Assert.AreEqual("define('module', function() { return 23; });", module.Content);
+            Assert.AreEqual("define('module', [], function() { return 23; });", module.Content);
+        }
+
+        [TestMethod]
+        public void Resolve_InsertsMissingDependencyArray()
+        {
+            var moduleName = "module";
+
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.ModuleFolder)
+                .Returns(@"X:\Modules");
+
+            this.ArrangeJavaScriptFile(
+                @"X:\Modules\module.js",
+                "define(function() { return 23; });");
+
+            var module = this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleName);
+            Assert.AreEqual("module", module.Name);
+            Assert.AreEqual("define('module', [], function() { return 23; });", module.Content);
         }
 
         [TestMethod]
@@ -103,12 +156,12 @@ namespace Jacobsoft.Amd.Test.Internals
 
             Assert.AreEqual("foo", dependencies[0].Name);
             Assert.AreEqual(
-                "define('foo', function(){ return function(str) { window.alert(str); }; });", 
+                "define('foo', [], function(){ return function(str) { window.alert(str); }; });", 
                 dependencies[0].Content);
 
             Assert.AreEqual("bar", dependencies[1].Name);
             Assert.AreEqual(
-                "define('bar', function(){ return 'bar'; });",
+                "define('bar', [], function(){ return 'bar'; });",
                 dependencies[1].Content);
         }
 
@@ -135,7 +188,7 @@ namespace Jacobsoft.Amd.Test.Internals
 
             Assert.AreEqual("library/foo", dependencies[0].Name);
             Assert.AreEqual(
-                "define('library/foo', function(){ return function(str) { window.alert(str); }; });",
+                "define('library/foo', [], function(){ return function(str) { window.alert(str); }; });",
                 dependencies[0].Content);
         }
 
@@ -162,7 +215,7 @@ namespace Jacobsoft.Amd.Test.Internals
 
             Assert.AreEqual("foo", dependencies[0].Name);
             Assert.AreEqual(
-                "define('foo', function(){ return function(str) { window.alert(str); }; });",
+                "define('foo', [], function(){ return function(str) { window.alert(str); }; });",
                 dependencies[0].Content);
         }
 
@@ -206,8 +259,45 @@ namespace Jacobsoft.Amd.Test.Internals
 
             Assert.AreEqual("library/subdir/foo", dependencies[0].Name);
             Assert.AreEqual(
-                "define('library/subdir/foo', function(){ return function(str) { window.alert(str); }; });",
+                "define('library/subdir/foo', [], function(){ return function(str) { window.alert(str); }; });",
                 dependencies[0].Content);
+        }
+
+        [TestMethod]
+        public void Resolve_CachesResults()
+        {
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.ModuleFolder)
+                .Returns(@"X:\Modules");
+
+            this.ArrangeJavaScriptFile(
+                @"X:\Modules\module.js",
+                "define(function() { return 'foo'; });");
+
+            var resolver = this.autoMocker.Resolve<ModuleResolver>();
+            var module = resolver.Resolve("module");
+
+            this.autoMocker
+                .GetMock<IModuleRepository>()
+                .Verify(r => r.Add(module));
+        }
+
+        [TestMethod]
+        public void Resolve_UsesCachedResults()
+        {
+            var moduleName = "module";
+            var expectedModule = Mock.Of<IModule>();
+
+            //var fromRepo = 
+            this.autoMocker
+                .GetMock<IModuleRepository>()
+                .Setup(r => r.TryGetModule(moduleName, out expectedModule))
+                .Returns(true);
+
+            var resolver = this.autoMocker.Resolve<ModuleResolver>();
+            var resolvedModule = resolver.Resolve("module");
+            Assert.AreSame(expectedModule, resolvedModule);
         }
 
         private void ArrangeJavaScriptFile(string fileName, string fileContents)

@@ -41,16 +41,32 @@ namespace Jacobsoft.Amd.Internals.AntlrGenerated
     internal class FunctionDeclaration : Statement
     {
         public FunctionDeclaration(IToken token) : base(token) { }
+
+        public StatementBlock StatementBlock
+        {
+            get { return this.Children[2] as StatementBlock; }
+        }
+
+        public IList<Statement> Statements
+        {
+            get { return this.StatementBlock.Statements; }
+        }
     }
 
     internal class FormalParameterList : BaseNode
     {
-        public FormalParameterList(IToken token) : base(token) { }
-    }
+        private readonly Lazy<IList<Identifier>> parameters;
 
-    internal class FunctionBody : BaseNode
-    {
-        public FunctionBody(IToken token) : base(token) { }
+        public FormalParameterList(IToken token) : base(token) 
+        {
+            this.parameters = new Lazy<IList<Identifier>>(
+                () => new AutoCastingList<Identifier, ITree>(this.Children));
+        }
+
+        public IList<Identifier> Parameters
+        {
+            get { return this.parameters.Value; }
+        }
     }
 
     internal class StatementBlock : Statement
@@ -440,6 +456,21 @@ namespace Jacobsoft.Amd.Internals.AntlrGenerated
     internal class FunctionExpression : Expression
     {
         public FunctionExpression(IToken token) : base(token) { }
+
+        public IList<Identifier> Parameters
+        {
+            get { return this.Children.OfType<FormalParameterList>().First().Parameters; }
+        }
+
+        public StatementBlock StatementBlock
+        {
+            get { return this.Children.OfType<StatementBlock>().First(); }
+        }
+
+        public IList<Statement> Statements
+        {
+            get { return this.StatementBlock.Statements; }
+        }
     }
 
     internal abstract class UnaryExpression : Expression
@@ -536,9 +567,14 @@ namespace Jacobsoft.Amd.Internals.AntlrGenerated
             get { return this.Children[0] as Expression; }
         }
 
+        public ArgumentList ArgumentList
+        {
+            get { return this.Children[1] as ArgumentList; }
+        }
+
         public IList<Expression> Arguments 
         {
-            get { return (this.Children[1] as ArgumentList).Arguments; }
+            get { return this.ArgumentList.Arguments; }
         }
     }
 
@@ -835,7 +871,18 @@ namespace Jacobsoft.Amd.Internals.AntlrGenerated
 
     internal class ArrayLiteral : Expression
     {
-        public ArrayLiteral(IToken token) : base(token) { }
+        private readonly Lazy<IList<Expression>> items;
+
+        public ArrayLiteral(IToken token) : base(token) 
+        {
+            this.items = new Lazy<IList<Expression>>(
+                () => new AutoCastingList<Expression, ITree>(this.Children));
+        }
+
+        public IList<Expression> Items
+        {
+            get { return items.Value; }
+        }
     }
 
     internal class ObjectLiteral : Expression

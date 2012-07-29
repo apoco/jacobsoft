@@ -19,7 +19,7 @@ namespace Jacobsoft.Amd
         private readonly IFileSystem fileSystem;
 
         public AmdController() : this(
-            AmdSystem.Configuration,
+            AmdConfiguration.Current,
             factory.GetModuleResolver(),
             factory.GetFileSystem())
         {
