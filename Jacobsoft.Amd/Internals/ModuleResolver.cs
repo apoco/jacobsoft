@@ -71,7 +71,7 @@ namespace Jacobsoft.Amd.Internals
         private IModule Resolve(IEnumerable<string> nameSegments)
         {
             var normalizedName = string.Join("/", nameSegments);
-            var filePath = nameSegments.Aggregate(this.config.ModuleFolder, Path.Combine) + ".js";
+            var filePath = nameSegments.Aggregate(this.config.ModuleRootUrl, Path.Combine) + ".js";
             var subFolders = nameSegments.Take(nameSegments.Count() - 1);
 
             using (var stream = this.fileSystem.Open(filePath, FileMode.Open))

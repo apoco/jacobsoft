@@ -48,6 +48,7 @@
       <HintPath>..\packages\Antlr.Unofficial.3.4.1.0\lib\Antlr4.StringTemplate.Visualizer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -60,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AmdConfiguration.cs" />
+    <Compile Include="AmdConfigurationSection.cs" />
     <Compile Include="AmdController.cs" />
     <Compile Include="Exceptions\InvalidModuleException.cs" />
     <Compile Include="Exceptions\InvalidPathException.cs" />
@@ -84,6 +86,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AmdConfiguration.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Internals\Antlr\JavaScript.g" />
     <None Include="Internals\Antlr\JavaScript.tokens" />
     <None Include="packages.config" />

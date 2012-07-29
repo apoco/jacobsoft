@@ -9,6 +9,6 @@ namespace Jacobsoft.Amd
     {
         string LoaderFilePath { get; }
 
-        string ModuleFolder { get; }
+        string ModuleRootUrl { get; }
     }
 }

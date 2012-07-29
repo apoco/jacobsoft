@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using System.Web.UI;
 using Jacobsoft.Amd.Internals;
 
@@ -50,6 +52,20 @@ namespace Jacobsoft.Amd
         {
             return this.Content(
                 this.resolver.Resolve(moduleName).Content, 
+                "text/javascript");
+        }
+
+        [HttpGet]
+        [OutputCache(Location = OutputCacheLocation.ServerAndClient)]
+        public ContentResult Config()
+        {
+            var baseUrl = VirtualPathUtility.ToAbsolute(
+                this.config.ModuleRootUrl,
+                this.Request.ApplicationPath);
+            return this.Content(
+                string.Format(
+                    "require.config({0});",
+                    new JavaScriptSerializer().Serialize(new { baseUrl = baseUrl })),
                 "text/javascript");
         }
     }

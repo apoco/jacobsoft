@@ -29,7 +29,7 @@ namespace Jacobsoft.Amd.Test.Internals
 
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
-                .Setup(c => c.ModuleFolder)
+                .Setup(c => c.ModuleRootUrl)
                 .Returns(@"X:\Modules");
 
             this.ArrangeJavaScriptFile(
@@ -46,7 +46,7 @@ namespace Jacobsoft.Amd.Test.Internals
 
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
-                .Setup(c => c.ModuleFolder)
+                .Setup(c => c.ModuleRootUrl)
                 .Returns(@"X:\Modules");
 
             this.ArrangeJavaScriptFile(
@@ -63,7 +63,7 @@ namespace Jacobsoft.Amd.Test.Internals
 
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
-                .Setup(c => c.ModuleFolder)
+                .Setup(c => c.ModuleRootUrl)
                 .Returns(@"X:\Modules");
 
             this.ArrangeJavaScriptFile(
@@ -82,7 +82,7 @@ namespace Jacobsoft.Amd.Test.Internals
 
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
-                .Setup(c => c.ModuleFolder)
+                .Setup(c => c.ModuleRootUrl)
                 .Returns(@"X:\Modules");
 
             this.ArrangeJavaScriptFile(
@@ -99,7 +99,7 @@ namespace Jacobsoft.Amd.Test.Internals
 
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
-                .Setup(c => c.ModuleFolder)
+                .Setup(c => c.ModuleRootUrl)
                 .Returns(@"X:\Modules");
 
             this.ArrangeJavaScriptFile(
@@ -118,7 +118,7 @@ namespace Jacobsoft.Amd.Test.Internals
 
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
-                .Setup(c => c.ModuleFolder)
+                .Setup(c => c.ModuleRootUrl)
                 .Returns(@"X:\Modules");
 
             this.ArrangeJavaScriptFile(
@@ -137,7 +137,7 @@ namespace Jacobsoft.Amd.Test.Internals
 
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
-                .Setup(c => c.ModuleFolder)
+                .Setup(c => c.ModuleRootUrl)
                 .Returns(@"X:\Modules");
 
             this.ArrangeJavaScriptFile(
@@ -172,7 +172,7 @@ namespace Jacobsoft.Amd.Test.Internals
 
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
-                .Setup(c => c.ModuleFolder)
+                .Setup(c => c.ModuleRootUrl)
                 .Returns(@"X:\Modules");
 
             this.ArrangeJavaScriptFile(
@@ -199,7 +199,7 @@ namespace Jacobsoft.Amd.Test.Internals
 
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
-                .Setup(c => c.ModuleFolder)
+                .Setup(c => c.ModuleRootUrl)
                 .Returns(@"X:\Modules");
 
             this.ArrangeJavaScriptFile(
@@ -226,7 +226,7 @@ namespace Jacobsoft.Amd.Test.Internals
 
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
-                .Setup(c => c.ModuleFolder)
+                .Setup(c => c.ModuleRootUrl)
                 .Returns(@"X:\Modules");
 
             this.ArrangeJavaScriptFile(
@@ -243,7 +243,7 @@ namespace Jacobsoft.Amd.Test.Internals
 
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
-                .Setup(c => c.ModuleFolder)
+                .Setup(c => c.ModuleRootUrl)
                 .Returns(@"X:\Modules");
 
             this.ArrangeJavaScriptFile(
@@ -268,7 +268,7 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
-                .Setup(c => c.ModuleFolder)
+                .Setup(c => c.ModuleRootUrl)
                 .Returns(@"X:\Modules");
 
             this.ArrangeJavaScriptFile(

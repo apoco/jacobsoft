@@ -103,6 +103,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Require.JS - LICENSE.txt" />
+    <Content Include="Scripts\require.js" />
+    <Content Include="Scripts\require.min.js">
+      <DependentUpon>require.js</DependentUpon>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

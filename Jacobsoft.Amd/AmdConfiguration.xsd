@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AmdConfiguration"
+    targetNamespace="http://namespaces.jacobsoft.com/AmdConfiguration.xsd"
+    elementFormDefault="qualified"
+    xmlns="http://namespaces.jacobsoft.com/AmdConfiguration.xsd"
+    xmlns:mstns="http://namespaces.jacobsoft.com/AmdConfiguration.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <xs:element name="jacobsoft.amd" type="AmdConfiguration"/>
+
+  <xs:complexType name="AmdConfiguration">
+    <xs:attribute name="loaderUrl" type="xs:string" use="required"/>
+    <xs:attribute name="moduleRootUrl" type="xs:string" default="~/Scripts"/>
+    <xs:attribute name="optimize" type="xs:boolean" default="false"/>
+  </xs:complexType>
+</xs:schema>

@@ -1,9 +1,15 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
+using System.Web.Script.Serialization;
+using Antlr.Runtime;
 using AutoMoq;
 using AutoMoq.Helpers;
 using Jacobsoft.Amd.Internals;
+using Jacobsoft.Amd.Internals.AntlrGenerated;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -14,6 +20,7 @@ namespace Jacobsoft.Amd.Test
     {
         private AutoMoqer autoMocker;
         private AmdController controller;
+        private JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
 
         [TestInitialize]
         public void Initialize()
@@ -23,6 +30,16 @@ namespace Jacobsoft.Amd.Test
                 this.autoMocker.GetMock<IAmdConfiguration>().Object,
                 this.autoMocker.GetMock<IModuleResolver>().Object,
                 this.autoMocker.GetMock<IFileSystem>().Object);
+            
+            var httpContext = this.autoMocker.GetMock<HttpContextBase>();
+            httpContext
+                .Setup(c => c.Request)
+                .Returns(this.autoMocker.GetMock<HttpRequestBase>().Object);
+
+            controller.ControllerContext = new ControllerContext(
+                httpContext.Object,
+                new RouteData(),
+                controller);
         }
 
         [TestMethod]
@@ -58,6 +75,39 @@ namespace Jacobsoft.Amd.Test
                 Assert.AreEqual("text/javascript", result.ContentType);
                 Assert.AreEqual(loaderFileStream, result.FileStream);
             }
+        }
+
+        [TestMethod]
+        public void GetConfig()
+        {
+            autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.ModuleRootUrl)
+                .Returns("~/Scripts");
+
+            autoMocker
+                .GetMock<HttpRequestBase>()
+                .Setup(r => r.ApplicationPath)
+                .Returns("/");
+
+            var result = this.controller.Config() as ContentResult;
+            Assert.IsNotNull(result);
+
+            var program = JavaScriptTestHelper.ParseProgram(result.Content);
+            var configCall = program.Statements[0].As<CallExpression>();
+
+            var functionRef = configCall.Function.As<PropertyExpression>();
+            functionRef.Object.Is<Identifier>("require");
+            functionRef.Property.Is<Identifier>("config");
+
+            var configVals = configCall.Arguments[0].As<ObjectLiteral>();
+            var baseUrlLiteral = configVals
+                .Assignments
+                .Single(a => a.Property.Text == "\"baseUrl\"")
+                .Value
+                .As<StringLiteral>();
+            var baseUrl = this.jsSerializer.Deserialize<string>(baseUrlLiteral.Text);
+            Assert.AreEqual("/Scripts", baseUrl);
         }
 
         [TestMethod]

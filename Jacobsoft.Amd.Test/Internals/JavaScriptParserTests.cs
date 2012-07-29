@@ -17,9 +17,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3;");
             
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<NumericLiteral>("3", assignment.Value);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.Is<NumericLiteral>("3");
         }
 
         [TestMethod]
@@ -27,9 +27,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = null;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<NullLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.Is<NullLiteral>();
         }
 
         [TestMethod]
@@ -37,9 +37,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = false;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<FalseLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.Is<FalseLiteral>();
         }
 
         [TestMethod]
@@ -47,18 +47,18 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = true;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<TrueLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.Is<TrueLiteral>();
         }
 
         [TestMethod]
         public void ParseStringLiteral_WithUnicodeCharacters()
         {
             var program = this.ParseProgram(@"foo = '\u0052';");
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<StringLiteral>(@"'\u0052'", assignment.Value);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.Is<StringLiteral>(@"'\u0052'");
         }
 
         [TestMethod]
@@ -66,9 +66,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = {};");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<ObjectLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.Is<ObjectLiteral>();
         }
 
         [TestMethod]
@@ -76,31 +76,31 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = {0: null, bar: 1, 'baz': 2};");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            
-            var obj = this.AssertNode<ObjectLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            this.AssertNode<NumericLiteral>("0", obj.Assignments[0].Property);
-            this.AssertNode<NullLiteral>(obj.Assignments[0].Value);
+            var obj = assignment.Value.As<ObjectLiteral>();
 
-            this.AssertNode<Identifier>("bar", obj.Assignments[1].Property);
-            this.AssertNode<NumericLiteral>("1", obj.Assignments[1].Value);
+            obj.Assignments[0].Property.Is<NumericLiteral>("0");
+            obj.Assignments[0].Value.Is<NullLiteral>();
 
-            this.AssertNode<StringLiteral>("'baz'", obj.Assignments[2].Property);
-            this.AssertNode<NumericLiteral>("2", obj.Assignments[2].Value);
+            obj.Assignments[1].Property.Is<Identifier>("bar");
+            obj.Assignments[1].Value.Is<NumericLiteral>("1");
+
+            obj.Assignments[2].Property.Is<StringLiteral>("'baz'");
+            obj.Assignments[2].Value.Is<NumericLiteral>("2");
         }
 
         [TestMethod]
         public void ParseThisExpression()
         {
             var program = this.ParseProgram("this.alert('foo');");
-            var call = this.AssertNode<CallExpression>(program.Statements[0]);
-            this.AssertNode<StringLiteral>("'foo'", call.Arguments[0]);
+            var call = program.Statements[0].As<CallExpression>();
+            call.Arguments[0].Is<StringLiteral>("'foo'");
 
-            var propExpr = this.AssertNode<PropertyExpression>(call.Function);
-            this.AssertNode<ThisExpression>(propExpr.Object);
-            this.AssertNode<Identifier>("alert", propExpr.Property);
+            var propExpr = call.Function.As<PropertyExpression>();
+            propExpr.Object.Is<ThisExpression>();
+            propExpr.Property.Is<Identifier>("alert");
         }
 
         [TestMethod]
@@ -108,11 +108,11 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = ~foo;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var bitwiseNot = this.AssertNode<BitwiseNotExpression>(assignment.Value);
-            this.AssertNode<Identifier>("foo", bitwiseNot.Operand);
+            var bitwiseNot = assignment.Value.As<BitwiseNotExpression>();
+            bitwiseNot.Operand.Is<Identifier>("foo");
         }
 
         [TestMethod]
@@ -120,11 +120,11 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = !foo;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var bitwiseNot = this.AssertNode<BooleanNotExpression>(assignment.Value);
-            this.AssertNode<Identifier>("foo", bitwiseNot.Operand);
+            var bitwiseNot = assignment.Value.As<BooleanNotExpression>();
+            bitwiseNot.Operand.Is<Identifier>("foo");
         }
 
         [TestMethod]
@@ -132,11 +132,11 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = -foo;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var bitwiseNot = this.AssertNode<NegationExpression>(assignment.Value);
-            this.AssertNode<Identifier>("foo", bitwiseNot.Operand);
+            var bitwiseNot = assignment.Value.As<NegationExpression>();
+            bitwiseNot.Operand.Is<Identifier>("foo");
         }
 
         [TestMethod]
@@ -144,11 +144,11 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = +bar;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var bitwiseNot = this.AssertNode<UnaryPlusExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", bitwiseNot.Operand);
+            var bitwiseNot = assignment.Value.As<UnaryPlusExpression>();
+            bitwiseNot.Operand.Is<Identifier>("bar");
         }
 
         [TestMethod]
@@ -156,11 +156,11 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = typeof(bar);");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var typeofExpr = this.AssertNode<TypeofExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", typeofExpr.Operand);
+            var typeofExpr = assignment.Value.As<TypeofExpression>();
+            typeofExpr.Operand.Is<Identifier>("bar");
         }
 
         [TestMethod]
@@ -168,11 +168,11 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = void(bar);");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var voidExpr = this.AssertNode<VoidExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", voidExpr.Operand);
+            var voidExpr = assignment.Value.As<VoidExpression>();
+            voidExpr.Operand.Is<Identifier>("bar");
         }
 
         [TestMethod]
@@ -180,12 +180,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3 + 4;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
             
-            var addition = this.AssertNode<AdditionExpression>(assignment.Value);
-            this.AssertNode<NumericLiteral>(addition.Operands[0]);
-            this.AssertNode<NumericLiteral>(addition.Operands[1]);
+            var addition = assignment.Value.As<AdditionExpression>();
+            addition.Operands[0].As<NumericLiteral>();
+            addition.Operands[1].As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -193,12 +193,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3 - 4;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var addition = this.AssertNode<SubtractionExpression>(assignment.Value);
-            this.AssertNode<NumericLiteral>(addition.Operands[0]);
-            this.AssertNode<NumericLiteral>(addition.Operands[1]);
+            var addition = assignment.Value.As<SubtractionExpression>();
+            addition.Operands[0].As<NumericLiteral>();
+            addition.Operands[1].As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -206,12 +206,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3 * 4;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var division = this.AssertNode<MultiplicationExpression>(assignment.Value);
-            this.AssertNode<NumericLiteral>(division.Operands[0]);
-            this.AssertNode<NumericLiteral>(division.Operands[1]);
+            var division = assignment.Value.As<MultiplicationExpression>();
+            division.Operands[0].As<NumericLiteral>();
+            division.Operands[1].As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -219,12 +219,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3 / 4;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var division = this.AssertNode<DivisionExpression>(assignment.Value);
-            this.AssertNode<NumericLiteral>(division.Operands[0]);
-            this.AssertNode<NumericLiteral>(division.Operands[1]);
+            var division = assignment.Value.As<DivisionExpression>();
+            division.Operands[0].As<NumericLiteral>();
+            division.Operands[1].As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -232,12 +232,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3 % 4;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var division = this.AssertNode<ModulusExpression>(assignment.Value);
-            this.AssertNode<NumericLiteral>(division.Operands[0]);
-            this.AssertNode<NumericLiteral>(division.Operands[1]);
+            var division = assignment.Value.As<ModulusExpression>();
+            division.Operands[0].As<NumericLiteral>();
+            division.Operands[1].As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -245,12 +245,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3 & 4;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var andExpr = this.AssertNode<BitwiseAndExpression>(assignment.Value);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[0]);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[1]);
+            var andExpr = assignment.Value.As<BitwiseAndExpression>();
+            andExpr.Operands[0].As<NumericLiteral>();
+            andExpr.Operands[1].As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -258,12 +258,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3 | 4;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var andExpr = this.AssertNode<BitwiseOrExpression>(assignment.Value);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[0]);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[1]);
+            var andExpr = assignment.Value.As<BitwiseOrExpression>();
+            andExpr.Operands[0].As<NumericLiteral>();
+            andExpr.Operands[1].As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -271,12 +271,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3 ^ 4;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var andExpr = this.AssertNode<BitwiseXorExpression>(assignment.Value);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[0]);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[1]);
+            var andExpr = assignment.Value.As<BitwiseXorExpression>();
+            andExpr.Operands[0].As<NumericLiteral>();
+            andExpr.Operands[1].As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -284,12 +284,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3 && 4;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var andExpr = this.AssertNode<LogicalAndExpression>(assignment.Value);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[0]);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[1]);
+            var andExpr = assignment.Value.As<LogicalAndExpression>();
+            andExpr.Operands[0].As<NumericLiteral>();
+            andExpr.Operands[1].As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -297,12 +297,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3 || 4;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var andExpr = this.AssertNode<LogicalOrExpression>(assignment.Value);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[0]);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[1]);
+            var andExpr = assignment.Value.As<LogicalOrExpression>();
+            andExpr.Operands[0].As<NumericLiteral>();
+            andExpr.Operands[1].As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -310,12 +310,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3 << 4;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var andExpr = this.AssertNode<ShiftLeftExpression>(assignment.Value);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[0]);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[1]);
+            var andExpr = assignment.Value.As<ShiftLeftExpression>();
+            andExpr.Operands[0].As<NumericLiteral>();
+            andExpr.Operands[1].As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -323,12 +323,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3 >> 4;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var andExpr = this.AssertNode<ShiftRightExpression>(assignment.Value);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[0]);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[1]);
+            var andExpr = assignment.Value.As<ShiftRightExpression>();
+            andExpr.Operands[0].As<NumericLiteral>();
+            andExpr.Operands[1].As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -336,12 +336,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = 3 >>> 4;");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var andExpr = this.AssertNode<RotateRightExpression>(assignment.Value);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[0]);
-            this.AssertNode<NumericLiteral>(andExpr.Operands[1]);
+            var andExpr = assignment.Value.As<RotateRightExpression>();
+            andExpr.Operands[0].As<NumericLiteral>();
+            andExpr.Operands[1].As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -349,12 +349,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = (bar == baz);");
             
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var comp = this.AssertNode<EqualToExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", comp.Operands[0]);
-            this.AssertNode<Identifier>("baz", comp.Operands[1]);
+            var comp = assignment.Value.As<EqualToExpression>();
+            comp.Operands[0].Is<Identifier>("bar");
+            comp.Operands[1].Is<Identifier>("baz");
         }
 
         [TestMethod]
@@ -362,12 +362,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = (bar != baz);");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var comp = this.AssertNode<NotEqualToExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", comp.Operands[0]);
-            this.AssertNode<Identifier>("baz", comp.Operands[1]);
+            var comp = assignment.Value.As<NotEqualToExpression>();
+            comp.Operands[0].Is<Identifier>("bar");
+            comp.Operands[1].Is<Identifier>("baz");
         }
 
         [TestMethod]
@@ -375,12 +375,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = (bar === baz);");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var comp = this.AssertNode<StrictlyEqualToExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", comp.Operands[0]);
-            this.AssertNode<Identifier>("baz", comp.Operands[1]);
+            var comp = assignment.Value.As<StrictlyEqualToExpression>();
+            comp.Operands[0].Is<Identifier>("bar");
+            comp.Operands[1].Is<Identifier>("baz");
         }
 
         [TestMethod]
@@ -388,12 +388,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = (bar !== baz);");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var comp = this.AssertNode<NotStrictlyEqualToExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", comp.Operands[0]);
-            this.AssertNode<Identifier>("baz", comp.Operands[1]);
+            var comp = assignment.Value.As<NotStrictlyEqualToExpression>();
+            comp.Operands[0].Is<Identifier>("bar");
+            comp.Operands[1].Is<Identifier>("baz");
         }
 
         [TestMethod]
@@ -401,12 +401,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = (bar > baz);");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var comp = this.AssertNode<GreaterThanExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", comp.Operands[0]);
-            this.AssertNode<Identifier>("baz", comp.Operands[1]);
+            var comp = assignment.Value.As<GreaterThanExpression>();
+            comp.Operands[0].Is<Identifier>("bar");
+            comp.Operands[1].Is<Identifier>("baz");
         }
 
         [TestMethod]
@@ -414,12 +414,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = (bar >= baz);");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var comp = this.AssertNode<GreaterThanOrEqualToExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", comp.Operands[0]);
-            this.AssertNode<Identifier>("baz", comp.Operands[1]);
+            var comp = assignment.Value.As<GreaterThanOrEqualToExpression>();
+            comp.Operands[0].Is<Identifier>("bar");
+            comp.Operands[1].Is<Identifier>("baz");
         }
 
         [TestMethod]
@@ -427,12 +427,12 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = (bar in baz);");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var inExpr = this.AssertNode<InExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", inExpr.Operands[0]);
-            this.AssertNode<Identifier>("baz", inExpr.Operands[1]);
+            var inExpr = assignment.Value.As<InExpression>();
+            inExpr.Operands[0].Is<Identifier>("bar");
+            inExpr.Operands[1].Is<Identifier>("baz");
         }
 
         [TestMethod]
@@ -440,57 +440,57 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = (bar instanceof baz);");
 
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var inExpr = this.AssertNode<InstanceOfExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", inExpr.Operands[0]);
-            this.AssertNode<Identifier>("baz", inExpr.Operands[1]);
+            var inExpr = assignment.Value.As<InstanceOfExpression>();
+            inExpr.Operands[0].Is<Identifier>("bar");
+            inExpr.Operands[1].Is<Identifier>("baz");
         }
 
         [TestMethod]
         public void ParseConditionalExpression()
         {
             var program = this.ParseProgram("foo = bar ? bar : baz;");
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var condExpr = this.AssertNode<ConditionalExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", condExpr.Condition);
-            this.AssertNode<Identifier>("bar", condExpr.TrueExpression);
-            this.AssertNode<Identifier>("baz", condExpr.FalseExpression);
+            var condExpr = assignment.Value.As<ConditionalExpression>();
+            condExpr.Condition.Is<Identifier>("bar");
+            condExpr.TrueExpression.Is<Identifier>("bar");
+            condExpr.FalseExpression.Is<Identifier>("baz");
         }
 
         [TestMethod]
         public void ParsePrefixIncrementer()
         {
             var program = this.ParseProgram("++foo;");
-            var incrementer = this.AssertNode<PrefixIncrementExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", incrementer.Operand);
+            var incrementer = program.Statements[0].As<PrefixIncrementExpression>();
+            incrementer.Operand.Is<Identifier>("foo");
         }
 
         [TestMethod]
         public void ParsePostfixIncrementer()
         {
             var program = this.ParseProgram("foo++;");
-            var incrementer = this.AssertNode<PostfixIncrementExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", incrementer.Operand);
+            var incrementer = program.Statements[0].As<PostfixIncrementExpression>();
+            incrementer.Operand.Is<Identifier>("foo");
         }
 
         [TestMethod]
         public void ParsePrefixDecrementer()
         {
             var program = this.ParseProgram("--foo;");
-            var incrementer = this.AssertNode<PrefixDecrementExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", incrementer.Operand);
+            var incrementer = program.Statements[0].As<PrefixDecrementExpression>();
+            incrementer.Operand.Is<Identifier>("foo");
         }
 
         [TestMethod]
         public void ParsePostfixDecrementer()
         {
             var program = this.ParseProgram("foo--;");
-            var incrementer = this.AssertNode<PostfixDecrementExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", incrementer.Operand);
+            var incrementer = program.Statements[0].As<PostfixDecrementExpression>();
+            incrementer.Operand.Is<Identifier>("foo");
         }
 
         [TestMethod]
@@ -498,9 +498,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo += 3;");
 
-            var assignment = this.AssertNode<AddAndAssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<NumericLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<AddAndAssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -508,9 +508,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo -= 3;");
 
-            var assignment = this.AssertNode<SubtractAndAssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<NumericLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<SubtractAndAssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -518,9 +518,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo *= 3;");
 
-            var assignment = this.AssertNode<MultiplyAndAssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<NumericLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<MultiplyAndAssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -528,9 +528,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo /= 3;");
 
-            var assignment = this.AssertNode<DivideAndAssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<NumericLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<DivideAndAssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -538,9 +538,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo %= 3;");
 
-            var assignment = this.AssertNode<ModulusAndAssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<NumericLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<ModulusAndAssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -548,9 +548,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo &= 3;");
 
-            var assignment = this.AssertNode<BitwiseAndAndAssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<NumericLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<BitwiseAndAndAssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -558,9 +558,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo |= 3;");
 
-            var assignment = this.AssertNode<BitwiseOrAndAssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<NumericLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<BitwiseOrAndAssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -568,9 +568,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo ^= 3;");
 
-            var assignment = this.AssertNode<BitwiseXorAndAssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<NumericLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<BitwiseXorAndAssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -578,9 +578,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo <<= 3;");
 
-            var assignment = this.AssertNode<ShiftLeftAndAssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<NumericLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<ShiftLeftAndAssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -588,9 +588,9 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo >>= 3;");
 
-            var assignment = this.AssertNode<ShiftRightAndAssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<NumericLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<ShiftRightAndAssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.As<NumericLiteral>();
         }
 
         [TestMethod]
@@ -598,99 +598,99 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo >>>= 3;");
 
-            var assignment = this.AssertNode<RotateRightAndAssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
-            this.AssertNode<NumericLiteral>(assignment.Value);
+            var assignment = program.Statements[0].As<RotateRightAndAssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
+            assignment.Value.As<NumericLiteral>();
         }
 
         [TestMethod]
         public void ParseIndexExpression()
         {
             var program = this.ParseProgram("foo = bar[0];");
-            var assignment = this.AssertNode<AssignmentExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignmentExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var indexExpr = this.AssertNode<IndexExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", indexExpr.Object);
-            this.AssertNode<NumericLiteral>("0", indexExpr.Index);
+            var indexExpr = assignment.Value.As<IndexExpression>();
+            indexExpr.Object.Is<Identifier>("bar");
+            indexExpr.Index.Is<NumericLiteral>("0");
         }
 
         [TestMethod]
         public void ParsePropertyExpression()
         {
             var program = this.ParseProgram("foo.bar();");
-            var call = this.AssertNode<CallExpression>(program.Statements[0]);
-            var propExpr = this.AssertNode<PropertyExpression>(call.Function);
-            this.AssertNode<Identifier>("foo", propExpr.Object);
-            this.AssertNode<Identifier>("bar", propExpr.Property);
+            var call = program.Statements[0].As<CallExpression>();
+            var propExpr = call.Function.As<PropertyExpression>();
+            propExpr.Object.Is<Identifier>("foo");
+            propExpr.Property.Is<Identifier>("bar");
         }
 
         [TestMethod]
         public void ParseNewExpression()
         {
             var program = this.ParseProgram("foo = new bar(3);");
-            var assignment = this.AssertNode<AssignExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", assignment.Target);
+            var assignment = program.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("foo");
 
-            var newExpr = this.AssertNode<NewExpression>(assignment.Value);
-            this.AssertNode<Identifier>("bar", newExpr.Constructor);
-            this.AssertNode<NumericLiteral>("3", newExpr.Arguments[0]);
+            var newExpr = assignment.Value.As<NewExpression>();
+            newExpr.Constructor.Is<Identifier>("bar");
+            newExpr.Arguments[0].Is<NumericLiteral>("3");
         }
 
         [TestMethod]
         public void ParseDeleteExpression()
         {
             var program = this.ParseProgram("delete foo;");
-            var deletion = this.AssertNode<DeleteExpression>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", deletion.Operand);
+            var deletion = program.Statements[0].As<DeleteExpression>();
+            deletion.Operand.Is<Identifier>("foo");
         }
 
         [TestMethod]
         public void ParseEmptyStatement()
         {
             var program = this.ParseProgram(";");
-            var stmt = this.AssertNode<EmptyStatement>(program.Statements[0]);
+            var stmt = program.Statements[0].As<EmptyStatement>();
         }
 
         [TestMethod]
         public void ParseStatementBlock()
         {
             var program = this.ParseProgram("{ bar = baz; }");
-            var block = this.AssertNode<StatementBlock>(program.Statements[0]);
-            var assignment = this.AssertNode<AssignExpression>(block.Statements[0]);
-            this.AssertNode<Identifier>("bar", assignment.Target);
-            this.AssertNode<Identifier>("baz", assignment.Value);
+            var block = program.Statements[0].As<StatementBlock>();
+            var assignment = block.Statements[0].As<AssignExpression>();
+            assignment.Target.Is<Identifier>("bar");
+            assignment.Value.Is<Identifier>("baz");
         }
 
         [TestMethod]
         public void ParseVariableStatement()
         {
             var program = this.ParseProgram("var foo;");
-            var stmt = this.AssertNode<VariableStatement>(program.Statements[0]);
-            var decl = this.AssertNode<VariableDeclaration>(stmt.Declarations[0]);
-            this.AssertNode<Identifier>("foo", decl.Identifier);
+            var stmt = program.Statements[0].As<VariableStatement>();
+            var decl = stmt.Declarations[0].As<VariableDeclaration>();
+            decl.Identifier.Is<Identifier>("foo");
         }
 
         [TestMethod]
         public void ParseVariableStatementWithInitializer()
         {
             var program = this.ParseProgram("var foo = 3;");
-            var stmt = this.AssertNode<VariableStatement>(program.Statements[0]);
-            var decl = this.AssertNode<VariableDeclaration>(stmt.Declarations[0]);
-            this.AssertNode<Identifier>("foo", decl.Identifier);
-            this.AssertNode<NumericLiteral>("3", decl.InitialValue);
+            var stmt = program.Statements[0].As<VariableStatement>();
+            var decl = stmt.Declarations[0].As<VariableDeclaration>();
+            decl.Identifier.Is<Identifier>("foo");
+            decl.InitialValue.Is<NumericLiteral>("3");
         }
 
         [TestMethod]
         public void ParseIfStatement()
         {
             var program = this.ParseProgram("if (foo) { bar(3); }");
-            var ifStmt = this.AssertNode<IfStatement>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", ifStmt.Condition);
-            var block = this.AssertNode<StatementBlock>(ifStmt.Statement);
-            var call = this.AssertNode<CallExpression>(block.Statements[0]);
-            this.AssertNode<Identifier>("bar", call.Function);
-            this.AssertNode<NumericLiteral>("3", call.Arguments[0]);
+            var ifStmt = program.Statements[0].As<IfStatement>();
+            ifStmt.Condition.Is<Identifier>("foo");
+            var block = ifStmt.Statement.As<StatementBlock>();
+            var call = block.Statements[0].As<CallExpression>();
+            call.Function.Is<Identifier>("bar");
+            call.Arguments[0].Is<NumericLiteral>("3");
             Assert.IsNull(ifStmt.ElseStatement);
         }
 
@@ -698,126 +698,126 @@ namespace Jacobsoft.Amd.Test.Internals
         public void ParseIfElseStatement()
         {
             var program = this.ParseProgram("if (foo) bar(3); else alert('baz');");
-            var ifStmt = this.AssertNode<IfStatement>(program.Statements[0]);
-            this.AssertNode<Identifier>("foo", ifStmt.Condition);
+            var ifStmt = program.Statements[0].As<IfStatement>();
+            ifStmt.Condition.Is<Identifier>("foo");
             
-            var call = this.AssertNode<CallExpression>(ifStmt.Statement);
-            this.AssertNode<Identifier>("bar", call.Function);
-            this.AssertNode<NumericLiteral>("3", call.Arguments[0]);
+            var call = ifStmt.Statement.As<CallExpression>();
+            call.Function.Is<Identifier>("bar");
+            call.Arguments[0].Is<NumericLiteral>("3");
 
-            call = this.AssertNode<CallExpression>(ifStmt.ElseStatement);
-            this.AssertNode<Identifier>("alert", call.Function);
-            this.AssertNode<StringLiteral>("'baz'", call.Arguments[0]);
+            call = ifStmt.ElseStatement.As<CallExpression>();
+            call.Function.Is<Identifier>("alert");
+            call.Arguments[0].Is<StringLiteral>("'baz'");
         }
 
         [TestMethod]
         public void ParseSwitchStatement()
         {
             var program = this.ParseProgram("switch (foo) { case 1: bar(3); break; case 2: baz(3); break; default: alert('foo!'); }");
-            var switchStmt = this.AssertNode<SwitchStatement>(program.Statements[0]);
+            var switchStmt = program.Statements[0].As<SwitchStatement>();
             
-            this.AssertNode<Identifier>("foo", switchStmt.Expression);
-            this.AssertNode<NumericLiteral>("1", switchStmt.CaseClauses[0].Expression);
-            this.AssertNode<NumericLiteral>("2", switchStmt.CaseClauses[1].Expression);
+            switchStmt.Expression.Is<Identifier>("foo");
+            switchStmt.CaseClauses[0].Expression.Is<NumericLiteral>("1");
+            switchStmt.CaseClauses[1].Expression.Is<NumericLiteral>("2");
 
-            var call = this.AssertNode<CallExpression>(switchStmt.CaseClauses[0].Statements[0]);
-            this.AssertNode<Identifier>("bar", call.Function);
-            this.AssertNode<NumericLiteral>("3", call.Arguments[0]);
-            this.AssertNode<BreakStatement>(switchStmt.CaseClauses[0].Statements[1]);
+            var call = switchStmt.CaseClauses[0].Statements[0].As<CallExpression>();
+            call.Function.Is<Identifier>("bar");
+            call.Arguments[0].Is<NumericLiteral>("3");
+            switchStmt.CaseClauses[0].Statements[1].As<BreakStatement>();
 
-            call = this.AssertNode<CallExpression>(switchStmt.CaseClauses[1].Statements[0]);
-            this.AssertNode<Identifier>("baz", call.Function);
-            this.AssertNode<NumericLiteral>("3", call.Arguments[0]);
-            this.AssertNode<BreakStatement>(switchStmt.CaseClauses[1].Statements[1]);
+            call = switchStmt.CaseClauses[1].Statements[0].As<CallExpression>();
+            call.Function.Is<Identifier>("baz");
+            call.Arguments[0].Is<NumericLiteral>("3");
+            switchStmt.CaseClauses[1].Statements[1].As<BreakStatement>();
 
-            call = this.AssertNode<CallExpression>(switchStmt.DefaultClause.Statements[0]);
-            this.AssertNode<Identifier>("alert", call.Function);
-            this.AssertNode<StringLiteral>("'foo!'", call.Arguments[0]);
+            call = switchStmt.DefaultClause.Statements[0].As<CallExpression>();
+            call.Function.Is<Identifier>("alert");
+            call.Arguments[0].Is<StringLiteral>("'foo!'");
         }
 
         [TestMethod]
         public void ParseForLoop()
         {
             var program = this.ParseProgram("for (var i = 0; i < foo; i++) bar(i);");
-            var forStmt = this.AssertNode<ForStatement>(program.Statements[0]);
+            var forStmt = program.Statements[0].As<ForStatement>();
 
-            var varStmt = this.AssertNode<VariableStatement>(forStmt.InitializationStatement);
-            this.AssertNode<Identifier>("i", varStmt.Declarations[0].Identifier);
-            this.AssertNode<NumericLiteral>("0", varStmt.Declarations[0].InitialValue);
+            var varStmt = forStmt.InitializationStatement.As<VariableStatement>();
+            varStmt.Declarations[0].Identifier.Is<Identifier>("i");
+            varStmt.Declarations[0].InitialValue.Is<NumericLiteral>("0");
 
-            var comp = this.AssertNode<LessThanExpression>(forStmt.Condition);
-            this.AssertNode<Identifier>("i", comp.Operands[0]);
-            this.AssertNode<Identifier>("foo", comp.Operands[1]);
+            var comp = forStmt.Condition.As<LessThanExpression>();
+            comp.Operands[0].Is<Identifier>("i");
+            comp.Operands[1].Is<Identifier>("foo");
 
-            var incr = this.AssertNode<PostfixIncrementExpression>(forStmt.IncrementStatement);
-            this.AssertNode<Identifier>("i", incr.Operand);
+            var incr = forStmt.IncrementStatement.As<PostfixIncrementExpression>();
+            incr.Operand.Is<Identifier>("i");
 
-            var call = this.AssertNode<CallExpression>(forStmt.LoopStatement);
-            this.AssertNode<Identifier>("bar", call.Function);
-            this.AssertNode<Identifier>("i", call.Arguments[0]);
+            var call = forStmt.LoopStatement.As<CallExpression>();
+            call.Function.Is<Identifier>("bar");
+            call.Arguments[0].Is<Identifier>("i");
         }
 
         [TestMethod]
         public void ParseForInStatement()
         {
             var program = this.ParseProgram("for (var foo in bar) { foo++; }");
-            var stmt = this.AssertNode<ForInStatement>(program.Statements[0]);
+            var stmt = program.Statements[0].As<ForInStatement>();
             
-            var decl = this.AssertNode<VariableDeclaration>(stmt.LoopVariable);
-            this.AssertNode<Identifier>("foo", decl.Identifier);
-            this.AssertNode<Identifier>("bar", stmt.Object);
+            var decl = stmt.LoopVariable.As<VariableDeclaration>();
+            decl.Identifier.Is<Identifier>("foo");
+            stmt.Object.Is<Identifier>("bar");
 
-            var block = this.AssertNode<StatementBlock>(stmt.LoopStatement);
-            var incr = this.AssertNode<PostfixIncrementExpression>(block.Statements[0]);
-            this.AssertNode<Identifier>("foo", incr.Operand);
+            var block = stmt.LoopStatement.As<StatementBlock>();
+            var incr = block.Statements[0].As<PostfixIncrementExpression>();
+            incr.Operand.Is<Identifier>("foo");
         }
 
         [TestMethod]
         public void ParseWhileLoop()
         {
             var program = this.ParseProgram("while (true) { foo(); }");
-            var loop = this.AssertNode<WhileStatement>(program.Statements[0]);
-            this.AssertNode<TrueLiteral>(loop.Condition);
+            var loop = program.Statements[0].As<WhileStatement>();
+            loop.Condition.As<TrueLiteral>();
 
-            var block = this.AssertNode<StatementBlock>(loop.Statement);
-            var call = this.AssertNode<CallExpression>(block.Statements[0]);
-            this.AssertNode<Identifier>("foo", call.Function);
+            var block = loop.Statement.As<StatementBlock>();
+            var call = block.Statements[0].As<CallExpression>();
+            call.Function.Is<Identifier>("foo");
         }
 
         [TestMethod]
         public void ParseDoWhileLoop()
         {
             var program = this.ParseProgram("do { foo.bar(); } while(foo.baz);");
-            var doStmt = this.AssertNode<DoWhileStatement>(program.Statements[0]);
+            var doStmt = program.Statements[0].As<DoWhileStatement>();
 
-            var block = this.AssertNode<StatementBlock>(doStmt.Statement);
-            var callExpr = this.AssertNode<CallExpression>(block.Statements[0]);
-            var propExpr = this.AssertNode<PropertyExpression>(callExpr.Function);
-            this.AssertNode<Identifier>("foo", propExpr.Object);
-            this.AssertNode<Identifier>("bar", propExpr.Property);
+            var block = doStmt.Statement.As<StatementBlock>();
+            var callExpr = block.Statements[0].As<CallExpression>();
+            var propExpr = callExpr.Function.As<PropertyExpression>();
+            propExpr.Object.Is<Identifier>("foo");
+            propExpr.Property.Is<Identifier>("bar");
 
-            propExpr = this.AssertNode<PropertyExpression>(doStmt.Condition);
-            this.AssertNode<Identifier>("foo", propExpr.Object);
-            this.AssertNode<Identifier>("baz", propExpr.Property);
+            propExpr = doStmt.Condition.As<PropertyExpression>();
+            propExpr.Object.Is<Identifier>("foo");
+            propExpr.Property.Is<Identifier>("baz");
         }
 
         [TestMethod]
         public void ParseContinueStatement()
         {
             var program = this.ParseProgram("for (var i = 1; i <= numFloors; i++) { if (i == 13) continue; alert(i); }");
-            var forLoop = this.AssertNode<ForStatement>(program.Statements[0]);
-            var block = this.AssertNode<StatementBlock>(forLoop.LoopStatement);
-            var ifStmt = this.AssertNode<IfStatement>(block.Statements[0]);
-            this.AssertNode<ContinueStatement>(ifStmt.Statement);
+            var forLoop = program.Statements[0].As<ForStatement>();
+            var block = forLoop.LoopStatement.As<StatementBlock>();
+            var ifStmt = block.Statements[0].As<IfStatement>();
+            ifStmt.Statement.As<ContinueStatement>();
         }
 
         [TestMethod]
         public void ParseThrowStatement()
         {
             var program = this.ParseProgram("throw new NotImplementedException();");
-            var throwStmt = this.AssertNode<ThrowStatement>(program.Statements[0]);
-            var newExpr = this.AssertNode<NewExpression>(throwStmt.Expression);
-            this.AssertNode<Identifier>("NotImplementedException", newExpr.Constructor);
+            var throwStmt = program.Statements[0].As<ThrowStatement>();
+            var newExpr = throwStmt.Expression.As<NewExpression>();
+            newExpr.Constructor.Is<Identifier>("NotImplementedException");
         }
 
         [TestMethod]
@@ -834,71 +834,71 @@ namespace Jacobsoft.Amd.Test.Internals
                     } 
                 }");
 
-            var labeledStmt = this.AssertNode<LabeledStatement>(program.Statements[0]);
-            this.AssertNode<Identifier>("outer", labeledStmt.Label);
+            var labeledStmt = program.Statements[0].As<LabeledStatement>();
+            labeledStmt.Label.Is<Identifier>("outer");
 
-            var loop = this.AssertNode<ForInStatement>(labeledStmt.Statement);
-            this.AssertNode<Identifier>("foo", loop.LoopVariable);
-            this.AssertNode<Identifier>("bar", loop.Object);
+            var loop = labeledStmt.Statement.As<ForInStatement>();
+            loop.LoopVariable.Is<Identifier>("foo");
+            loop.Object.Is<Identifier>("bar");
 
-            var block = this.AssertNode<StatementBlock>(loop.LoopStatement);
-            loop = this.AssertNode<ForInStatement>(block.Statements[0]);
-            this.AssertNode<Identifier>("baz", loop.LoopVariable);
-            var indexExpr = this.AssertNode<IndexExpression>(loop.Object);
-            this.AssertNode<Identifier>("bar", indexExpr.Object);
-            this.AssertNode<Identifier>("foo", indexExpr.Index);
+            var block = loop.LoopStatement.As<StatementBlock>();
+            loop = block.Statements[0].As<ForInStatement>();
+            loop.LoopVariable.Is<Identifier>("baz");
+            var indexExpr = loop.Object.As<IndexExpression>();
+            indexExpr.Object.Is<Identifier>("bar");
+            indexExpr.Index.Is<Identifier>("foo");
 
-            block = this.AssertNode<StatementBlock>(loop.LoopStatement);
-            var ifStmt = this.AssertNode<IfStatement>(block.Statements[0]);
-            var equalsExpr = this.AssertNode<EqualToExpression>(ifStmt.Condition);
-            this.AssertNode<Identifier>("baz", equalsExpr.Operands[0]);
-            this.AssertNode<StringLiteral>("'name'", equalsExpr.Operands[1]);
+            block = loop.LoopStatement.As<StatementBlock>();
+            var ifStmt = block.Statements[0].As<IfStatement>();
+            var equalsExpr = ifStmt.Condition.As<EqualToExpression>();
+            equalsExpr.Operands[0].Is<Identifier>("baz");
+            equalsExpr.Operands[1].Is<StringLiteral>("'name'");
 
-            block = this.AssertNode<StatementBlock>(ifStmt.Statement);
-            var assignExpr = this.AssertNode<AssignExpression>(block.Statements[0]);
-            this.AssertNode<Identifier>("name", assignExpr.Target);
+            block = ifStmt.Statement.As<StatementBlock>();
+            var assignExpr = block.Statements[0].As<AssignExpression>();
+            assignExpr.Target.Is<Identifier>("name");
 
-            indexExpr = this.AssertNode<IndexExpression>(assignExpr.Value);
-            this.AssertNode<Identifier>("baz", indexExpr.Index);
-            indexExpr = this.AssertNode<IndexExpression>(indexExpr.Object);
-            this.AssertNode<Identifier>("foo", indexExpr.Index);
-            this.AssertNode<Identifier>("bar", indexExpr.Object);
+            indexExpr = assignExpr.Value.As<IndexExpression>();
+            indexExpr.Index.Is<Identifier>("baz");
+            indexExpr = indexExpr.Object.As<IndexExpression>();
+            indexExpr.Index.Is<Identifier>("foo");
+            indexExpr.Object.Is<Identifier>("bar");
 
-            var breakStmt = this.AssertNode<BreakStatement>(block.Statements[1]);
-            this.AssertNode<Identifier>("outer", breakStmt.Label);
+            var breakStmt = block.Statements[1].As<BreakStatement>();
+            breakStmt.Label.Is<Identifier>("outer");
         }
 
         [TestMethod]
         public void ParseTryStatement()
         {
             var program = this.ParseProgram("try { foo(); } catch (ex) { bar(ex); } finally { baz(); }");
-            var tryStmt = this.AssertNode<TryStatement>(program.Statements[0]);
+            var tryStmt = program.Statements[0].As<TryStatement>();
 
-            var call = this.AssertNode<CallExpression>(tryStmt.Statements[0]);
-            this.AssertNode<Identifier>("foo", call.Function);
+            var call = tryStmt.Statements[0].As<CallExpression>();
+            call.Function.Is<Identifier>("foo");
 
             Assert.AreEqual("ex", tryStmt.CatchClause.Identifier.Text);
-            call = this.AssertNode<CallExpression>(tryStmt.CatchClause.Statements[0]);
-            this.AssertNode<Identifier>("bar", call.Function);
-            this.AssertNode<Identifier>("ex", call.Arguments[0]);
+            call = tryStmt.CatchClause.Statements[0].As<CallExpression>();
+            call.Function.Is<Identifier>("bar");
+            call.Arguments[0].Is<Identifier>("ex");
 
-            call = this.AssertNode<CallExpression>(tryStmt.FinallyClause.Statements[0]);
-            this.AssertNode<Identifier>("baz", call.Function);
+            call = tryStmt.FinallyClause.Statements[0].As<CallExpression>();
+            call.Function.Is<Identifier>("baz");
         }
 
         [TestMethod]
         public void ParseWithStatement()
         {
             var program = this.ParseProgram("with (foo) { bar(); baz(); }");
-            var withStmt = this.AssertNode<WithStatement>(program.Statements[0]);
-            var block = this.AssertNode<StatementBlock>(withStmt.Statement);
-            this.AssertNode<Identifier>("foo", withStmt.Expression);
+            var withStmt = program.Statements[0].As<WithStatement>();
+            var block = withStmt.Statement.As<StatementBlock>();
+            withStmt.Expression.Is<Identifier>("foo");
             
-            var call = this.AssertNode<CallExpression>(block.Statements[0]);
-            this.AssertNode<Identifier>("bar", call.Function);
+            var call = block.Statements[0].As<CallExpression>();
+            call.Function.Is<Identifier>("bar");
 
-            call = this.AssertNode<CallExpression>(block.Statements[1]);
-            this.AssertNode<Identifier>("baz", call.Function);
+            call = block.Statements[1].As<CallExpression>();
+            call.Function.Is<Identifier>("baz");
         }
 
         [TestMethod]
@@ -906,16 +906,16 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = function (bar, baz) { bar = baz; };");
             
-            var assign = this.AssertNode<AssignExpression>(program.Children[0]);
-            this.AssertNode<Identifier>("foo", assign.Target);
+            var assign = program.Children[0].As<AssignExpression>();
+            assign.Target.Is<Identifier>("foo");
 
-            var funcExpr = this.AssertNode<FunctionExpression>(assign.Value);
-            this.AssertNode<Identifier>("bar", funcExpr.Parameters[0]);
-            this.AssertNode<Identifier>("baz", funcExpr.Parameters[1]);
+            var funcExpr = assign.Value.As<FunctionExpression>();
+            funcExpr.Parameters[0].Is<Identifier>("bar");
+            funcExpr.Parameters[1].Is<Identifier>("baz");
 
-            assign = this.AssertNode<AssignExpression>(funcExpr.Statements[0]);
-            this.AssertNode<Identifier>("bar", assign.Target);
-            this.AssertNode<Identifier>("baz", assign.Value);
+            assign = funcExpr.Statements[0].As<AssignExpression>();
+            assign.Target.Is<Identifier>("bar");
+            assign.Value.Is<Identifier>("baz");
         }
 
         [TestMethod]
@@ -923,47 +923,31 @@ namespace Jacobsoft.Amd.Test.Internals
         {
             var program = this.ParseProgram("foo = function () { };");
 
-            var assign = this.AssertNode<AssignExpression>(program.Children[0]);
-            this.AssertNode<Identifier>("foo", assign.Target);
-            this.AssertNode<FunctionExpression>(assign.Value);
+            var assign = program.Children[0].As<AssignExpression>();
+            assign.Target.Is<Identifier>("foo");
+            assign.Value.As<FunctionExpression>();
         }
 
         [TestMethod]
         public void ParseFunctionDeclaration()
         {
             var program = this.ParseProgram("function foo(bar, baz) { bar = baz; }");
-            var decl = this.AssertNode<FunctionDeclaration>(program.Statements[0]);
+            var decl = program.Statements[0].As<FunctionDeclaration>();
 
-            this.AssertNode<Identifier>("foo", decl.Children[0]);
+            decl.Children[0].Is<Identifier>("foo");
 
-            var paramList = this.AssertNode<FormalParameterList>(decl.Children[1]);
-            this.AssertNode<Identifier>("bar", paramList.Children[0]);
-            this.AssertNode<Identifier>("baz", paramList.Children[1]);
+            var paramList = decl.Children[1].As<FormalParameterList>();
+            paramList.Children[0].Is<Identifier>("bar");
+            paramList.Children[1].Is<Identifier>("baz");
 
-            var assignment = this.AssertNode<AssignExpression>(decl.Statements[0]);
-            this.AssertNode<Identifier>("bar", assignment.Children[0]);
-            this.AssertNode<Identifier>("baz", assignment.Children[1]);
+            var assignment = decl.Statements[0].As<AssignExpression>();
+            assignment.Children[0].Is<Identifier>("bar");
+            assignment.Children[1].Is<Identifier>("baz");
         }
 
         private Program ParseProgram(string code)
         {
-            var charStream = new ANTLRStringStream(code);
-            var tokenSource = new JavaScriptLexer(charStream);
-            var tokenStream = new CommonTokenStream(tokenSource);
-            var parser = new JavaScriptParser(tokenStream);
-            var program = parser.program().Tree as Program;
-            return program;
-        }
-
-        private void AssertNode<T>(string expectedText, ITree tree) where T : CommonTree
-        {
-            Assert.AreEqual(expectedText, this.AssertNode<T>(tree).Text);
-        }
-
-        private T AssertNode<T>(object obj) where T : CommonTree
-        {
-            Assert.IsInstanceOfType(obj, typeof(T));
-            return (T)obj;
+            return JavaScriptTestHelper.ParseProgram(code);
         }
     }
 }
