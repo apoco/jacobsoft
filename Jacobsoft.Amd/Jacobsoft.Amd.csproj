@@ -64,6 +64,7 @@
     <Compile Include="AmdConfiguration.cs" />
     <Compile Include="AmdConfigurationSection.cs" />
     <Compile Include="AmdController.cs" />
+    <Compile Include="Controllers\JasmineController.cs" />
     <Compile Include="Exceptions\InvalidModuleException.cs" />
     <Compile Include="Exceptions\InvalidPathException.cs" />
     <Compile Include="Exceptions\ModuleResolutionException.cs" />
@@ -95,6 +96,16 @@
     <None Include="Internals\Antlr\JavaScript.g" />
     <None Include="Internals\Antlr\JavaScript.tokens" />
     <None Include="packages.config" />
+    <None Include="Scripts\jasmine\MIT.LICENSE" />
+    <None Include="Views\Jasmine\SpecRunner.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\jasmine\jasmine.css" />
+    <Content Include="Content\jasmine\jasmine_favicon.png" />
+    <Content Include="Scripts\jasmine\jasmine-html.js" />
+    <Content Include="Scripts\jasmine\jasmine.js" />
+    <Content Include="Scripts\liteloader.js" />
+    <Content Include="Scripts\liteloader.tests.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
