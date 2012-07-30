@@ -93,6 +93,48 @@ namespace Jacobsoft.Amd.Test
             this.AssertScriptInvoked(scripts[0], "b");
         }
 
+        [TestMethod]
+        public void InvokeModule_WithOptions()
+        {
+            var html = this.htmlHelper.InvokeModule("module", new { key = "value" });
+            var scripts = this.ExtractScriptTags(html);
+
+            this.AssertScriptInclude(scripts[0], "/Scripts/require.js");
+            this.AssertScriptInclude(scripts[1], "/amd/config");
+            
+            var program = JavaScriptTestHelper.ParseProgram(scripts[2].Value);
+            var optionsDef = program.Statements[0].As<CallExpression>();
+            optionsDef.Function.Is<Identifier>("define");
+            Assert.AreEqual("options", optionsDef.Arguments[0].As<StringLiteral>().String);
+            Assert.AreEqual(0, optionsDef.Arguments[1].As<ArrayLiteral>().Items.Count);
+
+            var options = optionsDef.Arguments[2].As<ObjectLiteral>();
+            Assert.AreEqual("key", options.Assignments[0].Property.As<StringLiteral>().String);
+            Assert.AreEqual("value", options.Assignments[0].Value.As<StringLiteral>().String);
+        }
+
+        [TestMethod]
+        public void InvokeModule_WithModulesDictionary()
+        {
+            var html = this.htmlHelper.InvokeModule(
+                "module", 
+                new Dictionary<string, object> { { "options", new { key = "value" } } });
+            var scripts = this.ExtractScriptTags(html);
+
+            this.AssertScriptInclude(scripts[0], "/Scripts/require.js");
+            this.AssertScriptInclude(scripts[1], "/amd/config");
+
+            var program = JavaScriptTestHelper.ParseProgram(scripts[2].Value);
+            var optionsDef = program.Statements[0].As<CallExpression>();
+            optionsDef.Function.Is<Identifier>("define");
+            Assert.AreEqual("options", optionsDef.Arguments[0].As<StringLiteral>().String);
+            Assert.AreEqual(0, optionsDef.Arguments[1].As<ArrayLiteral>().Items.Count);
+
+            var options = optionsDef.Arguments[2].As<ObjectLiteral>();
+            Assert.AreEqual("key", options.Assignments[0].Property.As<StringLiteral>().String);
+            Assert.AreEqual("value", options.Assignments[0].Value.As<StringLiteral>().String);
+        }
+
         private IList<XElement> ExtractScriptTags(IHtmlString html)
         {
             // To help us inspect the HTML, we will parse as XML.

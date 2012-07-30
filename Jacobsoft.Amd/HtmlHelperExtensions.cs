@@ -14,19 +14,46 @@ namespace Jacobsoft.Amd
     {
         private const string OutputContextKey = "Jacobsoft.Amd.Internals.ScriptOutputContext";
 
-        public static IHtmlString InvokeModule(this HtmlHelper helper, string moduleId)
+        public static IHtmlString InvokeModule(
+            this HtmlHelper helper, 
+            string moduleId,
+            object options = null)
+        {
+            var modules = new Dictionary<string, object>();
+            if (options != null)
+            {
+                modules["options"] = options;
+            }
+
+            return helper.InvokeModule(moduleId, modules);
+        }
+
+        public static IHtmlString InvokeModule(
+            this HtmlHelper helper,
+            string moduleId,
+            IDictionary<string, object> moduleDefinitions)
         {
             var stringBuilder = new StringBuilder();
+            var jsSerializer = new JavaScriptSerializer();
 
             var outputContext = GetScriptOutputContext(helper.ViewContext.HttpContext);
-            
+
             helper.RequireModuleLoader(outputContext, stringBuilder);
             helper.RequireAmdConfiguration(outputContext, stringBuilder);
 
+            var scripts = string.Concat(
+                moduleDefinitions
+                    .Select(kvp => string.Format(
+                        "define({0}, [], {1});", 
+                        jsSerializer.Serialize(kvp.Key),
+                        jsSerializer.Serialize(kvp.Value)))
+                    .Concat(new[] {
+                        string.Format(
+                            "require({0});",
+                            jsSerializer.Serialize(new[] { moduleId } ) ) }));
+
             var tagBuilder = new TagBuilder("script");
-            tagBuilder.InnerHtml = string.Format(
-                "require({0});", 
-                new JavaScriptSerializer().Serialize(new[] { moduleId }));
+            tagBuilder.InnerHtml = scripts;
             stringBuilder.Append(tagBuilder.ToString());
 
             return new HtmlString(stringBuilder.ToString());

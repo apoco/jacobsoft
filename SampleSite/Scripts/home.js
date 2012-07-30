@@ -1,5 +1,5 @@
-﻿define(['site/utils'], function (utils) {
+﻿define(['site/utils', 'options'], function (utils, options) {
 
-    utils.tellUser("Hello, world!");
+    utils.tellUser("Hello, " + options.name + "!");
 
 });
