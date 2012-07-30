@@ -27,12 +27,13 @@ namespace Jacobsoft.Amd
                 as AmdConfigurationSection;
             if (configSection != null)
             {
+                this.LoaderUrl = configSection.LoaderUrl;
                 this.ModuleRootUrl = configSection.RootModuleUrl;
                 this.IsOptimizationEnabled = configSection.IsOptimizationEnabled;
             }
         }
 
-        public string LoaderFilePath { get; set; }
+        public string LoaderUrl { get; set; }
 
         public string ModuleRootUrl { get; set; }
 

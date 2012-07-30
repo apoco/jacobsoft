@@ -7,7 +7,7 @@ namespace Jacobsoft.Amd
 {
     public interface IAmdConfiguration
     {
-        string LoaderFilePath { get; }
+        string LoaderUrl { get; }
 
         string ModuleRootUrl { get; }
     }

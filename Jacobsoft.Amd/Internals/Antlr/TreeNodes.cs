@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web.Script.Serialization;
 using Antlr.Runtime;
 using Antlr.Runtime.Tree;
 
@@ -919,6 +920,11 @@ namespace Jacobsoft.Amd.Internals.AntlrGenerated
     internal class StringLiteral : Expression
     {
         public StringLiteral(IToken token) : base(token) { }
+
+        public string String
+        {
+            get { return new JavaScriptSerializer().Deserialize<string>(this.Text); }
+        }
     }
 
     internal class NumericLiteral : Expression

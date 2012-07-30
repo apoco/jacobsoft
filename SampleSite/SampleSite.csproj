@@ -104,10 +104,12 @@
   <ItemGroup>
     <Content Include="Global.asax" />
     <Content Include="Require.JS - LICENSE.txt" />
+    <Content Include="Scripts\home.js" />
     <Content Include="Scripts\require.js" />
     <Content Include="Scripts\require.min.js">
       <DependentUpon>require.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\site\utils.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -130,6 +132,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jacobsoft.Amd\Jacobsoft.Amd.csproj">
+      <Project>{e1e2b68b-33de-4159-a97f-701399f4d92b}</Project>
+      <Name>Jacobsoft.Amd</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -61,7 +61,7 @@ namespace Jacobsoft.Amd.Test
 
                 this.autoMocker
                     .GetMock<IAmdConfiguration>()
-                    .Setup(c => c.LoaderFilePath)
+                    .Setup(c => c.LoaderUrl)
                     .Returns(loaderPath);
 
                 this.autoMocker

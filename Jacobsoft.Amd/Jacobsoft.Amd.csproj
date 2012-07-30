@@ -53,6 +53,7 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,6 +67,7 @@
     <Compile Include="Exceptions\InvalidModuleException.cs" />
     <Compile Include="Exceptions\InvalidPathException.cs" />
     <Compile Include="Exceptions\ModuleResolutionException.cs" />
+    <Compile Include="HtmlHelperExtensions.cs" />
     <Compile Include="Internals\Antlr\JavaScriptLexer.cs" />
     <Compile Include="Internals\Antlr\JavaScriptLexer.Extensions.cs" />
     <Compile Include="Internals\Antlr\JavaScriptParser.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="Internals\IModuleResolver.cs" />
     <Compile Include="Internals\Module.cs" />
     <Compile Include="Internals\ModuleResolver.cs" />
+    <Compile Include="Internals\ScriptOutputContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

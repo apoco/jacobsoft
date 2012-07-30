@@ -9,6 +9,14 @@ namespace Jacobsoft.Amd.Test
     public class AmdConfigurationSectionTests
     {
         [TestMethod]
+        public void LoaderUrl()
+        {
+            var configSection = ConfigurationManager.GetSection("jacobsoft.amd")
+                as AmdConfigurationSection;
+            Assert.AreEqual(@"require.js", configSection.LoaderUrl);
+        }
+
+        [TestMethod]
         public void ModuleFolder()
         {
             var configSection = ConfigurationManager.GetSection("jacobsoft.amd") 

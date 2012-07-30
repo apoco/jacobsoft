@@ -1,7 +1,9 @@
-﻿@section Title {
+﻿@using Jacobsoft.Amd
+
+@section Title {
     Sample Site
 }
 
 @section Head {
-
+    @Html.InvokeModule("home")
 }

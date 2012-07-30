@@ -14,6 +14,8 @@ namespace Jacobsoft.Amd
 {
     public class AmdController : Controller
     {
+        private const int ScriptCacheDuration = 60 * 60 * 24 * 30;
+
         private static ObjectFactory factory = new ObjectFactory();
 
         private readonly IAmdConfiguration config;
@@ -38,16 +40,16 @@ namespace Jacobsoft.Amd
         }
 
         [HttpGet]
-        [OutputCache(Location = OutputCacheLocation.ServerAndClient)]
+        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
         public FileStreamResult GetLoader()
         {
             return this.File(
-                this.fileSystem.Open(this.config.LoaderFilePath, FileMode.Open), 
+                this.fileSystem.Open(this.config.LoaderUrl, FileMode.Open), 
                 "text/javascript");
         }
 
         [HttpGet]
-        [OutputCache(Location = OutputCacheLocation.ServerAndClient)]
+        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
         public ContentResult GetModule(string moduleName)
         {
             return this.Content(
@@ -56,7 +58,7 @@ namespace Jacobsoft.Amd
         }
 
         [HttpGet]
-        [OutputCache(Location = OutputCacheLocation.ServerAndClient)]
+        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
         public ContentResult Config()
         {
             var baseUrl = VirtualPathUtility.ToAbsolute(
