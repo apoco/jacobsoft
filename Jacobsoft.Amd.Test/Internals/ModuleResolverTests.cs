@@ -198,6 +198,33 @@ namespace Jacobsoft.Amd.Test.Internals
         }
 
         [TestMethod]
+        public void Resolve_HandlesAbsoluteDirectoryNames()
+        {
+            var moduleName = "library/module";
+
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.ModuleRootUrl)
+                .Returns(@"~/Scripts");
+
+            this.ArrangeJavaScriptFile(
+                @"X:\Modules\library\module.js",
+                "define(['library/foo'], function(foo) { return foo('bar'); });");
+            this.ArrangeJavaScriptFile(
+                @"X:\Modules\library\foo.js",
+                "define(function(){ return function(str) { window.alert(str); }; });");
+
+            var module = this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleName);
+            var dependencies = module.Dependencies.ToList();
+            Assert.AreEqual(1, dependencies.Count());
+
+            Assert.AreEqual("library/foo", dependencies[0].Id);
+            Assert.AreEqual(
+                "define('library/foo', [], function(){ return function(str) { window.alert(str); }; });",
+                dependencies[0].Content);
+        }
+
+        [TestMethod]
         public void Resolve_HandlesParentDirectoryNames()
         {
             var moduleName = "library/module";

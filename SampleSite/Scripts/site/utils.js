@@ -1,8 +1,8 @@
-﻿define(function () {
+﻿define(['spaz/dom'], function ($) {
 
     return {
         tellUser: function (str) {
-            document.getElementById('message').appendChild(document.createTextNode(str));
+            $.withId('message').appendChild(document.createTextNode(str));
         }
     };
 

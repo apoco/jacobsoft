@@ -5,6 +5,7 @@
 }
 
 @section Head {
+    @Html.ModuleBundle("site/utils")
     @Html.InvokeModule(
         "home", 
         new Dictionary<string, object> { { "options", new { name = "Jimbo" } } })

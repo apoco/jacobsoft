@@ -43,6 +43,16 @@ namespace Jacobsoft.Amd.Test
         }
 
         [TestMethod]
+        public void RegisterRoutes()
+        {
+            var routes = new RouteCollection();
+            AmdController.RegisterRoutes(routes);
+
+            var route = routes["Jacobsoft.Amd"];
+            Assert.IsNotNull(route);
+        }
+
+        [TestMethod]
         public void DefaultConstructor()
         {
             new AmdController();
@@ -138,6 +148,35 @@ namespace Jacobsoft.Amd.Test
 
             Assert.AreEqual("text/javascript", result.ContentType);
             Assert.AreEqual(content, result.Content);
+        }
+
+        [TestMethod]
+        public void GetBundle()
+        {
+            var moduleA = Mock.Of<IModule>();
+            var moduleB = Mock.Of<IModule>();
+            var moduleD = Mock.Of<IModule>();
+
+            Mock.Get(moduleA).Setup(m => m.Content).Returns("a");
+            Mock.Get(moduleB).Setup(m => m.Content).Returns("b");
+            Mock.Get(moduleD).Setup(m => m.Content).Returns("d");
+
+            this.autoMocker
+                .GetMock<IModuleResolver>()
+                .Setup(r => r.Resolve("a"))
+                .Returns(moduleA);
+            this.autoMocker
+                .GetMock<IModuleResolver>()
+                .Setup(r => r.Resolve("b"))
+                .Returns(moduleB);
+            this.autoMocker
+                .GetMock<IModuleResolver>()
+                .Setup(r => r.Resolve("c/d"))
+                .Returns(moduleD);
+
+            var result = this.controller.Bundle("a+b+c/d");
+            Assert.IsInstanceOfType(result, typeof(JavaScriptResult));
+            Assert.AreEqual("a;b;d", (result as JavaScriptResult).Script);
         }
     }
 }

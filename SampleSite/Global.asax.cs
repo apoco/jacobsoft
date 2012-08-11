@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Jacobsoft.Amd;
 
 namespace SampleSite
 {
@@ -23,12 +24,13 @@ namespace SampleSite
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            AmdController.RegisterRoutes(routes);
+
             routes.MapRoute(
                 "Default", // Route name
-                "{controller}/{action}/{*id}", // URL with parameters
+                "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
-
         }
 
         protected void Application_Start()

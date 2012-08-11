@@ -45,9 +45,15 @@ namespace Jacobsoft.Amd.Internals
 
         private IModule Resolve(IEnumerable<string> subFolders, string moduleId)
         {
-            var absolutePath = subFolders.ToList();
+            IList<string> absolutePath;
 
             var segments = this.GetModulePath(moduleId);
+
+            var firstSegment = segments.First();
+            absolutePath = (firstSegment == "." || firstSegment == "..")
+                ? subFolders.ToList()
+                : new List<string>();
+
             foreach (var segment in segments)
             {
                 if (segment == "..")

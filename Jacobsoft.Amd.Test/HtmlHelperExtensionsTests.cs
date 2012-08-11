@@ -118,7 +118,7 @@ namespace Jacobsoft.Amd.Test
         [TestMethod]
         public void InvokeModule_WithModulesDictionary()
         {
-            var html = this.htmlHelper.InvokeModule(
+            var html = this.htmlHelper.ModuleInvoke(
                 "module", 
                 new Dictionary<string, object> { { "options", new { key = "value" } } });
             var scripts = this.ExtractScriptTags(html);
@@ -195,6 +195,33 @@ namespace Jacobsoft.Amd.Test
             this.AssertScriptInclude(scripts[2], "/amd/module/b");
             this.AssertScriptInclude(scripts[3], "/amd/module/a");
             this.AssertScriptInvoked(scripts[4], "a");
+        }
+
+        [TestMethod]
+        public void ModuleBundle()
+        {
+            var moduleA = Mock.Of<IModule>();
+            var moduleC = Mock.Of<IModule>();
+            var moduleD = Mock.Of<IModule>();
+
+            var resolver = this.autoMocker.GetMock<IModuleResolver>();
+            resolver.Setup(r => r.Resolve("a")).Returns(moduleA);
+            resolver.Setup(r => r.Resolve("b/c")).Returns(moduleC);
+            resolver.Setup(r => r.Resolve("b/d")).Returns(moduleD);
+
+            Mock.Get(moduleA).Setup(m => m.Id).Returns("a");
+            Mock.Get(moduleC).Setup(m => m.Id).Returns("b/c");
+            Mock.Get(moduleD).Setup(m => m.Id).Returns("b/d");
+
+            Mock.Get(moduleA).Setup(m => m.Dependencies).Returns(new[] { moduleC });
+            Mock.Get(moduleC).Setup(m => m.Dependencies).Returns(new[] { moduleD });
+
+            var html = this.htmlHelper.ModuleBundle("a");
+            var scripts = this.ExtractScriptTags(html);
+
+            this.AssertScriptInclude(scripts[0], "/amd/loader");
+            this.AssertScriptInclude(scripts[1], "/amd/config");
+            this.AssertScriptInclude(scripts[2], "/amd/bundle/a%2cb/c%2cb/d");
         }
 
         private IList<XElement> ExtractScriptTags(IHtmlString html)

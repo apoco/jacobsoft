@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 using Jacobsoft.Amd.Internals;
@@ -37,6 +38,18 @@ namespace Jacobsoft.Amd
             this.config = configuration;
             this.resolver = resolver;
             this.fileSystem = fileSystem;
+        }
+
+        /// <summary>
+        /// Registers preferred routes for the AmdController
+        /// </summary>
+        /// <param name="routes">Route collection to augment</param>
+        public static void RegisterRoutes(RouteCollection routes)
+        {
+            routes.MapRoute(
+                "Jacobsoft.Amd",
+                "Amd/{action}/{*id}",
+                new { controller = "Amd" });
         }
 
         [HttpGet]
@@ -78,6 +91,24 @@ namespace Jacobsoft.Amd
             return this.Content(
                 this.resolver.Resolve(id).Content, 
                 "text/javascript");
+        }
+
+        /// <summary>
+        /// Gets a concatenated bundle of scripts.
+        /// </summary>
+        /// <param name="id">A list of module IDs. Separate modules with spaces, commas, or plus signs.</param>
+        /// <returns>A JavaScriptResult</returns>
+        [HttpGet]
+        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
+        public JavaScriptResult Bundle(string id)
+        {
+            return this.JavaScript(string.Join(
+                ";", 
+                from moduleId in id.Split(new[] { '+', ' ', ',' }, StringSplitOptions.RemoveEmptyEntries)
+                let module = this.resolver.Resolve(moduleId)
+                where module != null
+                select module.Content
+            ));
         }
     }
 }

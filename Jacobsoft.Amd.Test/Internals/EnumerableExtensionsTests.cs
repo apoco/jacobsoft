@@ -22,5 +22,47 @@ namespace Jacobsoft.Amd.Test.Internals
             Assert.IsNotNull(objects.OrEmpty());
             Assert.AreEqual(0, objects.OrEmpty().Count());
         }
+
+        [TestMethod]
+        public void Descendents()
+        {
+            var tree = new TreeNode("a",
+                new TreeNode("b"),
+                new TreeNode("c",
+                    new TreeNode("d"),
+                    new TreeNode("e"),
+                new TreeNode("f")));
+            Assert.IsTrue(
+                tree.Descendents(n => n.Children)
+                    .Select(n => n.Label)
+                    .SequenceEqual(new[] { "b", "c", "d", "e", "f" }));
+        }
+
+        [TestMethod]
+        public void TreeNodes()
+        {
+            var tree = new TreeNode("a",
+                new TreeNode("b"),
+                new TreeNode("c",
+                    new TreeNode("d"),
+                    new TreeNode("e"),
+                new TreeNode("f")));
+            Assert.IsTrue(
+                tree.TreeNodes(n => n.Children)
+                    .Select(n => n.Label)
+                    .SequenceEqual(new[] { "a", "b", "c", "d", "e", "f" }));
+        }
+
+        private class TreeNode
+        {
+            public TreeNode(string label, params TreeNode[] children)
+            {
+                this.Label = label;
+                this.Children = children;
+            }
+
+            public string Label { get; private set; }
+            public IEnumerable<TreeNode> Children { get; private set; }
+        }
     }
 }

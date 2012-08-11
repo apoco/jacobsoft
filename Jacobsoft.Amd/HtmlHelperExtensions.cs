@@ -26,10 +26,10 @@ namespace Jacobsoft.Amd
                 modules["options"] = options;
             }
 
-            return helper.InvokeModule(moduleId, modules);
+            return helper.ModuleInvoke(moduleId, modules);
         }
 
-        public static IHtmlString InvokeModule(
+        public static IHtmlString ModuleInvoke(
             this HtmlHelper helper,
             string moduleId,
             IDictionary<string, object> moduleDefinitions)
@@ -39,8 +39,7 @@ namespace Jacobsoft.Amd
 
             var outputContext = GetScriptOutputContext(helper.ViewContext.HttpContext);
 
-            helper.RequireModuleLoader(outputContext, stringBuilder);
-            helper.RequireAmdConfiguration(outputContext, stringBuilder);
+            helper.EnsureAmdSystemInitialized(outputContext, stringBuilder);
 
             if (outputContext.ScriptLoadingMode == ScriptLoadingMode.Static)
             {
@@ -66,6 +65,41 @@ namespace Jacobsoft.Amd
             stringBuilder.Append(tagBuilder.ToString());
 
             return new HtmlString(stringBuilder.ToString());
+        }
+
+        public static IHtmlString ModuleBundle(
+            this HtmlHelper helper, 
+            params string[] moduleIds)
+        {
+            var outputContext = GetScriptOutputContext(helper.ViewContext.HttpContext);
+            var stringBuilder = new StringBuilder();
+            var resolver = ServiceLocator.Instance.Get<IModuleResolver>();
+
+            helper.EnsureAmdSystemInitialized(outputContext, stringBuilder);
+            
+            var requiredModuleIds =
+                from rootId in moduleIds
+                from module in resolver.Resolve(rootId).TreeNodes(m => m.Dependencies)
+                let moduleId = module.Id
+                where !outputContext.WrittenModules.Contains(moduleId)
+                select moduleId;
+            helper.WriteScriptActionInclude(
+                "Bundle", 
+                string.Join(",", requiredModuleIds.Distinct().OrderBy(id => id)), 
+                stringBuilder);
+
+            outputContext.WrittenModules.UnionWith(requiredModuleIds);
+
+            return new HtmlString(stringBuilder.ToString());
+        }
+
+        private static void EnsureAmdSystemInitialized(
+            this HtmlHelper helper,
+            ScriptOutputContext outputContext,
+            StringBuilder stringBuilder)
+        {
+            helper.RequireModuleLoader(outputContext, stringBuilder);
+            helper.RequireAmdConfiguration(outputContext, stringBuilder);
         }
 
         private static void RequireModuleLoader(
@@ -136,10 +170,19 @@ namespace Jacobsoft.Amd
                     }
                 }
 
-                var urlHelper = helper.GetUrlHelper();
-                var url = urlHelper.Action("Module", "Amd", new { id = moduleId });
-                WriteScriptTag(stringBuilder, url, true);
+                helper.WriteScriptActionInclude("Module", moduleId, stringBuilder);
             }
+        }
+
+        private static void WriteScriptActionInclude(
+            this HtmlHelper helper, 
+            string action,
+            string id, 
+            StringBuilder stringBuilder)
+        {
+            var urlHelper = helper.GetUrlHelper();
+            var url = urlHelper.Action(action, "Amd", new { id = id });
+            WriteScriptTag(stringBuilder, url, true);
         }
 
         private static void WriteScriptTag(
