@@ -1,8 +1,8 @@
-﻿/// <reference path="liteloader.js" />
+﻿/// <reference path="../Jacobsoft.Amd/Scripts/liteloader.js" />
 
 describe('liteloader', function () {
     it('provides a define function', function () {
-        expect(typeof(require)).toBe('function');
+        expect(typeof(define)).toBe('function');
     });
 
     it('provides a require function', function () {
@@ -29,7 +29,6 @@ describe('the define function', function () {
     });
 
     it('can declare dependencies', function () {
-
         define('c', ['d'], function (d) { return d.foo; });
         define('d', [   ], function ( ) { return { foo: 'bar' }; });
 
@@ -71,4 +70,20 @@ describe('the require function', function () {
         expect(object1).toBe(object2);
     });
 
+    it('waits for modules to be defined before executing callback', function () {
+        var isCalled = false;
+
+        require(['k', 'l'], function () { isCalled = true; });
+        expect(isCalled).toBe(false);
+
+        define('k', ['l'], function () { return 'foo'; });
+        expect(isCalled).toBe(false);
+
+        define('l', [], function () { return 'bar'; });
+        expect(isCalled).toBe(true);
+    });
+
+    it('has a config function property', function () {
+        expect(typeof (require).config).toBe('function');
+    });
 });

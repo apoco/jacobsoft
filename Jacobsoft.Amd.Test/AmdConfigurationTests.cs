@@ -13,7 +13,6 @@ namespace Jacobsoft.Amd.Test
             var config = new AmdConfiguration();
             Assert.AreEqual("require.js", config.LoaderUrl);
             Assert.AreEqual("~/Scripts", config.ModuleRootUrl);
-            Assert.IsTrue(config.IsOptimizationEnabled);
         }
     }
 }

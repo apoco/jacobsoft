@@ -7,7 +7,7 @@ namespace Jacobsoft.Amd.Internals
 {
     internal class Module : IModule
     {
-        public string Name { get; internal set; }
+        public string Id { get; internal set; }
         public string Content { get; internal set; }
         public IEnumerable<IModule> Dependencies { get; internal set; }
     }

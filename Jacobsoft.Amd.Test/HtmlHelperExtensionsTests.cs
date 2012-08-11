@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Xml.Linq;
 using AutoMoq;
+using Jacobsoft.Amd.Exceptions;
+using Jacobsoft.Amd.Internals;
 using Jacobsoft.Amd.Internals.AntlrGenerated;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -24,6 +26,7 @@ namespace Jacobsoft.Amd.Test
         public void Initialize()
         {
             this.autoMocker = new AutoMoqer();
+            ServiceLocator.Instance = new MockServiceLocator(this.autoMocker);
 
             var request = autoMocker.GetMock<HttpRequestBase>();
             request.Setup(r => r.ApplicationPath).Returns("/");
@@ -63,7 +66,6 @@ namespace Jacobsoft.Amd.Test
             config
                 .Setup(c => c.LoaderUrl)
                 .Returns("~/Scripts/require.js");
-            AmdConfiguration.Current = config.Object;
         }
 
         [TestMethod]
@@ -72,7 +74,7 @@ namespace Jacobsoft.Amd.Test
             var html = this.htmlHelper.InvokeModule("module");
             var scripts = this.ExtractScriptTags(html);
 
-            this.AssertScriptInclude(scripts[0], "/Scripts/require.js");
+            this.AssertScriptInclude(scripts[0], "/amd/loader");
             this.AssertScriptInclude(scripts[1], "/amd/config");
             this.AssertScriptInvoked(scripts[2], "module");
         }
@@ -83,7 +85,7 @@ namespace Jacobsoft.Amd.Test
             var html = this.htmlHelper.InvokeModule("a");
             var scripts = this.ExtractScriptTags(html);
 
-            this.AssertScriptInclude(scripts[0], "/Scripts/require.js");
+            this.AssertScriptInclude(scripts[0], "/amd/loader");
             this.AssertScriptInclude(scripts[1], "/amd/config");
             this.AssertScriptInvoked(scripts[2], "a");
 
@@ -99,7 +101,7 @@ namespace Jacobsoft.Amd.Test
             var html = this.htmlHelper.InvokeModule("module", new { key = "value" });
             var scripts = this.ExtractScriptTags(html);
 
-            this.AssertScriptInclude(scripts[0], "/Scripts/require.js");
+            this.AssertScriptInclude(scripts[0], "/amd/loader");
             this.AssertScriptInclude(scripts[1], "/amd/config");
             
             var program = JavaScriptTestHelper.ParseProgram(scripts[2].Value);
@@ -121,7 +123,7 @@ namespace Jacobsoft.Amd.Test
                 new Dictionary<string, object> { { "options", new { key = "value" } } });
             var scripts = this.ExtractScriptTags(html);
 
-            this.AssertScriptInclude(scripts[0], "/Scripts/require.js");
+            this.AssertScriptInclude(scripts[0], "/amd/loader");
             this.AssertScriptInclude(scripts[1], "/amd/config");
 
             var program = JavaScriptTestHelper.ParseProgram(scripts[2].Value);
@@ -133,6 +135,66 @@ namespace Jacobsoft.Amd.Test
             var options = optionsDef.Arguments[2].As<ObjectLiteral>();
             Assert.AreEqual("key", options.Assignments[0].Property.As<StringLiteral>().String);
             Assert.AreEqual("value", options.Assignments[0].Value.As<StringLiteral>().String);
+        }
+
+        [TestMethod, ExpectedException(typeof(AmdConfigurationException))]
+        public void InvokeModule_WithStaticLoadingAndNoLoader_ThrowsConfigurationException()
+        {
+            var config = this.autoMocker.GetMock<IAmdConfiguration>();
+
+            config.Setup(c => c.ScriptLoadingMode).Returns(ScriptLoadingMode.Dynamic);
+            config.Setup(c => c.LoaderUrl).Returns((string)null);
+
+            this.htmlHelper.InvokeModule("a");
+        }
+
+        [TestMethod]
+        public void InvokeModule_WithStaticLoading()
+        {
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.ScriptLoadingMode)
+                .Returns(ScriptLoadingMode.Static);
+
+            var html = this.htmlHelper.InvokeModule("a");
+            var scripts = this.ExtractScriptTags(html);
+
+            this.AssertScriptInclude(scripts[0], "/amd/liteloader");
+            this.AssertScriptInclude(scripts[1], "/amd/config");
+            this.AssertScriptInclude(scripts[2], "/amd/module/a");
+            this.AssertScriptInvoked(scripts[3], "a");
+        }
+
+        [TestMethod]
+        public void InvokeModule_WithStaticLoading_InsertsDependencies()
+        {
+            var module = Mock.Of<IModule>();
+            var dependency = Mock.Of<IModule>();
+
+            Mock.Get(module).Setup(m => m.Dependencies).Returns(new[] { dependency });
+            Mock.Get(module).Setup(m => m.Content).Returns("non empty");
+            
+            Mock.Get(dependency).Setup(m => m.Id).Returns("b");
+            Mock.Get(dependency).Setup(m => m.Content).Returns("non empty");
+
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.ScriptLoadingMode)
+                .Returns(ScriptLoadingMode.Static);
+
+            this.autoMocker
+                .GetMock<IModuleResolver>()
+                .Setup(r => r.Resolve("a"))
+                .Returns(module);
+
+            var html = this.htmlHelper.InvokeModule("a");
+            var scripts = this.ExtractScriptTags(html);
+
+            this.AssertScriptInclude(scripts[0], "/amd/liteloader");
+            this.AssertScriptInclude(scripts[1], "/amd/config");
+            this.AssertScriptInclude(scripts[2], "/amd/module/b");
+            this.AssertScriptInclude(scripts[3], "/amd/module/a");
+            this.AssertScriptInvoked(scripts[4], "a");
         }
 
         private IList<XElement> ExtractScriptTags(IHtmlString html)

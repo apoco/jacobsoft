@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Script.Serialization;
+using Jacobsoft.Amd.Exceptions;
 using Jacobsoft.Amd.Internals;
 
 namespace Jacobsoft.Amd
@@ -41,6 +42,14 @@ namespace Jacobsoft.Amd
             helper.RequireModuleLoader(outputContext, stringBuilder);
             helper.RequireAmdConfiguration(outputContext, stringBuilder);
 
+            if (outputContext.ScriptLoadingMode == ScriptLoadingMode.Static)
+            {
+                helper.RequireModuleIncludeRecursive(
+                    moduleId, 
+                    outputContext, 
+                    stringBuilder);
+            }
+
             var scripts = string.Concat(
                 moduleDefinitions
                     .Select(kvp => string.Format(
@@ -66,10 +75,26 @@ namespace Jacobsoft.Amd
         {
             if (!context.IsLoaderScriptWritten)
             {
-                var url = VirtualPathUtility.ToAbsolute(
-                    AmdConfiguration.Current.LoaderUrl,
-                    helper.ViewContext.HttpContext.Request.ApplicationPath);
-                WriteScriptTag(stringBuilder, url);
+                var config = AmdConfiguration.Current;
+                string loaderUrl;
+
+                if (config.ScriptLoadingMode == ScriptLoadingMode.Dynamic)
+                {
+                    if (config.LoaderUrl == null)
+                    {
+                        throw new AmdConfigurationException("Dynamic script loading requires a third-party script loader.");
+                    }
+                    else
+                    {
+                        loaderUrl = helper.GetUrlHelper().Action("Loader", "Amd");
+                    }
+                }
+                else
+                {
+                    loaderUrl = helper.GetUrlHelper().Action("LiteLoader", "Amd");
+                }
+
+                WriteScriptTag(stringBuilder, loaderUrl);
                 context.IsLoaderScriptWritten = true;
             }
         }
@@ -81,21 +106,56 @@ namespace Jacobsoft.Amd
         {
             if (!context.IsConfigScriptWritten)
             {
-                var urlHelper = new UrlHelper(
-                    helper.ViewContext.RequestContext, 
-                    RouteTable.Routes);
+                var urlHelper = helper.GetUrlHelper();
                 var url = urlHelper.Action("Config", "Amd");
                 WriteScriptTag(stringBuilder, url);
                 context.IsConfigScriptWritten = true;
             }
         }
 
+        private static void RequireModuleIncludeRecursive(
+            this HtmlHelper helper, 
+            string moduleId,
+            ScriptOutputContext context,
+            StringBuilder stringBuilder)
+        {
+            if (!context.WrittenModules.Contains(moduleId))
+            {
+                context.WrittenModules.Add(moduleId);
+
+                var module = context.ResolveModule(moduleId);
+                if (module != null)
+                {
+                    foreach (var dependency 
+                        in module.Dependencies.OrEmpty().Where(m => m.Content != null))
+                    {
+                        helper.RequireModuleIncludeRecursive(
+                            dependency.Id,
+                            context,
+                            stringBuilder);
+                    }
+                }
+
+                var urlHelper = helper.GetUrlHelper();
+                var url = urlHelper.Action("Module", "Amd", new { id = moduleId });
+                WriteScriptTag(stringBuilder, url, true);
+            }
+        }
+
         private static void WriteScriptTag(
             StringBuilder stringBuilder, 
-            string scriptUrl)
+            string scriptUrl,
+            bool defer = false)
         {
             var scriptBuilder = new TagBuilder("script");
             scriptBuilder.Attributes["src"] = scriptUrl;
+
+            if (defer)
+            {
+                scriptBuilder.Attributes["defer"] = "defer";
+                scriptBuilder.Attributes["async"] = "async";
+            }
+
             stringBuilder.Append(scriptBuilder.ToString(TagRenderMode.Normal));
         }
 
@@ -109,6 +169,14 @@ namespace Jacobsoft.Amd
             var context = new ScriptOutputContext();
             httpContext.Items[OutputContextKey] = context;
             return context;
+        }
+
+        private static UrlHelper GetUrlHelper(this HtmlHelper helper)
+        {
+            var urlHelper = new UrlHelper(
+                helper.ViewContext.RequestContext,
+                RouteTable.Routes);
+            return urlHelper;
         }
     }
 }

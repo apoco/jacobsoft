@@ -9,8 +9,16 @@
   <xs:element name="jacobsoft.amd" type="AmdConfiguration"/>
 
   <xs:complexType name="AmdConfiguration">
-    <xs:attribute name="loaderUrl" type="xs:string" use="required"/>
+    <xs:attribute name="loaderUrl" type="xs:string" use="optional"/>
     <xs:attribute name="moduleRootUrl" type="xs:string" default="~/Scripts"/>
-    <xs:attribute name="optimize" type="xs:boolean" default="false"/>
+    <xs:attribute name="mode" type="ScriptLoadingMode" default="dynamic"/>
   </xs:complexType>
+
+  <xs:simpleType name="ScriptLoadingMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="dynamic"/>
+      <xs:enumeration value="static"/>
+      <xs:enumeration value="bundled"/>
+    </xs:restriction>
+  </xs:simpleType>
 </xs:schema>

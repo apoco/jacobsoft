@@ -10,5 +10,7 @@ namespace Jacobsoft.Amd
         string LoaderUrl { get; }
 
         string ModuleRootUrl { get; }
+
+        ScriptLoadingMode ScriptLoadingMode { get; }
     }
 }

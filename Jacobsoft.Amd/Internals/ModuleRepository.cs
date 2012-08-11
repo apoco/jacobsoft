@@ -8,16 +8,16 @@ namespace Jacobsoft.Amd.Internals
 {
     internal class ModuleRepository : IModuleRepository
     {
-        private readonly IDictionary<string, IModule> modules = new ConcurrentDictionary<string, IModule>();
+        private static readonly IDictionary<string, IModule> modules = new ConcurrentDictionary<string, IModule>();
 
         public void Add(IModule module)
         {
-            this.modules[module.Name] = module;
+            modules[module.Id] = module;
         }
 
         public bool TryGetModule(string moduleName, out IModule module)
         {
-            return this.modules.TryGetValue(moduleName, out module);
+            return modules.TryGetValue(moduleName, out module);
         }
     }
 }

@@ -9,16 +9,9 @@ namespace Jacobsoft.Amd
 {
     public class AmdConfiguration : IAmdConfiguration
     {
-        private static ObjectFactory objectFactory = new ObjectFactory();
-        private static IAmdConfiguration config = null;
-
         public static IAmdConfiguration Current 
         {
-            get
-            {
-                return config ?? (config = objectFactory.GetConfiguration());
-            }
-            set { config = value; } 
+            get { return ServiceLocator.Instance.Get<IAmdConfiguration>(); }
         }
 
         internal AmdConfiguration()
@@ -29,7 +22,7 @@ namespace Jacobsoft.Amd
             {
                 this.LoaderUrl = configSection.LoaderUrl;
                 this.ModuleRootUrl = configSection.RootModuleUrl;
-                this.IsOptimizationEnabled = configSection.IsOptimizationEnabled;
+                this.ScriptLoadingMode = configSection.ScriptLoadingMode;
             }
         }
 
@@ -37,6 +30,6 @@ namespace Jacobsoft.Amd
 
         public string ModuleRootUrl { get; set; }
 
-        public bool IsOptimizationEnabled { get; set; }
+        public ScriptLoadingMode ScriptLoadingMode { get; set; }
     }
 }

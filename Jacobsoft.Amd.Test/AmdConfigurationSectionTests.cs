@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using AutoMoq.Helpers;
+using Jacobsoft.Amd.Internals;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Jacobsoft.Amd.Test
@@ -25,27 +26,35 @@ namespace Jacobsoft.Amd.Test
         }
 
         [TestMethod]
-        public void IsOptimizationEnabled_WhenTrue()
+        public void Mode_WhenUnspecified()
         {
             var configSection = ConfigurationManager.GetSection("jacobsoft.amd")
                 as AmdConfigurationSection;
-            Assert.IsTrue(configSection.IsOptimizationEnabled);
+            Assert.AreEqual(ScriptLoadingMode.Dynamic, configSection.ScriptLoadingMode);
         }
 
         [TestMethod]
-        public void IsOptimizationEnabled_WhenFalse()
+        public void Mode_WhenDynamicSpecified()
         {
-            var configSection = ConfigurationManager.GetSection("jacobsoft.amd.nonOptimized")
+            var configSection = ConfigurationManager.GetSection("jacobsoft.amd.dynamic")
                 as AmdConfigurationSection;
-            Assert.IsFalse(configSection.IsOptimizationEnabled);
+            Assert.AreEqual(ScriptLoadingMode.Dynamic, configSection.ScriptLoadingMode);
         }
 
         [TestMethod]
-        public void IsOptimizationEnabled_WhenUnspecified()
+        public void Mode_WhenStaticSpecified()
         {
-            var configSection = ConfigurationManager.GetSection("jacobsoft.amd.noOptimizationSetting")
+            var configSection = ConfigurationManager.GetSection("jacobsoft.amd.static")
                 as AmdConfigurationSection;
-            Assert.IsFalse(configSection.IsOptimizationEnabled);
+            Assert.AreEqual(ScriptLoadingMode.Static, configSection.ScriptLoadingMode);
+        }
+
+        [TestMethod]
+        public void Mode_WhenBundledSpecified()
+        {
+            var configSection = ConfigurationManager.GetSection("jacobsoft.amd.bundled")
+                as AmdConfigurationSection;
+            Assert.AreEqual(ScriptLoadingMode.Bundled, configSection.ScriptLoadingMode);
         }
     }
 }

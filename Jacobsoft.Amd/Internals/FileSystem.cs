@@ -14,5 +14,10 @@ namespace Jacobsoft.Amd.Internals
         {
             return File.Open(loaderPath, fileMode);
         }
+
+        public bool FileExists(string filePath)
+        {
+            return File.Exists(filePath);
+        }
     }
 }

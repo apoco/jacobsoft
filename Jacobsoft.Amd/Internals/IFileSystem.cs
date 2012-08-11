@@ -9,5 +9,7 @@ namespace Jacobsoft.Amd.Internals
     internal interface IFileSystem
     {
         Stream Open(string loaderPath, FileMode fileMode);
+
+        bool FileExists(string filePath);
     }
 }

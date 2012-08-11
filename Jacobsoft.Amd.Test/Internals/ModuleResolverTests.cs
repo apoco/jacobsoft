@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Web;
 using AutoMoq;
 using AutoMoq.Helpers;
 using Jacobsoft.Amd.Exceptions;
@@ -20,6 +21,10 @@ namespace Jacobsoft.Amd.Test.Internals
         public void Initialize()
         {
             this.autoMocker = new AutoMoqer();
+            this.autoMocker
+                .GetMock<HttpServerUtilityBase>()
+                .Setup(s => s.MapPath("~/Scripts"))
+                .Returns("X:\\Modules");
         }
 
         [TestMethod, ExpectedException(typeof(InvalidModuleException))]
@@ -30,7 +35,7 @@ namespace Jacobsoft.Amd.Test.Internals
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
                 .Setup(c => c.ModuleRootUrl)
-                .Returns(@"X:\Modules");
+                .Returns(@"~/Scripts");
 
             this.ArrangeJavaScriptFile(
                 @"X:\Modules\module.js",
@@ -47,7 +52,7 @@ namespace Jacobsoft.Amd.Test.Internals
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
                 .Setup(c => c.ModuleRootUrl)
-                .Returns(@"X:\Modules");
+                .Returns(@"~/Scripts");
 
             this.ArrangeJavaScriptFile(
                 @"X:\Modules\module.js",
@@ -59,19 +64,19 @@ namespace Jacobsoft.Amd.Test.Internals
         [TestMethod]
         public void Resolve_WithNameAlreadyDefined()
         {
-            var moduleName = "module";
+            var moduleId = "module";
 
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
                 .Setup(c => c.ModuleRootUrl)
-                .Returns(@"X:\Modules");
+                .Returns(@"~/Scripts");
 
             this.ArrangeJavaScriptFile(
                 @"X:\Modules\module.js",
                 "define('module', function() { return 23; });");
 
-            var module = this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleName);
-            Assert.AreEqual("module", module.Name);
+            var module = this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleId);
+            Assert.AreEqual("module", module.Id);
             Assert.AreEqual("define('module', [], function() { return 23; });", module.Content);
         }
 
@@ -83,7 +88,7 @@ namespace Jacobsoft.Amd.Test.Internals
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
                 .Setup(c => c.ModuleRootUrl)
-                .Returns(@"X:\Modules");
+                .Returns(@"~/Scripts");
 
             this.ArrangeJavaScriptFile(
                 @"X:\Modules\module.js",
@@ -100,14 +105,14 @@ namespace Jacobsoft.Amd.Test.Internals
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
                 .Setup(c => c.ModuleRootUrl)
-                .Returns(@"X:\Modules");
+                .Returns(@"~/Scripts");
 
             this.ArrangeJavaScriptFile(
                 @"X:\Modules\module.js",
                 "define(function() { return 23; });");
 
             var module = this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleName);
-            Assert.AreEqual("module", module.Name);
+            Assert.AreEqual("module", module.Id);
             Assert.AreEqual("define('module', [], function() { return 23; });", module.Content);
         }
 
@@ -119,14 +124,14 @@ namespace Jacobsoft.Amd.Test.Internals
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
                 .Setup(c => c.ModuleRootUrl)
-                .Returns(@"X:\Modules");
+                .Returns(@"~/Scripts");
 
             this.ArrangeJavaScriptFile(
                 @"X:\Modules\module.js",
                 "define(function() { return 23; });");
 
             var module = this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleName);
-            Assert.AreEqual("module", module.Name);
+            Assert.AreEqual("module", module.Id);
             Assert.AreEqual("define('module', [], function() { return 23; });", module.Content);
         }
 
@@ -138,7 +143,7 @@ namespace Jacobsoft.Amd.Test.Internals
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
                 .Setup(c => c.ModuleRootUrl)
-                .Returns(@"X:\Modules");
+                .Returns(@"~/Scripts");
 
             this.ArrangeJavaScriptFile(
                 @"X:\Modules\module.js",
@@ -154,12 +159,12 @@ namespace Jacobsoft.Amd.Test.Internals
             var dependencies = module.Dependencies.ToList();
             Assert.AreEqual(2, dependencies.Count());
 
-            Assert.AreEqual("foo", dependencies[0].Name);
+            Assert.AreEqual("foo", dependencies[0].Id);
             Assert.AreEqual(
                 "define('foo', [], function(){ return function(str) { window.alert(str); }; });", 
                 dependencies[0].Content);
 
-            Assert.AreEqual("bar", dependencies[1].Name);
+            Assert.AreEqual("bar", dependencies[1].Id);
             Assert.AreEqual(
                 "define('bar', [], function(){ return 'bar'; });",
                 dependencies[1].Content);
@@ -173,7 +178,7 @@ namespace Jacobsoft.Amd.Test.Internals
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
                 .Setup(c => c.ModuleRootUrl)
-                .Returns(@"X:\Modules");
+                .Returns(@"~/Scripts");
 
             this.ArrangeJavaScriptFile(
                 @"X:\Modules\library\module.js",
@@ -186,7 +191,7 @@ namespace Jacobsoft.Amd.Test.Internals
             var dependencies = module.Dependencies.ToList();
             Assert.AreEqual(1, dependencies.Count());
 
-            Assert.AreEqual("library/foo", dependencies[0].Name);
+            Assert.AreEqual("library/foo", dependencies[0].Id);
             Assert.AreEqual(
                 "define('library/foo', [], function(){ return function(str) { window.alert(str); }; });",
                 dependencies[0].Content);
@@ -200,7 +205,7 @@ namespace Jacobsoft.Amd.Test.Internals
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
                 .Setup(c => c.ModuleRootUrl)
-                .Returns(@"X:\Modules");
+                .Returns(@"~/Scripts");
 
             this.ArrangeJavaScriptFile(
                 @"X:\Modules\library\module.js",
@@ -213,7 +218,7 @@ namespace Jacobsoft.Amd.Test.Internals
             var dependencies = module.Dependencies.ToList();
             Assert.AreEqual(1, dependencies.Count());
 
-            Assert.AreEqual("foo", dependencies[0].Name);
+            Assert.AreEqual("foo", dependencies[0].Id);
             Assert.AreEqual(
                 "define('foo', [], function(){ return function(str) { window.alert(str); }; });",
                 dependencies[0].Content);
@@ -227,7 +232,7 @@ namespace Jacobsoft.Amd.Test.Internals
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
                 .Setup(c => c.ModuleRootUrl)
-                .Returns(@"X:\Modules");
+                .Returns(@"~/Scripts");
 
             this.ArrangeJavaScriptFile(
                 @"X:\Modules\module.js",
@@ -244,7 +249,7 @@ namespace Jacobsoft.Amd.Test.Internals
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
                 .Setup(c => c.ModuleRootUrl)
-                .Returns(@"X:\Modules");
+                .Returns(@"~/Scripts");
 
             this.ArrangeJavaScriptFile(
                 @"X:\Modules\library\module.js",
@@ -257,10 +262,49 @@ namespace Jacobsoft.Amd.Test.Internals
             var dependencies = module.Dependencies.ToList();
             Assert.AreEqual(1, dependencies.Count());
 
-            Assert.AreEqual("library/subdir/foo", dependencies[0].Name);
+            Assert.AreEqual("library/subdir/foo", dependencies[0].Id);
             Assert.AreEqual(
                 "define('library/subdir/foo', [], function(){ return function(str) { window.alert(str); }; });",
                 dependencies[0].Content);
+        }
+
+        [TestMethod]
+        public void Resolve_HandlesNonModuleFiles()
+        {
+            var moduleName = "library/module";
+
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.ModuleRootUrl)
+                .Returns(@"~/Scripts");
+
+            var content = "foo = { };";
+            this.ArrangeJavaScriptFile(@"X:\Modules\library\module.js", content);
+
+            var module = this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleName);
+
+            Assert.AreEqual(moduleName, module.Id);
+            Assert.AreEqual(content, module.Content);
+            Assert.IsFalse(module.Dependencies.Any());
+        }
+
+        [TestMethod]
+        public void Resolve_HandlesNotFoundDependencies()
+        {
+            var moduleName = "library/module";
+
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.ModuleRootUrl)
+                .Returns(@"~/Scripts");
+
+            var content = "define(['./foo'], function(foo) { });";
+            this.ArrangeJavaScriptFile(@"X:\Modules\library\module.js", content);
+
+            var module = this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleName);
+
+            var dependencies = module.Dependencies.ToList();
+            Assert.AreEqual("library/foo", dependencies[0].Id);
         }
 
         [TestMethod]
@@ -269,7 +313,7 @@ namespace Jacobsoft.Amd.Test.Internals
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
                 .Setup(c => c.ModuleRootUrl)
-                .Returns(@"X:\Modules");
+                .Returns(@"~/Scripts");
 
             this.ArrangeJavaScriptFile(
                 @"X:\Modules\module.js",
@@ -302,12 +346,14 @@ namespace Jacobsoft.Amd.Test.Internals
 
         private void ArrangeJavaScriptFile(string fileName, string fileContents)
         {
-            var stream = new MemoryStream(Encoding.UTF8.GetBytes(fileContents));
+            var fileSystem = this.autoMocker.GetMock<IFileSystem>();
 
-            this.autoMocker
-                .GetMock<IFileSystem>()
+            fileSystem
+                .Setup(fs => fs.FileExists(fileName))
+                .Returns(true);
+            fileSystem
                 .Setup(fs => fs.Open(fileName, FileMode.Open))
-                .Returns(stream);
+                .Returns(new MemoryStream(Encoding.UTF8.GetBytes(fileContents)));
         }
     }
 }

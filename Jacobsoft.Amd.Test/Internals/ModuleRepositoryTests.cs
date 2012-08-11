@@ -24,7 +24,7 @@ namespace Jacobsoft.Amd.Test.Internals
             var module = Mock.Of<IModule>();
 
             Mock.Get(module)
-                .Setup(m => m.Name)
+                .Setup(m => m.Id)
                 .Returns(moduleName);
 
             var repo = this.autoMocker.Resolve<ModuleRepository>();

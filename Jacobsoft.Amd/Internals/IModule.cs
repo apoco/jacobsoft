@@ -7,7 +7,7 @@ namespace Jacobsoft.Amd.Internals
 {
     internal interface IModule
     {
-        string Name { get; }
+        string Id { get; }
         string Content { get; }
         IEnumerable<IModule> Dependencies { get; }
     }

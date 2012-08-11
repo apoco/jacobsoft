@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Jacobsoft.Amd.Internals
 {
-    internal interface IModuleResolver
+    internal interface IServiceLocator
     {
-        IModule Resolve(string moduleId);
+        T Get<T>() where T : class;
     }
 }

@@ -69,12 +69,19 @@ namespace Jacobsoft.Amd.Test
                     .Setup(fs => fs.Open(loaderPath, FileMode.Open))
                     .Returns(loaderFileStream);
 
-                var result = this.controller.GetLoader();
+                var result = this.controller.Loader();
                 Assert.IsInstanceOfType(result, typeof(FileStreamResult));
 
                 Assert.AreEqual("text/javascript", result.ContentType);
                 Assert.AreEqual(loaderFileStream, result.FileStream);
             }
+        }
+
+        [TestMethod]
+        public void GetLiteLoader()
+        {
+            var result = this.controller.LiteLoader();
+            Assert.AreEqual("text/javascript", result.ContentType);
         }
 
         [TestMethod]
@@ -127,7 +134,7 @@ namespace Jacobsoft.Amd.Test
                 .Setup(m => m.Content)
                 .Returns(content);
 
-            var result = this.controller.GetModule(moduleName);
+            var result = this.controller.Module(moduleName);
 
             Assert.AreEqual("text/javascript", result.ContentType);
             Assert.AreEqual(content, result.Content);

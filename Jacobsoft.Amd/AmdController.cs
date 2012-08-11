@@ -16,16 +16,16 @@ namespace Jacobsoft.Amd
     {
         private const int ScriptCacheDuration = 60 * 60 * 24 * 30;
 
-        private static ObjectFactory factory = new ObjectFactory();
+        private static ServiceLocator factory = new ServiceLocator();
 
         private readonly IAmdConfiguration config;
         private readonly IModuleResolver resolver;
         private readonly IFileSystem fileSystem;
 
         public AmdController() : this(
-            AmdConfiguration.Current,
-            factory.GetModuleResolver(),
-            factory.GetFileSystem())
+            ServiceLocator.Instance.Get<IAmdConfiguration>(),
+            ServiceLocator.Instance.Get<IModuleResolver>(),
+            ServiceLocator.Instance.Get<IFileSystem>())
         {
         }
 
@@ -41,7 +41,7 @@ namespace Jacobsoft.Amd
 
         [HttpGet]
         [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
-        public FileStreamResult GetLoader()
+        public FileStreamResult Loader()
         {
             return this.File(
                 this.fileSystem.Open(this.config.LoaderUrl, FileMode.Open), 
@@ -50,10 +50,10 @@ namespace Jacobsoft.Amd
 
         [HttpGet]
         [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
-        public ContentResult GetModule(string moduleName)
+        public FileResult LiteLoader()
         {
-            return this.Content(
-                this.resolver.Resolve(moduleName).Content, 
+            return this.File(
+                this.GetType().Assembly.GetManifestResourceStream("Jacobsoft.Amd.Scripts.liteloader.js"),
                 "text/javascript");
         }
 
@@ -68,6 +68,15 @@ namespace Jacobsoft.Amd
                 string.Format(
                     "require.config({0});",
                     new JavaScriptSerializer().Serialize(new { baseUrl = baseUrl })),
+                "text/javascript");
+        }
+
+        [HttpGet]
+        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
+        public ContentResult Module(string id)
+        {
+            return this.Content(
+                this.resolver.Resolve(id).Content, 
                 "text/javascript");
         }
     }

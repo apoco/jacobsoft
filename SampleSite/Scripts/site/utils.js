@@ -2,7 +2,7 @@
 
     return {
         tellUser: function (str) {
-            alert(str);
+            document.getElementById('message').appendChild(document.createTextNode(str));
         }
     };
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Web;
 using System.Web.Script.Serialization;
 using Antlr.Runtime;
 using Jacobsoft.Amd.Exceptions;
@@ -14,6 +15,7 @@ namespace Jacobsoft.Amd.Internals
     {
         private readonly IAmdConfiguration config;
         private readonly IModuleRepository repository;
+        private readonly HttpServerUtilityBase httpServer;
         private readonly IFileSystem fileSystem;
 
         private readonly JavaScriptSerializer jsSerializer = new JavaScriptSerializer();
@@ -21,30 +23,31 @@ namespace Jacobsoft.Amd.Internals
         public ModuleResolver(
             IAmdConfiguration config, 
             IModuleRepository repository,
+            HttpServerUtilityBase httpServer,
             IFileSystem fileSystem)
         {
             this.config = config;
             this.repository = repository;
+            this.httpServer = httpServer;
             this.fileSystem = fileSystem;
         }
 
-        public IModule Resolve(string moduleName)
+        public IModule Resolve(string moduleId)
         {
             IModule module;
-            if (!this.repository.TryGetModule(moduleName, out module))
+            if (!this.repository.TryGetModule(moduleId, out module))
             {
-                var segments = this.GetModulePath(moduleName).ToList();
+                var segments = this.GetModulePath(moduleId).ToList();
                 module = this.Resolve(segments);
-                this.repository.Add(module);
             }
             return module;
         }
 
-        private IModule Resolve(IEnumerable<string> subFolders, string moduleName)
+        private IModule Resolve(IEnumerable<string> subFolders, string moduleId)
         {
             var absolutePath = subFolders.ToList();
 
-            var segments = this.GetModulePath(moduleName);
+            var segments = this.GetModulePath(moduleId);
             foreach (var segment in segments)
             {
                 if (segment == "..")
@@ -53,7 +56,7 @@ namespace Jacobsoft.Amd.Internals
                     if (indexToRemove < 0)
                     {
                         throw new InvalidPathException(
-                            moduleName, 
+                            moduleId, 
                             "Dependency cannot refer to directory above the root module directory.");
                     }
 
@@ -68,11 +71,24 @@ namespace Jacobsoft.Amd.Internals
             return this.Resolve(absolutePath);
         }
 
-        private IModule Resolve(IEnumerable<string> nameSegments)
+        private IModule Resolve(IEnumerable<string> idSegments)
         {
-            var normalizedName = string.Join("/", nameSegments);
-            var filePath = nameSegments.Aggregate(this.config.ModuleRootUrl, Path.Combine) + ".js";
-            var subFolders = nameSegments.Take(nameSegments.Count() - 1);
+            var normalizedId = string.Join("/", idSegments);
+            var filePath = idSegments.Aggregate(
+                this.httpServer.MapPath(this.config.ModuleRootUrl), 
+                Path.Combine) + ".js";
+            var subFolders = idSegments.Take(idSegments.Count() - 1);
+
+            if (!this.fileSystem.FileExists(filePath))
+            {
+                var module = new Module 
+                { 
+                    Id = normalizedId, 
+                    Dependencies = Enumerable.Empty<IModule>()
+                };
+                this.repository.Add(module);
+                return module;
+            }
 
             using (var stream = this.fileSystem.Open(filePath, FileMode.Open))
             {
@@ -96,13 +112,13 @@ namespace Jacobsoft.Amd.Internals
                     if (argsToProcess.Count == 0)
                     {
                         throw new InvalidModuleException(
-                            normalizedName, 
+                            normalizedId, 
                             "Module definition is empty.");
                     }
                     else if (argsToProcess.Count > 3)
                     {
                         throw new InvalidModuleException(
-                            normalizedName,
+                            normalizedId,
                             "Module definition contains unexpected extra arguments.");
                     }
 
@@ -129,47 +145,49 @@ namespace Jacobsoft.Amd.Internals
 
                                 tokenStream.Replace(
                                     (arrayItem as StringLiteral).Token.TokenIndex,
-                                    string.Format("'{0}'", dependency.Name));
+                                    string.Format("'{0}'", dependency.Id));
                             }
                         }
                         argsToProcess.Remove(depsArray);
                     }
 
-                    var nameLiteral = argsToProcess.LastOrDefault() as StringLiteral;
-                    if (nameLiteral == null)
+                    var idLiteral = argsToProcess.LastOrDefault() as StringLiteral;
+                    if (idLiteral == null)
                     {
                         tokenStream.InsertAfter(
                             moduleDef.ArgumentList.Token,
-                            string.Format("'{0}', ", normalizedName));
+                            string.Format("'{0}', ", normalizedId));
                     }
                     else
                     {
                         var definedName = 
-                            jsSerializer.Deserialize<string>(nameLiteral.Text);
-                        if (definedName != normalizedName)
+                            jsSerializer.Deserialize<string>(idLiteral.Text);
+                        if (definedName != normalizedId)
                         {
                             throw new InvalidModuleException(
-                                normalizedName, 
+                                normalizedId, 
                                 string.Format(
                                     "Module name '{0}' does not match expected value '{1}'. Anonymous modules are recommended.",
                                     definedName,
-                                    normalizedName));
+                                    normalizedId));
                         }
                     }
                 }
 
-                return new Module
+                var module = new Module
                 {
-                    Name = normalizedName,
+                    Id = normalizedId,
                     Content = tokenStream.ToString(),
                     Dependencies = dependencies
                 };
+                this.repository.Add(module);
+                return module;
             }
         }
 
-        private IEnumerable<string> GetModulePath(string moduleName)
+        private IEnumerable<string> GetModulePath(string moduleId)
         {
-            return moduleName.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
+            return moduleId.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
         }
     }
 }

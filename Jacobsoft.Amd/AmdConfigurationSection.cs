@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using Jacobsoft.Amd.Internals;
 
 namespace Jacobsoft.Amd
 {
     public class AmdConfigurationSection : ConfigurationSection
     {
         private const string RootModuleUrlAttribute = "moduleRootUrl";
-        private const string IsOptimizationEnabledAttribute = "optimize";
         private const string LoaderUrlAttribute = "loaderUrl";
+        private const string ScriptLoadingModeAttribute = "mode";
 
         [ConfigurationProperty("xmlns")]
         private string Ignored { get; set; }
@@ -27,10 +30,24 @@ namespace Jacobsoft.Amd
             get { return base[LoaderUrlAttribute] as string; }
         }
 
-        [ConfigurationProperty(IsOptimizationEnabledAttribute, DefaultValue = false)]
-        public bool IsOptimizationEnabled 
+        [ConfigurationProperty(
+            ScriptLoadingModeAttribute, 
+            DefaultValue = ScriptLoadingMode.Dynamic)]
+        [TypeConverter(typeof(ScriptLoadingModeConfigConverter))]
+        public ScriptLoadingMode ScriptLoadingMode 
         {
-            get { return (bool)base[IsOptimizationEnabledAttribute]; }
+            get { return (ScriptLoadingMode)base[ScriptLoadingModeAttribute]; } 
+        }
+
+        private class ScriptLoadingModeConfigConverter : ConfigurationConverterBase
+        {
+            public override object ConvertFrom(
+                ITypeDescriptorContext context, 
+                CultureInfo culture, 
+                object value)
+            {
+                return Enum.Parse(typeof(ScriptLoadingMode), value.ToString(), true);
+            }
         }
     }
 }

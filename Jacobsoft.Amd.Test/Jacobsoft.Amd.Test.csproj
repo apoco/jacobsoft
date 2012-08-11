@@ -95,9 +95,11 @@
     <Compile Include="Internals\JavaScriptParserTests.cs" />
     <Compile Include="Internals\ModuleResolverTests.cs" />
     <Compile Include="Internals\AutoCastingListTests.cs" />
-    <Compile Include="Internals\ObjectFactoryTests.cs" />
+    <Compile Include="Internals\ServiceLocatorTests.cs" />
     <Compile Include="Internals\ModuleRepositoryTests.cs" />
+    <Compile Include="Internals\EnumerableExtensionsTests.cs" />
     <Compile Include="JavaScriptTestHelper.cs" />
+    <Compile Include="MockServiceLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AmdConfigurationTests.cs" />
     <Compile Include="HtmlHelperExtensionsTests.cs" />
@@ -111,6 +113,9 @@
       <Project>{e1e2b68b-33de-4159-a97f-701399f4d92b}</Project>
       <Name>Jacobsoft.Amd</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="liteloader.tests.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
