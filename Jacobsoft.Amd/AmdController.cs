@@ -54,8 +54,11 @@ namespace Jacobsoft.Amd
         }
 
         [HttpGet]
-        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
-        public FilePathResult Loader()
+        [OutputCache(
+            Location = OutputCacheLocation.ServerAndClient,
+            Duration = ScriptCacheDuration,
+            VaryByParam = "*")]
+        public FilePathResult Loader([Bind(Prefix = "v")] string version = null)
         {
             return this.File(
                 this.HttpContext.Server.MapPath(this.config.LoaderUrl), 
@@ -63,8 +66,11 @@ namespace Jacobsoft.Amd
         }
 
         [HttpGet]
-        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
-        public FileResult LiteLoader()
+        [OutputCache(
+            Location = OutputCacheLocation.ServerAndClient,
+            Duration = ScriptCacheDuration,
+            VaryByParam = "*")]
+        public FileResult LiteLoader([Bind(Prefix = "v")] string version = null)
         {
             return this.File(
                 this.GetType().Assembly.GetManifestResourceStream("Jacobsoft.Amd.Scripts.liteloader.js"),
@@ -72,8 +78,11 @@ namespace Jacobsoft.Amd
         }
 
         [HttpGet]
-        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
-        public JavaScriptResult Config()
+        [OutputCache(
+            Location = OutputCacheLocation.ServerAndClient, 
+            Duration = ScriptCacheDuration,
+            VaryByParam = "*")]
+        public JavaScriptResult Config([Bind(Prefix="v")] string version = null)
         {
             var baseUrl = VirtualPathUtility.ToAbsolute(
                 this.config.ModuleRootUrl ?? "~/Scripts",
@@ -93,8 +102,13 @@ namespace Jacobsoft.Amd
         }
 
         [HttpGet]
-        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
-        public ContentResult Module(string id)
+        [OutputCache(
+            Location = OutputCacheLocation.ServerAndClient, 
+            Duration = ScriptCacheDuration,
+            VaryByParam = "*")]
+        public ContentResult Module(
+            string id, 
+            [Bind(Prefix = "v")] string version = null)
         {
             return this.Content(
                 this.resolver.Resolve(id).Content, 
@@ -107,8 +121,13 @@ namespace Jacobsoft.Amd
         /// <param name="id">A list of module IDs. Separate modules with spaces, commas, or plus signs.</param>
         /// <returns>A JavaScriptResult</returns>
         [HttpGet]
-        [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
-        public JavaScriptResult Bundle(string id)
+        [OutputCache(
+            Location = OutputCacheLocation.ServerAndClient, 
+            Duration = ScriptCacheDuration,
+            VaryByParam = "*")]
+        public JavaScriptResult Bundle(
+            string id, 
+            [Bind(Prefix = "v")] string version = null)
         {
             return this.JavaScript(string.Join(
                 ";", 

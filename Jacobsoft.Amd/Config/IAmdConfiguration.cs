@@ -7,11 +7,13 @@ namespace Jacobsoft.Amd.Config
 {
     public interface IAmdConfiguration
     {
-        string LoaderUrl { get; }
+        string LoaderUrl { get; set; }
 
-        string ModuleRootUrl { get; }
+        string ModuleRootUrl { get; set; }
 
-        ScriptLoadingMode ScriptLoadingMode { get; }
+        ScriptLoadingMode ScriptLoadingMode { get; set; }
+
+        IVersionProvider VersionProvider { get; set; }
 
         IDictionary<string, IShim> Shims { get; }
     }

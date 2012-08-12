@@ -76,6 +76,7 @@
     <Compile Include="Exceptions\AmdException.cs" />
     <Compile Include="Internals\Antlr\JavaScriptParser.Extensions.cs" />
     <Compile Include="Internals\Antlr\TreeNodes.cs" />
+    <Compile Include="Internals\AssemblyVersionProvider.cs" />
     <Compile Include="Internals\AutoCastingList.cs" />
     <Compile Include="Internals\Config\AmdShimConfigurationElement.cs" />
     <Compile Include="Internals\EnumerableExtensions.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Config\IShim.cs" />
     <Compile Include="Config\ScriptLoadingMode.cs" />
     <Compile Include="Internals\ScriptOutputContext.cs" />
+    <Compile Include="IVersionProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Config\Shim.cs" />
   </ItemGroup>

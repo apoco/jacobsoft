@@ -25,11 +25,15 @@ namespace Jacobsoft.Amd.Config
                 this.ScriptLoadingMode = configSection.ScriptLoadingMode;
                 this.Shims = configSection.Shims.ToDictionary(s => s.Id);
             }
+
+            this.VersionProvider = ServiceLocator.Instance.Get<IVersionProvider>();
         }
 
         public string LoaderUrl { get; set; }
 
         public string ModuleRootUrl { get; set; }
+
+        public IVersionProvider VersionProvider { get; set; }
 
         public ScriptLoadingMode ScriptLoadingMode { get; set; }
 

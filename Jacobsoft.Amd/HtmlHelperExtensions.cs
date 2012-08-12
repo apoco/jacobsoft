@@ -110,6 +110,7 @@ namespace Jacobsoft.Amd
         {
             if (!context.IsLoaderScriptWritten)
             {
+                string action;
                 var config = AmdConfiguration.Current;
                 string loaderUrl;
 
@@ -121,15 +122,15 @@ namespace Jacobsoft.Amd
                     }
                     else
                     {
-                        loaderUrl = helper.GetUrlHelper().Action("Loader", "Amd");
+                        action = "Loader";
                     }
                 }
                 else
                 {
-                    loaderUrl = helper.GetUrlHelper().Action("LiteLoader", "Amd");
+                    action = "LiteLoader";
                 }
 
-                WriteScriptTag(stringBuilder, loaderUrl);
+                helper.WriteScriptActionInclude(action, stringBuilder, false);
                 context.IsLoaderScriptWritten = true;
             }
         }
@@ -141,9 +142,7 @@ namespace Jacobsoft.Amd
         {
             if (!context.IsConfigScriptWritten)
             {
-                var urlHelper = helper.GetUrlHelper();
-                var url = urlHelper.Action("Config", "Amd");
-                WriteScriptTag(stringBuilder, url);
+                helper.WriteScriptActionInclude("config", stringBuilder, false);
                 context.IsConfigScriptWritten = true;
             }
         }
@@ -176,14 +175,30 @@ namespace Jacobsoft.Amd
         }
 
         private static void WriteScriptActionInclude(
+            this HtmlHelper helper,
+            string action,
+            StringBuilder stringBuilder,
+            bool defer = true)
+        {
+            helper.WriteScriptActionInclude(action, null, stringBuilder, defer);
+        }
+
+        private static void WriteScriptActionInclude(
             this HtmlHelper helper, 
             string action,
             string id, 
-            StringBuilder stringBuilder)
+            StringBuilder stringBuilder,
+            bool defer = true)
         {
             var urlHelper = helper.GetUrlHelper();
-            var url = urlHelper.Action(action, "Amd", new { id = id });
-            WriteScriptTag(stringBuilder, url, true);
+            var url = urlHelper.Action(
+                action, 
+                "Amd", 
+                new { 
+                    id = id, 
+                    v = AmdConfiguration.Current.VersionProvider.GetVersion() 
+                });
+            WriteScriptTag(stringBuilder, url, defer);
         }
 
         private static void WriteScriptTag(

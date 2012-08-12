@@ -65,6 +65,9 @@ namespace Jacobsoft.Amd.Test
 
             var config = autoMocker.GetMock<IAmdConfiguration>();
             config.Setup(c => c.LoaderUrl).Returns("~/Scripts/require.js");
+            config
+                .Setup(c => c.VersionProvider)
+                .Returns(autoMocker.GetMock<IVersionProvider>().Object);
         }
 
         [TestMethod]
@@ -92,6 +95,17 @@ namespace Jacobsoft.Amd.Test
             scripts = this.ExtractScriptTags(html);
 
             this.AssertScriptInvoked(scripts[0], "b");
+        }
+
+        [TestMethod]
+        public void InvokeModule_IncludesLoaderAndConfigSynchronously()
+        {
+            var html = this.htmlHelper.ModuleInvoke("a");
+            var scripts = this.ExtractScriptTags(html).Take(2);
+
+            Assert.IsTrue(scripts.All(s => 
+                s.Attribute("defer") == null 
+                && s.Attribute("async") == null));
         }
 
         [TestMethod]
@@ -194,6 +208,36 @@ namespace Jacobsoft.Amd.Test
             this.AssertScriptInclude(scripts[2], "/amd/module/b");
             this.AssertScriptInclude(scripts[3], "/amd/module/a");
             this.AssertScriptInvoked(scripts[4], "a");
+        }
+
+        [TestMethod]
+        public void InvokeModule_WithStaticLoading_UsesCacheBusting()
+        {
+            var version = "4.2.6.4";
+            var module = Mock.Of<IModule>();
+
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.ScriptLoadingMode)
+                .Returns(ScriptLoadingMode.Static);
+            this.autoMocker
+                .GetMock<IVersionProvider>()
+                .Setup(p => p.GetVersion())
+                .Returns(version);
+
+            this.autoMocker
+                .GetMock<IModuleResolver>()
+                .Setup(r => r.Resolve("a"))
+                .Returns(module);
+
+            var html = this.htmlHelper.ModuleInvoke("a");
+            var scripts = this.ExtractScriptTags(html);
+            var srcAttribs = 
+                from script in scripts
+                let srcAttr = script.Attribute("src")
+                where srcAttr != null
+                select srcAttr.Value;
+            Assert.IsTrue(srcAttribs.All(src => src.EndsWith("v=" + version)));
         }
 
         [TestMethod]

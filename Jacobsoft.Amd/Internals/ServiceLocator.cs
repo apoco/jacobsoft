@@ -21,6 +21,10 @@ namespace Jacobsoft.Amd.Internals
 
         public ServiceLocator()
         {
+            this.RegisterFactory<HttpContextBase>(() => {
+                var context = HttpContext.Current;
+                return context == null ? null : new HttpContextWrapper(context);
+            });
             this.RegisterFactory<HttpServerUtilityBase>(() => {
                 var context = HttpContext.Current;
                 return context == null 
@@ -30,9 +34,9 @@ namespace Jacobsoft.Amd.Internals
             
             this.RegisterSingleton<IAmdConfiguration, AmdConfiguration>();
             this.RegisterSingleton<IModuleRepository, ModuleRepository>();
-            this.RegisterType<IModuleResolver, ModuleResolver>();
-
-            this.RegisterType<IFileSystem, FileSystem>();
+            this.RegisterSingleton<IModuleResolver, ModuleResolver>();
+            this.RegisterSingleton<IFileSystem, FileSystem>();
+            this.RegisterSingleton<IVersionProvider, AssemblyVersionProvider>();
         }
 
         public static IServiceLocator Instance { get; internal set; }
@@ -52,23 +56,11 @@ namespace Jacobsoft.Amd.Internals
             this.RegisterLazyInstance<TService, TImpl>(this.GenerateFactory<TImpl>());
         }
 
-        private void RegisterType<TService, TImpl>()
-            where TImpl : TService
-        {
-            this.RegisterFactory<TService, TImpl>(GenerateFactory<TImpl>());
-        }
-
         private void RegisterLazyInstance<TService, TImpl>(Func<TImpl> factory)
             where TImpl : TService
         {
             Lazy<TImpl> lazyInitializer = new Lazy<TImpl>(factory);
             this.RegisterFactory<TService>(() => lazyInitializer.Value);
-        }
-
-        private void RegisterFactory<TService, TImpl>(Func<TImpl> factory)
-            where TImpl : TService
-        {
-            this.RegisterFactory<TService>(() => factory());
         }
 
         private void RegisterFactory<TService>(Func<TService> factory)

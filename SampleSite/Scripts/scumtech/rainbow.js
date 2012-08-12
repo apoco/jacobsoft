@@ -6,17 +6,19 @@ var numColors = colors.length;
 scumtech.rainbow = {
     rainbowify: function (elem) {
 
-        var text = elem.innerText;
-        scumtech.clear(elem);
+        var text = elem.textContent || elem.innerText;
+        if (text) {
+            scumtech.clear(elem);
 
-        for (var i = 0; i < text.length; i++) {
-            var letter = text.charAt(i);
+            for (var i = 0; i < text.length; i++) {
+                var letter = text.charAt(i);
 
-            var span = document.createElement('span');
-            span.setAttribute('style', 'color: ' + colors[i % numColors]);
-            span.appendChild(document.createTextNode(letter));
+                var span = document.createElement('span');
+                span.setAttribute('style', 'color: ' + colors[i % numColors]);
+                span.appendChild(document.createTextNode(letter));
 
-            elem.appendChild(span);
+                elem.appendChild(span);
+            }
         }
     }
 };
