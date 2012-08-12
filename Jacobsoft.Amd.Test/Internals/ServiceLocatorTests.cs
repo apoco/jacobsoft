@@ -1,4 +1,5 @@
 ﻿using System;
+using Jacobsoft.Amd.Config;
 using Jacobsoft.Amd.Internals;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Jacobsoft.Amd.Internals;
 
-namespace Jacobsoft.Amd
+namespace Jacobsoft.Amd.Config
 {
     public class AmdConfiguration : IAmdConfiguration
     {
@@ -23,6 +23,7 @@ namespace Jacobsoft.Amd
                 this.LoaderUrl = configSection.LoaderUrl;
                 this.ModuleRootUrl = configSection.RootModuleUrl;
                 this.ScriptLoadingMode = configSection.ScriptLoadingMode;
+                this.Shims = configSection.Shims.ToDictionary(s => s.Id);
             }
         }
 
@@ -31,5 +32,7 @@ namespace Jacobsoft.Amd
         public string ModuleRootUrl { get; set; }
 
         public ScriptLoadingMode ScriptLoadingMode { get; set; }
+
+        public IDictionary<string, IShim> Shims { get; private set; }
     }
 }

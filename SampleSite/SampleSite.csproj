@@ -14,7 +14,7 @@
     <RootNamespace>SampleSite</RootNamespace>
     <AssemblyName>SampleSite</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
+    <MvcBuildViews>true</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -109,6 +109,8 @@
     <Content Include="Scripts\require.min.js">
       <DependentUpon>require.js</DependentUpon>
     </Content>
+    <Content Include="Scripts\scumtech\core.js" />
+    <Content Include="Scripts\scumtech\rainbow.js" />
     <Content Include="Scripts\site\utils.js" />
     <Content Include="Scripts\spaz\dom.js" />
     <Content Include="Web.config" />

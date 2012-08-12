@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Jacobsoft.Amd
+namespace Jacobsoft.Amd.Config
 {
     public interface IAmdConfiguration
     {
@@ -12,5 +12,7 @@ namespace Jacobsoft.Amd
         string ModuleRootUrl { get; }
 
         ScriptLoadingMode ScriptLoadingMode { get; }
+
+        IDictionary<string, IShim> Shims { get; }
     }
 }

@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Web;
+using Jacobsoft.Amd.Config;
 using Jacobsoft.Amd.Internals;
 
 namespace Jacobsoft.Amd.Internals

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Jacobsoft.Amd
+namespace Jacobsoft.Amd.Config
 {
     public enum ScriptLoadingMode
     {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ using System.Web.Script.Serialization;
 using Antlr.Runtime;
 using AutoMoq;
 using AutoMoq.Helpers;
+using Jacobsoft.Amd.Config;
 using Jacobsoft.Amd.Internals;
 using Jacobsoft.Amd.Internals.AntlrGenerated;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -32,9 +34,12 @@ namespace Jacobsoft.Amd.Test
                 this.autoMocker.GetMock<IFileSystem>().Object);
             
             var httpContext = this.autoMocker.GetMock<HttpContextBase>();
-            httpContext
-                .Setup(c => c.Request)
-                .Returns(this.autoMocker.GetMock<HttpRequestBase>().Object);
+            var request = this.autoMocker.GetMock<HttpRequestBase>();
+            var server = this.autoMocker.GetMock<HttpServerUtilityBase>();
+
+            httpContext.Setup(c => c.Request).Returns(request.Object);
+            httpContext.Setup(c => c.Server).Returns(server.Object);
+            request.Setup(r => r.ApplicationPath).Returns("/");
 
             controller.ControllerContext = new ControllerContext(
                 httpContext.Object,
@@ -61,30 +66,22 @@ namespace Jacobsoft.Amd.Test
         [TestMethod]
         public void GetLoader()
         {
-            var loaderPath = @"X:\loader.js";
-            var loaderContent = "Script content";
+            var loaderVirtualPath = "~/Scripts/loader.js";
+            var expectedPath = @"X:\loader.js";
 
-            using (var loaderFileStream = new MemoryStream())
-            using (var writer = new StreamWriter(loaderFileStream))
-            {
-                writer.Write(loaderContent);
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.LoaderUrl)
+                .Returns(loaderVirtualPath);
 
-                this.autoMocker
-                    .GetMock<IAmdConfiguration>()
-                    .Setup(c => c.LoaderUrl)
-                    .Returns(loaderPath);
+            this.autoMocker
+                .GetMock<HttpServerUtilityBase>()
+                .Setup(u => u.MapPath(loaderVirtualPath))
+                .Returns(expectedPath);
 
-                this.autoMocker
-                    .GetMock<IFileSystem>()
-                    .Setup(fs => fs.Open(loaderPath, FileMode.Open))
-                    .Returns(loaderFileStream);
-
-                var result = this.controller.Loader();
-                Assert.IsInstanceOfType(result, typeof(FileStreamResult));
-
-                Assert.AreEqual("text/javascript", result.ContentType);
-                Assert.AreEqual(loaderFileStream, result.FileStream);
-            }
+            var result = this.controller.Loader();
+            Assert.AreEqual("text/javascript", result.ContentType);
+            Assert.AreEqual(expectedPath, result.FileName);
         }
 
         [TestMethod]
@@ -95,29 +92,14 @@ namespace Jacobsoft.Amd.Test
         }
 
         [TestMethod]
-        public void GetConfig()
+        public void GetConfig_SetsBaseUrl()
         {
             autoMocker
                 .GetMock<IAmdConfiguration>()
                 .Setup(c => c.ModuleRootUrl)
                 .Returns("~/Scripts");
 
-            autoMocker
-                .GetMock<HttpRequestBase>()
-                .Setup(r => r.ApplicationPath)
-                .Returns("/");
-
-            var result = this.controller.Config() as ContentResult;
-            Assert.IsNotNull(result);
-
-            var program = JavaScriptTestHelper.ParseProgram(result.Content);
-            var configCall = program.Statements[0].As<CallExpression>();
-
-            var functionRef = configCall.Function.As<PropertyExpression>();
-            functionRef.Object.Is<Identifier>("require");
-            functionRef.Property.Is<Identifier>("config");
-
-            var configVals = configCall.Arguments[0].As<ObjectLiteral>();
+            var configVals = this.GetConfigObject();
             var baseUrlLiteral = configVals
                 .Assignments
                 .Single(a => a.Property.Text == "\"baseUrl\"")
@@ -125,6 +107,53 @@ namespace Jacobsoft.Amd.Test
                 .As<StringLiteral>();
             var baseUrl = this.jsSerializer.Deserialize<string>(baseUrlLiteral.Text);
             Assert.AreEqual("/Scripts", baseUrl);
+        }
+
+        [TestMethod]
+        public void Config_SetsShims()
+        {
+            autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.Shims)
+                .Returns(new Dictionary<string, IShim> { 
+                    { 
+                        "nonamd", 
+                        new Shim 
+                        { 
+                            Id = "nonamd", 
+                            Export = "foo",
+                            Dependencies = new[] { "a", "b" } 
+                        } 
+                    }
+                });
+
+            var configObj = this.GetConfigObject();
+            var shims = configObj
+                .Assignments
+                .Where(a => a.Property is StringLiteral)
+                .Single(a => (a.Property as StringLiteral).String == "shim")
+                .Value as ObjectLiteral;
+            var shim = shims
+                .Assignments
+                .Single(a => (a.Property as StringLiteral).String == "nonamd")
+                .Value as ObjectLiteral;
+
+            Assert.AreEqual(
+                "foo", 
+                shim.Assignments
+                    .Single(a => (a.Property as StringLiteral).String == "exports")
+                    .Value
+                    .As<StringLiteral>()
+                    .String);
+            Assert.IsTrue(
+                shim.Assignments
+                    .Single(a => (a.Property as StringLiteral).String == "deps")
+                    .Value
+                    .As<ArrayLiteral>()
+                    .Items
+                    .Cast<StringLiteral>()
+                    .Select(lit => lit.String)
+                    .SequenceEqual(new[] { "a", "b" }));
         }
 
         [TestMethod]
@@ -177,6 +206,22 @@ namespace Jacobsoft.Amd.Test
             var result = this.controller.Bundle("a+b+c/d");
             Assert.IsInstanceOfType(result, typeof(JavaScriptResult));
             Assert.AreEqual("a;b;d", (result as JavaScriptResult).Script);
+        }
+
+        private ObjectLiteral GetConfigObject()
+        {
+            var result = this.controller.Config();
+            Assert.IsNotNull(result);
+
+            var program = JavaScriptTestHelper.ParseProgram(result.Script);
+            var configCall = program.Statements[0].As<CallExpression>();
+
+            var functionRef = configCall.Function.As<PropertyExpression>();
+            functionRef.Object.Is<Identifier>("require");
+            functionRef.Property.Is<Identifier>("config");
+
+            var configVals = configCall.Arguments[0].As<ObjectLiteral>();
+            return configVals;
         }
     }
 }

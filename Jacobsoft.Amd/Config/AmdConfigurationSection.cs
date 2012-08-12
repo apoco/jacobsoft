@@ -6,14 +6,16 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Jacobsoft.Amd.Internals;
+using Jacobsoft.Amd.Internals.Config;
 
-namespace Jacobsoft.Amd
+namespace Jacobsoft.Amd.Config
 {
     public class AmdConfigurationSection : ConfigurationSection
     {
         private const string RootModuleUrlAttribute = "moduleRootUrl";
         private const string LoaderUrlAttribute = "loaderUrl";
         private const string ScriptLoadingModeAttribute = "mode";
+        private const string ShimsElement = "shims";
 
         [ConfigurationProperty("xmlns")]
         private string Ignored { get; set; }
@@ -37,6 +39,16 @@ namespace Jacobsoft.Amd
         public ScriptLoadingMode ScriptLoadingMode 
         {
             get { return (ScriptLoadingMode)base[ScriptLoadingModeAttribute]; } 
+        }
+
+        [ConfigurationCollection(typeof(Shim), AddItemName="module")]
+        [ConfigurationProperty(ShimsElement)]
+        public AmdShimCollectionConfigurationSection Shims
+        {
+            get 
+            {
+                return base[ShimsElement] as AmdShimCollectionConfigurationSection;
+            }
         }
 
         private class ScriptLoadingModeConfigConverter : ConfigurationConverterBase

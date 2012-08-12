@@ -12,6 +12,11 @@ namespace Jacobsoft.Amd.Internals
             return collection ?? Enumerable.Empty<T>();
         }
 
+        public static IDictionary<K, V> OrEmpty<K, V>(this IDictionary<K, V> dict)
+        {
+            return dict ?? new Dictionary<K, V>();
+        }
+
         public static IEnumerable<T> Descendents<T>(
             this T root, 
             Func<T, IEnumerable<T>> nodeChildrenFunc)

@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Script.Serialization;
 using System.Web.UI;
+using Jacobsoft.Amd.Config;
 using Jacobsoft.Amd.Internals;
 
 namespace Jacobsoft.Amd
@@ -54,10 +55,10 @@ namespace Jacobsoft.Amd
 
         [HttpGet]
         [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
-        public FileStreamResult Loader()
+        public FilePathResult Loader()
         {
             return this.File(
-                this.fileSystem.Open(this.config.LoaderUrl, FileMode.Open), 
+                this.HttpContext.Server.MapPath(this.config.LoaderUrl), 
                 "text/javascript");
         }
 
@@ -72,16 +73,23 @@ namespace Jacobsoft.Amd
 
         [HttpGet]
         [OutputCache(Location = OutputCacheLocation.ServerAndClient, Duration = ScriptCacheDuration)]
-        public ContentResult Config()
+        public JavaScriptResult Config()
         {
             var baseUrl = VirtualPathUtility.ToAbsolute(
-                this.config.ModuleRootUrl,
+                this.config.ModuleRootUrl ?? "~/Scripts",
                 this.Request.ApplicationPath);
-            return this.Content(
-                string.Format(
-                    "require.config({0});",
-                    new JavaScriptSerializer().Serialize(new { baseUrl = baseUrl })),
-                "text/javascript");
+            return this.JavaScript(string.Format(
+                "require.config({0});",
+                new JavaScriptSerializer().Serialize(
+                    new
+                    {
+                        baseUrl = baseUrl,
+                        shim = this.config.Shims.OrEmpty().Values.ToDictionary(
+                            s => s.Id, 
+                            s => new { deps = s.Dependencies, exports = s.Export })
+                    }
+                )
+            ));
         }
 
         [HttpGet]

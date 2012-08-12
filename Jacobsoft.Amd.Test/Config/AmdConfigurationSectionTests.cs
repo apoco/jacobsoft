@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using AutoMoq.Helpers;
+using Jacobsoft.Amd.Config;
 using Jacobsoft.Amd.Internals;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

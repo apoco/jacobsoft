@@ -9,11 +9,26 @@
   <xs:element name="jacobsoft.amd" type="AmdConfiguration"/>
 
   <xs:complexType name="AmdConfiguration">
+    <xs:sequence>
+      <xs:element name="shims" minOccurs="0" maxOccurs="1">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="module" type="ShimModule" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
     <xs:attribute name="loaderUrl" type="xs:string" use="optional"/>
     <xs:attribute name="moduleRootUrl" type="xs:string" default="~/Scripts"/>
     <xs:attribute name="mode" type="ScriptLoadingMode" default="dynamic"/>
   </xs:complexType>
 
+  <xs:complexType name="ShimModule">
+    <xs:attribute name="id" type="xs:string" use="required"/>
+    <xs:attribute name="dependencies" type="xs:string" use="optional"/>
+    <xs:attribute name="export" type="xs:string" use="optional"/>
+  </xs:complexType>
+  
   <xs:simpleType name="ScriptLoadingMode">
     <xs:restriction base="xs:string">
       <xs:enumeration value="dynamic"/>

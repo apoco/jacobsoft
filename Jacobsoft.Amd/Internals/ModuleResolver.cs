@@ -6,6 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Script.Serialization;
 using Antlr.Runtime;
+using Jacobsoft.Amd.Config;
 using Jacobsoft.Amd.Exceptions;
 using Jacobsoft.Amd.Internals.AntlrGenerated;
 
@@ -80,11 +81,14 @@ namespace Jacobsoft.Amd.Internals
         private IModule Resolve(IEnumerable<string> idSegments)
         {
             var normalizedId = string.Join("/", idSegments);
-            var filePath = idSegments.Aggregate(
-                this.httpServer.MapPath(this.config.ModuleRootUrl), 
-                Path.Combine) + ".js";
             var subFolders = idSegments.Take(idSegments.Count() - 1);
 
+            if (this.config.Shims != null && this.config.Shims.ContainsKey(normalizedId))
+            {
+                return this.ResolveShimModule(subFolders, this.config.Shims[normalizedId]);
+            }
+
+            var filePath = this.GetModuleFileName(idSegments);
             if (!this.fileSystem.FileExists(filePath))
             {
                 var module = new Module 
@@ -189,6 +193,38 @@ namespace Jacobsoft.Amd.Internals
                 this.repository.Add(module);
                 return module;
             }
+        }
+
+        private IModule ResolveShimModule(IEnumerable<string> subFolders, IShim shim)
+        {
+            string content = null;
+            var fileName = this.GetModuleFileName(this.GetModulePath(shim.Id));
+            if (this.fileSystem.FileExists(fileName))
+            {
+                using (var fileStream = this.fileSystem.Open(fileName, FileMode.Open))
+                using (var reader = new StreamReader(fileStream))
+                {
+                    content = reader.ReadToEnd();
+                }
+            }
+
+            return new Module
+            {
+                Id = shim.Id,
+                Dependencies = shim
+                    .Dependencies
+                    .Select(d => this.Resolve(subFolders, d))
+                    .ToList(),
+                Content = content
+            };
+        }
+
+        private string GetModuleFileName(IEnumerable<string> idSegments)
+        {
+            var filePath = idSegments.Aggregate(
+                this.httpServer.MapPath(this.config.ModuleRootUrl),
+                Path.Combine) + ".js";
+            return filePath;
         }
 
         private IEnumerable<string> GetModulePath(string moduleId)

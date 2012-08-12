@@ -90,7 +90,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AmdConfigurationSectionTests.cs" />
+    <Compile Include="Config\AmdConfigurationSectionTests.cs" />
     <Compile Include="AmdControllerTests.cs" />
     <Compile Include="Internals\JavaScriptParserTests.cs" />
     <Compile Include="Internals\ModuleResolverTests.cs" />
@@ -101,7 +101,7 @@
     <Compile Include="JavaScriptTestHelper.cs" />
     <Compile Include="MockServiceLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AmdConfigurationTests.cs" />
+    <Compile Include="Config\AmdConfigurationTests.cs" />
     <Compile Include="HtmlHelperExtensionsTests.cs" />
   </ItemGroup>
   <ItemGroup>

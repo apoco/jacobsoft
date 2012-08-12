@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Xml.Linq;
 using AutoMoq;
+using Jacobsoft.Amd.Config;
 using Jacobsoft.Amd.Exceptions;
 using Jacobsoft.Amd.Internals;
 using Jacobsoft.Amd.Internals.AntlrGenerated;
@@ -63,15 +64,13 @@ namespace Jacobsoft.Amd.Test
                 autoMocker.GetMock<IViewDataContainer>().Object);
 
             var config = autoMocker.GetMock<IAmdConfiguration>();
-            config
-                .Setup(c => c.LoaderUrl)
-                .Returns("~/Scripts/require.js");
+            config.Setup(c => c.LoaderUrl).Returns("~/Scripts/require.js");
         }
 
         [TestMethod]
         public void InvokeModule()
         {
-            var html = this.htmlHelper.InvokeModule("module");
+            var html = this.htmlHelper.ModuleInvoke("module");
             var scripts = this.ExtractScriptTags(html);
 
             this.AssertScriptInclude(scripts[0], "/amd/loader");
@@ -82,14 +81,14 @@ namespace Jacobsoft.Amd.Test
         [TestMethod]
         public void InvokeModule_IncludesLoaderAndConfigOnlyOnce()
         {
-            var html = this.htmlHelper.InvokeModule("a");
+            var html = this.htmlHelper.ModuleInvoke("a");
             var scripts = this.ExtractScriptTags(html);
 
             this.AssertScriptInclude(scripts[0], "/amd/loader");
             this.AssertScriptInclude(scripts[1], "/amd/config");
             this.AssertScriptInvoked(scripts[2], "a");
 
-            html = this.htmlHelper.InvokeModule("b");
+            html = this.htmlHelper.ModuleInvoke("b");
             scripts = this.ExtractScriptTags(html);
 
             this.AssertScriptInvoked(scripts[0], "b");
@@ -98,7 +97,7 @@ namespace Jacobsoft.Amd.Test
         [TestMethod]
         public void InvokeModule_WithOptions()
         {
-            var html = this.htmlHelper.InvokeModule("module", new { key = "value" });
+            var html = this.htmlHelper.ModuleInvoke("module", new { key = "value" });
             var scripts = this.ExtractScriptTags(html);
 
             this.AssertScriptInclude(scripts[0], "/amd/loader");
@@ -145,7 +144,7 @@ namespace Jacobsoft.Amd.Test
             config.Setup(c => c.ScriptLoadingMode).Returns(ScriptLoadingMode.Dynamic);
             config.Setup(c => c.LoaderUrl).Returns((string)null);
 
-            this.htmlHelper.InvokeModule("a");
+            this.htmlHelper.ModuleInvoke("a");
         }
 
         [TestMethod]
@@ -156,7 +155,7 @@ namespace Jacobsoft.Amd.Test
                 .Setup(c => c.ScriptLoadingMode)
                 .Returns(ScriptLoadingMode.Static);
 
-            var html = this.htmlHelper.InvokeModule("a");
+            var html = this.htmlHelper.ModuleInvoke("a");
             var scripts = this.ExtractScriptTags(html);
 
             this.AssertScriptInclude(scripts[0], "/amd/liteloader");
@@ -187,7 +186,7 @@ namespace Jacobsoft.Amd.Test
                 .Setup(r => r.Resolve("a"))
                 .Returns(module);
 
-            var html = this.htmlHelper.InvokeModule("a");
+            var html = this.htmlHelper.ModuleInvoke("a");
             var scripts = this.ExtractScriptTags(html);
 
             this.AssertScriptInclude(scripts[0], "/amd/liteloader");

@@ -61,14 +61,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AmdConfiguration.cs" />
-    <Compile Include="AmdConfigurationSection.cs" />
+    <Compile Include="Config\AmdConfiguration.cs" />
+    <Compile Include="Config\AmdConfigurationSection.cs" />
     <Compile Include="AmdController.cs" />
     <Compile Include="Exceptions\AmdConfigurationException.cs" />
     <Compile Include="Exceptions\InvalidModuleException.cs" />
     <Compile Include="Exceptions\InvalidPathException.cs" />
     <Compile Include="Exceptions\ModuleResolutionException.cs" />
     <Compile Include="HtmlHelperExtensions.cs" />
+    <Compile Include="Config\AmdShimCollectionConfigurationSection.cs" />
     <Compile Include="Internals\Antlr\JavaScriptLexer.cs" />
     <Compile Include="Internals\Antlr\JavaScriptLexer.Extensions.cs" />
     <Compile Include="Internals\Antlr\JavaScriptParser.cs" />
@@ -76,24 +77,27 @@
     <Compile Include="Internals\Antlr\JavaScriptParser.Extensions.cs" />
     <Compile Include="Internals\Antlr\TreeNodes.cs" />
     <Compile Include="Internals\AutoCastingList.cs" />
+    <Compile Include="Internals\Config\AmdShimConfigurationElement.cs" />
     <Compile Include="Internals\EnumerableExtensions.cs" />
     <Compile Include="Internals\IModuleRepository.cs" />
     <Compile Include="Internals\IServiceLocator.cs" />
     <Compile Include="Internals\ModuleRepository.cs" />
     <Compile Include="Internals\ServiceLocator.cs" />
     <Compile Include="Internals\FileSystem.cs" />
-    <Compile Include="IAmdConfiguration.cs" />
+    <Compile Include="Config\IAmdConfiguration.cs" />
     <Compile Include="Internals\IFileSystem.cs" />
     <Compile Include="Internals\IModule.cs" />
     <Compile Include="Internals\IModuleResolver.cs" />
     <Compile Include="Internals\Module.cs" />
     <Compile Include="Internals\ModuleResolver.cs" />
-    <Compile Include="ScriptLoadingMode.cs" />
+    <Compile Include="Config\IShim.cs" />
+    <Compile Include="Config\ScriptLoadingMode.cs" />
     <Compile Include="Internals\ScriptOutputContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Config\Shim.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AmdConfiguration.xsd">
+    <None Include="Config\AmdConfiguration.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Internals\Antlr\JavaScript.g" />

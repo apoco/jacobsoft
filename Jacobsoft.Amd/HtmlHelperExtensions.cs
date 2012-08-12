@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Script.Serialization;
+using Jacobsoft.Amd.Config;
 using Jacobsoft.Amd.Exceptions;
 using Jacobsoft.Amd.Internals;
 
@@ -15,7 +16,7 @@ namespace Jacobsoft.Amd
     {
         private const string OutputContextKey = "Jacobsoft.Amd.Internals.ScriptOutputContext";
 
-        public static IHtmlString InvokeModule(
+        public static IHtmlString ModuleInvoke(
             this HtmlHelper helper, 
             string moduleId,
             object options = null)

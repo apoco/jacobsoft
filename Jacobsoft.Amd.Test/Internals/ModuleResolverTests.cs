@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
 using AutoMoq;
 using AutoMoq.Helpers;
+using Jacobsoft.Amd.Config;
 using Jacobsoft.Amd.Exceptions;
 using Jacobsoft.Amd.Internals;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -332,6 +334,40 @@ namespace Jacobsoft.Amd.Test.Internals
 
             var dependencies = module.Dependencies.ToList();
             Assert.AreEqual("library/foo", dependencies[0].Id);
+        }
+
+        [TestMethod]
+        public void Resolve_UsesShims()
+        {
+            var moduleId = "nonamd";
+            var content = "dummyContent();";
+
+            var config = this.autoMocker.GetMock<IAmdConfiguration>();
+            config
+                .Setup(c => c.ModuleRootUrl)
+                .Returns(@"~/Scripts");
+            config
+                .Setup(c => c.Shims)
+                .Returns(new Dictionary<string, IShim> { 
+                    { 
+                        moduleId,
+                        new Shim { 
+                            Id = moduleId, 
+                            Dependencies = new[] { "a", "b" }, 
+                            Export = "foo" } 
+                    }
+                });
+
+            this.ArrangeJavaScriptFile(@"X:\Modules\nonamd.js", content);
+
+            var module = this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleId);
+            Assert.AreEqual(moduleId, module.Id);
+            Assert.IsTrue(
+                module
+                    .Dependencies
+                    .Select(m => m.Id)
+                    .SequenceEqual(new[] { "a", "b" }));
+            Assert.AreEqual(content, module.Content);            
         }
 
         [TestMethod]
