@@ -10,9 +10,13 @@ namespace Jacobsoft.Amd.Internals
     [ExcludeFromCodeCoverage]
     public class FileSystem : IFileSystem
     {
-        public Stream Open(string loaderPath, FileMode fileMode)
+        public Stream Open(
+            string loaderPath, 
+            FileMode fileMode = FileMode.Open, 
+            FileAccess fileAccess = FileAccess.Read,
+            FileShare fileShare = FileShare.ReadWrite)
         {
-            return File.Open(loaderPath, fileMode);
+            return File.Open(loaderPath, fileMode, fileAccess, fileShare);
         }
 
         public bool FileExists(string filePath)

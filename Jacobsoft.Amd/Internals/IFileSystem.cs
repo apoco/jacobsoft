@@ -8,7 +8,11 @@ namespace Jacobsoft.Amd.Internals
 {
     internal interface IFileSystem
     {
-        Stream Open(string filePath, FileMode fileMode);
+        Stream Open(
+            string loaderPath, 
+            FileMode fileMode = FileMode.Open, 
+            FileAccess fileAccess = FileAccess.Read,
+            FileShare fileShare = FileShare.ReadWrite);
 
         bool FileExists(string filePath);
     }

@@ -197,7 +197,15 @@ namespace Jacobsoft.Amd.Internals
 
         private IModule ResolveShimModule(IEnumerable<string> subFolders, IShim shim)
         {
+            var serializer = new JavaScriptSerializer();
             string content = null;
+
+            var dependencies = shim
+                .Dependencies
+                .OrEmpty()
+                .Select(d => this.Resolve(subFolders, d))
+                .ToList();
+
             var fileName = this.GetModuleFileName(this.GetModulePath(shim.Id));
             if (this.fileSystem.FileExists(fileName))
             {
@@ -205,16 +213,19 @@ namespace Jacobsoft.Amd.Internals
                 using (var reader = new StreamReader(fileStream))
                 {
                     content = reader.ReadToEnd();
+                    content = string.Format(
+                        "define({0}, {1}, function() {{ {2}; return {3}; }});",
+                        serializer.Serialize(shim.Id),
+                        serializer.Serialize(dependencies.Select(d => d.Id)),
+                        content,
+                        shim.Export);
                 }
             }
 
             return new Module
             {
                 Id = shim.Id,
-                Dependencies = shim
-                    .Dependencies
-                    .Select(d => this.Resolve(subFolders, d))
-                    .ToList(),
+                Dependencies = dependencies,
                 Content = content
             };
         }

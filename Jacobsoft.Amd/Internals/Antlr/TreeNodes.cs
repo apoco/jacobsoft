@@ -274,6 +274,11 @@ namespace Jacobsoft.Amd.Internals.AntlrGenerated
     internal class ReturnStatement : Statement
     {
         public ReturnStatement(IToken token) : base(token) { }
+
+        public Expression Expression
+        {
+            get { return this.Children[0] as Expression; }
+        }
     }
 
     internal class WithStatement : Statement

@@ -9,6 +9,7 @@ using AutoMoq.Helpers;
 using Jacobsoft.Amd.Config;
 using Jacobsoft.Amd.Exceptions;
 using Jacobsoft.Amd.Internals;
+using Jacobsoft.Amd.Internals.AntlrGenerated;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -367,7 +368,52 @@ namespace Jacobsoft.Amd.Test.Internals
                     .Dependencies
                     .Select(m => m.Id)
                     .SequenceEqual(new[] { "a", "b" }));
-            Assert.AreEqual(content, module.Content);            
+        }
+
+        [TestMethod]
+        public void Resolve_CreatesDefineWrapper()
+        {
+            var moduleId = "nonamd";
+            var content = "function dummyContent() { };";
+
+            var config = this.autoMocker.GetMock<IAmdConfiguration>();
+            config.Setup(c => c.ModuleRootUrl).Returns(@"~/Scripts");
+            config
+                .Setup(c => c.Shims)
+                .Returns(new Dictionary<string, IShim> { 
+                    { 
+                        moduleId,
+                        new Shim { 
+                            Id = moduleId, 
+                            Dependencies = new[] { "a", "b" },
+                            Export = "dummyContent" } 
+                    }
+                });
+
+            this.ArrangeJavaScriptFile(@"X:\Modules\nonamd.js", content);
+
+            var module = this.autoMocker.Resolve<ModuleResolver>().Resolve(moduleId);
+            var program = JavaScriptTestHelper.ParseProgram(module.Content);
+            var defineCall = program.Statements[0].As<CallExpression>();
+            
+            defineCall.Function.Is<Identifier>("define");
+            defineCall.Arguments[0].Is<StringLiteral>("\"nonamd\"");
+
+            Assert.IsTrue(
+                defineCall
+                    .Arguments[1]
+                    .As<ArrayLiteral>()
+                    .Items
+                    .Cast<StringLiteral>()
+                    .Select(s => s.String)
+                    .SequenceEqual(new[] { "a", "b" }));
+
+            var factory = defineCall.Arguments[2].As<FunctionExpression>();
+            factory
+                .Statements
+                .Last()
+                .As<ReturnStatement>()
+                .Expression.Is<Identifier>("dummyContent");
         }
 
         [TestMethod]
@@ -415,7 +461,11 @@ namespace Jacobsoft.Amd.Test.Internals
                 .Setup(fs => fs.FileExists(fileName))
                 .Returns(true);
             fileSystem
-                .Setup(fs => fs.Open(fileName, FileMode.Open))
+                .Setup(fs => fs.Open(
+                    fileName, 
+                    FileMode.Open, 
+                    FileAccess.Read, 
+                    FileShare.ReadWrite))
                 .Returns(new MemoryStream(Encoding.UTF8.GetBytes(fileContents)));
         }
     }
