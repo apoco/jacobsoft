@@ -33,7 +33,11 @@ namespace Jacobsoft.Amd.Test.Internals
             Assert.AreEqual(expectedVersion, provider.GetVersion());
         }
 
-        private class TestApplication : HttpApplication
+        private class BaseApplication : HttpApplication
+        {
+        }
+
+        private class TestApplication : BaseApplication
         {
         }
     }
