@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Script.Serialization;
-using Antlr.Runtime;
 using AutoMoq;
-using AutoMoq.Helpers;
 using Jacobsoft.Amd.Config;
 using Jacobsoft.Amd.Internals;
 using Jacobsoft.Amd.Internals.AntlrGenerated;
@@ -68,6 +68,7 @@ namespace Jacobsoft.Amd.Test
         {
             var loaderVirtualPath = "~/Scripts/loader.js";
             var expectedPath = @"X:\loader.js";
+            var expectedContent = "Loader Content";
 
             this.autoMocker
                 .GetMock<IAmdConfiguration>()
@@ -79,20 +80,59 @@ namespace Jacobsoft.Amd.Test
                 .Setup(u => u.MapPath(loaderVirtualPath))
                 .Returns(expectedPath);
 
+            this.ArrangeFile(expectedPath, expectedContent);
+
             var result = this.controller.Loader();
-            Assert.AreEqual("text/javascript", result.ContentType);
-            Assert.AreEqual(expectedPath, result.FileName);
+            Assert.AreEqual(expectedContent, result.Script);
+        }
+
+        [TestMethod]
+        public void GetLoader_WithMinifier()
+        {
+            var loaderVirtualPath = "~/Scripts/loader.js";
+            var expectedPath = @"X:\loader.js";
+            var expectedContent = "Uncompressed Script";
+            var expectedMinifiedContent = "Compressed Script";
+
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.LoaderUrl)
+                .Returns(loaderVirtualPath);
+
+            this.autoMocker
+                .GetMock<HttpServerUtilityBase>()
+                .Setup(u => u.MapPath(loaderVirtualPath))
+                .Returns(expectedPath);
+
+            this.ArrangeFile(expectedPath, expectedContent);
+            this.ArrangeMinifier(expectedContent, expectedMinifiedContent);
+            
+            var result = this.controller.Loader();
+            Assert.AreEqual(expectedMinifiedContent, result.Script);
         }
 
         [TestMethod]
         public void GetLiteLoader()
         {
             var result = this.controller.LiteLoader();
-            Assert.AreEqual("text/javascript", result.ContentType);
+            Assert.IsInstanceOfType(result, typeof(JavaScriptResult));
         }
 
         [TestMethod]
-        public void GetConfig_SetsBaseUrl()
+        public void GetLiteLoader_WithMinifier()
+        {
+            var expectedMinifiedContent = "Minified";
+
+            this.ArrangeMinifier(
+                m => m.Minify(It.IsAny<string>()), 
+                expectedMinifiedContent);
+
+            var result = this.controller.LiteLoader();
+            Assert.AreEqual(expectedMinifiedContent, result.Script);
+        }
+
+        [TestMethod]
+        public void Config_SetsBaseUrl()
         {
             autoMocker
                 .GetMock<IAmdConfiguration>()
@@ -157,6 +197,15 @@ namespace Jacobsoft.Amd.Test
         }
 
         [TestMethod]
+        public void Config_WithMinifier()
+        {
+            var expectedMinifiedContent = "Minified";
+            this.ArrangeMinifier(m => m.Minify(It.IsAny<string>()), expectedMinifiedContent);
+            var result = this.controller.Config();
+            Assert.AreEqual(expectedMinifiedContent, result.Script);
+        }
+
+        [TestMethod]
         public void GetModule()
         {
             var moduleName = "module";
@@ -175,8 +224,32 @@ namespace Jacobsoft.Amd.Test
 
             var result = this.controller.Module(moduleName);
 
-            Assert.AreEqual("text/javascript", result.ContentType);
-            Assert.AreEqual(content, result.Content);
+            Assert.AreEqual(content, result.Script);
+        }
+
+        [TestMethod]
+        public void GetModule_WithMinifier()
+        {
+            var moduleName = "module";
+            var content = "Module content";
+            var minifiedContent = "Minified";
+
+            var module = Mock.Of<IModule>();
+
+            this.autoMocker
+                .GetMock<IModuleResolver>()
+                .Setup(r => r.Resolve(moduleName))
+                .Returns(module);
+
+            Mock.Get(module)
+                .Setup(m => m.Content)
+                .Returns(content);
+
+            this.ArrangeMinifier(content, minifiedContent);
+
+            var result = this.controller.Module(moduleName);
+
+            Assert.AreEqual(minifiedContent, result.Script);
         }
 
         [TestMethod]
@@ -206,6 +279,56 @@ namespace Jacobsoft.Amd.Test
             var result = this.controller.Bundle("a+b+c/d");
             Assert.IsInstanceOfType(result, typeof(JavaScriptResult));
             Assert.AreEqual("a;b;d", (result as JavaScriptResult).Script);
+        }
+
+        [TestMethod]
+        public void GetBundle_WithMinifier()
+        {
+            var minified = "Minified";
+
+            var moduleA = new Mock<IModule>();
+            moduleA.Setup(m => m.Content).Returns("a");
+
+            var moduleB = new Mock<IModule>();
+            moduleB.Setup(m => m.Content).Returns("b");
+
+            var resolver = this.autoMocker.GetMock<IModuleResolver>();
+            resolver.Setup(r => r.Resolve("a")).Returns(moduleA.Object);
+            resolver.Setup(r => r.Resolve("b")).Returns(moduleB.Object);
+
+            this.ArrangeMinifier("a;b", minified);
+            var result = this.controller.Bundle("a+b");
+            Assert.AreEqual(minified, result.Script);
+        }
+
+        private void ArrangeFile(string filePath, string content)
+        {
+            this.autoMocker
+                .GetMock<IFileSystem>()
+                .Setup(fs => fs.Open(
+                    filePath,
+                    FileMode.Open,
+                    FileAccess.Read,
+                    FileShare.ReadWrite))
+                .Returns(new MemoryStream(Encoding.UTF8.GetBytes(content)));
+        }
+
+        private void ArrangeMinifier(string content, string minifiedContent)
+        {
+            this.ArrangeMinifier(m => m.Minify(content), minifiedContent);
+        }
+
+        private void ArrangeMinifier(
+            Expression<Func<IScriptMinifier, string>> minifierAction, 
+            string minifiedContent)
+        {
+            var minifier = new Mock<IScriptMinifier>();
+            minifier.Setup(minifierAction).Returns(minifiedContent);
+
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.Minifier)
+                .Returns(minifier.Object);
         }
 
         private ObjectLiteral GetConfigObject()

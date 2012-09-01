@@ -81,6 +81,7 @@
     <Compile Include="Internals\Config\AmdShimConfigurationElement.cs" />
     <Compile Include="Internals\Config\IAmdConfigurationSection.cs" />
     <Compile Include="Internals\EnumerableExtensions.cs" />
+    <Compile Include="Internals\FileSystemExtensions.cs" />
     <Compile Include="Internals\IModuleRepository.cs" />
     <Compile Include="Internals\IServiceLocator.cs" />
     <Compile Include="Internals\ModuleRepository.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Config\IShim.cs" />
     <Compile Include="Config\ScriptLoadingMode.cs" />
     <Compile Include="Internals\ScriptOutputContext.cs" />
+    <Compile Include="IScriptMinifier.cs" />
     <Compile Include="IVersionProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Config\Shim.cs" />

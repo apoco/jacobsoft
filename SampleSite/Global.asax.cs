@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Jacobsoft.Amd;
+using Jacobsoft.Amd.Config;
 
 namespace SampleSite
 {
@@ -40,6 +41,8 @@ namespace SampleSite
             RegisterRoutes(RouteTable.Routes);
 
             Database.DefaultConnectionFactory = new SqlConnectionFactory(@"Data Source=(localdb)\v11.0; Integrated Security=True; MultipleActiveResultSets=True");
+
+            AmdConfiguration.Current.Minifier = new Minifier();
         }
     }
 }

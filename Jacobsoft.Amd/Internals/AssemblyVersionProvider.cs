@@ -8,23 +8,23 @@ namespace Jacobsoft.Amd.Internals
 {
     internal class AssemblyVersionProvider : IVersionProvider
     {
-        private readonly Lazy<string> version;
+        private string version;
 
         public AssemblyVersionProvider(HttpContextBase httpContext)
         {
-            this.version = new Lazy<string>(() => httpContext
+            this.version = httpContext
                 .ApplicationInstance
                 .GetType()
                 .BaseType
                 .Assembly
                 .GetName()
                 .Version
-                .ToString());
+                .ToString();
         }
 
         public string GetVersion()
         {
-            return this.version.Value;
+            return this.version;
         }
     }
 }

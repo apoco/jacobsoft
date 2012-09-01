@@ -58,11 +58,12 @@ namespace Jacobsoft.Amd
             Location = OutputCacheLocation.ServerAndClient,
             Duration = ScriptCacheDuration,
             VaryByParam = "*")]
-        public FilePathResult Loader([Bind(Prefix = "v")] string version = null)
+        public JavaScriptResult Loader([Bind(Prefix = "v")] string version = null)
         {
-            return this.File(
-                this.HttpContext.Server.MapPath(this.config.LoaderUrl), 
-                "text/javascript");
+            return this.MinifiedJavaScript(this.fileSystem.ReadToEnd(
+                this.HttpContext
+                    .Server
+                    .MapPath(this.config.LoaderUrl)));
         }
 
         [HttpGet]
@@ -70,11 +71,13 @@ namespace Jacobsoft.Amd
             Location = OutputCacheLocation.ServerAndClient,
             Duration = ScriptCacheDuration,
             VaryByParam = "*")]
-        public FileResult LiteLoader([Bind(Prefix = "v")] string version = null)
+        public JavaScriptResult LiteLoader([Bind(Prefix = "v")] string version = null)
         {
-            return this.File(
-                this.GetType().Assembly.GetManifestResourceStream("Jacobsoft.Amd.Scripts.liteloader.js"),
-                "text/javascript");
+            return this.MinifiedJavaScript(
+                this.GetType()
+                    .Assembly
+                    .GetManifestResourceStream("Jacobsoft.Amd.Scripts.liteloader.js")
+                    .ReadToEnd());
         }
 
         [HttpGet]
@@ -87,7 +90,7 @@ namespace Jacobsoft.Amd
             var baseUrl = VirtualPathUtility.ToAbsolute(
                 this.config.ModuleRootUrl ?? "~/Scripts",
                 this.Request.ApplicationPath);
-            return this.JavaScript(string.Format(
+            return this.MinifiedJavaScript(string.Format(
                 "require.config({0});",
                 new JavaScriptSerializer().Serialize(
                     new
@@ -106,13 +109,11 @@ namespace Jacobsoft.Amd
             Location = OutputCacheLocation.ServerAndClient, 
             Duration = ScriptCacheDuration,
             VaryByParam = "*")]
-        public ContentResult Module(
+        public JavaScriptResult Module(
             string id, 
             [Bind(Prefix = "v")] string version = null)
         {
-            return this.Content(
-                this.resolver.Resolve(id).Content, 
-                "text/javascript");
+            return this.MinifiedJavaScript(this.resolver.Resolve(id).Content);
         }
 
         /// <summary>
@@ -129,13 +130,23 @@ namespace Jacobsoft.Amd
             string id, 
             [Bind(Prefix = "v")] string version = null)
         {
-            return this.JavaScript(string.Join(
+            return this.MinifiedJavaScript(string.Join(
                 ";", 
                 from moduleId in id.Split(new[] { '+', ' ', ',' }, StringSplitOptions.RemoveEmptyEntries)
                 let module = this.resolver.Resolve(moduleId)
                 where module != null
                 select module.Content
             ));
+        }
+
+        private JavaScriptResult MinifiedJavaScript(string content)
+        {
+            if (this.config.Minifier != null)
+            {
+                content = this.config.Minifier.Minify(content);
+            }
+
+            return this.JavaScript(content);
         }
     }
 }

@@ -36,6 +36,8 @@ namespace Jacobsoft.Amd.Config
 
         public IVersionProvider VersionProvider { get; set; }
 
+        public IScriptMinifier Minifier { get; set; }
+
         public ScriptLoadingMode ScriptLoadingMode { get; set; }
 
         public IDictionary<string, IShim> Shims { get; private set; }

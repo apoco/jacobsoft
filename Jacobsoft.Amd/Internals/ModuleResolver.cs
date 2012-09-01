@@ -209,17 +209,13 @@ namespace Jacobsoft.Amd.Internals
             var fileName = this.GetModuleFileName(this.GetModulePath(shim.Id));
             if (this.fileSystem.FileExists(fileName))
             {
-                using (var fileStream = this.fileSystem.Open(fileName, FileMode.Open))
-                using (var reader = new StreamReader(fileStream))
-                {
-                    content = reader.ReadToEnd();
-                    content = string.Format(
-                        "define({0}, {1}, function() {{ {2}; return {3}; }});",
-                        serializer.Serialize(shim.Id),
-                        serializer.Serialize(dependencies.Select(d => d.Id)),
-                        content,
-                        shim.Export);
-                }
+                content = fileSystem.ReadToEnd(fileName);
+                content = string.Format(
+                    "define({0}, {1}, function() {{ {2}; return {3}; }});",
+                    serializer.Serialize(shim.Id),
+                    serializer.Serialize(dependencies.Select(d => d.Id)),
+                    content,
+                    shim.Export);
             }
 
             return new Module

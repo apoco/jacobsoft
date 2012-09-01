@@ -112,7 +112,6 @@ namespace Jacobsoft.Amd
             {
                 string action;
                 var config = AmdConfiguration.Current;
-                string loaderUrl;
 
                 if (config.ScriptLoadingMode == ScriptLoadingMode.Dynamic)
                 {

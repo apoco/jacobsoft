@@ -50,6 +50,11 @@ namespace Jacobsoft.Amd.Internals
             return factories[type].Invoke();
         }
 
+        private void RegisterType<TService, TImpl>() where TImpl : TService
+        {
+            this.RegisterFactory<TService, TImpl>(this.GenerateFactory<TImpl>());
+        }
+
         private void RegisterSingleton<TService, TImpl>() where TImpl : TService
         {
             this.RegisterLazyInstance<TService, TImpl>(this.GenerateFactory<TImpl>());
@@ -68,6 +73,12 @@ namespace Jacobsoft.Amd.Internals
         }
 
         private void RegisterFactory<TService>(Func<TService> factory)
+        {
+            this.RegisterFactory<TService, TService>(factory);
+        }
+
+        private void RegisterFactory<TService, TImpl>(Func<TImpl> factory)
+            where TImpl : TService
         {
             factories[typeof(TService)] = () => factory();
         }

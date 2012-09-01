@@ -15,6 +15,8 @@ namespace Jacobsoft.Amd.Config
 
         IVersionProvider VersionProvider { get; set; }
 
+        IScriptMinifier Minifier { get; set; }
+
         IDictionary<string, IShim> Shims { get; }
     }
 }
