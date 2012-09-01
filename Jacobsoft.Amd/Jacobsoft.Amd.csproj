@@ -79,10 +79,12 @@
     <Compile Include="Internals\AssemblyVersionProvider.cs" />
     <Compile Include="Internals\AutoCastingList.cs" />
     <Compile Include="Internals\Config\AmdShimConfigurationElement.cs" />
+    <Compile Include="Internals\Config\IAmdConfigurationSection.cs" />
     <Compile Include="Internals\EnumerableExtensions.cs" />
     <Compile Include="Internals\IModuleRepository.cs" />
     <Compile Include="Internals\IServiceLocator.cs" />
     <Compile Include="Internals\ModuleRepository.cs" />
+    <Compile Include="Internals\ObjectExtensions.cs" />
     <Compile Include="Internals\ServiceLocator.cs" />
     <Compile Include="Internals\FileSystem.cs" />
     <Compile Include="Config\IAmdConfiguration.cs" />

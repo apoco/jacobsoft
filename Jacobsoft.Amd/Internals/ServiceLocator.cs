@@ -7,6 +7,8 @@ using System.Text;
 using System.Web;
 using Jacobsoft.Amd.Config;
 using Jacobsoft.Amd.Internals;
+using System.Configuration;
+using Jacobsoft.Amd.Internals.Config;
 
 namespace Jacobsoft.Amd.Internals
 {
@@ -21,17 +23,14 @@ namespace Jacobsoft.Amd.Internals
 
         public ServiceLocator()
         {
-            this.RegisterFactory<HttpContextBase>(() => {
-                var context = HttpContext.Current;
-                return context == null ? null : new HttpContextWrapper(context);
-            });
-            this.RegisterFactory<HttpServerUtilityBase>(() => {
-                var context = HttpContext.Current;
-                return context == null 
-                    ? null 
-                    : new HttpServerUtilityWrapper(context.Server);
-            });
-            
+            this.RegisterFactory<HttpContextBase>(
+                () => HttpContext.Current.IfExists(ctx => new HttpContextWrapper(ctx)));
+            this.RegisterFactory<HttpServerUtilityBase>(
+                () => HttpContext.Current.IfExists(ctx => new HttpServerUtilityWrapper(ctx.Server)));
+
+            this.RegisterLazyInstance<IAmdConfigurationSection>(
+                () => ConfigurationManager.GetSection("jacobsoft.amd") as AmdConfigurationSection);
+
             this.RegisterSingleton<IAmdConfiguration, AmdConfiguration>();
             this.RegisterSingleton<IModuleRepository, ModuleRepository>();
             this.RegisterSingleton<IModuleResolver, ModuleResolver>();
@@ -54,6 +53,11 @@ namespace Jacobsoft.Amd.Internals
         private void RegisterSingleton<TService, TImpl>() where TImpl : TService
         {
             this.RegisterLazyInstance<TService, TImpl>(this.GenerateFactory<TImpl>());
+        }
+
+        private void RegisterLazyInstance<TService>(Func<TService> factory)
+        {
+            this.RegisterLazyInstance<TService, TService>(factory);
         }
 
         private void RegisterLazyInstance<TService, TImpl>(Func<TImpl> factory)

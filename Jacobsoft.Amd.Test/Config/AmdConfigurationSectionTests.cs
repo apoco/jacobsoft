@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
 using AutoMoq.Helpers;
 using Jacobsoft.Amd.Config;
 using Jacobsoft.Amd.Internals;
@@ -56,6 +57,68 @@ namespace Jacobsoft.Amd.Test
             var configSection = ConfigurationManager.GetSection("jacobsoft.amd.bundled")
                 as AmdConfigurationSection;
             Assert.AreEqual(ScriptLoadingMode.Bundled, configSection.ScriptLoadingMode);
+        }
+
+        [TestMethod]
+        public void VersionProvider_WhenUnspecified()
+        {
+            var configSection = ConfigurationManager.GetSection("jacobsoft.amd")
+                as AmdConfigurationSection;
+            Assert.IsNull(configSection.VersionProvider);
+        }
+
+        [TestMethod]
+        public void VersionProvider_WhenSpecified()
+        {
+            var configSection = ConfigurationManager.GetSection("jacobsoft.amd.versioning")
+                as AmdConfigurationSection;
+            Assert.AreEqual(typeof(TestVersionProvider), configSection.VersionProvider);
+        }
+
+        [TestMethod, ExpectedException(typeof(ConfigurationErrorsException))]
+        public void VersionProvider_WhenNoAssemblySpecified()
+        {
+            var configSection = ConfigurationManager.GetSection("jacobsoft.amd.versioning.noassembly")
+                as AmdConfigurationSection;
+        }
+
+        [TestMethod, ExpectedException(typeof(ConfigurationErrorsException))]
+        public void VersionProvider_WhenAssemblyNotFound()
+        {
+            var configSection = ConfigurationManager.GetSection("jacobsoft.amd.versioning.assemblynotfound")
+                as AmdConfigurationSection;
+        }
+
+        [TestMethod, ExpectedException(typeof(ConfigurationErrorsException))]
+        public void VersionProvider_WhenTypeNotFound()
+        {
+            var configSection = ConfigurationManager.GetSection("jacobsoft.amd.versioning.typenotfound")
+                as AmdConfigurationSection;
+        }
+
+        [TestMethod, ExpectedException(typeof(ConfigurationErrorsException))]
+        public void VersionProvider_WhenTypeNotIVersionProviderImplementation()
+        {
+            var configSection = ConfigurationManager.GetSection("jacobsoft.amd.versioning.incompatible")
+                as AmdConfigurationSection;
+        }
+
+        [TestMethod]
+        public void Shims()
+        {
+            var configSection = ConfigurationManager.GetSection("jacobsoft.amd")
+                as AmdConfigurationSection;
+            var shims = configSection.Shims.ToList();
+
+            Assert.AreEqual("foo", shims[0].Id);
+            Assert.AreEqual("bar", shims[0].Export);
+            Assert.IsTrue(shims[0].Dependencies.SequenceEqual(new[] { "baz", "bat" }));
+
+            Assert.AreEqual("baz", shims[1].Id);
+            Assert.AreEqual("baz", shims[1].Export);
+            Assert.IsTrue(shims[1].Dependencies.SequenceEqual(new[] { "bat" }));
+
+            Assert.AreEqual("bat", shims[2].Id);
         }
     }
 }

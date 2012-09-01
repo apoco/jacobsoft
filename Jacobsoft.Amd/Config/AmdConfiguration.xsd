@@ -21,6 +21,7 @@
     <xs:attribute name="loaderUrl" type="xs:string" use="optional"/>
     <xs:attribute name="moduleRootUrl" type="xs:string" default="~/Scripts"/>
     <xs:attribute name="mode" type="ScriptLoadingMode" default="dynamic"/>
+    <xs:attribute name="versionProvider" type="ClrType" use="optional"/>
   </xs:complexType>
 
   <xs:complexType name="ShimModule">
@@ -34,6 +35,12 @@
       <xs:enumeration value="dynamic"/>
       <xs:enumeration value="static"/>
       <xs:enumeration value="bundled"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="ClrType">
+    <xs:restriction base="xs:string">
+      <xs:pattern value=".*,.*"/>
     </xs:restriction>
   </xs:simpleType>
 </xs:schema>

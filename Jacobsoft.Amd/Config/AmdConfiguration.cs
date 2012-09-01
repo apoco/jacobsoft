@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using Jacobsoft.Amd.Internals;
+using Jacobsoft.Amd.Internals.Config;
 
 namespace Jacobsoft.Amd.Config
 {
@@ -14,10 +15,8 @@ namespace Jacobsoft.Amd.Config
             get { return ServiceLocator.Instance.Get<IAmdConfiguration>(); }
         }
 
-        internal AmdConfiguration()
+        internal AmdConfiguration(IAmdConfigurationSection configSection)
         {
-            var configSection = ConfigurationManager.GetSection("jacobsoft.amd")
-                as AmdConfigurationSection;
             if (configSection != null)
             {
                 this.LoaderUrl = configSection.LoaderUrl;
@@ -26,7 +25,9 @@ namespace Jacobsoft.Amd.Config
                 this.Shims = configSection.Shims.ToDictionary(s => s.Id);
             }
 
-            this.VersionProvider = ServiceLocator.Instance.Get<IVersionProvider>();
+            this.VersionProvider = configSection.VersionProvider == null
+                ? ServiceLocator.Instance.Get<IVersionProvider>()
+                : Activator.CreateInstance(configSection.VersionProvider) as IVersionProvider;
         }
 
         public string LoaderUrl { get; set; }
