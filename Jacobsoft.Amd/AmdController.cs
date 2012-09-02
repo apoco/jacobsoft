@@ -130,9 +130,12 @@ namespace Jacobsoft.Amd
             string id, 
             [Bind(Prefix = "v")] string version = null)
         {
+            var moduleIds = this.config.Bundles.OrEmpty().ContainsKey(id)
+                ? this.config.Bundles[id]
+                : id.Split(new[] { '+', ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
             return this.MinifiedJavaScript(string.Join(
                 ";", 
-                from moduleId in id.Split(new[] { '+', ' ', ',' }, StringSplitOptions.RemoveEmptyEntries)
+                from moduleId in moduleIds
                 let module = this.resolver.Resolve(moduleId)
                 where module != null
                 select module.Content

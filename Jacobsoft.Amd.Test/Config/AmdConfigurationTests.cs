@@ -22,6 +22,14 @@ namespace Jacobsoft.Amd.Test
         }
 
         [TestMethod]
+        public void Constructor_WithNoConfigFile()
+        {
+            var config = new AmdConfiguration(null, Mock.Of<IVersionProvider>());
+            Assert.AreEqual(0, config.Shims.Count);
+            Assert.AreEqual(0, config.Bundles.Count);
+        }
+
+        [TestMethod]
         public void Constructor_ReadsConfigFile()
         {
             var expectedLoaderUrl = "require.js";
@@ -80,6 +88,29 @@ namespace Jacobsoft.Amd.Test
 
             var config = this.GetConfiguration();
             Assert.IsInstanceOfType(config.Minifier, expectedMinifierType);
+        }
+
+        [TestMethod]
+        public void Constructor_WithBundles()
+        {
+            var bundleA = new Mock<IBundle>();
+            bundleA.Setup(b => b.Id).Returns("bundleA");
+            bundleA.Setup(b => b.Modules).Returns(new[] { "a", "b", "c" });
+
+            var bundleB = new Mock<IBundle>();
+            bundleB.Setup(b => b.Id).Returns("bundleB");
+            bundleB.Setup(b => b.Modules).Returns(new[] { "d", "e" });
+
+            var configSection = this.mocker.GetMock<IAmdConfigurationSection>();
+            configSection
+                .Setup(s => s.Bundles)
+                .Returns(new[] { bundleA.Object, bundleB.Object });
+
+            var config = this.GetConfiguration();
+            Assert.IsTrue(config.Bundles.ContainsKey("bundleA"));
+            Assert.IsTrue(config.Bundles["bundleA"].SequenceEqual(new[] { "a", "b", "c" }));
+            Assert.IsTrue(config.Bundles.ContainsKey("bundleB"));
+            Assert.IsTrue(config.Bundles["bundleB"].SequenceEqual(new[] { "d", "e" }));
         }
 
         private AmdConfiguration GetConfiguration()

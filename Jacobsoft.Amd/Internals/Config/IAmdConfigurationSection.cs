@@ -14,5 +14,6 @@ namespace Jacobsoft.Amd.Internals.Config
         Type VersionProvider { get; }
         Type Minifier { get; }
         IEnumerable<IShim> Shims { get; }
+        IEnumerable<IBundle> Bundles { get; }
     }
 }

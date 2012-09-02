@@ -18,5 +18,7 @@ namespace Jacobsoft.Amd.Config
         IScriptMinifier Minifier { get; set; }
 
         IDictionary<string, IShim> Shims { get; }
+
+        IDictionary<string, IEnumerable<string>> Bundles { get; }
     }
 }

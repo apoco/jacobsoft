@@ -128,5 +128,21 @@ namespace Jacobsoft.Amd.Test
 
             Assert.AreEqual("bat", shims[2].Id);
         }
+
+        [TestMethod]
+        public void Bundles()
+        {
+            var configSection = ConfigurationManager.GetSection("jacobsoft.amd")
+                as AmdConfigurationSection;
+            var bundles = configSection.Bundles.ToList();
+
+            Assert.AreEqual(2, bundles.Count);
+
+            Assert.AreEqual("bundleA", bundles[0].Id);
+            Assert.IsTrue(bundles[0].Modules.SequenceEqual(new[] { "a", "b", "c" }));
+
+            Assert.AreEqual("bundleB", bundles[1].Id);
+            Assert.IsTrue(bundles[1].Modules.SequenceEqual(new[] { "d", "e" }));
+        }
     }
 }

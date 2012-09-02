@@ -5,9 +5,7 @@
 }
 
 @section Head {
-    @Html.ModuleInvoke(
-        "home", 
-        new Dictionary<string, object> { { "options", new { name = "Jimbo" } } })
+    @Html.ModuleInvoke("home", new { name = "Jimbo", div = "message" })
 }
 
 <div id="message"></div>

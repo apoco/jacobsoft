@@ -257,28 +257,30 @@ namespace Jacobsoft.Amd.Test
         [TestMethod]
         public void GetBundle()
         {
-            var moduleA = Mock.Of<IModule>();
-            var moduleB = Mock.Of<IModule>();
-            var moduleD = Mock.Of<IModule>();
-
-            Mock.Get(moduleA).Setup(m => m.Content).Returns("a");
-            Mock.Get(moduleB).Setup(m => m.Content).Returns("b");
-            Mock.Get(moduleD).Setup(m => m.Content).Returns("d");
-
-            this.autoMocker
-                .GetMock<IModuleResolver>()
-                .Setup(r => r.Resolve("a"))
-                .Returns(moduleA);
-            this.autoMocker
-                .GetMock<IModuleResolver>()
-                .Setup(r => r.Resolve("b"))
-                .Returns(moduleB);
-            this.autoMocker
-                .GetMock<IModuleResolver>()
-                .Setup(r => r.Resolve("c/d"))
-                .Returns(moduleD);
+            this.ArrangeModule("a", "a");
+            this.ArrangeModule("b", "b");
+            this.ArrangeModule("c/d", "d");
 
             var result = this.controller.Bundle("a+b+c/d");
+            Assert.IsInstanceOfType(result, typeof(JavaScriptResult));
+            Assert.AreEqual("a;b;d", (result as JavaScriptResult).Script);
+        }
+
+        [TestMethod]
+        public void GetBundle_WithNamedBundle()
+        {
+            this.ArrangeModule("a", "a");
+            this.ArrangeModule("b", "b");
+            this.ArrangeModule("c/d", "d");
+
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(c => c.Bundles)
+                .Returns(new Dictionary<string, IEnumerable<string>> { 
+                    { "common", new[] { "a", "b", "c/d" } }
+                });
+
+            var result = this.controller.Bundle("common");
             Assert.IsInstanceOfType(result, typeof(JavaScriptResult));
             Assert.AreEqual("a;b;d", (result as JavaScriptResult).Script);
         }
@@ -313,6 +315,16 @@ namespace Jacobsoft.Amd.Test
                     FileAccess.Read,
                     FileShare.ReadWrite))
                 .Returns(new MemoryStream(Encoding.UTF8.GetBytes(content)));
+        }
+
+        private void ArrangeModule(string id, string content)
+        {
+            var moduleA = Mock.Of<IModule>();
+            Mock.Get(moduleA).Setup(m => m.Content).Returns(content);
+            this.autoMocker
+                .GetMock<IModuleResolver>()
+                .Setup(r => r.Resolve(id))
+                .Returns(moduleA);
         }
 
         private void ArrangeMinifier(string content, string minifiedContent)

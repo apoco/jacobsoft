@@ -68,6 +68,26 @@ namespace Jacobsoft.Amd
             return new HtmlString(stringBuilder.ToString());
         }
 
+        public static IHtmlString ModuleBundle(this HtmlHelper helper, string bundleId)
+        {
+            var bundles = ServiceLocator.Instance.Get<IAmdConfiguration>().Bundles.OrEmpty();
+            if (!bundles.ContainsKey(bundleId))
+            {
+                throw new ArgumentException(
+                    "Unrecognized bundle ID: " + bundleId, 
+                    "bundleId");
+            }
+
+            var outputContext = GetScriptOutputContext(helper.ViewContext.HttpContext);
+            var stringBuilder = new StringBuilder();
+            helper.EnsureAmdSystemInitialized(outputContext, stringBuilder);
+            
+            helper.WriteScriptActionInclude("Bundle", bundleId, stringBuilder);
+            outputContext.WrittenModules.UnionWith(bundles[bundleId]);
+            
+            return new HtmlString(stringBuilder.ToString());
+        }
+
         public static IHtmlString ModuleBundle(
             this HtmlHelper helper, 
             params string[] moduleIds)

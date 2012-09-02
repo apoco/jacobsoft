@@ -259,12 +259,35 @@ namespace Jacobsoft.Amd.Test
             Mock.Get(moduleA).Setup(m => m.Dependencies).Returns(new[] { moduleC });
             Mock.Get(moduleC).Setup(m => m.Dependencies).Returns(new[] { moduleD });
 
-            var html = this.htmlHelper.ModuleBundle("a");
+            var html = this.htmlHelper.ModuleBundle(new[] { "a" });
             var scripts = this.ExtractScriptTags(html);
 
             this.AssertScriptInclude(scripts[0], "/amd/loader");
             this.AssertScriptInclude(scripts[1], "/amd/config");
             this.AssertScriptInclude(scripts[2], "/amd/bundle/a%2cb/c%2cb/d");
+        }
+
+        [TestMethod]
+        public void ModuleBundle_WithNamedBundle()
+        {
+            this.autoMocker
+                .GetMock<IAmdConfiguration>()
+                .Setup(cfg => cfg.Bundles)
+                .Returns(new Dictionary<string, IEnumerable<string>> { 
+                    { "common", new[] { "a", "b" } }
+                });
+            var html = this.htmlHelper.ModuleBundle("common");
+            var scripts = this.ExtractScriptTags(html);
+
+            this.AssertScriptInclude(scripts[0], "/amd/loader");
+            this.AssertScriptInclude(scripts[1], "/amd/config");
+            this.AssertScriptInclude(scripts[2], "/amd/bundle/common");
+        }
+
+        [TestMethod, ExpectedException(typeof(ArgumentException))]
+        public void ModuleBundle_WithUnknownNamedBundle()
+        {
+            this.htmlHelper.ModuleBundle("common");
         }
 
         private IList<XElement> ExtractScriptTags(IHtmlString html)

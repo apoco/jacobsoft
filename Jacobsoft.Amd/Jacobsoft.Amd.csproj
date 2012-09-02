@@ -64,6 +64,7 @@
     <Compile Include="Config\AmdConfiguration.cs" />
     <Compile Include="Config\AmdConfigurationSection.cs" />
     <Compile Include="AmdController.cs" />
+    <Compile Include="Config\AmdModuleBundleCollectionConfigurationSection.cs" />
     <Compile Include="Exceptions\AmdConfigurationException.cs" />
     <Compile Include="Exceptions\InvalidModuleException.cs" />
     <Compile Include="Exceptions\InvalidPathException.cs" />
@@ -79,7 +80,9 @@
     <Compile Include="Internals\AssemblyVersionProvider.cs" />
     <Compile Include="Internals\AutoCastingList.cs" />
     <Compile Include="Internals\Config\AmdShimConfigurationElement.cs" />
+    <Compile Include="Internals\Config\AmdBundleConfigurationElement.cs" />
     <Compile Include="Internals\Config\IAmdConfigurationSection.cs" />
+    <Compile Include="Config\IBundle.cs" />
     <Compile Include="Internals\EnumerableExtensions.cs" />
     <Compile Include="Internals\FileSystemExtensions.cs" />
     <Compile Include="Internals\IModuleRepository.cs" />

@@ -19,6 +19,7 @@ namespace Jacobsoft.Amd.Config
         private const string VersionProviderAttribute = "versionProvider";
         private const string MinifierAttribute = "minifier";
         private const string ShimsElement = "shims";
+        private const string BundlesElement = "bundles";
 
         [ConfigurationProperty("xmlns")]
         private string Ignored { get; set; }
@@ -68,9 +69,24 @@ namespace Jacobsoft.Amd.Config
             }
         }
 
+        [ConfigurationCollection(typeof(AmdBundleConfigurationElement), AddItemName = "bundle")]
+        [ConfigurationProperty(BundlesElement)]
+        public AmdModuleBundleCollectionConfigurationSection Bundles
+        {
+            get
+            {
+                return base[BundlesElement] as AmdModuleBundleCollectionConfigurationSection;
+            }
+        }
+
         IEnumerable<IShim> IAmdConfigurationSection.Shims
         {
             get { return this.Shims; }
+        }
+
+        IEnumerable<IBundle> IAmdConfigurationSection.Bundles
+        {
+            get { return this.Bundles; }
         }
 
         private class ScriptLoadingModeConfigConverter : ConfigurationConverterBase

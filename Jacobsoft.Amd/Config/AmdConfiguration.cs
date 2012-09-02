@@ -19,22 +19,28 @@ namespace Jacobsoft.Amd.Config
             IAmdConfigurationSection configSection,
             IVersionProvider defaultVersionProvider)
         {
-            if (configSection != null)
+            if (configSection == null)
+            {
+                this.Shims = new Dictionary<string, IShim>();
+                this.Bundles = new Dictionary<string, IEnumerable<string>>();
+            }
+            else
             {
                 this.LoaderUrl = configSection.LoaderUrl;
                 this.ModuleRootUrl = configSection.RootModuleUrl;
                 this.ScriptLoadingMode = configSection.ScriptLoadingMode;
                 this.Shims = configSection.Shims.ToDictionary(s => s.Id);
+                this.Bundles = configSection.Bundles.ToDictionary(b => b.Id, b => b.Modules);
+
+                if (configSection.Minifier != null)
+                {
+                    this.Minifier = Activator.CreateInstance(configSection.Minifier) as IScriptMinifier;
+                }
             }
 
-            this.VersionProvider = configSection.VersionProvider == null
+            this.VersionProvider = configSection.IfExists(c => c.VersionProvider) == null
                 ? defaultVersionProvider
                 : Activator.CreateInstance(configSection.VersionProvider) as IVersionProvider;
-
-            if (configSection.Minifier != null)
-            {
-                this.Minifier = Activator.CreateInstance(configSection.Minifier) as IScriptMinifier;
-            }
         }
 
         public string LoaderUrl { get; set; }
@@ -47,6 +53,8 @@ namespace Jacobsoft.Amd.Config
 
         public ScriptLoadingMode ScriptLoadingMode { get; set; }
 
-        public IDictionary<string, IShim> Shims { get; private set; }
+        public IDictionary<string, IShim> Shims { get; set; }
+
+        public IDictionary<string, IEnumerable<string>> Bundles { get; set; }
     }
 }

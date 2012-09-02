@@ -1,8 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Jacobsoft.Amd
+
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
         <title>@RenderSection("Title", false)</title>
+        @Html.ModuleBundle("common")
         @RenderSection("Head", false)
     </head>
     <body>
