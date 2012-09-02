@@ -17,6 +17,7 @@ namespace Jacobsoft.Amd.Config
         private const string LoaderUrlAttribute = "loaderUrl";
         private const string ScriptLoadingModeAttribute = "mode";
         private const string VersionProviderAttribute = "versionProvider";
+        private const string MinifierAttribute = "minifier";
         private const string ShimsElement = "shims";
 
         [ConfigurationProperty("xmlns")]
@@ -48,6 +49,13 @@ namespace Jacobsoft.Amd.Config
         public Type VersionProvider
         {
             get { return base[VersionProviderAttribute] as Type; }
+        }
+
+        [ConfigurationProperty(MinifierAttribute, DefaultValue = null)]
+        [TypeConverter(typeof(TypeProviderConverter<IScriptMinifier>))]
+        public Type Minifier
+        {
+            get { return base[MinifierAttribute] as Type; }
         }
 
         [ConfigurationCollection(typeof(Shim), AddItemName="module")]

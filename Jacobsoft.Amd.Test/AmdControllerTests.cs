@@ -39,6 +39,7 @@ namespace Jacobsoft.Amd.Test
 
             httpContext.Setup(c => c.Request).Returns(request.Object);
             httpContext.Setup(c => c.Server).Returns(server.Object);
+            httpContext.Setup(c => c.ApplicationInstance).Returns(new TestApplication());
             request.Setup(r => r.ApplicationPath).Returns("/");
 
             controller.ControllerContext = new ControllerContext(
@@ -60,6 +61,7 @@ namespace Jacobsoft.Amd.Test
         [TestMethod]
         public void DefaultConstructor()
         {
+            ServiceLocator.Instance = new MockServiceLocator(this.autoMocker);
             new AmdController();
         }
 

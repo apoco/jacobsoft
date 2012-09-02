@@ -13,13 +13,21 @@ namespace Jacobsoft.Amd.Test
     [TestClass]
     public class AmdConfigurationTests
     {
+        private AutoMoqer mocker;
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            this.mocker = new AutoMoqer();
+        }
+
         [TestMethod]
         public void Constructor_ReadsConfigFile()
         {
             var expectedLoaderUrl = "require.js";
             var expectedModuleRootUrl = "~/Scripts";
             
-            var configSection = new Mock<IAmdConfigurationSection>();
+            var configSection = this.mocker.GetMock<IAmdConfigurationSection>();
             configSection.Setup(s => s.LoaderUrl).Returns(expectedLoaderUrl);
             configSection.Setup(s => s.RootModuleUrl).Returns(expectedModuleRootUrl);
             configSection.Setup(s => s.Shims).Returns(new[] {
@@ -28,7 +36,7 @@ namespace Jacobsoft.Amd.Test
                 new Shim { Id = "baz" }
             });
 
-            var config = new AmdConfiguration(configSection.Object);
+            var config = this.GetConfiguration();
 
             Assert.AreEqual(expectedLoaderUrl, config.LoaderUrl);
             Assert.AreEqual(expectedModuleRootUrl, config.ModuleRootUrl);
@@ -41,17 +49,13 @@ namespace Jacobsoft.Amd.Test
         [TestMethod]
         public void Constructor_WithNoVersionProviderInConfigSection_UsesLocatorValue()
         {
-            var configSection = new Mock<IAmdConfigurationSection>();
+            var configSection = this.mocker.GetMock<IAmdConfigurationSection>();
             configSection.Setup(s => s.VersionProvider).Returns((Type)null);
-
-            var versionProvider = Mock.Of<IVersionProvider>();
-
-            var serviceLocator = new Mock<IServiceLocator>();
-            serviceLocator.Setup(sl => sl.Get<IVersionProvider>()).Returns(versionProvider);
-            ServiceLocator.Instance = serviceLocator.Object;
-
-            var config = new AmdConfiguration(configSection.Object);
-            Assert.AreEqual(versionProvider, config.VersionProvider);
+            
+            var config = this.GetConfiguration();
+            Assert.AreEqual(
+                this.mocker.GetMock<IVersionProvider>().Object, 
+                config.VersionProvider);
         }
 
         [TestMethod]
@@ -59,11 +63,30 @@ namespace Jacobsoft.Amd.Test
         {
             var expectedVersionProviderType = typeof(TestVersionProvider);
 
-            var configSection = new Mock<IAmdConfigurationSection>();
+            var configSection = this.mocker.GetMock<IAmdConfigurationSection>();
             configSection.Setup(s => s.VersionProvider).Returns(expectedVersionProviderType);
 
-            var config = new AmdConfiguration(configSection.Object);
+            var config = this.GetConfiguration();
             Assert.IsInstanceOfType(config.VersionProvider, expectedVersionProviderType);
+        }
+
+        [TestMethod]
+        public void Constructor_WithMinifierInConfigSection_ActivatesObject()
+        {
+            var expectedMinifierType = typeof(TestMinifier);
+
+            var configSection = this.mocker.GetMock<IAmdConfigurationSection>();
+            configSection.Setup(s => s.Minifier).Returns(expectedMinifierType);
+
+            var config = this.GetConfiguration();
+            Assert.IsInstanceOfType(config.Minifier, expectedMinifierType);
+        }
+
+        private AmdConfiguration GetConfiguration()
+        {
+            return new AmdConfiguration(
+                this.mocker.GetMock<IAmdConfigurationSection>().Object,
+                this.mocker.GetMock<IVersionProvider>().Object);
         }
     }
 }

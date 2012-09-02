@@ -22,6 +22,7 @@
     <xs:attribute name="moduleRootUrl" type="xs:string" default="~/Scripts"/>
     <xs:attribute name="mode" type="ScriptLoadingMode" default="dynamic"/>
     <xs:attribute name="versionProvider" type="ClrType" use="optional"/>
+    <xs:attribute name="minifier" type="ClrType" use="optional"/>
   </xs:complexType>
 
   <xs:complexType name="ShimModule">

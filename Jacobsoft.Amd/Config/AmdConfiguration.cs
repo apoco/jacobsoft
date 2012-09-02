@@ -15,7 +15,9 @@ namespace Jacobsoft.Amd.Config
             get { return ServiceLocator.Instance.Get<IAmdConfiguration>(); }
         }
 
-        internal AmdConfiguration(IAmdConfigurationSection configSection)
+        internal AmdConfiguration(
+            IAmdConfigurationSection configSection,
+            IVersionProvider defaultVersionProvider)
         {
             if (configSection != null)
             {
@@ -26,8 +28,13 @@ namespace Jacobsoft.Amd.Config
             }
 
             this.VersionProvider = configSection.VersionProvider == null
-                ? ServiceLocator.Instance.Get<IVersionProvider>()
+                ? defaultVersionProvider
                 : Activator.CreateInstance(configSection.VersionProvider) as IVersionProvider;
+
+            if (configSection.Minifier != null)
+            {
+                this.Minifier = Activator.CreateInstance(configSection.Minifier) as IScriptMinifier;
+            }
         }
 
         public string LoaderUrl { get; set; }

@@ -104,6 +104,14 @@ namespace Jacobsoft.Amd.Test
         }
 
         [TestMethod]
+        public void Minifier()
+        {
+            var configSection = ConfigurationManager.GetSection("jacobsoft.amd.minifying")
+                as AmdConfigurationSection;
+            Assert.AreEqual(typeof(TestMinifier), configSection.Minifier);
+        }
+
+        [TestMethod]
         public void Shims()
         {
             var configSection = ConfigurationManager.GetSection("jacobsoft.amd")

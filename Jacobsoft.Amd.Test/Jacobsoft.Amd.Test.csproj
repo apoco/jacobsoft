@@ -105,6 +105,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Config\AmdConfigurationTests.cs" />
     <Compile Include="HtmlHelperExtensionsTests.cs" />
+    <Compile Include="TestApplication.cs" />
+    <Compile Include="TestMinifier.cs" />
     <Compile Include="TestVersionProviders.cs" />
   </ItemGroup>
   <ItemGroup>

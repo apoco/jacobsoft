@@ -12,6 +12,7 @@ namespace Jacobsoft.Amd.Internals.Config
         string RootModuleUrl { get; }
         ScriptLoadingMode ScriptLoadingMode { get; }
         Type VersionProvider { get; }
+        Type Minifier { get; }
         IEnumerable<IShim> Shims { get; }
     }
 }

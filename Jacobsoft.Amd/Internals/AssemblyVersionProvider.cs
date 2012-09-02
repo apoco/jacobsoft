@@ -13,13 +13,8 @@ namespace Jacobsoft.Amd.Internals
         public AssemblyVersionProvider(HttpContextBase httpContext)
         {
             this.version = httpContext
-                .ApplicationInstance
-                .GetType()
-                .BaseType
-                .Assembly
-                .GetName()
-                .Version
-                .ToString();
+                .IfExists(ctx => ctx.ApplicationInstance)
+                .IfExists(i => i.GetType().BaseType.Assembly.GetName().Version.ToString());
         }
 
         public string GetVersion()

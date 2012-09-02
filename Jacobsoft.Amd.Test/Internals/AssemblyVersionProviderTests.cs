@@ -32,13 +32,5 @@ namespace Jacobsoft.Amd.Test.Internals
             var provider = this.autoMocker.Resolve<AssemblyVersionProvider>();
             Assert.AreEqual(expectedVersion, provider.GetVersion());
         }
-
-        private class BaseApplication : HttpApplication
-        {
-        }
-
-        private class TestApplication : BaseApplication
-        {
-        }
     }
 }
